@@ -3,6 +3,6 @@ CREATE TABLE CUSTOMER (
     C_LNAME varchar(15) NOT NULL,
     C_FNAME varchar(15) NOT NULL,
     SERVICE_ID int,
-    C_ORDER_NUM int,
+    ORDER_ID int,
     C_BUSINESS_NAME varchar(50)
 );
