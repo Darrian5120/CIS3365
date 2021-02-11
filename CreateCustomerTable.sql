@@ -1,9 +1,8 @@
-CREATE TABLE Customer (
-    C_ID int not null,
-    C_LNAME varchar(15) not null,
-    C_FNAME varchar(15) not null,
+CREATE TABLE CUSTOMER (
+    C_ID int NOT NULL PRIMARY KEY,
+    C_LNAME varchar(15) NOT NULL,
+    C_FNAME varchar(15) NOT NULL,
     SERVICE_ID int,
     C_ORDER_NUM int,
-    C_BUSINESS_NAME varchar(50),
-    PRIMARY KEY (C_ID)
+    C_BUSINESS_NAME varchar(50)
 );
