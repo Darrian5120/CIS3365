@@ -5,7 +5,7 @@ CREATE TABLE INVOICE (
 	AMT_PAID int,
 	AMT_OWED int,
 	ITEM_QUANTITY int,
-	ITEM_COST int,
-	DATE  varchar(8) not null,
+	ITEM_COST float,
+	DATE  datetime not null,
 	PRIMARY KEY (INVOICE_ID)
 );
