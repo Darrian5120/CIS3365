@@ -1,0 +1,14 @@
+CREATE TABLE BUSINESS_INFO (
+BUS_NAME varchar(30),
+BUS_ADDRESS  varchar (30),
+BUS_CITY varchar (30),
+BUS_STATE varchar (2),
+BUS_ZIP int,
+BUS_PHONE int,
+BUS_FAX int,
+BUS_HOURS int,
+BUS_EMAIL varchar (30),
+BUS_WEBSITE varchar(30),
+/*BUS_IMAGES int*/
+PRIMARY KEY (BUS_NAME),
+);
