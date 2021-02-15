@@ -1,0 +1,8 @@
+CREATE TABLE SERVICE_SCHEDULE (
+SCHEDULE_ID int not null,
+SERVICE_REQUESTED varchar(30) not null,
+SERVICE_TIME time (4)not null,
+SERVICE_DATE date not null
+PRIMARY KEY (SCHEDULE_ID),
+
+)
