@@ -1,5 +1,6 @@
-CREATE TABLE CUSTOMER (
-    C_ID int NOT NULL PRIMARY KEY,
+USE CoogTechSolutions
+CREATE TABLE Customer (
+    C_ID int IDENTITY(1,1) PRIMARY KEY,
     C_LNAME varchar(15) NOT NULL,
     C_FNAME varchar(15) NOT NULL,
     SERVICE_ID int,
