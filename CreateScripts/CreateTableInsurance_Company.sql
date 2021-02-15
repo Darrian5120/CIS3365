@@ -1,0 +1,6 @@
+CREATE TABLE INSURANCE_COMPANY (
+	INSURANCE_ID int not null,
+	CUSTOMER_ID int not null,
+	COMPANY_NAME varchar(30) not null,
+	PRIMARY KEY (INSURANCE_ID)
+);
