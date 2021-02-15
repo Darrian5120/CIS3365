@@ -5,7 +5,7 @@ CREATE TABLE EMPLOYEE (
 	EMP_ADDRESS varchar(50) not null,
 	EMP_HIRE_DATE varchar(8),
 	EMP_HOURS varchar(4),
-	EMP_PAY_RATE int,
+	EMP_PAY_RATE float,
 	EMP_PHONE int not null,
 	EMP_BANK_INFO int,
 	EMP_TAX int,
