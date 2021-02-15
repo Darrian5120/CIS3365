@@ -7,5 +7,6 @@ SUP_PART_PRICE float not null,
   
 PRIMARY KEY (SUP_PART_ID),
 FOREIGN KEY (SUP_PART_ID) REFERENCES (Supplier_Lookup)
-
+/*Zach Kurtubi*/
+  
 );
