@@ -1,0 +1,12 @@
+CREATE TABLE Service_Area(
+
+AREA_ID int,
+SERVICE_TYPE varchar(15) not null,
+V_ID int,
+INVENTORY varchar(15) not null,
+
+PRIMARY KEY(AREA_ID),
+FOREIGN KEY(V_ID) REFERENCES Service(V_ID)
+FOREIGN KEY(SERVICE_TYPE) REFERENCES Service(SERVICE_TYPE)
+
+);
