@@ -1,5 +1,5 @@
 USE CoogTechSolutions
-CREATE TABLE Customer (
+CREATE TABLE dbo.Customer (
     C_ID int IDENTITY(1,1) PRIMARY KEY,
     C_LNAME varchar(15) NOT NULL,
     C_FNAME varchar(15) NOT NULL,
