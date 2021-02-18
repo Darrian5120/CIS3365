@@ -27,54 +27,8 @@ def menu():
 
         # add new table
         if command == 'a':
-            print("Add new Table")
-            cursor = connection.cursor()
-            ############Paste sql code here#################
-            create_table = """
-                
-            """
-            ################################################
-            cursor.execute(create_table)
-        # remove table
-        if command == 'd':
-            print("Remove table")
-            cursor = connection.cursor()
-            ############Paste sql code here#################
-            remove_table = """
-                DROP TABLE [dbo].[SERVICE_ORDER_LINE]
-            """
-            ################################################
-            cursor.execute(remove_table)
-
-        # insert element in table
-        if command == 'i':           
-            print("Fill elements from excel file")
-            #user_file = str(input("Enter filename(example.xlsx): "))
-            #table_name = str(input("Enter table name(Customer): "))
-            data = pd.read_excel(r"C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Records\Customer.xlsx")   
-            df = pd.DataFrame(data)
-            df = df.fillna(value=0)
-            print(df)
-            cursor = connection.cursor()
-            for row in df.itertuples():
-                cursor.execute('''
-                            SET IDENTITY_INSERT [dbo].[Customer] OFF;
-                            INSERT INTO CoogTechSolutions.dbo.Customer (ORDER_ID, SERVICE_ID, C_FNAME, C_LNAME, C_BUSINESS_NAME)
-                            VALUES (?,?,?,?,?,?)
-                            ''', row.ORDER_ID, row.SERVICE_ID, row.C_FNAME, row.C_LNAME, row.C_BUSINESS_NAME)
-            connection.commit()
-            
-        # remove element in table
-        if command == 'r':           
-            print("Remove Element")
-            
-        # update element in table
-        if command == 'u':           
-            print("Update Element")
-            
-        # Print entire table    
-        if command == 'o':
             None
+       
 
 def insert_func(data, sql_string):
     None         
@@ -97,7 +51,13 @@ for row in df.itertuples():
         VALUES (?,?,?,?,?)
         ''', row.ORDER_ID, row.SERVICE_ID, row.C_FNAME, row.C_LNAME, row.C_BUSINESS_NAME)
 connection.commit()
+cursor = connection.cursor()
+cursor.execute('SELECT * FROM Customer')
+for row in cursor:
+    print(row)
 
+
+#
 data = pd.read_excel(r"C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Records\FINSIHED_ORDER.xlsx")   
 df = pd.DataFrame(data)
 print(df)
@@ -109,7 +69,13 @@ for row in df.itertuples():
         VALUES (?,?,?)
         ''', row.DATE_START, row.DATE_END, row.Quality)
 connection.commit()
+cursor = connection.cursor()
+sql_query = pd.read_sql_query('SELECT * FROM FINSIHED_ORDER',connection)
+print(sql_query)
+print(type(sql_query))
 
+
+#
 data = pd.read_excel(r"C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Records\PAYMENT.xlsx")   
 df = pd.DataFrame(data)
 #df = df.fillna(value=0)
@@ -122,6 +88,8 @@ for row in df.itertuples():
         VALUES (?,?)
         ''', row.C_ID, row.AMT_PAID)
 
+
+#
 data = pd.read_excel(r"C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Records\SERVICE_ORDER_LINE.xlsx")   
 df = pd.DataFrame(data)
 #df = df.fillna(value=0)
