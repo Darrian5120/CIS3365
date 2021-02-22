@@ -1,0 +1,4 @@
+“SET IDENTITY_INSERT CoogTechSolutions.dbo.VEHICLE OFF;
+INSERT INTO CoogTechSolutions.dbo.VEHICLE (C_ID, C_ACTIVE)
+VALUES (?,?)
+”,row.V_MAKE, row.V_LISCENSE_PLATE, row.V_MODEL
