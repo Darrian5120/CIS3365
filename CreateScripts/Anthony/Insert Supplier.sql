@@ -1,0 +1,3 @@
+'''SET IDENTITY_INSERT CoogTechSolutions.dbo.Supplier OFF;
+INSERT INTO CoogTechSolutions.dbo.Supplier (SUPPLIER_PHONE, SUPPLIER_ADDRESS) VALUES (?, ?)
+''', row.SUPPLIER_PHONE, row.SUPPLIER_ADDRESS)
