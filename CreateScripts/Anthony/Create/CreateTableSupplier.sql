@@ -1,3 +1,4 @@
+USE CoogTechSolutions
 CREATE TABLE SUPPLIER (
 	SUPPLIER_ID int not null,
 	SUPPLIER_PHONE int not null,
