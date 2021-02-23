@@ -1,6 +1,6 @@
 USE CoogTechSolutions
 CREATE TABLE EMPLOYEE_LOOKUP (
-EMPLOYEE_ID int not null,
-EMPLOYEE_CURR_SERVICE varchar(15) not null,
+	EMPLOYEE_ID int not null,
+	EMPLOYEE_CURR_SERVICE varchar(15) not null,
 	PRIMARY KEY (EMPLOYEE_ID)
 );
