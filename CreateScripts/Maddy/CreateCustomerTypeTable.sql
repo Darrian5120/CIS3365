@@ -1,0 +1,7 @@
+USE CoogTechSolutions
+CREATE TABLE CUSTOMER_TYPE (
+	CUSTOMER_ID int not null,
+	IS_BUSINESS bool,
+	IS_INDIVIDUAL bool,
+	PRIMARY KEY (CUSTOMER_ID)
+);
