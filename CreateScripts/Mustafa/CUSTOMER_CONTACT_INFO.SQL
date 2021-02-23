@@ -1,4 +1,5 @@
-CREATE TABLE CUSTOMER_CONTACT_INFO (
+USE CoogTechSolutions
+CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 C_ID INT not null,
 C_PHONE INT  not null,
 C_EMAIL varchar(30) not null,
