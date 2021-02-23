@@ -1,5 +1,5 @@
 USE CoogTechSolutions
-CREATE TABLE dbo.[Service] (  
+CREATE TABLE dbo.Service (  
   SERVICE_ID INT not null,  
   SERVICE_TYPE VARCHAR(30) not null,  
   V_ID INT NOT NULL,  
