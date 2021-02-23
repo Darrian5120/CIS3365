@@ -1,14 +1,15 @@
-CREATE TABLE BUSINESS_INFO (
-BUS_NAME varchar(30),
-BUS_ADDRESS  varchar (30),
-BUS_CITY varchar (30),
-BUS_STATE varchar (2),
-BUS_ZIP int,
-BUS_PHONE int,
-BUS_FAX int,
-BUS_HOURS int,
-BUS_EMAIL varchar (30),
-BUS_WEBSITE varchar(30),
-/*BUS_IMAGES int*/
-PRIMARY KEY (BUS_NAME),
+USE CoogTechSolutions
+CREATE TABLE dbo.BUSINESS_INFO (
+	BUS_ID int not null,
+	BUS_ADDRESS  varchar(30) not null,
+	BUS_CITY varchar(30) not null,
+	BUS_STATE varchar(2) not null,
+	BUS_ZIP int not null,
+	BUS_PHONE int not null,
+	BUS_FAX int not null,
+	BUS_HOURS int not null,
+	BUS_EMAIL varchar(30) not null,
+	BUS_WEBSITE varchar(30) not null,
+	/*BUS_IMAGES int*/
+	PRIMARY KEY(BUS_ID),
 );
