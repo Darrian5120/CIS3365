@@ -1,13 +1,11 @@
-CREATE TABLE Service_Area(
+USE CoogTechSolutions
+CREATE TABLE dbo.Service_Area(
+	AREA_ID int not null,
+	SERVICE_TYPE varchar(15) not null,
+	V_VIN int not null,
+	INVENTORY TEXT,
 
-AREA_ID int,
-SERVICE_TYPE varchar(15) not null,
-V_VIN int,
-INVENTORY varchar(15) not null,
-
-PRIMARY KEY(AREA_ID),
-FOREIGN KEY(V_VIN) REFERENCES Vehicle(V_VIN)
-FOREIGN KEY(SERVICE_TYPE) REFERENCES Service(SERVICE_TYPE)
-/*Zach Kurtubi*/
-  
+	PRIMARY KEY(AREA_ID),
+	FOREIGN KEY(V_VIN) REFERENCES VEHICLE(V_VIN)
+	/*Zach Kurtubi*/
 );
