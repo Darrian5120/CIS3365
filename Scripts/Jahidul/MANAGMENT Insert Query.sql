@@ -1,0 +1,3 @@
+SET IDENTITY_INSERT CoogTechSolutions.dbo.MANAGMENT OFF; 
+INSERT INTO CoogTechSolutions.dbo.MANAGMENT (EMP_ID) VALUES (?)
+row.EMP_ID)

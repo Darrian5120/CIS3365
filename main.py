@@ -42,7 +42,6 @@ connection = pyodbc.connect('Driver={SQL Server};'
 
 data = pd.read_excel(r"C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Records\CUSTOMER.xlsx")   
 df = pd.DataFrame(data)
-print(df)
 cursor = connection.cursor()
 for row in df.itertuples():
     cursor.execute('''
@@ -52,10 +51,9 @@ for row in df.itertuples():
         ''', row.ORDER_ID, row.SERVICE_ID, row.C_FNAME, row.C_LNAME, row.C_BUSINESS_NAME)
 connection.commit()
 cursor = connection.cursor()
-cursor.execute('SELECT * FROM Customer')
-for row in cursor:
-    print(row)
-
+sql_query = pd.read_sql_query('SELECT * FROM Customer',connection)
+print(sql_query)
+print(type(sql_query))
 
 #
 data = pd.read_excel(r"C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Records\FINSIHED_ORDER.xlsx")   
@@ -66,8 +64,8 @@ for row in df.itertuples():
     cursor.execute('''
         SET IDENTITY_INSERT CoogTechSolutions.dbo.FINSIHED_ORDER ON;
         INSERT INTO CoogTechSolutions.dbo.FINISHED_ORDER (ORDER_ID, DATE_START, DATE_END, Quality)
-        VALUES (?,?,?)
-        ''', row.DATE_START, row.DATE_END, row.Quality)
+        VALUES (?,?,?,?)
+        ''', row.ORDER_ID, row.DATE_START, row.DATE_END, row.Quality)
 connection.commit()
 cursor = connection.cursor()
 sql_query = pd.read_sql_query('SELECT * FROM FINSIHED_ORDER',connection)

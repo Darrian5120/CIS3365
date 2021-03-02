@@ -1,7 +1,0 @@
-USE CoogTechSolutions
-CREATE TABLE SUPPLIER (
-	SUPPLIER_ID int not null,
-	SUPPLIER_PHONE int not null,
-	SUPPLIER_ADDRESS varchar(50),
-	PRIMARY KEY (SUPPLIER_ID)
-);

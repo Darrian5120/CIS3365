@@ -1,3 +1,0 @@
-SET IDENTITY_INSERT CoogTechSolutions.dbo. OFFICE_WORKER OFF; 
-INSERT INTO CoogTechSolutions.dbo.OFFICE_WORKER (EMP_ID) VALUES (?)
- row.EMP_ID)
