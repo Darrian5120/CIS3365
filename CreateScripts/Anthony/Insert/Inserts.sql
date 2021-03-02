@@ -1,6 +1,6 @@
 --Employee Schedule Insert--
 Bulk INSERT Employee_Schedule
-	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Darrian\Employee_Schedule.txt'
+	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Anthony\Data\Employee_Schedule.txt'
 	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
@@ -9,7 +9,7 @@ Bulk INSERT Employee_Schedule
 		);
 --Employee Insert--
 Bulk INSERT Employee
-	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Darrian\Employee.txt'
+	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Anthony\Data\Employee.txt'
 	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
@@ -18,7 +18,7 @@ Bulk INSERT Employee
 		);
 --Invoice Invoice--
 Bulk INSERT Invoice
-	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Darrian\Invoice.txt'
+	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Anthony\Data\Invoice.txt'
 	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
@@ -27,7 +27,7 @@ Bulk INSERT Invoice
 		);
 --Supplier--
 Bulk INSERT Supplier
-	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Darrian\Supplier.txt'
+	FROM 'C:\Users\anthony\Documents\GitHub\CIS3365\CreateScripts\Anthony\Data\Supplier.txt'
 	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
