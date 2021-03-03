@@ -10,7 +10,9 @@ add CONSTRAINT ORDER_ID_FK FOREIGN KEY (ORDER_ID) REFERENCES FINSIHED_ORDER(ORDE
 ALTER TABLE FINSIHED_ORDER
 add CONSTRAINT ORDER_ID_FK FOREIGN KEY (ORDER_ID) REFERENCES SERVICE_REQUEST(ORDER_ID);
 ----------------------------Anthony-----------------------------------------------------
-
+--Alter Invoice--
+ALTER TABLE INVOICE
+add CONSTRAINT CUSTOMER_ID_FK FOREIGN KEY (CUSTOMER_ID) REFERENCES Customer(CUSTOMER_ID);
 ---------------------------Mustafa------------------------------------------------------
 --CUSTOMER CONTACT INFO ALTER
 ALTER TABLE CUSTOMER_CONTACT_INFO
