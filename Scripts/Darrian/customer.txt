@@ -4,8 +4,8 @@ C_ID|C_LNAME|C_FNAME|ORDER_ID|C_BUSINESS_NAME\n
 3|Melesio||4880|Texstar Excavating\n
 4|Garcia|Ernesto|66479|Ernesto Garcia Trucking\n
 5|Nieto|Jaimes|5147|Niceford\n
-6|County Land|5154|Mid\n
-7|J|E|5155|Jachon Int'l LTD\n
+6|County Land|Mid|5154|Mid County Land\n
+7|Jachon|E|5155|Jachon Int'l LTD\n
 8|Chrome|ATC|5159|Chrome ATC\n
 9|Molina|John|5163||\n
 10|Stair|Joseph|4881||\n
@@ -49,7 +49,6 @@ C_ID|C_LNAME|C_FNAME|ORDER_ID|C_BUSINESS_NAME\n
 48|Martin|Katia|4941||\n
 49|Jack|Billy|4943|Billy Jack Construction Co\n
 50|Vasquez|E|4944||\n
-
 
 
 
