@@ -44,6 +44,7 @@ CREATE TABLE dbo.BUSINESS (
 	BUS_WEBSITE varchar(30) not null,
 	CONSTRAINT BUS_ID_PK PRIMARY KEY(BUS_ID)
 );
+-----------------Anthony-------------------------------
 --Employee Create Script--
 CREATE TABLE dbo.EMPLOYEE (
 	EMP_ID int IDENTITY(1,1) NOT NULL,
