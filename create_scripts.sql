@@ -29,21 +29,6 @@ CREATE TABLE dbo.FINISHED_ORDER (
     Quality text,
 	CONSTRAINT ORDER_ID_PK PRIMARY KEY (ORDER_ID)
 );
--------------------------------------------------------
---Business Create Script--
-CREATE TABLE dbo.BUSINESS (
-	BUS_ID int not null,
-	BUS_ADDRESS  varchar(30) not null,
-	BUS_CITY varchar(30) not null,
-	BUS_STATE varchar(2) not null,
-	BUS_ZIP int not null,
-	BUS_PHONE int not null,
-	BUS_FAX int not null,
-	BUS_HOURS int not null,
-	BUS_EMAIL varchar(30) not null,
-	BUS_WEBSITE varchar(30) not null,
-	CONSTRAINT BUS_ID_PK PRIMARY KEY(BUS_ID)
-);
 -----------------Anthony-------------------------------
 --Employee Create Script--
 CREATE TABLE dbo.EMPLOYEE (
