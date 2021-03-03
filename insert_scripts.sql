@@ -1,5 +1,6 @@
 USE CoogTechSolutions
 --Customer Insert--
+---------------------Darrian----------------------------------------------------------------------
 BULK INSERT Customer
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\customer.txt'
 	WITH(
@@ -35,6 +36,7 @@ BULK INSERT SERVICE_ORDER_LINE
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
 	);
+----------------------------------------------------------------------------------------------------------
 --Employee Schedule Insert--
 Bulk INSERT Employee_Schedule
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Employee_Schedule.txt'
