@@ -1,14 +1,30 @@
-C_LNAME|C_FNAME|ORDER_ID|C_BUSINESS_NAME\n
-American|Best|4878|Best American\n
-Trucking|Cowgirl|4879|Cowgirl Trucking\n
-Melesio||4880|Texstar Excavating\n
-Garcia|Ernesto|66479|Ernesto Garcia Trucking\n
-Nieto|Jaimes|5147|Niceford\n
-County Land|5154|Mid\n
-J|E|5155|Jachon Int'l LTD\n
-Chrome|ATC|5159|Chrome ATC\n
-Molina|John|5163||\n
-Stair|Joseph|4881||\n
+C_ID|C_LNAME|C_FNAME|ORDER_ID|C_BUSINESS_NAME\n
+1|American|Best|4878|Best American\n
+2|Trucking|Cowgirl|4879|Cowgirl Trucking\n
+3|Melesio||4880|Texstar Excavating\n
+4|Garcia|Ernesto|66479|Ernesto Garcia Trucking\n
+5|Nieto|Jaimes|5147|Niceford\n
+6|County Land|5154|Mid\n
+7|J|E|5155|Jachon Int'l LTD\n
+8|Chrome|ATC|5159|Chrome ATC\n
+9|Molina|John|5163||\n
+10|Stair|Joseph|4881||\n
+11|V Trucking|Circle|4882|Circle V Trucking\n
+12|Truck Center|Rush|4883|Rush Truck Center\n
+13|Oilfield Service|Headway|4884|Headway Oilfield Service\n
+14|Stroup|Paul|4855|Paul Stroup Custom Dozing\n
+15|Ramirez Saldana|Mariano|4886||\n
+16|Thomas|Kirk|4887||\n
+17|Truck of Houston|Performance|4889|Performance Truck of Houston\n
+18|D|John|4891|Clifton Chevrolet\n
+19|Trucking|Jag|4892|Jag Trucking\n
+20|Rigoberto|Ramos|4894||\n
+21|Murica|Oscar|4895||\n
+22|Truck|Rush|4896|Rush Truck-San Antonio\n
+23|Lopez|Bernardino|4897|AB Trucking\n
+24|Larret||4898|Larrett Inc\n
+25|
+
 
 
 

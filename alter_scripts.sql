@@ -9,6 +9,20 @@ CREATE TABLE dbo.Customer (
     C_BUSINESS_NAME varchar(50),
 	CONSTRAINT C_ID_PK PRIMARY KEY (C_ID)
 );
+--Business Create Script--
+CREATE TABLE dbo.BUSINESS (
+	BUS_ID int not null,
+	BUS_ADDRESS  varchar(30) not null,
+	BUS_CITY varchar(30) not null,
+	BUS_STATE varchar(2) not null,
+	BUS_ZIP int not null,
+	BUS_PHONE int not null,
+	BUS_FAX int not null,
+	BUS_HOURS int not null,
+	BUS_EMAIL varchar(30) not null,
+	BUS_WEBSITE varchar(30) not null,
+	CONSTRAINT BUS_ID_PK PRIMARY KEY(BUS_ID),
+);
 --Employee Create Script--
 CREATE TABLE dbo.EMPLOYEE (
 	EMP_ID int IDENTITY(1,1) NOT NULL,
@@ -24,4 +38,10 @@ CREATE TABLE dbo.EMPLOYEE (
 	EMP_JOB_FUNC varchar(30),
 	CONSTRAINT EMP_ID_PK PRIMARY KEY (EMP_ID)
 );
-
+--Supplier Create Script
+CREATE TABLE dbo.SUPPLIER (
+	SUPPLIER_ID int not null,
+	SUPPLIER_PHONE int not null,
+	SUPPLIER_ADDRESS varchar(50),
+	CONSTRAINT SUPPLIER_ID_PK PRIMARY KEY (SUPPLIER_ID)
+);
