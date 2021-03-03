@@ -64,3 +64,19 @@ CREATE TABLE dbo.FINISHED_ORDER (
     Quality text,
 	CONSTRAINT ORDER_ID_PK PRIMARY KEY (ORDER_ID)
 );
+--Create Employee Schedule--
+CREATE TABLE dbo.EMPLOYEE_SCHEDULE (
+	SCHEDULE_ID int not null,
+	EMP_SCHD_WEEK DATE not null,
+	EMP_SCHD_EMP_IDS int not null,
+	CONSTRAINT SCHEDULE_ID_PK PRIMARY KEY (SCHEDULE_ID)
+);
+--Create Invoice--
+CREATE TABLE dbo.INVOICE (
+	INVOICE_ID int not null,
+	CUSTOMER_ID int not null,
+	TOTAL_COST float,
+	AMT_OWED float,
+	INVOICE_DATE  datetime not null,
+	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
+);
