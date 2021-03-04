@@ -118,3 +118,27 @@ CREATE TABLE dbo.SERVICE_SCHEDULE (
 	SERVICE_DATE datetime not null
 	CONSTRAINT SCHEDULE_ID_PK PRIMARY KEY (SCHEDULE_ID)
 );
+
+------------jahidul---------------------------------------------------
+
+
+create table dbo.CUSTOMER_REQUEST(
+ORDER_ID int,
+CUSTOMER_ID int, 
+);
+
+create table dbo.CUSTOMER_VEHICLE(
+V_VIN int,
+CUSTOMER_ID int, 
+);
+
+create table dbo.VEHICLE_POLICY(
+POLICY_ID int,
+V_VIN int, 
+);
+
+create table dbo.COMPANY_INSURANCE_POLICY(
+POLICY_ID int,
+INSURANCE_ID int, 
+);
+
