@@ -115,45 +115,47 @@ CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 CREATE TABLE dbo.SERVICE_SCHEDULE (
 	SCHEDULE_ID int not null,
 	SERVICE_TYPE varchar(30) not null,
-	SERVICE_DATE datetime not null
+	SERVICE_DATE datetime not null,
 	CONSTRAINT SCHEDULE_ID_PK PRIMARY KEY (SCHEDULE_ID)
 );
 
-------------jahidul---------------------------------------------------
-
-
+------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_REQUEST(
-ORDER_ID int not null,
-CUSTOMER_ID int not null,
+	ORDER_ID int not null,
+	CUSTOMER_ID int not null,
+	CONSTRAINT ORDER_ID_PK PRIMARY KEY (ORDER_ID)
 );
 
 create table dbo.CUSTOMER_VEHICLE(
-V_VIN int,
-CUSTOMER_ID int not null
+	V_VIN int not null,
+	CUSTOMER_ID int not null,
+	CONSTRAINT V_VIN_PK PRIMARY KEY (V_VIN)
 );
 
 create table dbo.VEHICLE_POLICY(
-POLICY_ID int,
-V_VIN int, 
+	POLICY_ID int not null,
+	V_VIN int not null,
+	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)	
 );
 
 create table dbo.COMPANY_INSURANCE_POLICY(
-POLICY_ID int,
-INSURANCE_ID int, 
+	POLICY_ID int not null,
+	INSURANCE_ID int not null,
+	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)
 );
 
 ------------Jerry-----------------------------------------------------
 
 --ACCOUNT EXPENSE Table--
 CREATE TABLE dbo.ACCOUNT_EXPENSE (
-	TOTAL_EXP int(9) not null,
-	PRIMARY KEY (TOTAL_EXP)
+	TOTAL_EXP int9 not null,
+	CONSTRAINT TOTAL_EXP_PK PRIMARY KEY (TOTAL_EXP)
 );
 
 --ACCOUNT REVENUE Table--
 CREATE TABLE dbo.ACCOUNT_REVENUE (
-	TOTAL_REV int(9) not null,
-	PRIMARY KEY (TOTAL_REV)
+	TOTAL_REV int not null,
+	CONSTRAINT TOTAL_REV_PK PRIMARY KEY (TOTAL_REV)
 );
 
 --INSURANCE COMPANY Table--
@@ -161,7 +163,7 @@ CREATE TABLE dbo.INSURANCE_COMPANY (
 	INSURANCE_ID int not null,
 	C_ID int not null,
 	COMPANY_NAME varchar(30) not null,
-	PRIMARY KEY (INSURANCE_ID),
+	CONSTRAINT INSURANCE_ID_PK PRIMARY KEY (INSURANCE_ID),
 	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID)
 );
 
@@ -172,7 +174,7 @@ CREATE TABLE dbo.INSURANCE_POLICY (
 	C_ID INT not null,
 	V_VIN INT not null,
 	COVERAGE_COST int,
-	PRIMARY KEY (POLICY_ID),
+	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID),
 	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID),
 	FOREIGN KEY (INSURANCE_ID) REFERENCES INSURANCE_COMPANY(INSURANCE_ID)
 
