@@ -1,1 +1,25 @@
-
+SCHEDULE_ID|EMP_SCHD_WEEK|EMP_SCHD_EMP_IDS\n
+1|Mon-Fri|1\n
+2|Mon-Fri|2\n
+3|Mon-Thur|3\n
+4|Mon-Fri|4\n
+5|Tue-Fri|3\n|5\n
+6|Mon-Thur|6\n
+7|Tue-Fri|7\n
+8|Mon-Thur|8\n
+9|Mon, Wed, Fri|9\n
+10|Mon-Fri|10\n
+11|Mon-Fri|11\n
+12|Mon, Wed-Thur|12\n
+13|Wed-Fri|13\n
+14|Wed-Fri|14\n
+15|Tue-Fri|15\n
+16|Tue-Fri|16\n
+17|Mon, Wed, Fri|17\n
+18|Mon-Fri|18\n
+19|Mon-Wed|19\n
+20|Mon, Wed, Fri|20\n
+21|Wed-Fri|21\n
+22|Mon-Fri|22\n
+23|Mon-Wed|23\n
+24|Wed-Fri|24\n

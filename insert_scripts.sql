@@ -111,4 +111,45 @@ Bulk INSERT SERVICE_SCHEDULE
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-------------------------------------------------------------------------------------------------------
+	
+----------------------------------------Jahidul--------------------------------------------------------------
+--Customer Request Insert--
+Bulk INSERT CUSTOMER_REQUEST
+FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Scripts\Jahidul\ji.txt'
+	WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+--Customer Vehicle Insert--
+Bulk INSERT CUSTOMER_VEHICLE
+FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Scripts\Jahidul\ji.txt'
+
+	WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+--Vehicle Policy Insert--
+Bulk INSERT VEHICLE_POLICY
+FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Scripts\Jahidul\ji.txt'
+
+	WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+--Company Insurance Insert--
+Bulk INSERT COMPANY_INSURANCE
+FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Scripts\Jahidul\ji.txt'
+
+	WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+
