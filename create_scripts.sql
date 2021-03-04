@@ -142,3 +142,38 @@ POLICY_ID int,
 INSURANCE_ID int, 
 );
 
+------------Jerry-----------------------------------------------------
+
+--ACCOUNT EXPENSE Table--
+CREATE TABLE dbo.ACCOUNT_EXPENSE (
+	TOTAL_EXP int(9) not null,
+	PRIMARY KEY (TOTAL_EXP)
+);
+
+--ACCOUNT REVENUE Table--
+CREATE TABLE dbo.ACCOUNT_REVENUE (
+	TOTAL_REV int(9) not null,
+	PRIMARY KEY (TOTAL_REV)
+);
+
+--INSURANCE COMPANY Table--
+CREATE TABLE dbo.INSURANCE_COMPANY (
+	INSURANCE_ID int not null,
+	C_ID int not null,
+	COMPANY_NAME varchar(30) not null,
+	PRIMARY KEY (INSURANCE_ID),
+	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID)
+);
+
+--INSURANCE POLICY Table--
+CREATE TABLE dbo.INSURANCE_POLICY (
+	POLICY_ID int not null,
+	INSURANCE_ID int not null,
+	C_ID INT not null,
+	V_VIN INT not null,
+	COVERAGE_COST int,
+	PRIMARY KEY (POLICY_ID),
+	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID),
+	FOREIGN KEY (INSURANCE_ID) REFERENCES INSURANCE_COMPANY(INSURANCE_ID)
+
+);
