@@ -123,13 +123,13 @@ CREATE TABLE dbo.SERVICE_SCHEDULE (
 
 
 create table dbo.CUSTOMER_REQUEST(
-ORDER_ID int,
-CUSTOMER_ID int, 
+ORDER_ID int not null,
+CUSTOMER_ID int not null,
 );
 
 create table dbo.CUSTOMER_VEHICLE(
 V_VIN int,
-CUSTOMER_ID int, 
+CUSTOMER_ID int not null
 );
 
 create table dbo.VEHICLE_POLICY(
