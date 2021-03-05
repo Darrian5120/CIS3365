@@ -19,8 +19,8 @@ BULK INSERT PAYMENT
 		MAXERRORS = 1
 	);
 --Finished Order Insert--
-BULK INSERT FINISHED_ORDER
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\finished_order.txt'
+BULK INSERT INVOICE_PAYMENT
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\invoice_payment.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
@@ -28,8 +28,8 @@ BULK INSERT FINISHED_ORDER
 		MAXERRORS = 1
 	);
 --Service Order Line Insert--
-BULK INSERT SERVICE_ORDER_LINE
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\service_order_line.txt'
+BULK INSERT SERVICE_LINE
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\service_line.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
