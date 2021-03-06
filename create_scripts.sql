@@ -43,7 +43,7 @@ CREATE TABLE dbo.EMPLOYEE (
 	EMP_JOB_FUNC varchar(30),
 	CONSTRAINT EMP_ID_PK PRIMARY KEY (EMP_ID)
 );
---Supplier Create Script
+--Supplier Create Script--
 CREATE TABLE dbo.SUPPLIER (
 	SUPPLIER_ID int not null,
 	SUPPLIER_PHONE int not null,
@@ -65,6 +65,14 @@ CREATE TABLE dbo.INVOICE (
 	AMT_OWED float,
 	INVOICE_DATE  datetime not null,
 	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
+);
+
+--Service Status Create--
+CREATE TABLE dbo.SERVICE_STATUS (
+    SERVICE_ID int NOT NULL,
+    ACTIVE_ID int NOT NULL,
+    ACTIVE int,
+	CONSTRAINT SERVICE_ID_PK PRIMARY KEY (SERVICE_ID)
 );
 ------------------Mustafa-----------------------------------------------
 --Business info--
