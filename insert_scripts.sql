@@ -84,7 +84,7 @@ Bulk INSERT BUSINESS_INFO
 				MAXERRORS = 1
 		);
 --Current service Insert--
-Bulk INSERT CURRENT_SERVICE
+Bulk INSERT VEHICLE_STATUS
 	FROM 'C:\Users\Mustafi\Documents\GitHub\CIS3365\CreateScripts\Mustafa\ma.txt'
 
 	WITH (
