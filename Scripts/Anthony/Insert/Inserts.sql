@@ -36,7 +36,7 @@ Bulk INSERT Supplier
 		);
 
 --Service Status--
-Bulk INSERT Supplier
+Bulk INSERT Service_Status
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Service_Status.txt'
 	WITH (
 			FIRSTROW =2,
