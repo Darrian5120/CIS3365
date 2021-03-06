@@ -101,6 +101,13 @@ CREATE TABLE dbo.SERVICE_SCHEDULE (
 	SERVICE_DATE datetime not null,
 	CONSTRAINT SCHEDULE_ID_PK PRIMARY KEY (SCHEDULE_ID)
 );
+--VEHICLE_STATUS--
+CREATE TABLE dbo.VEHICLE_STATUS (
+	V_VIN int not null,
+	ACTIVE_ID int not null,
+	ACTIVE int null,
+	CONSTRAINT V_VIN_PK PRIMARY KEY (V_VIN)
+);
 
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_REQUEST(
