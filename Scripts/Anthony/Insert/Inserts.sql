@@ -34,3 +34,13 @@ Bulk INSERT Supplier
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
+
+--Service Status--
+Bulk INSERT Supplier
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Service_Status.txt'
+	WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
