@@ -45,9 +45,8 @@ CREATE TABLE dbo.EMPLOYEE (
 );
 --Supplier Create Script--
 CREATE TABLE dbo.SUPPLIER (
-	SUPPLIER_ID int not null,
-	SUPPLIER_PHONE int not null,
-	SUPPLIER_ADDRESS varchar(50),
+	SUPPLIER_ID int not null,,
+	SUPPLIER_NAME varchar(50),
 	CONSTRAINT SUPPLIER_ID_PK PRIMARY KEY (SUPPLIER_ID)
 );
 --Create Employee Schedule--
