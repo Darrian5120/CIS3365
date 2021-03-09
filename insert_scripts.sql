@@ -73,15 +73,6 @@ Bulk INSERT Supplier
 			ROWTERMINATOR = '\n',
 			MAXERRORS = 1
 		);
---Service Status--
-Bulk INSERT Service_Status
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Service_Status.txt'
-	WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
 -----------------------------------Mustafa-------------------------------------------------------------------------------
 --Business info Insert--
 Bulk INSERT BUSINESS_INFO
@@ -172,15 +163,6 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
---Account Liability Insert--
-Bulk INSERT ACCOUNT_LIABILITY
-FROM 'C:\Users\kyle\Documents\GitHub\CIS3365\CreateScripts\Darrian\ACCOUNT_LIABILITY.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
 --Customer Status Insert--
 Bulk INSERT CUSTOMER_STATUS
 FROM 'C:\Users\kyle\Documents\GitHub\CIS3365\CreateScripts\Darrian\CUSTOMER_STATUS.txt'
@@ -203,6 +185,16 @@ WITH (
 Bulk INSERT VEHICLE
 FROM 'C:\Users\kyle\Documents\GitHub\CIS3365\CreateScripts\Darrian\VEHICLE.txt'
 WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+--------------------------------Jerry------------------------------------------------
+--Service Status--
+Bulk INSERT Service_Status
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Service_Status.txt'
+	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
 				ROWTERMINATOR = '\n',

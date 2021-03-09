@@ -45,6 +45,8 @@ CONSTRAINT INSURANCE_ID_FK FOREIGN KEY (INSURANCE_ID) REFERENCES INSURANCE_COMPA
 ---------------------------Jerry---------------------------------------------------------------
 ALTER TABLE ACCOUNT_REVENUE
 add CONSTRAINT SERVICE_ID_FK FOREIGN KEY (SERVICE_ID) REFERENCES SERVICE_REQUEST(SERVICE_ID);
+ALTER TABLE SERVICE_STATUS
+add CONSTRAINT SERVICE_ID_FK FOREIGN KEY (SERVICE_ID) REFERENCES SERVICE_REQUEST(SERVICE_ID);
 ---------------------------Kyle---------------------------------------------------------------
 --Alter Customer Status--
 ALTER TABLE CUSTOMER_STATUS
