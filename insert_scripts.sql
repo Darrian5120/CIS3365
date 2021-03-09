@@ -13,7 +13,7 @@ BULK INSERT Customer
 BULK INSERT PAYMENT
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\payment.txt'
 	WITH(
-		FIRSTROW = 2,
+		FIRSTROW = 3,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
