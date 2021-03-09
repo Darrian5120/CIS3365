@@ -5,12 +5,12 @@ SUPPLIER_ID|SUPPLIER_PHONE|SUPPLIER_ADDRESS\n
 4|8006414122|3715 E Farm Rd. 94 Springfield. MO 65803\n
 5|8002490297|935 South Haven, MI 49090\n
 6|8002226283|223 15th St NE, Sioux Center, IA 51250\n
-7||9049 Tyler Blvd. Mentor, Ohio 44060\n
+7|4063882609|9049 Tyler Blvd. Mentor, Ohio 44060\n
 8|9725476020|725 E. University Dr. McKinney, TX 75069\n
 9|2489601354|51056 Century Ct, Wixom, MI 48393\n
 10|4684545700|Klarabergsviadukten 70, D6 Box 70 101 21 Stockholm\n
 11|8158423383|1037 W Howard St, Pontiac, IL 61764\n
 12|2815504551|9009 Jackrabbit Rd #3107, Houston, TX 77095\n
 13|512523-3200|16870 South IH-35, Buda, TX  78610\n
-14||12233 Williams Rd. Perrysburg, OH 43551\n
+14|4194826000|12233 Williams Rd. Perrysburg, OH 43551\n
 15|6309102844|800 South Frontage Road Woodridge IL 60517-4904\n
