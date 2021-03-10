@@ -1,6 +1,6 @@
-C_ID|C_LNAME|C_FNAMEC_BUSINESS_NAME\n
+C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 1|American|Best|Best American\n
-2|Trucking|CowgirlCowgirl Trucking\n
+2|Cowgirl||Cowgirl Trucking\n
 3|Melesio|Texstar Excavating\n
 4|Garcia|Ernesto|Ernesto Garcia Trucking\n
 5|Nieto|Jaimes|Niceford\n
