@@ -1,0 +1,21 @@
+SUPPLIER_ID|SUPPLIER_NAME\n
+1|Air Liquide\n
+2|Black Rose Steel & Trading\n
+3|Fruitland Manufacturing\n
+4|Ridewell Suspensions\n
+5|US Tarp\n
+6|Link Manufacturing, Ltd\n
+7|Buyers Products Company\n
+8|W&C - Watson & Chalin\n
+9|Airman Products\n
+10|Hendrickson\n
+11|SSAB\n
+12|Anthony Liftgates, Inc.\n
+13|Jackrabbit Steel Products, Inc\n
+14|Rush Truck Center - Austin\n
+15|HIAB\n
+16|Dayton Parts, LLC\n
+17|Fleetrite\n
+18|Transwest Trucks\n
+19|United Truck Centers\n
+20|Kyrish Truck Centers\n
