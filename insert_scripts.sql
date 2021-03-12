@@ -155,8 +155,8 @@ FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Scripts\Jahidul\ji.txt'
 
 ------------------------------------Kyle-----------------------------------------
 --Account Assets Insert--
-Bulk INSERT ACCOUNT_ASSETS
-FROM 'C:\Users\kyle\Documents\GitHub\CIS3365\CreateScripts\Darrian\ACCOUNT_ASSETS.txt'
+Bulk INSERT VEHICLE_SERVICE
+FROM 'C:\Users\kyle\Documents\GitHub\CIS3365\CreateScripts\Darrian\VEHICLE_SERVICE.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
