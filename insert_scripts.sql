@@ -37,14 +37,14 @@ BULK INSERT SERVICE_LINE
 		MAXERRORS = 1
 	);
 ------------------------------Anthony---------------------------------------------------------------------------
---Employee Schedule Insert--
-Bulk INSERT Employee_Schedule
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Employee_Schedule.txt'
+--Service Status--
+Bulk INSERT Service_Status
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Service_Status.txt'
 	WITH (
 			FIRSTROW =2,
-			FIELDTERMINATOR = '|',
-			ROWTERMINATOR = '\n',
-			MAXERRORS = 1
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
 		);
 --Employee Insert--
 Bulk INSERT Employee
