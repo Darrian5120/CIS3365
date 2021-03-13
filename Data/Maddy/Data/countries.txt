@@ -1,195 +1,196 @@
-Afghanistan\n
-Albania\n
-Algeria\n
-Andorra\n
-Angola\n
-Antigua & Deps\n
-Argentina\n
-Armenia\n
-Australia\n
-Austria\n
-Azerbaijan\n
-Bahamas\n
-Bahrain\n
-Bangladesh\n
-Barbados\n
-Belarus\n
-Belgium\n
-Belize\n
-Benin\n
-Bhutan\n
-Bolivia\n
-Bosnia Herzegovina\n
-Botswana\n
-Brazil\n
-Brunei\n
-Bulgaria\n
-Burkina\n
-Burundi\n
-Cambodia\n
-Cameroon\n
-Canada\n
-Cape Verde\n
-Central African Rep\n
-Chad\n
-Chile\n
-China\n
-Colombia\n
-Comoros\n
-Congo\n
-Costa Rica\n
-Croatia\n
-Cuba\n
-Cyprus\n
-Czech Republic\n
-Denmark\n
-Djibouti\n
-Dominica\n
-Dominican Republic\n
-East Timor\n
-Ecuador\n
-Egypt\n
-El Salvador\n
-Equatorial Guinea\n
-Eritrea\n
-Estonia\n
-Ethiopia\n
-Fiji\n
-Finland\n
-France\n
-Gabon\n
-Gambia\n
-Georgia\n
-Germany\n
-Ghana\n
-Greece\n
-Grenada\n
-Guatemala\n
-Guinea\n
-Guinea-Bissau\n
-Guyana\n
-Haiti\n
-Honduras\n
-Hungary\n
-Iceland\n
-India\n
-Indonesia\n
-Iran\n
-Iraq\n
-Ireland\n
-Israel\n
-Italy\n
-Ivory Coast\n
-Jamaica\n
-Japan\n
-Jordan\n
-Kazakhstan\n
-Kenya\n
-Kiribati\n
-North Korea\n
-South Korea\n
-Kosovo\n
-Kuwait\n
-Kyrgyzstan\n
-Laos\n
-Latvia\n
-Lebanon\n
-Lesotho\n
-Liberia\n
-Libya\n
-Liechtenstein\n
-Lithuania\n
-Luxembourg\n
-Macedonia\n
-Madagascar\n
-Malawi\n
-Malaysia\n
-Maldives\n
-Mali\n
-Malta\n
-Marshall Islands\n
-Mauritania\n
-Mauritius\n
-Mexico\n
-Micronesia\n
-Moldova\n
-Monaco\n
-Mongolia\n
-Montenegro\n
-Morocco\n
-Mozambique\n
-Myanmar, {Burma}\n
-Namibia\n
-Nauru\n
-Nepal\n
-Netherlands\n
-New Zealand\n
-Nicaragua\n
-Niger\n
-Nigeria\n
-Norway\n
-Oman\n
-Pakistan\n
-Palau\n
-Panama\n
-Papua New Guinea\n
-Paraguay\n
-Peru\n
-Philippines\n
-Poland\n
-Portugal\n
-Qatar\n
-Romania\n
-Russian Federation\n
-Rwanda\n
-St Kitts & Nevis\n
-St Lucia\n
-Saint Vincent & the Grenadines\n
-Samoa\n
-San Marino\n
-Sao Tome & Principe\n
-Saudi Arabia\n
-Senegal\n
-Serbia\n
-Seychelles\n
-Sierra Leone\n
-Singapore\n
-Slovakia\n
-Slovenia\n
-Solomon Islands\n
-Somalia\n
-South Africa\n
-South Sudan\n
-Spain\n
-Sri Lanka\n
-Sudan\n
-Suriname\n
-Swaziland\n
-Sweden\n
-Switzerland\n
-Syria\n
-Taiwan\n
-Tajikistan\n
-Tanzania\n
-Thailand\n
-Togo\n
-Tonga\n
-Trinidad & Tobago\n
-Tunisia\n
-Turkey\n
-Turkmenistan\n
-Tuvalu\n
-Uganda\n
-Ukraine\n
-United Arab Emirates\n
-United Kingdom\n
-United States\n
-Uruguay\n
-Uzbekistan\n
-Vanuatu\n
-Vatican City\n
-Venezuela\n
-Vietnam\n
-Yemen\n
-Zambia\n
-Zimbabwe\n
+COUNTRY_ID|COUNTRY_NAME\n
+1|Afghanistan\n
+2|Albania\n
+3|Algeria\n
+4|Andorra\n
+5|Angola\n
+6|Antigua & Deps\n
+7|Argentina\n
+8|Armenia\n
+9|Australia\n
+10|Austria\n
+11|Azerbaijan\n
+12|Bahamas\n
+13|Bahrain\n
+14|Bangladesh\n
+15|Barbados\n
+16|Belarus\n
+17|Belgium\n
+18|Belize\n
+19|Benin\n
+20|Bhutan\n
+21|Bolivia\n
+22|Bosnia Herzegovina\n
+23|Botswana\n
+24|Brazil\n
+25|Brunei\n
+26|Bulgaria\n
+27|Burkina\n
+28|Burundi\n
+29|Cambodia\n
+30|Cameroon\n
+31|Canada\n
+32|Cape Verde\n
+33|Central African Rep\n
+34|Chad\n
+35|Chile\n
+36|China\n
+37|Colombia\n
+38|Comoros\n
+39|Congo\n
+40|Costa Rica\n
+41|Croatia\n
+42|Cuba\n
+43|Cyprus\n
+44|Czech Republic\n
+45|Denmark\n
+46|Djibouti\n
+47|Dominica\n
+48|Dominican Republic\n
+49|East Timor\n
+50|Ecuador\n
+51|Egypt\n
+52|El Salvador\n
+53|Equatorial Guinea\n
+54|Eritrea\n
+55|Estonia\n
+56|Ethiopia\n
+57|Fiji\n
+58|Finland\n
+59|France\n
+60|Gabon\n
+61|Gambia\n
+62|Georgia\n
+63|Germany\n
+64|Ghana\n
+65|Greece\n
+66|Grenada\n
+67|Guatemala\n
+68|Guinea\n
+69|Guinea-Bissau\n
+70|Guyana\n
+71|Haiti\n
+72|Honduras\n
+73|Hungary\n
+74|Iceland\n
+75|India\n
+76|Indonesia\n
+77|Iran\n
+78|Iraq\n
+79|Ireland\n
+80|Israel\n
+81|Italy\n
+82|Ivory Coast\n
+83|Jamaica\n
+84|Japan\n
+85|Jordan\n
+86|Kazakhstan\n
+87|Kenya\n
+88|Kiribati\n
+89|North Korea\n
+90|South Korea\n
+91|Kosovo\n
+92|Kuwait\n
+93|Kyrgyzstan\n
+94|Laos\n
+95|Latvia\n
+96|Lebanon\n
+97|Lesotho\n
+98|Liberia\n
+99|Libya\n
+100|Liechtenstein\n
+101|Lithuania\n
+102|Luxembourg\n
+103|Macedonia\n
+104|Madagascar\n
+105|Malawi\n
+106|Malaysia\n
+107|Maldives\n
+108|Mali\n
+109|Malta\n
+110|Marshall Islands\n
+111|Mauritania\n
+112|Mauritius\n
+113|Mexico\n
+114|Micronesia\n
+115|Moldova\n
+116|Monaco\n
+117|Mongolia\n
+118|Montenegro\n
+119|Morocco\n
+120|Mozambique\n
+121|Myanmar\n
+122|Namibia\n
+123|Nauru\n
+124|Nepal\n
+125|Netherlands\n
+126|New Zealand\n
+127|Nicaragua\n
+128|Niger\n
+129|Nigeria\n
+130|Norway\n
+131|Oman\n
+132|Pakistan\n
+133|Palau\n
+134|Panama\n
+135|Papua New Guinea\n
+136|Paraguay\n
+137|Peru\n
+138|Philippines\n
+139|Poland\n
+140|Portugal\n
+141|Qatar\n
+142|Romania\n
+143|Russian Federation\n
+144|Rwanda\n
+145|St Kitts & Nevis\n
+146|St Lucia\n
+147|Saint Vincent & the Grenadines\n
+148|Samoa\n
+149|San Marino\n
+150|Sao Tome & Principe\n
+151|Saudi Arabia\n
+152|Senegal\n
+153|Serbia\n
+154|Seychelles\n
+155|Sierra Leone\n
+156|Singapore\n
+157|Slovakia\n
+158|Slovenia\n
+159|Solomon Islands\n
+160|Somalia\n
+161|South Africa\n
+162|South Sudan\n
+163|Spain\n
+164|Sri Lanka\n
+165|Sudan\n
+166|Suriname\n
+167|Swaziland\n
+168|Sweden\n
+169|Switzerland\n
+170|Syria\n
+171|Taiwan\n
+172|Tajikistan\n
+173|Tanzania\n
+174|Thailand\n
+175|Togo\n
+176|Tonga\n
+177|Trinidad & Tobago\n
+178|Tunisia\n
+179|Turkey\n
+180|Turkmenistan\n
+181|Tuvalu\n
+182|Uganda\n
+183|Ukraine\n
+184|United Arab Emirates\n
+185|United Kingdom\n
+186|United States\n
+187|Uruguay\n
+188|Uzbekistan\n
+189|Vanuatu\n
+190|Vatican City\n
+191|Venezuela\n
+192|Vietnam\n
+193|Yemen\n
+194|Zambia\n
+195|Zimbabwe\n
