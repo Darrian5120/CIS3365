@@ -33,18 +33,18 @@ CREATE TABLE dbo.INVOICE_PAYMENT (
 -----------------Anthony-------------------------------
 --Employee Create Script--
 CREATE TABLE dbo.EMPLOYEE (
-	EMP_ID int IDENTITY(1,1) NOT NULL,
-	EMP_LNAME varchar(30) not null,
-	EMP_FNAME varchar(30) not null,
-	EMP_ADDRESS varchar(50) not null,
-	EMP_HIRE_DATE DATE,
-	EMP_HOURS float,
-	EMP_PAY_RATE float,
-	EMP_PHONE int not null,
-	EMP_BANK_INFO int,
-	EMP_TAX int,
-	EMP_JOB_FUNC varchar(30),
-	CONSTRAINT EMP_ID_PK PRIMARY KEY (EMP_ID)
+	EMPLOYEE_ID int IDENTITY(1,1) NOT NULL,
+	EMPLOYEE_LNAME varchar(30) not null,
+	EMPLOYEE_FNAME varchar(30) not null,
+	EMPLOYEE_ADDRESS varchar(50) not null,
+	EMPLOYEE_HIRE_DATE DATE,
+	EMPLOYEE_HOURS float,
+	EMPLOYEE_PAY_RATE float,
+	EMPLOYEE_PHONE int not null,
+	EMPLOYEE_BANK_INFO int,
+	EMPLOYEE_TAX int,
+	EMPLOYEE_JOB_FUNC varchar(30),
+	CONSTRAINT EMPLOYEE_ID_PK PRIMARY KEY (EMPLOYEE_ID)
 );
 --Supplier Create Script--
 CREATE TABLE dbo.SUPPLIER (
@@ -217,3 +217,29 @@ CREATE TABLE dbo.SERVICE_LINE_PART(
   EMPLOYEE_ID INT NOT NULL, 
   CONSTRAINT SERVICE_LINE_ID_PK PRIMARY KEY (SERVICE_LINE_ID)
 );     
+--------------------------------Maddy------------------------------------
+CREATE TABLE dbo.COUNTRY (
+	COUNTRY_NAME varchar(20) not null,
+	COUNTRY_ID int not null,
+	CONSTRAINT COUNTRY_ID_PK PRIMARY KEY (COUNTRY_ID)
+);
+CREATE TABLE dbo.CUSTOMER_TYPE (
+	CUSTOMER_ID int not null,
+	IS_BUSINESS BIT not null,
+	CONSTRAINT CUSTOMER_ID_PK PRIMARY KEY (CUSTOMER_ID)
+);
+CREATE TABLE dbo.EMPLOYEE_LOOKUP (
+	EMPLOYEE_ID int not null,
+	EMPLOYEE_CURR_SERVICE varchar(15) not null,
+	CONSTRAINT EMPLOYEE_ID_PK PRIMARY KEY (EMPLOYEE_ID)
+);
+CREATE TABLE dbo.SERVICE_ORDER (
+	SERVICE_ORDER_ID int not null,
+	SERVICE_TYPE varchar(30) not null,
+	DATE_START datetime NOT NULL,
+	DATE_END datetime NOT NULL,
+	COST float(8) NOT NULL,
+	CONSTRAINT SERVICE_ORDER_ID_PK PRIMARY KEY (SERVICE_ORDER_ID)
+);
+------------------------------Giancarlos------------------------------------
+------------------------------Zach------------------------------------------

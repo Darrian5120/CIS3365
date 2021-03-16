@@ -1,7 +1,6 @@
 USE CoogTechSolutions
 CREATE TABLE dbo.COUNTRY (
-	C_COUNTRY varchar(20) not null,
-	C_ID int not null,
-	PRIMARY KEY (C_COUNTRY),
-	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID)
+	COUNTRY_NAME varchar(20) not null,
+	COUNTRY_ID int not null,
+	CONSTRAINT COUNTRY_ID_PK PRIMARY KEY (COUNTRY_ID)
 );
