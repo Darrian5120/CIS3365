@@ -66,7 +66,7 @@ CREATE TABLE dbo.INVOICE (
 	CUSTOMER_ID int not null,
 	TOTAL_COST float,
 	AMT_OWED float,
-	INVOICE_DATE datetime not null,
+	INVOICE_DATE date not null,
 	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
 );
 
@@ -217,8 +217,8 @@ CREATE TABLE dbo.SERVICE_ORDER (
 	SERVICE_ORDER_ID int IDENTITY(1,1) not null,
 	SERVICE_ID int not null,
 	SERVICE_TYPE varchar(30) not null,
-	DATE_START datetime,
-	DATE_END datetime,
+	DATE_START date,
+	DATE_END date,
 	COST float(8) NOT NULL,
 	CONSTRAINT SERVICE_ORDER_ID_PK PRIMARY KEY (SERVICE_ORDER_ID)
 );
