@@ -1,0 +1,26 @@
+SERVICE_ID|SERVICE_TYPE|DATE_START|DATE_END|COST \n
+1|Oil Change|3/13/2020|3/27/2020|25 \n
+2|Spark plug replacement|3/14/2020|3/28/2020|40 \n
+3|Vehicle Inspection|3/15/2020|3/29/2020|30 \n
+4|Tire Rotation|3/16/2020|3/30/2020|50 \n
+5|Luxury Installation|3/17/2020|3/31/2020|100 \n
+6|Vehicle Inspection|3/18/2020|4/1/2020|30 \n
+7|Tire Rotation|3/19/2020|4/2/2020|50 \n
+8|Oil Change|3/20/2020|4/3/2020|25 \n
+9|Tire Rotation|3/21/2020|4/4/2020|50 \n
+10|Vehicle Inspection|3/22/2020|4/5/2020|30 \n
+11|Spark plug replacement|3/23/2020|4/6/2020|40 \n
+12|Luxury Installation|3/24/2020|4/7/2020|100 \n
+13|Oil Change|3/25/2020|4/8/2020|25 \n
+14|Vehicle Inspection|3/26/2020|4/9/2020|30 \n
+15|Tire Rotation|3/27/2020|4/10/2020|50 \n
+16|Brake Alignment|3/28/2020|4/11/2020|75 \n
+17|Luxury Installation|3/29/2020|4/12/2020|100 \n
+18|Vehicle Inspection|3/30/2020|4/13/2020|30 \n
+19|Oil Change|3/31/2020|4/14/2020|25 \n
+20|Luxury Installation|4/1/2020|4/15/2020|100 \n
+21|Brake Alignment|4/2/2020|4/16/2020|75 \n
+22|Luxury Installation|4/3/2020|4/17/2020|100 \n
+23|Vehicle Inspection|4/4/2020|4/18/2020|30 \n
+24|Brake Alignment|4/5/2020|4/19/2020|75 \n
+25|Tire Rotation|4/6/2020|4/20/2020|50 \n
