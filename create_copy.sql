@@ -98,8 +98,8 @@ CREATE TABLE dbo.VEHICLE_STATUS (
 
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
-	ORDER_ID int not null,
-	CUSTOMER_NAME VARCHAR(15) not null,
+	SERVICE_ORDER_ID int not null,
+	CUSTOMER_ID int not null,
 	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (SERVICE_ORDER_ID)
 );
 create table dbo.CUSTOMER_VEHICLE(
