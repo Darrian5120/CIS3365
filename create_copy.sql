@@ -108,7 +108,7 @@ create table dbo.CUSTOMER_VEHICLE(
 );
 create table dbo.VEHICLE_POLICY(
 	POLICY_ID int not null,
-	V_VIN int not null,
+	V_VIN varchar(20) not null,
 	CONSTRAINT POLICY_ID_PK2 PRIMARY KEY (POLICY_ID)	
 );
 create table dbo.COMPANY_INSURANCE_POLICY(
