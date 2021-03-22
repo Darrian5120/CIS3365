@@ -79,7 +79,7 @@ CREATE TABLE dbo.SERVICE_LINE_STATUS (
 --customer contact--
 CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 	CUSTOMER_ID INT not null,
-	C_PHONE varchar(15)  not null,
+	C_PHONE INT  not null,
 	C_EMAIL varchar(30) not null,
 	C_ADDRESS varchar(30) not null,
 	C_ZIP INT not null,
@@ -127,7 +127,7 @@ CREATE TABLE dbo.SERVICE_STATUS (
 CREATE TABLE dbo.ACCOUNT_REVENUE (
 	REVENUE_ID int IDENTITY(1,1) not null,
 	REVENUE_NAME varchar(15),
-	REVENUE_VALUE float,
+	REVENUE_VALUE decimal(8,2),
 	CONSTRAINT REVENUE_ID_PK PRIMARY KEY (REVENUE_ID)
 );
 --INSURANCE COMPANY Table--
@@ -140,7 +140,7 @@ CREATE TABLE dbo.INSURANCE_COMPANY (
 CREATE TABLE dbo.INSURANCE_POLICY (
 	POLICY_ID int IDENTITY(1,1) not null,
 	POLICY_NAME varchar(30),
-	COVERAGE_COST float,
+	COVERAGE_COST decimal(8,2),
 	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)
 );
 ----------------------------Kyle--------------------------------------
@@ -213,7 +213,7 @@ CREATE TABLE dbo.EMPLOYEE_LOOKUP (
 CREATE TABLE dbo.SERVICE_ORDER (
 	SERVICE_ORDER_ID int IDENTITY(1,1) not null,
 	ORDER_DATE date,
-	TOTAL_COST float(8),
+	TOTAL_COST decimal(7,2),
 	CONSTRAINT SERVICE_ORDER_ID_PK PRIMARY KEY (SERVICE_ORDER_ID)
 );
 ------------------------------Giancarlos------------------------------------
