@@ -99,17 +99,3 @@ C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 98|Esperanza|Jose|\n
 99|Hogan|Bob|General Parts & Supply\n
 100|Benitez||Benitez Trucking Enterprises\n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
