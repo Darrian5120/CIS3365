@@ -98,7 +98,7 @@ CREATE TABLE dbo.VEHICLE_STATUS (
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
 	SERVICE_ORDER_ID int not null PRIMARY KEY,
-	CUSTOMER_ID int not null,
+	CUSTOMER_ORDER_ID int not null,
 	/*CONSTRAINT SERVICE_ORDER_ID_PK PRIMARY KEY (SERVICE_ORDER_ID)*/
 );
 create table dbo.CUSTOMER_VEHICLE(
