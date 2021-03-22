@@ -73,7 +73,7 @@ CREATE TABLE dbo.INVOICE (
 CREATE TABLE dbo.SERVICE_LINE_STATUS (
 	SERVICE_LINE_ID int not null,
 	ACTIVE_ID int not null,
-	ACTIVE int,
+	ACTIVE varchar(20),
 	CONSTRAINT SERVICE_LINE_ID_PK1 PRIMARY KEY (SERVICE_LINE_ID)
 );
 --customer contact--
@@ -81,20 +81,19 @@ CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 	CUSTOMER_ID INT not null,
 	C_PHONE INT  not null,
 	C_EMAIL varchar(30) not null,
-	C_ADDRESS varchar(90) not null,
+	C_ADDRESS varchar(30) not null,
 	C_ZIP INT not null,
 	C_CITY varchar(30) not null,
-	STATE_NAME varchar(30) not null,
+	STATE_NAME varchar(10) not null,
 	CONSTRAINT CUSTOMER_ID_PK1 PRIMARY KEY(CUSTOMER_ID)
 );
 --VEHICLE_STATUS--
 CREATE TABLE dbo.VEHICLE_STATUS (
-	V_VIN varchar(20) not null,
+	V_VIN varchar(15) not null,
 	ACTIVE_ID int not null,
-	ACTIVE int,
+	ACTIVE varchar(20),
 	CONSTRAINT V_VIN_PK1 PRIMARY KEY (V_VIN)
 );
-
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
 	SERVICE_ORDER_ID int not null,
