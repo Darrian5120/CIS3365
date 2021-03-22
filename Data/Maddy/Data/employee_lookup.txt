@@ -1,0 +1,25 @@
+EMPLOYEE_ID|EMPLOYEE_CURR_SERVICE\n
+1|\n
+2|\n
+3|Repairs\n
+4|Paint Truck\n
+5|\n
+6|Repairs\n
+7|Trailer Package\n
+8|Tool Box\n
+9|Remove Sleeper\n
+10|Detailing\n
+11|Paint Truck\n
+12|Paint Fenders\n
+13|Detailing\n
+14|Repairs\n
+15|Shorten Frame\n
+16|Double Frame\n
+17|Electric Brake Control Install\n
+18|Repairs\n
+19|Sandblast Frame\n
+20|Paint Truck\n
+21|Detailing\n
+22|Repairs\n
+23|Detailing\n
+24|Paint Truck\n
