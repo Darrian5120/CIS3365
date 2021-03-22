@@ -1,6 +1,7 @@
---Employee Schedule Insert--
-Bulk INSERT Employee_Schedule
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Employee_Schedule.txt'
+USE CoogTechSolutions
+--Service Order Status--
+Bulk INSERT SERVICE_ORDER_STATUS
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\Service_Order_Status.txt'
 	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
@@ -8,39 +9,29 @@ Bulk INSERT Employee_Schedule
 				MAXERRORS = 1
 		);
 --Employee Insert--
-Bulk INSERT Employee
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Employee.txt'
+Bulk INSERT EMPLOYEE
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\Employee.txt'
 	WITH (
 			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+			FIELDTERMINATOR = '|',
+			ROWTERMINATOR = '\n',
+			MAXERRORS = 1
 		);
 --Invoice Invoice--
-Bulk INSERT Invoice
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Invoice.txt'
+Bulk INSERT INVOICE
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\Invoice.txt'
 	WITH (
 			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+			FIELDTERMINATOR = '|',
+			ROWTERMINATOR = '\n',
+			MAXERRORS = 1
 		);
 --Supplier--
-Bulk INSERT Supplier
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Supplier.txt'
+Bulk INSERT SUPPLIER
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\Supplier.txt'
 	WITH (
 			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
-
---Service Status--
-Bulk INSERT Service_Status
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\CreateScripts\Darrian\Data\Service_Status.txt'
-	WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+			FIELDTERMINATOR = '|',
+			ROWTERMINATOR = '\n',
+			MAXERRORS = 1
 		);
