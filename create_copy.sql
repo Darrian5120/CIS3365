@@ -79,7 +79,7 @@ CREATE TABLE dbo.SERVICE_LINE_STATUS (
 --customer contact--
 CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 	CUSTOMER_ID INT not null,
-	C_PHONE INT  not null,
+	C_PHONE varchar(15)  not null,
 	C_EMAIL varchar(30) not null,
 	C_ADDRESS varchar(30) not null,
 	C_ZIP INT not null,
