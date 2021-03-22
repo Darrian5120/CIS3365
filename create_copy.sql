@@ -89,7 +89,7 @@ CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 );
 --VEHICLE_STATUS--
 CREATE TABLE dbo.VEHICLE_STATUS (
-	V_VIN varchar(15) not null,
+	V_VIN varchar(20) not null,
 	ACTIVE_ID int not null,
 	ACTIVE varchar(20),
 	CONSTRAINT V_VIN_PK1 PRIMARY KEY (V_VIN)
