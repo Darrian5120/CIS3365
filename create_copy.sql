@@ -102,7 +102,7 @@ create table dbo.CUSTOMER_ORDER(
 	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (SERVICE_ORDER_ID)
 );
 create table dbo.CUSTOMER_VEHICLE(
-	V_VIN int not null,
+	V_VIN varchar(20) not null,
 	CUSTOMER_ID int not null,
 	CONSTRAINT V_VIN_PK2 PRIMARY KEY (V_VIN)
 );
