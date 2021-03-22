@@ -1,7 +1,7 @@
 C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 1|American|Best|Best American\n
 2|Cowgirl||Cowgirl Trucking\n
-3|Melesio|Texstar Excavating\n
+3|Melesio||Texstar Excavating\n
 4|Garcia|Ernesto|Ernesto Garcia Trucking\n
 5|Nieto|Jaimes|Niceford\n
 6|County Land|Mid|Mid County Land\n
@@ -26,7 +26,7 @@ C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 25|Rush||Rush Truck-Houston\n
 26|Trucking|Red|Red Trucking\n
 27|Cicero|Jay|\n
-28|Arebalo|Carlos||\n
+28|Arebalo|Carlos|\n
 29|Landscaping|Elite|Elite Landscaping\n
 30|Escobar|Leo|\n
 31|Agrueta|Fredy|\n
@@ -58,14 +58,14 @@ C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 57|Sorto|Dionicio|\n
 58|Sheridan|MJ|\n
 59|Hamrick|Bill|FAA Truck\n
-60|Dugas|KH||\n
+60|Dugas|KH|\n
 61|Truck|DAM|DAM Truck Services\n
 62|Loera|Ramon|\n
-63|Contractors|Premium|Premium Contractors|\n
+63|Contractors|Premium|Premium Contractors\n
 64|Transport|Shah|Shah Transport LLC\n
 65|Alvaro|Edmund|\n
-66|Medina|David|n
-67|Hugh||Hughes Trucking|\n
+66|Medina|David|\n
+67|Hugh||Hughes Trucking\n
 68|Garibay|Marco|\n
 69|Adam||Adam Trucking\n
 70|JJ||JJ Excavation\n
