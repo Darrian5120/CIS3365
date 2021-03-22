@@ -2,8 +2,8 @@ USE CoogTechSolutions
 -------------------Darrian-------------------------------
 CREATE TABLE dbo.Customer (
     CUSTOMER_ID int IDENTITY(1,1) NOT NULL,
-    C_LNAME varchar(15) NOT NULL,
-    C_FNAME varchar(15),
+    C_LNAME varchar(25) NOT NULL,
+    C_FNAME varchar(25),
     C_BUSINESS_NAME varchar(50),
 	CONSTRAINT CUSTOMER_ID_PK PRIMARY KEY (CUSTOMER_ID)
 );
