@@ -7,70 +7,70 @@ C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 6|County Land|Mid|Mid County Land\n
 7|Jachon|E|Jachon Int'l LTD\n
 8|Chrome|ATC|Chrome ATC\n
-9|Molina|John||\n
-10|Stair|Joseph||\n
+9|Molina|John|\n
+10|Stair|Joseph|\n
 11|V Trucking|Circle|Circle V Trucking\n
 12|Rush||Rush Truck-Austin\n
 13|Oilfield Service|Headway|Headway Oilfield Service\n
 14|Stroup|Paul|Paul Stroup Custom Dozing\n
-15|Ramirez Saldana|Mariano||\n
-16|Thomas|Kirk||\n
+15|Ramirez Saldana|Mariano|\n
+16|Thomas|Kirk|\n
 17|Truck of Houston|Performance|Performance Truck of Houston\n
 18|D|John|Clifton Chevrolet\n
 19|Trucking|Jag|Jag Trucking\n
-20|Rigoberto|Ramos||\n
-21|Murica|Oscar||\n
+20|Rigoberto|Ramos|\n
+21|Murica|Oscar|\n
 22|Rush||Rush Truck-San Antonio\n
 23|Lopez|Bernardino|AB Trucking\n
 24|Larret||Larrett Inc\n
 25|Rush||Rush Truck-Houston\n
 26|Trucking|Red|Red Trucking\n
-27|Cicero|Jay||\n
-28|Arebalo|Carlos|||\n
+27|Cicero|Jay|\n
+28|Arebalo|Carlos||\n
 29|Landscaping|Elite|Elite Landscaping\n
-30|Escobar|Leo||\n
-31|Agrueta|Fredy||\n
+30|Escobar|Leo|\n
+31|Agrueta|Fredy|\n
 32|Transport|R & A|R & A Transport Inc\n
 33|Holt||Holt Tuck Centers CAT\n
-34|Getachew|Ben||\n
+34|Getachew|Ben|\n
 35|Cantu|Carlos|Raga Equipment\n
-36|Raggio|Gaston||\n
+36|Raggio|Gaston|\n
 37|Grande||Grande Sales & Services\n
 38|Hronek|Jason|H&H Top Soil and Select Fill\n
-39|Loya|Francisco||\n
+39|Loya|Francisco|\n
 40|Trucking|Parody|Parody Trucking\n
 41|Quinonez|Cesar|SM Trucking\n
-42|Fontenot|Rick||\n
+42|Fontenot|Rick|\n
 43|Gilbert|George|George Gilbert Enterprises\n
 44|Ted||CKG Services\n
 45|Anthony||Cowboy Top Soil\n
 46|Picton|Harold|Coast Materials Inc\n
 47|Salinas|Hector|H Salinas Trucking\n
-48|Martin|Katia||\n
+48|Martin|Katia|\n
 49|Jack|Billy|Billy Jack Construction Co\n
-50|Vasquez|E||\n
+50|Vasquez|E|\n
 51|Delivery|Vince|Vince Delivery\n
 52|Pool|Visa|Visa Pool Plastering\n
 53|J|B|BJ Vacumme\n
 54|Unlimited|Romar|Romar Unlimited Incorporation\n
 55|Schmitz|Glenn|J&B Pavelk Inc.
 56|Hauling|Valley|Hauling Valley LLC\n
-57|Sorto|Dionicio||\n
-58|Sheridan|MJ||\n
+57|Sorto|Dionicio|\n
+58|Sheridan|MJ|\n
 59|Hamrick|Bill|FAA Truck\n
 60|Dugas|KH||\n
 61|Truck|DAM|DAM Truck Services\n
-62|Loera|Ramon||\n
+62|Loera|Ramon|\n
 63|Contractors|Premium|Premium Contractors|\n
 64|Transport|Shah|Shah Transport LLC\n
-65|Alvaro|Edmund||\n
-66|Medina|David||n
+65|Alvaro|Edmund|\n
+66|Medina|David|n
 67|Hugh||Hughes Trucking|\n
-68|Garibay|Marco||\n
+68|Garibay|Marco|\n
 69|Adam||Adam Trucking\n
 70|JJ||JJ Excavation\n
-71|Stanley|Robert||\n
-72|Gil|Rene||\n
+71|Stanley|Robert|\n
+72|Gil|Rene|\n
 73|Castanon|Jose|Clark Freight Lines Inc\n
 74|JB||JB Ranch\n
 75|Gilco||Gilco Contracting\n
@@ -78,25 +78,25 @@ C_ID|C_LNAME|C_FNAME|C_BUSINESS_NAME\n
 77|Olivares|Eliud|Elite HTX Trucking LLC\n
 78|Hilby||Hilby Limited Trucking\n
 79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC\n
-80|Lopez|Irma||\n
+80|Lopez|Irma|\n
 81|Lane|John|Houston Tree Transplanting\n
 82|D&D||D&D Truck Sales Inc\n
 83|Selectrucks||Selectrucks Of Houston\n
 84|Rush||Rush Truck-Waco\n
 85|South Texas||South Texas Logging & Transport\n
 86|SJC||SJC Trucking\n
-87|Rojas|Pedro||\n
+87|Rojas|Pedro|\n
 88|OKB||OKB Transport\n
 89|Texas||Texas Truck Sales\n
 90|Vanguard||Vanguard Truck Center\n
-91|Argueta|Julio||\n
-92|Ranier|Sandhu||\n
-93|Brimm|Richard||\n
-94|Cruz|Rigoberto||\n
-95|McNeal|Bo||\n
-96|Garza|Javier||\n
-97|Martinez|Eduardo||\n
-98|Esperanza|Jose||\n
+91|Argueta|Julio|\n
+92|Ranier|Sandhu|\n
+93|Brimm|Richard|\n
+94|Cruz|Rigoberto|\n
+95|McNeal|Bo|\n
+96|Garza|Javier|\n
+97|Martinez|Eduardo|\n
+98|Esperanza|Jose|\n
 99|Hogan|Bob|General Parts & Supply\n
 100|Benitez||Benitez Trucking Enterprises\n
 
