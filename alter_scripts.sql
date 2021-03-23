@@ -1,4 +1,4 @@
-/*USE CoogTechSolutions*/
+USE CoogTechSolutions
 -------------------------Darrian-----------------------------------------------------
 --Alter Service Line--
 ALTER TABLE SERVICE_LINE
