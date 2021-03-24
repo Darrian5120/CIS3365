@@ -4,7 +4,9 @@ DECLARE
 @serviceRepairs varchar(7)
 @trailerRepairs varchar(15)
 
-SELECT Service.SERVICE_ID, Service.SERVICE_NAME
+SELECT 
+Service.SERVICE_ID AS 'Service ID', 
+Service.SERVICE_NAME AS 'Service Name'
 SELECT @serviceRepairs = 'REPAIRS'
 SELECT @trailerRepairs = 'TRAILER REPAIRS'
 
