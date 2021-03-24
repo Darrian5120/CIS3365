@@ -309,16 +309,16 @@ WITH (
 				MAXERRORS = 1
 		);	
 ------------------------------------Jerry-----------------------------------------
-Bulk INSERT SERVICE_STATUS
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_STATUS.txt'
+Bulk INSERT ACCOUNT_REVENUE
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\ACCOUNT_REVENUE.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-Bulk INSERT ACCOUNT_REVENUE
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\ACCOUNT_REVENUE.txt'
+Bulk INSERT SERVICE_STATUS
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_STATUS.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
