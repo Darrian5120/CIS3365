@@ -268,7 +268,7 @@ WITH (
 		);	
 ------------------------------Zach------------------------------------------
 Bulk INSERT SUPPLIER_PART
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SUPPLIER_LOOKUP.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SUPPLIER_PART.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
