@@ -111,7 +111,7 @@ Bulk INSERT PAYMENT_REVENUE
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
 Bulk INSERT CUSTOMER_ORDER
-FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_ORDER.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
       
 	WITH(
 		FIRSTROW = 2,
@@ -120,7 +120,7 @@ FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_ORDER.tx
 		MAXERRORS = 1
 		);
 Bulk INSERT CUSTOMER_VEHICLE
-FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_VEHICLE.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
@@ -128,7 +128,7 @@ FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_VEHICLE.
 		MAXERRORS = 1
 		);
 Bulk INSERT VEHICLE_POLICY
-FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\VEHICLE_POLICY.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_POLICY.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
@@ -136,7 +136,7 @@ FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\VEHICLE_POLICY.tx
 		MAXERRORS = 1
 		);
 Bulk INSERT COMPANY_INSURANCE_POLICY
-FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\COMPANY_INSURANCE_POLICY.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\COMPANY_INSURANCE_POLICY.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
