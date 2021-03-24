@@ -10,7 +10,7 @@ Customer.C_LNAME AS 'Customer Last Name',
 Customer.C_FNAME AS 'Customer First Name', 
 Customer.C_BUS_NAME AS 'Customer Business Name', 
 Customer_Type.IS_BUSINESS AS 'Is Business',
-Customer_Order.SERVICE_ORDER_ID AS 'Service Order ID'
+Customer_Order.SERVICE_ORDER_ID AS 'Service Order ID',
 Customer_Vehicle.V_VIN AS 'Vehicle Identification Number'
 
 FROM CUSTOMER
