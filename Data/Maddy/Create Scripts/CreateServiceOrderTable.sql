@@ -2,6 +2,6 @@ USE CoogTechSolutions
 CREATE TABLE dbo.SERVICE_ORDER (
 	SERVICE_ORDER_ID int not null,
 	DATE datetime NOT NULL,
-	TOTAL_COST varchar(8) NOT NULL,
+	TOTAL_COST float(8) NOT NULL,
 	PRIMARY KEY (SERVICE_ORDER_ID),
 );
