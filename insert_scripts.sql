@@ -134,40 +134,6 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\COMPANY_INSURANCE_POLICY.txt'
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-
-------------------------------------Jerry-----------------------------------------
-Bulk INSERT SERVICE_STATUS
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_STATUS.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
-Bulk INSERT ACCOUNT_REVENUE
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\ACCOUNT_REVENUE.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
-Bulk INSERT INSURANCE_COMPANY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\INSURANCE_COMPANY.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
-Bulk INSERT INSURANCE_POLICY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\INSURANCE_POLICY.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
 --------------------------------Kyle------------------------------------------------
 Bulk INSERT VEHICLE_SERVICE
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_SERVICE.txt'
@@ -333,3 +299,36 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);	
+------------------------------------Jerry-----------------------------------------
+Bulk INSERT SERVICE_STATUS
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_STATUS.txt'
+WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+Bulk INSERT ACCOUNT_REVENUE
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\ACCOUNT_REVENUE.txt'
+WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+Bulk INSERT INSURANCE_COMPANY
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\INSURANCE_COMPANY.txt'
+WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+Bulk INSERT INSURANCE_POLICY
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\INSURANCE_POLICY.txt'
+WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
