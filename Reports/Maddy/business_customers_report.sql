@@ -3,7 +3,12 @@ USE CoogTechSolutions
 DECLARE
 @business BIT
 
-SELECT Customer.CUSTOMER_ID, Customer.C_LNAME, Customer.C_FNAME, Customer.C_BUS_NAME, Customer_Type.IS_BUSINESS
+SELECT 
+Customer.CUSTOMER_ID AS 'Customer ID', 
+Customer.C_LNAME AS 'Customer Last Name', 
+Customer.C_FNAME AS 'Customer First Name', 
+Customer.C_BUS_NAME AS 'Customer Business Name', 
+Customer_Type.IS_BUSINESS AS 'Is Business'
 SELECT @business = 1
 
 FROM CUSTOMER
