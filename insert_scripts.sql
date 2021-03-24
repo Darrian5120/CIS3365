@@ -103,36 +103,37 @@ Bulk INSERT CUSTOMER_CONTACT_INFO
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
 Bulk INSERT CUSTOMER_ORDER
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
-	WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_ORDER.txt'
+      
+	WITH(
+		FIRSTROW = 1,
+		FIELDTERMINATOR = '|',
+		ROWTERMINATOR = '\n',
+		MAXERRORS = 1
 		);
 Bulk INSERT CUSTOMER_VEHICLE
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
-	WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_VEHICLE.txt'
+	WITH(
+		FIRSTROW = 1,
+		FIELDTERMINATOR = '|',
+		ROWTERMINATOR = '\n',
+		MAXERRORS = 1
 		);
 Bulk INSERT VEHICLE_POLICY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_POLICY.txt'
-	WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\VEHICLE_POLICY.txt'
+	WITH(
+		FIRSTROW = 2,
+		FIELDTERMINATOR = '|',
+		ROWTERMINATOR = '\n',
+		MAXERRORS = 1
 		);
 Bulk INSERT COMPANY_INSURANCE_POLICY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\COMPANY_INSURANCE_POLICY.txt'
-	WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
+FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\COMPANY_INSURANCE_POLICY.txt'
+	WITH(
+		FIRSTROW = 2,
+		FIELDTERMINATOR = '|',
+		ROWTERMINATOR = '\n',
+		MAXERRORS = 1
 		);
 --------------------------------Kyle------------------------------------------------
 Bulk INSERT VEHICLE_SERVICE
