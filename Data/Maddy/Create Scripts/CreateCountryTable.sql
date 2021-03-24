@@ -1,6 +1,0 @@
-USE CoogTechSolutions
-CREATE TABLE dbo.COUNTRY (
-	COUNTRY_NAME varchar(20) not null,
-	COUNTRY_ID int not null,
-	CONSTRAINT COUNTRY_ID_PK PRIMARY KEY (COUNTRY_ID)
-);

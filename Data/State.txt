@@ -1,0 +1,52 @@
+STATE_ID|STATE_NAME\n				
+1|Alabama\n				
+2|Alaska\n				
+3|Arizona\n				
+4|Arkansas\n				
+5|California\n				
+6|Colorado\n				
+7|Connecticut\n				
+8|Delaware\n				
+9|District of Columbia\n			
+10|Florida\n		
+11|Georgia\n		
+12|Hawaii\n		
+13|Idaho\n		
+14|Illinois\n		
+15|Indiana\n		
+16|Iowa\n	
+17|Kansas\n		
+18|Kentucky\n		
+19|Louisiana\n		
+20|Maine\n
+21|Maryland\n		
+22|Massachusetts\n			
+23|Michigan\n		
+24|Minnesota\n		
+25|Mississippi\n		
+26|Missouri\n		
+27|Montana\n		
+28|Nebraska\n		
+29|Nevada\n		
+30|New Hampshire\n			
+31|New Jersey\n		
+32|New Mexico\n		
+33|New York\n		
+34|North Carolina\n			
+35|North Dakota\n		
+36|Ohio\n	
+37|Oklahoma\n		
+38|Oregon\n		
+39|Pennsylvania\n
+40|Rhode Island\n		
+41|South Carolina\n			
+42|South Dakota\n		
+43|Tennessee\n		
+44|Texas\n		
+45|Utah\n	
+46|Vermont\n		
+47|Virginia\n		
+48|Washington\n		
+49|West Virginia\n			
+50|Wisconsin\n		
+51|Wyoming\n		
