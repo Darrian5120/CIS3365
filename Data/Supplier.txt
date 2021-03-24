@@ -10,7 +10,7 @@ SUPPLIER_ID|SUPPLIER_NAME
 9|Airman Products
 10|Hendrickson
 11|SSAB
-12|Anthony Liftgates, Inc.
+12|Anthony Liftgates, Inc
 13|Jackrabbit Steel Products, Inc
 14|Rush Truck Center - Austin
 15|HIAB
