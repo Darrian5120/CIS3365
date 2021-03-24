@@ -145,7 +145,7 @@ CREATE TABLE dbo.VEHICLE(
 --------------------------------Brandon--------------------------------
 CREATE TABLE dbo.PART (
   PART_ID INT IDENTITY(1,1) NOT NULL,
-  PART_NAME INT,
+  PART_NAME varchar(50),
   CONSTRAINT PART_ID_PK1 PRIMARY KEY (PART_ID)
  );
 CREATE TABLE dbo.EMPLOYEE_SERVICE_LINE_ASSIGNMENT (
