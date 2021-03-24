@@ -94,6 +94,10 @@ CREATE TABLE dbo.VEHICLE_STATUS (
 	ACTIVE varchar(20),
 	CONSTRAINT V_VIN_PK1 PRIMARY KEY (V_VIN)
 );
+create table dbo.PAYMENT_REVENUE(
+	REVENUE_ID int not null,
+	PMT_NUMBER int not null,
+	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (REVENUE_ID)
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
 	SERVICE_ORDER_ID int not null,
