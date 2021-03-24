@@ -34,9 +34,9 @@ CREATE TABLE dbo.EMPLOYEE (
 	EMPLOYEE_LNAME varchar(30) not null,
 	EMPLOYEE_FNAME varchar(30) not null,
 	EMPLOYEE_ADDRESS varchar(50) not null,
-	EMPLOYEE_HIRE_DATE varchar(10) /*DATE*/,
-	EMPLOYEE_HOURS varchar(10) /*decimal(2,2)*/,
-	EMPLOYEE_PAY_RATE varchar(5) /*decimal(2,2)*/,
+	EMPLOYEE_HIRE_DATE DATETIME,
+	EMPLOYEE_HOURS TIME,
+	EMPLOYEE_PAY_RATE MONEY,
 	EMPLOYEE_PHONE int not null,
 	EMPLOYEE_BANK_INFO int,
 	EMPLOYEE_TAX int,
@@ -62,8 +62,8 @@ CREATE TABLE dbo.SERVICE_ORDER_STATUS (
 CREATE TABLE dbo.INVOICE (
 	INVOICE_ID int IDENTITY(1,1) not null,
 	CUSTOMER_ID int not null,
-	TOTAL_COST varchar(15) /*decimal(7,2)*/,
-	AMT_OWED varchar(15) /*decimal(7,2)*/,
+	TOTAL_COST MONEY,
+	AMT_OWED MONEY,
 	INVOICE_DATE date not null,
 	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
 );
