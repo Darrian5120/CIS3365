@@ -1,5 +1,3 @@
 -- --
-Select 
-From
-Group By
-Order By
+USE CoogTechSolutions
+set
