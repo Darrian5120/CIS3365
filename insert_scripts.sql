@@ -4,7 +4,7 @@ USE CoogTechSolutions
 BULK INSERT Customer
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\customer.txt'
 	WITH(
-		FIRSTROW = 2,
+		FIRSTROW = 1,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
@@ -13,7 +13,7 @@ BULK INSERT Customer
 BULK INSERT PAYMENT
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment.txt'
 	WITH(
-		FIRSTROW = 3,
+		FIRSTROW = 1,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
@@ -28,8 +28,8 @@ BULK INSERT INVOICE_PAYMENT
 		MAXERRORS = 1
 	);
 --Service Line Insert--
-BULK INSERT INVOICE_PAYMENT
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\invoice_payment.txt'
+BULK INSERT SERVICE_LINE
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\service_line.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
