@@ -97,13 +97,13 @@ CREATE TABLE dbo.VEHICLE_STATUS (
 create table dbo.PAYMENT_REVENUE(
 	REVENUE_ID int not null,
 	PMT_NUMBER int not null,
-	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (REVENUE_ID)
+	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID)
 );
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
 	SERVICE_ORDER_ID int not null,
 	CUSTOMER_ID int not null,
-	CONSTRAINT SERVICE_ORDER_ID_PK3 PRIMARY KEY (SERVICE_ORDER_ID)
+	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (SERVICE_ORDER_ID)
 );
 create table dbo.CUSTOMER_VEHICLE(
 	V_VIN varchar(20) not null,

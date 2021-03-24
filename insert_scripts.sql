@@ -101,6 +101,14 @@ Bulk INSERT CUSTOMER_CONTACT_INFO
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
+Bulk INSERT PAYMENT_REVENUE
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment_revenue.txt'
+	WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
 ----------------------------------------Jahidul--------------------------------------------------------------
 Bulk INSERT CUSTOMER_ORDER
 FROM 'C:\Users\JAHID\OneDrive\Desktop\Spring 2021\CIS3365\DATA\CUSTOMER_ORDER.txt'
