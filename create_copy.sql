@@ -98,6 +98,7 @@ create table dbo.PAYMENT_REVENUE(
 	REVENUE_ID int not null,
 	PMT_NUMBER int not null,
 	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (REVENUE_ID)
+);
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
 	SERVICE_ORDER_ID int not null,
