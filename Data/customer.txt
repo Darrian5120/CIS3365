@@ -1,0 +1,100 @@
+1|American|Best|Best American
+2|Cowgirl||Cowgirl Trucking
+3|Melesio||Texstar Excavating
+4|Garcia|Ernesto|Ernesto Garcia Trucking
+5|Nieto|Jaimes|Niceford
+6|County Land|Mid|Mid County Land
+7|Jachon|E|Jachon Int'l LTD
+8|Chrome|ATC|Chrome ATC
+9|Molina|John|
+10|Stair|Joseph|
+11|V Trucking|Circle|Circle V Trucking
+12|Rush||Rush Truck-Austin
+13|Oilfield Service|Headway|Headway Oilfield Service
+14|Stroup|Paul|Paul Stroup Custom Dozing
+15|Ramirez Saldana|Mariano|
+16|Thomas|Kirk|
+17|Truck of Houston|Performance|Performance Truck of Houston
+18|D|John|Clifton Chevrolet
+19|Trucking|Jag|Jag Trucking
+20|Rigoberto|Ramos|
+21|Murica|Oscar|
+22|Rush||Rush Truck-San Antonio
+23|Lopez|Bernardino|AB Trucking
+24|Larret||Larrett Inc
+25|Rush||Rush Truck-Houston
+26|Trucking|Red|Red Trucking
+27|Cicero|Jay|
+28|Arebalo|Carlos|
+29|Landscaping|Elite|Elite Landscaping
+30|Escobar|Leo|
+31|Agrueta|Fredy|
+32|Transport|R & A|R & A Transport Inc
+33|Holt||Holt Tuck Centers CAT
+34|Getachew|Ben|
+35|Cantu|Carlos|Raga Equipment
+36|Raggio|Gaston|
+37|Grande||Grande Sales & Services
+38|Hronek|Jason|H&H Top Soil and Select Fill
+39|Loya|Francisco|
+40|Trucking|Parody|Parody Trucking
+41|Quinonez|Cesar|SM Trucking
+42|Fontenot|Rick|
+43|Gilbert|George|George Gilbert Enterprises
+44|Ted||CKG Services
+45|Anthony||Cowboy Top Soil
+46|Picton|Harold|Coast Materials Inc
+47|Salinas|Hector|H Salinas Trucking
+48|Martin|Katia|
+49|Jack|Billy|Billy Jack Construction Co
+50|Vasquez|E|
+51|Delivery|Vince|Vince Delivery
+52|Pool|Visa|Visa Pool Plastering
+53|J|B|BJ Vacumme
+54|Unlimited|Romar|Romar Unlimited Incorporation
+55|Schmitz|Glenn|J&B Pavelk Inc.
+56|Hauling|Valley|Hauling Valley LLC
+57|Sorto|Dionicio|
+58|Sheridan|MJ|
+59|Hamrick|Bill|FAA Truck
+60|Dugas|KH|
+61|Truck|DAM|DAM Truck Services
+62|Loera|Ramon|
+63|Contractors|Premium|Premium Contractors
+64|Transport|Shah|Shah Transport LLC
+65|Alvaro|Edmund|
+66|Medina|David|
+67|Hugh||Hughes Trucking
+68|Garibay|Marco|
+69|Adam||Adam Trucking
+70|JJ||JJ Excavation
+71|Stanley|Robert|
+72|Gil|Rene|
+73|Castanon|Jose|Clark Freight Lines Inc
+74|JB||JB Ranch
+75|Gilco||Gilco Contracting
+76|Circle||Circle M Transport
+77|Olivares|Eliud|Elite HTX Trucking LLC
+78|Hilby||Hilby Limited Trucking
+79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC
+80|Lopez|Irma|
+81|Lane|John|Houston Tree Transplanting
+82|D&D||D&D Truck Sales Inc
+83|Selectrucks||Selectrucks Of Houston
+84|Rush||Rush Truck-Waco
+85|South Texas||South Texas Logging & Transport
+86|SJC||SJC Trucking
+87|Rojas|Pedro|
+88|OKB||OKB Transport
+89|Texas||Texas Truck Sales
+90|Vanguard||Vanguard Truck Center
+91|Argueta|Julio|
+92|Ranier|Sandhu|
+93|Brimm|Richard|
+94|Cruz|Rigoberto|
+95|McNeal|Bo|
+96|Garza|Javier|
+97|Martinez|Eduardo|
+98|Esperanza|Jose|
+99|Hogan|Bob|General Parts & Supply
+100|Benitez||Benitez Trucking Enterprises

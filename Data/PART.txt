@@ -1,0 +1,21 @@
+PART_ID|PART_NAME
+1|Battery
+2|Brakes
+3|Axle
+4|Fuel Injector
+5|Piston
+6|A/C Compressor
+7|Radiator
+8|Engine Fan
+9|Clutch
+10|Car Jack
+11|Spare Tire
+12|Transmission
+13|Shock Absorbers
+14|Air Filter
+15|Spark Plug
+16|Catalytic Converter
+17|Muffler
+18|Tire Pressure Gauge
+19|Alternator
+20|Power Steering Fluid
