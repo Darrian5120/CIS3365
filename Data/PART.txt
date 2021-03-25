@@ -29,3 +29,10 @@ PART_ID|PART_NAME
 28|Front Bumper
 29|Hitch
 30|Steel
+31|Mount
+32|Trailer
+33|Tool Box
+34|Bed
+35|Power Take-Off
+36|Tire
+37|Wheel
