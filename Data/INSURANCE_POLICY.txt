@@ -1,11 +1,11 @@
 POLICY_ID|POLICY_NAME|COVERAGE_COST|EXPIRATION_DATE
-1|Primary Auto Liability|12/2021|12/2023
-2|General Liability|3/23/2021
-3|Physical Damage|3/23/2021
-4|Bobtail|
-5|Motor Truck Cargo|
-6|Rental Reimbursement|
-7|Trailer Interchange|
-8|Medical Payment|
-9|Uninsured/Underinsured Motorists|
-10|Reefer Breakdown Coverage|
+1|Primary Auto Liability|1234.32|12/31/2021
+2|General Liability|1452.23|12/31/2021
+3|Physical Damage|3123.43|12/31/2021
+4|Bobtail|2341.21|12/31/2021
+5|Motor Truck Cargo|2123.32|12/31/2021
+6|Rental Reimbursement|892.23|12/31/2021
+7|Trailer Interchange|903.23|12/31/2020
+8|Medical Payment|1033.23|12/31/2021
+9|Uninsured/Underinsured Motorists|532.32|12/31/2021
+10|Reefer Breakdown Coverage|342.42|12/31/2021
