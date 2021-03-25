@@ -67,7 +67,6 @@ CREATE TABLE dbo.INVOICE (
 	INVOICE_DATE date not null,
 	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
 );
-
 ------------------Mustafa-----------------------------------------------
 --Service Line Status--
 CREATE TABLE dbo.SERVICE_LINE_STATUS (

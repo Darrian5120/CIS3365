@@ -8,7 +8,7 @@ PART_ID|PART_NAME
 7|Radiator
 8|Engine Fan
 9|Clutch
-10|Car Jack
+10|Jack
 11|Spare Tire
 12|Transmission
 13|Shock Absorbers
@@ -19,3 +19,10 @@ PART_ID|PART_NAME
 18|Tire Pressure Gauge
 19|Alternator
 20|Power Steering Fluid
+21|Paint
+22|Box Door
+23|Wheels
+24|Indicator
+25|Tarp
+26|Frame
+27|Box
