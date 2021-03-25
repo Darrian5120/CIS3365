@@ -1,0 +1,11 @@
+Select 
+[dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
+[dbo].[Customer].[C_FNAME] as 'First Name',
+[dbo].[Customer].[C_LNAME] as 'Last Name',
+[dbo].[Customer].[C_BUSINESS_NAME] as 'Business Name',
+SUM([dbo].[INVOICE].[TOTAL_COST]) as 'Account Spending'
+FROM [dbo].[Customer]
+JOIN [dbo].[INVOICE] 
+ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[INVOICE].[CUSTOMER_ID]
+GROUP BY [dbo].[Customer].[CUSTOMER_ID],[dbo].[Customer].[C_BUSINESS_NAME],[dbo].[Customer].[C_FNAME], [dbo].[Customer].[C_LNAME]
+ORDER BY 'Account Spending' DESC
