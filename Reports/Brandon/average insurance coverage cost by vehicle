@@ -1,0 +1,12 @@
+SELECT 
+[dbo].[VEHICLE].[V_MAKE] AS 'Make',
+[dbo].[VEHICLE].[V_MODEL] AS 'Model',
+[dbo].[VEHICLE].[V_YEAR] AS 'Year',
+AVG([dbo].[INSURANCE_POLICY].[COVERAGE_COST]) as 'Average Coverage Cost'
+FROM [dbo].[VEHICLE]
+JOIN [dbo].[VEHICLE_POLICY]
+ON [dbo].[VEHICLE_POLICY].[V_VIN] = [dbo].[VEHICLE].[V_VIN]
+JOIN [dbo].[INSURANCE_POLICY]
+ON [dbo].[INSURANCE_POLICY].[POLICY_ID] = [dbo].[VEHICLE_POLICY].[POLICY_ID]
+GROUP BY [dbo].[VEHICLE].[V_MODEL], [dbo].[VEHICLE].[V_MAKE],[dbo].[VEHICLE].[V_YEAR]
+ORDER BY 'Make', 'Model', 'Year'
