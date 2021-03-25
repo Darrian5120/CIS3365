@@ -1,7 +1,7 @@
-POLICY_ID|POLICY_NAME|COVERAGE_COST
-1|Primary Auto Liability|
-2|General Liability|
-3|Physical Damage|
+POLICY_ID|POLICY_NAME|COVERAGE_COST|EXPIRATION_DATE
+1|Primary Auto Liability|12/2021|12/2023
+2|General Liability|3/23/2021
+3|Physical Damage|3/23/2021
 4|Bobtail|
 5|Motor Truck Cargo|
 6|Rental Reimbursement|
