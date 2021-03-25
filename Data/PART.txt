@@ -26,3 +26,6 @@ PART_ID|PART_NAME
 25|Tarp
 26|Frame
 27|Box
+28|Front Bumper
+29|Hitch
+30|Steel
