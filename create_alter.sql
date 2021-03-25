@@ -112,14 +112,14 @@ create table dbo.CUSTOMER_VEHICLE(
 	CONSTRAINT V_VIN_PK2 PRIMARY KEY (V_VIN)
 );
 create table dbo.VEHICLE_POLICY(
-	POLICY_ID int not null,
 	V_VIN varchar(20) not null,
-	CONSTRAINT POLICY_ID_PK2 PRIMARY KEY (POLICY_ID)
+	POLICY_ID int not null,
+	CONSTRAINT V_VIN_PK4 PRIMARY KEY (V_VIN)
 );
 create table dbo.COMPANY_INSURANCE_POLICY(
-	POLICY_ID int not null,
 	INSURANCE_ID int not null,
-	CONSTRAINT POLICY_ID_PK1 PRIMARY KEY (POLICY_ID)
+	POLICY_ID int not null,
+	CONSTRAINT INSURANCE_ID_PK1 PRIMARY KEY (INSURANCE_ID)
 );
 ----------------------------Kyle--------------------------------------
 CREATE TABLE dbo.VEHICLE_SERVICE(
