@@ -30,7 +30,7 @@ app.config["DEBUG"] = True # browser can see error messages
 # create first route map to url functions. home mapped to '/'
 @app.route('/', methods = ['GET']) 
 def home():
-    return render_template('/website/home.html')
+    return render_template('home.html')
 
 if __name__ == '__main__':
     #conn = create_connection()
