@@ -15,6 +15,7 @@ from tabulate import tabulate
 ######### Helpful sites ###############
 #https://kanchanardj.medium.com/how-to-display-database-content-in-your-flask-website-8a62492ba892
 #https://medium.com/analytics-vidhya/flask-html-template-with-mysql-2f3b9405d0e2
+
 def create_connection():
     conn = pyodbc.connect('Driver={SQL Server};'
                         'Server=DESKTOP-9PNG3JO;'
@@ -42,6 +43,23 @@ def customers():
     cursor.execute("SELECT * FROM Customer")
     data = cursor.fetchall()
     return render_template('customers.html', data = data)
+
+@app.route('/vehicles', methods = ['POST','GET']) 
+def vehicles():
+    return render_template('vehicles.html')
+
+@app.route('/employees', methods = ['POST','GET']) 
+def employees():
+    return render_template('employees.html')
+    
+@app.route('/services', methods = ['POST','GET']) 
+def services():
+    return render_template('services.html')
+
+@app.route('/reports', methods = ['POST','GET']) 
+def reports():
+    return render_template('reports.html')
+
 
 
 if __name__ == '__main__':
