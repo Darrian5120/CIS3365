@@ -20,7 +20,7 @@ import cgi
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
 # Darrian - customer create(insert), customer delete, customer update, customer report
-# Mustafa - 
+# Mustafa - vehicles insert, vehicle delete, vehicle update, vehicle stuff
 # Brandon - 
 # Anthony - 
 # Maddy - 
