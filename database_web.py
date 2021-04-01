@@ -13,31 +13,31 @@ import datetime
 from tabulate import tabulate
 import cgi
 
-######### Helpful sites ###############
-#https://kanchanardj.medium.com/how-to-display-database-content-in-your-flask-website-8a62492ba892
-#https://medium.com/analytics-vidhya/flask-html-template-with-mysql-2f3b9405d0e2
-
-def create_connection():
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                        'Server=DESKTOP-9PNG3JO;'
-                        'Database=CoogTechSolutions;'
-                        'Trusted_Connection=yes;')
-    #conn = pyodbc.connect('Driver={SQL Server};'
-    #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
-    #                    'Database=CoogTechSolutions;'
-    #                    'UID=;'
-    #                    'PWD=;'
-    #                    'Trusted_Connection=no;')
-    return conn    
+############################################## READ ME #####################################
+# RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSWER
+# MAKE SURE YOU HAVE ALL HTML PAGES DOWNLOADED AND CHANGE YOUR CONNECTION STRING TO YOUR OWN
+############################################################################################
+# Darrian - customer create(insert), customer remove, customer update, customer reports
+# Mustafa
+# Brandon
+# Anthony
+# Maddy
+# Jerry
+# Kyle
+# Jahidul
+# Gian
+# Zach
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
+############################# HOME PAGE ####################################################
 # create first route map to url functions. home mapped to '/'
 # Home page for the web app where user can choose CRUD operations.
 @app.route('/', methods = ['GET']) 
 def home():
     return render_template('home.html')
 
+############################# CUSTOMER #####################################################
 # Customer home page. Can select multiple CRUD options for customers
 # reference customer.html for menu options.
 @app.route('/customers', methods = ['GET']) 
@@ -61,6 +61,16 @@ def new_customer():
             return render_template('customers.html', data=data, message=message)
     return render_template('newcustomer.html')
 
+# modify exisitng customer by entering id
+@app.route('/customers/updatecustomer', methods = ['POST','GET'])
+def update_customer():
+    return render_template('updatecustomer.html')
+
+# remove customer from db by setting status to inactive
+@app.route('/customers/deletecustomer',methods = ['POST','GET'])
+def delete_customer():
+    return render_template('deletecustomer.html')
+
 # view all customers
 @app.route('/customers/viewcustomers', methods = ['GET']) 
 def view_customers():
@@ -72,30 +82,37 @@ def view_customers():
 
 
 
-
-    
-
-
-@app.route('/vehicles', methods = ['POST','GET']) 
+################################### VEHICLES ##################################################
+@app.route('/vehicles', methods = ['GET']) 
 def vehicles():
     
     return render_template('vehicles.html')
 
-@app.route('/employees', methods = ['POST','GET']) 
+################################### EMPLOYEES ##################################################
+@app.route('/employees', methods = ['GET']) 
 def employees():
     return render_template('employees.html')
-    
-@app.route('/services', methods = ['POST','GET']) 
+
+################################### SERVICES ##################################################
+@app.route('/services', methods = ['GET']) 
 def services():
     return render_template('services.html')
 
-@app.route('/reports', methods = ['POST','GET']) 
+################################### REPORTS ##################################################
+@app.route('/reports', methods = ['GET']) 
 def reports():
     return render_template('reports.html')
 
 
 
 if __name__ == '__main__':
+    # Connection to school provided server, don't use till final.
+    #conn = pyodbc.connect('Driver={SQL Server};'
+    #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
+    #                    'Database=CoogTechSolutions;'
+    #                    'UID=;'
+    #                    'PWD=;'
+    #                    'Trusted_Connection=no;')
     conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
                         'Server=DESKTOP-9PNG3JO;'
                         'Database=CoogTechSolutions;'
