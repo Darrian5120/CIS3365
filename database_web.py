@@ -25,7 +25,7 @@ import cgi
 # Anthony - 
 # Maddy - 
 # Jerry - 
-# Kyle - vehicle create(insert), vehicle delete, vehicle update, vehicle report
+# Kyle - service create(insert), service delete, service update, service report
 # Jahidul - 
 # Gian - 
 # Zach - 
