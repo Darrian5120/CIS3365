@@ -17,7 +17,7 @@ import cgi
 # RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSER
 # MAKE SURE YOU HAVE ALL HTML PAGES DOWNLOADED AND CHANGE YOUR CONNECTION STRING TO YOUR OWN
 # Every category should have a CRUD operation, please pick one to code with python AND html
-# Make sure your code works before pushing to github and include useful comments
+# Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
 # Darrian - customer create(insert), customer delete, customer update, customer report
 # Mustafa - 
