@@ -1,8 +1,6 @@
-<!DOCTYPE HTML>
 <html>
-	<link rel="stylesheet" href="home.css"> 
-	<head>
-		<title> Herrera Fabricating Inc.</title>
+    <head>
+        <title> Herrera Fabricating Inc.</title>
 		<!-- this sets the page for responsive scaling -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -13,26 +11,41 @@
             .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
             .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
             #td {width: 20%; text-align: center; margin: 0; padding: 0;}
-            .pic {width: 75%; object-fit: fill; display: block; margin-left: auto; margin-right: auto;}
         </style>
-	</head>
-	<body>
+    </head>
+    <body>
         <div class="header">
             <h1>Herrera Fabricating Inc.</h1>
         </div>
         <table class="topnav" cellspacing="0" cellpadding="0">
             <tr>
                 <td id="td"><a href ="/customers">Customers</a></td>
-                <td id="td"><a href ="/vehicles">Vehicles</a></td>
-                <td id="td"><a href ="/services">Services</a></td>
-                <td id="td"><a href ="/employees">Employees</a></td>
-                <td id="td"><a href ="/reports">Reports</a></td>
+                <td id="td"><a href ="#">Vehicles</a></td>
+                <td id="td"><a href ="#">Services</a></td>
+                <td id="td"><a href ="#">Employees</a></td>
+                <td id="td"><a href ="#">Reports</a></td>
             </tr>
         </table>
-        <img  class="pic" src="https://media-exp1.licdn.com/dms/image/C4E22AQHjre_SXRCgAA/feedshare-shrink_800/0/1587668244777?e=1619654400&v=beta&t=R_r06pzCVHpoS7UpsiKoJ0hDCytlMRQrzBQinyJ42UU">
-      
+        <form action="" method="post">
+            <p>
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+            </p>
+            <p>
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname">
+            </p>
+            <p>
+                <label for="bname">Business Name</label>
+                <input type="text" name="bname">
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
     </body>
     <script>
-        
+
     </script>
 </html>
