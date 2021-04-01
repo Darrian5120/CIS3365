@@ -14,19 +14,21 @@ from tabulate import tabulate
 import cgi
 
 ############################################## READ ME #####################################
-# RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSWER
+# RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSER
 # MAKE SURE YOU HAVE ALL HTML PAGES DOWNLOADED AND CHANGE YOUR CONNECTION STRING TO YOUR OWN
+# Every category should have a CRUD operation, please pick one to code with python AND html
+# Make sure your code works before pushing to github and include useful comments
 ############################################################################################
-# Darrian - customer create(insert), customer remove, customer update, customer reports
-# Mustafa
-# Brandon
-# Anthony
-# Maddy
-# Jerry
-# Kyle
-# Jahidul
-# Gian
-# Zach
+# Darrian - customer create(insert), customer delete, customer update, customer report
+# Mustafa - 
+# Brandon - 
+# Anthony - 
+# Maddy - 
+# Jerry - 
+# Kyle - 
+# Jahidul - 
+# Gian - 
+# Zach - 
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
@@ -46,6 +48,7 @@ def customers():
     
 # Reference new customer html page. Allows user to enter the details of new customer
 # to the database  
+# FIXME - Data does not save to database resets after every server restart
 @app.route('/customers/newcustomer', methods = ['POST','GET']) 
 def new_customer():
     message = ''
