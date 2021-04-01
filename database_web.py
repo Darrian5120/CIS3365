@@ -25,7 +25,7 @@ import cgi
 # Anthony - 
 # Maddy - 
 # Jerry - 
-# Kyle - 
+# Kyle - vehicle create(insert), vehicle delete, vehicle update, vehicle report
 # Jahidul - 
 # Gian - 
 # Zach - 
