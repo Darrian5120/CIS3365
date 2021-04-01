@@ -28,7 +28,7 @@ import cgi
 # Kyle - service create(insert), service delete, service update, service report
 # Jahidul - 
 # Gian - 
-# Zach - 
+# Zach - Report insert, Report delete, Report update
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
