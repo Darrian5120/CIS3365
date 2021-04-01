@@ -21,7 +21,7 @@ import cgi
 ############################################################################################
 # Darrian - customer create(insert), customer delete, customer update, customer report
 # Mustafa - vehicles insert, vehicle delete, vehicle update, vehicle stuff
-# Brandon - service create (insert), service delete, service update, service report 
+# Brandon - insurance policy create (insert), insurance policy delete, insurance policy update, insurance policy report 
 # Anthony - employee create(insert), employee delete, employee update, employee report
 # Maddy - supplier create(insert), supplier delete, supplier update, supplier report
 # Jerry - 
