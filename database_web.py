@@ -134,3 +134,7 @@ if __name__ == '__main__':
                         'Trusted_Connection=yes;')
     cursor = conn.cursor()
     app.run()
+<<<<<<< Updated upstream
+=======
+    conn.close()
+>>>>>>> Stashed changes
