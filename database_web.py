@@ -57,10 +57,14 @@ def new_customer():
         fname = request.form.get("fname")
         bname = request.form.get("bname")
         if lname and fname and bname is not None:
+            # new customer default
             query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) VALUES (?,?,?)"
             vals = (lname, fname, bname)
             data = cursor.execute(query, vals)
             conn.commit()
+            # new customer status
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (C_LNAME, ACTIVE_ID, ACTIVE) VALUES (?,?,?,?)"
+            # new customer contact info
             message = "New customer entered successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('newcustomer.html')
@@ -86,6 +90,16 @@ def update_customer():
 # remove customer from db by setting status to inactive
 @app.route('/customers/deletecustomer',methods = ['POST','GET'])
 def delete_customer():
+    message = ''
+    if request.method == 'POST':
+        friendid = request.form.get("fid")
+        if friendid is not None:
+            query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET ACTIVE_ID = 2 ACTIVE='INACTIVE' WHERE CUSOTMER_ID = ?")
+            vals = (friendid)
+            data = cursor.execute(query, vals)
+            conn.commit()
+            message = "Customer removed successfully!"
+            return render_template('customers.html', data=data, message=message)
     return render_template('deletecustomer.html')
 
 # view all customers
