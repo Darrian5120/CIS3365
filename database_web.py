@@ -60,6 +60,7 @@ def new_customer():
             query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) VALUES (?,?,?)"
             vals = (lname, fname, bname)
             data = cursor.execute(query, vals)
+            conn.commit()
             message = "New customer entered successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('newcustomer.html')
@@ -77,6 +78,7 @@ def update_customer():
             query = "UPDATE CoogTechSolutions.dbo.Customer SET C_LNAME = ?, C_FNAME = ?, C_BUSINESS_NAME = ? WHERE Customer_ID = ?"
             vals = ((lname, fname, bname, friendid))
             data = cursor.execute(query, vals)
+            conn.commit()
             message = "Customer edited successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('updatecustomer.html')
@@ -134,7 +136,4 @@ if __name__ == '__main__':
                         'Trusted_Connection=yes;')
     cursor = conn.cursor()
     app.run()
-<<<<<<< Updated upstream
-=======
     conn.close()
->>>>>>> Stashed changes
