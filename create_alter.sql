@@ -67,7 +67,6 @@ CREATE TABLE dbo.INVOICE (
 	INVOICE_DATE date not null,
 	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
 );
-
 ------------------Mustafa-----------------------------------------------
 --Service Line Status--
 CREATE TABLE dbo.SERVICE_LINE_STATUS (
@@ -112,14 +111,14 @@ create table dbo.CUSTOMER_VEHICLE(
 	CONSTRAINT V_VIN_PK2 PRIMARY KEY (V_VIN)
 );
 create table dbo.VEHICLE_POLICY(
-	POLICY_ID int not null,
 	V_VIN varchar(20) not null,
-	CONSTRAINT POLICY_ID_PK2 PRIMARY KEY (POLICY_ID)
+	POLICY_ID int not null,
+	CONSTRAINT V_VIN_PK4 PRIMARY KEY (V_VIN)
 );
 create table dbo.COMPANY_INSURANCE_POLICY(
-	POLICY_ID int not null,
 	INSURANCE_ID int not null,
-	CONSTRAINT POLICY_ID_PK1 PRIMARY KEY (POLICY_ID)
+	POLICY_ID int not null,
+	CONSTRAINT INSURANCE_ID_PK1 PRIMARY KEY (INSURANCE_ID)
 );
 ----------------------------Kyle--------------------------------------
 CREATE TABLE dbo.VEHICLE_SERVICE(
@@ -145,7 +144,7 @@ CREATE TABLE dbo.VEHICLE(
 	V_MAKE VARCHAR(15),
 	V_MODEL VARCHAR(15),
 	V_YEAR INT,
-	V_LISCENSE_PLATE VARCHAR(15) NOT NULL,
+	V_LICENSE_PLATE VARCHAR(15) NOT NULL,
 	CONSTRAINT V_VIN_PK PRIMARY KEY (V_VIN)
 );
 --------------------------------Brandon--------------------------------
@@ -263,8 +262,9 @@ CREATE TABLE dbo.INSURANCE_COMPANY (
 --INSURANCE POLICY Table--
 CREATE TABLE dbo.INSURANCE_POLICY (
 	POLICY_ID int IDENTITY(1,1) not null,
-	POLICY_NAME varchar(30),
+	POLICY_NAME varchar(40),
 	COVERAGE_COST MONEY,
+	EXPIRATION_DATE DATETIME,
 	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)
 );
 
