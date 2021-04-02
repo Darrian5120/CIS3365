@@ -57,7 +57,7 @@ def new_customer():
         fname = request.form.get("fname")
         bname = request.form.get("bname")
         if lname and fname and bname is not None:
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) VALUES (?,?,?)"
+            query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) VALUES (?,?,?)"
             vals = (lname, fname, bname)
             data = cursor.execute(query, vals)
             message = "New customer entered successfully!"
@@ -67,6 +67,18 @@ def new_customer():
 # modify exisitng customer by entering id
 @app.route('/customers/updatecustomer', methods = ['POST','GET'])
 def update_customer():
+    message = ''
+    if request.method == 'POST':
+        friendid = request.form.get("fid")
+        if friendid is not None:
+            lname = request.form.get("lname")
+            fname = request.form.get("fname")
+            bname = request.form.get("bname")
+            query = "UPDATE CoogTechSolutions.dbo.Customer SET C_LNAME = ?, C_FNAME = ?, C_BUSINESS_NAME = ? WHERE Customer_ID = ?"
+            vals = ((lname, fname, bname, friendid))
+            data = cursor.execute(query, vals)
+            message = "Customer edited successfully!"
+            return render_template('customers.html', data=data, message=message)
     return render_template('updatecustomer.html')
 
 # remove customer from db by setting status to inactive
@@ -77,7 +89,7 @@ def delete_customer():
 # view all customers
 @app.route('/customers/viewcustomers', methods = ['GET']) 
 def view_customers():
-    cursor.execute("SELECT * FROM Customer")
+    cursor.execute("SELECT * FROM CoogTechSolutions.dbo.Customer")
     data = cursor.fetchall()
     return render_template('viewCustomers.html', data = data)
 
