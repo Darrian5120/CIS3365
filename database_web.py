@@ -49,6 +49,7 @@ def customers():
 # Reference new customer html page. Allows user to enter the details of new customer
 # to the database  
 # FIXME - Data does not save to database resets after every server restart
+# FIXME - Combine customer and customer contact info
 @app.route('/customers/newcustomer', methods = ['POST','GET']) 
 def new_customer():
     message = ''
@@ -63,24 +64,24 @@ def new_customer():
             data = cursor.execute(query, vals)
             conn.commit()
             # new customer status
-            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (C_LNAME, ACTIVE_ID, ACTIVE) VALUES (?,?,?,?)"
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (CUSTOMER_ID, ACTIVE_ID, ACTIVE) VALUES (?,?,?)"
             # new customer contact info
             message = "New customer entered successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('newcustomer.html')
 
 # modify exisitng customer by entering id
+# FIXME- find out how to only update one field
 @app.route('/customers/updatecustomer', methods = ['POST','GET'])
 def update_customer():
     message = ''
     if request.method == 'POST':
         friendid = request.form.get("fid")
-        if friendid is not None:
-            lname = request.form.get("lname")
-            fname = request.form.get("fname")
-            bname = request.form.get("bname")
-            query = "UPDATE CoogTechSolutions.dbo.Customer SET C_LNAME = ?, C_FNAME = ?, C_BUSINESS_NAME = ? WHERE Customer_ID = ?"
-            vals = ((lname, fname, bname, friendid))
+        field = request.form.get("field")
+        value = request.form.get("value")
+        if friendid and field and value is not None:
+            query = "UPDATE CoogTechSolutions.dbo.Customer SET ? = ?, WHERE Customer_ID = ?"
+            vals = (field, value, friendid)
             data = cursor.execute(query, vals)
             conn.commit()
             message = "Customer edited successfully!"
