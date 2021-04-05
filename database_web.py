@@ -129,9 +129,28 @@ def view_customers():
     conn.commit()
     return render_template('viewCustomers.html', data = data)
 
+@app.route ('/customers/inactive-report' , methods = ['GET'])
+def inactive_report():
+    cursor.execute("""
+        SELECT Customer.C_FNAME AS "First Name", Customer.C_LNAME AS "Last Name", 
+        CUSTOMER_CONTACT_INFO.C_PHONE AS "Phone", CUSTOMER_STATUS.ACTIVE
 
+        FROM Customer
+        JOIN CUSTOMER_STATUS
+        ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
+        JOIN CUSTOMER_CONTACT_INFO
+        ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
+        JOIN CUSTOMER_ORDER
+        ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
+        JOIN SERVICE_ORDER
+        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
 
-
+        WHERE CUSTOMER_STATUS.C_ACTIVE = 2 OR CUSTOMER_STATUS.C_ACTIVE = 4 /*OR SERVICE_ORDER.ORDER_DATE < GETDATE()*/
+        ORDER BY CUSTOMER.C_LNAME, CUSTOMER.C_FNAME;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_inactivecustomer.html', data = data)
 
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
@@ -163,7 +182,7 @@ def vehicle_part_report():
     ORDER BY VEHICLE.V_VIN;""")
     data = cursor.fetchall()
     conn.commit()
-    return render_template('vehiclepartreport.html', data = data)
+    return render_template('report_vehiclepart.html', data = data)
 
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
@@ -237,13 +256,42 @@ def view_employees():
     cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.Employee")
     data = cursor.fetchall()
     return render_template ('viewemployee.html' , data = data)
-        
+
+# employee part report
+@app.route ('/employees/employeepart-report' , methods = ['GET'])
+def employee_part_report():
+    cursor.execute("""
+        SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", EMPLOYEE.EMPLOYEE_ID AS "Employee ID", 
+        EMPLOYEE.EMPLOYEE_LNAME AS "Last Name", EMPLOYEE.EMPLOYEE_FNAME AS "First Name"
+
+        FROM EMPLOYEE
+        JOIN Employee_Status
+        ON Employee_Status.EMPLOYEE_ID = EMPLOYEE.EMPLOYEE_ID
+        JOIN EMPLOYEE_SERVICE_LINE_ASSIGNMENT
+        ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_SERVICE_LINE_ASSIGNMENT.EMPLOYEE_ID
+        JOIN SERVICE_LINE
+        ON EMPLOYEE_SERVICE_LINE_ASSIGNMENT.SERVICE_LINE_ID = SERVICE_LINE.SERVICE_LINE_ID
+        JOIN SERVICE_LINE_PART
+        ON SERVICE_LINE.SERVICE_LINE_ID = SERVICE_LINE_PART.SERVICE_LINE_ID
+        JOIN PART
+        ON SERVICE_LINE_PART.PART_ID = PART.PART_ID
+        JOIN SUPPLIER_PART
+        ON PART.PART_ID = SUPPLIER_PART.PART_ID
+        JOIN SUPPLIER
+        ON SUPPLIER_PART.SUPPLIER_ID = SUPPLIER.SUPPLIER_ID
+
+        WHERE Employee_Status.ACTIVE_ID = 1
+        ORDER BY PART.PART_NAME;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_employeepart.html', data = data)        
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
 def services():
     return render_template('services.html')
 
-@app.route ('/employees/view-services' , methods = ['GET'])
+@app.route('/services/view-services', methods = ['GET'])
 def view_services():
     cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.SERVICE")
     data = cursor.fetchall()
@@ -278,14 +326,14 @@ def revenue_report():
         ORDER BY INVOICE.INVOICE_DATE;""")
     data = cursor.fetchall()
     conn.commit()
-    return render_template('revenuereport.html', data = data)
+    return render_template('report_revenue.html', data = data)
 
 
 
 ################################### VIOLATIONS ##################################################
-@app.route('/reports', methods = ['GET']) 
+@app.route('/violations', methods = ['GET']) 
 def reports():
-    return render_template('reports.html')
+    return render_template('violations.html')
 
 
 
