@@ -29,6 +29,7 @@ import cgi
 # Jahidul - employee update, employee report
 # Gian - service update, service report
 # Zach - violation insert, violation delete, violation update
+# EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
@@ -104,26 +105,57 @@ def new_customer():
 def update_customer():
     message = ''
     if request.method == 'POST':
+        # get info from gui
         customer_id = request.form.get("cid")
         field = request.form.get("tblname")
-        #print(field)
         value = request.form.get("value")
-        #print(value)
+        # find if id exist
         if customer_id and field and value is not None:
             sql = "SELECT CUSTOMER_ID FROM Customer where CUSTOMER_ID = ?" 
             vals = (customer_id)
             cursor.execute(sql, vals)
             data = cursor.fetchall()
-            if not data:
+            if not data: # id doesn't exist
                 message = "Invalid Customer ID! Please review Customers"
-            else: 
+            else:
+                # update both customer type fields - DO NOT COPY THIS ####################
+                if field == "CUSTOMER_TYPE SET BUSINESS":
+                    query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                    if value == 'Business' or value == 'BUSINESS':
+                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_TYPE SET BUSINESS_ID = ?, BUSINESS = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                        vals = (1, "BUSINESS", customer_id)
+                        data = cursor.execute(query, vals)
+                        conn.commit()
+                        return render_template('customers.html', data=data, message=message)
+                    else:
+                        vals = ("Individual", customer_id)
+                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_TYPE SET BUSINESS_ID = ?, BUSINESS = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                        vals = (0, "INDIVIDUAL", customer_id)
+                        data = cursor.execute(query, vals)
+                        conn.commit()
+                        return render_template('customers.html', data=data, message=message)
+                # update both customer status fields - MUST COPY FOR STATUS TABLES ########################
+                if field == "CUSTOMER_STATUS SET ACTIVE":
+                    query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                    if value == 'Active' or value == 'ACTIVE':
+                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                        vals = (1, "ACTIVE", customer_id)
+                        data = cursor.execute(query, vals)
+                        conn.commit()
+                        return render_template('customers.html', data=data, message=message)
+                    else:
+                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                        vals = (2, "INACTIVE", customer_id)
+                        data = cursor.execute(query, vals)
+                        conn.commit()
+                        return render_template('customers.html', data=data, message=message)
                 query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
                 vals = (value, customer_id)
                 data = cursor.execute(query, vals)
                 conn.commit()
                 message = "Customer edited successfully!"
                 return render_template('customers.html', data=data, message=message)
-        else:
+        else: # missing id in gui
             message = "Missing values!"
     return render_template('updatecustomer.html', message = message)
 
@@ -133,12 +165,13 @@ def delete_customer():
     message = ''
     if request.method == 'POST':
         customer_id = request.form.get("cid")
+        # find if id exist
         if customer_id is not None:
             sql = "SELECT CUSTOMER_ID FROM Customer where CUSTOMER_ID = ?" 
             vals = (customer_id)
             cursor.execute(sql, vals)
             data = cursor.fetchall()
-            if not data:
+            if not data: # id doesn't exist
                 message = "Invalid Customer ID! Please review Customers"
             else: 
                 query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE= ? WHERE CUSTOMER_ID = ?"
@@ -147,14 +180,26 @@ def delete_customer():
                 conn.commit()
                 message = "Customer removed successfully!"
                 return render_template('customers.html', data=data, message=message)
-        else:
+        else: # missing id in gui
             message = "Missing values!"
     return render_template('deletecustomer.html', message = message)
 
 # view all customers
 @app.route('/customers/view-customers', methods = ['GET']) 
 def view_customers():
-    cursor.execute("SELECT * FROM CoogTechSolutions.dbo.Customer")
+    cursor.execute("""
+        SELECT CUSTOMER.CUSTOMER_ID AS "ID", CUSTOMER.C_FNAME, CUSTOMER.C_LNAME,
+        CUSTOMER.C_BUSINESS_NAME, CUSTOMER_CONTACT_INFO.C_PHONE, CUSTOMER_CONTACT_INFO.C_EMAIL,
+        CUSTOMER_CONTACT_INFO.C_ADDRESS, CUSTOMER_CONTACT_INFO.C_CITY, CUSTOMER_CONTACT_INFO.STATE_NAME,
+        CUSTOMER_CONTACT_INFO.C_ZIP, CUSTOMER_STATUS.ACTIVE 
+        FROM Customer
+        JOIN CUSTOMER_CONTACT_INFO
+        ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
+        JOIN CUSTOMER_STATUS
+        ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
+        WHERE CUSTOMER_STATUS.C_ACTIVE = 1 OR CUSTOMER_STATUS.C_ACTIVE = 3
+        ORDER BY CUSTOMER_STATUS.C_ACTIVE, Customer.CUSTOMER_ID
+    """)
     data = cursor.fetchall()
     conn.commit()
     return render_template('viewCustomers.html', data = data)
