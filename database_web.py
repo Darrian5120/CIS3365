@@ -144,6 +144,42 @@ def vehicles():
 def employees():
     return render_template('employees.html')
 
+@app.route ('/employees/newemployee', methods = ['POST', 'GET'])
+def new_employee():
+    message = ''
+    if request.method == 'POST':
+        lname = request.form.get ("lname")
+        lname = request.form.get ("fname")
+        address = request.form.get ("address")
+        pnumber = request.form.get ("pnumber")
+        jobfunc = requet.form.get ("jobfunc")
+        if lname and fname and address and pnumber and jobfunc is not None:
+            
+            # new employee default
+            query = ""
+            vals = 
+            data = 
+            conn.commit()
+            
+            # new employee status
+            query = ""
+            vals = 
+            data = 
+            conn.commit()
+            
+            # new employee contact info
+            
+            #
+            
+            message = "New employee entered successfully!"
+            return render_template ('employees.html' , data = data, message = message)
+        return render_template ('newemployee.html')
+    
+    # modify existing employee by entering id
+    @app.route ('/employees/updateemployee' , methods = ['POST' , 'GET'])
+    def update_employee():
+        if request.method == 'POST':
+            friendid = request.form.get ("fid")
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
 def services():
