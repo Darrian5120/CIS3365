@@ -10,6 +10,8 @@
             .topnav {border:0px; background-color:#333; overflow:hidden; margin:auto; width: 100%; text-align: center;} /*syle the topnav*/
             .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
             .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
+            table {text-align: center; margin-left: auto; margin-right: auto; border-collapse: collapse;}
+            table, td, th {border: 1px solid black;}
             #td {width: 20%; text-align: center; margin: 0; padding: 0;}
         </style>
     </head>
@@ -26,20 +28,32 @@
                 <td id="td"><a href ="/reports">Reports</a></td>
             </tr>
         </table>
-        <form action="" method="post">
-            <p>
-                <label for="cid">Enter Customer ID to modify:</label>
-                <input type="text" name="cid">
-            </p>
-            <p>
-                <label for="field">Enter field to modify:</label>
-                <input type="text" name="field">
-            </p>
-            <p>
-                <label for="lname">New Value:</label>
-                <input type="text" name="value">
-            </p>
-            <p><input type="submit" value="Submit"></p>
-        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>VIN</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Supplier</th>
+                    <th>Part</th>
+                </tr>
+            </thead>    
+            <tbody>
+                {% for row in data %}    
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>{{row[4]}}</td>
+                        <td>{{row[5]}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
     </body>
+    <script>
+
+    </script>
 </html>

@@ -95,12 +95,12 @@ def new_customer():
 def update_customer():
     message = ''
     if request.method == 'POST':
-        friendid = request.form.get("fid")
+        customer_id = request.form.get("cid")
         field = request.form.get("field")
         value = request.form.get("value")
-        if friendid and field and value is not None:
-            query = "UPDATE CoogTechSolutions.dbo.Customer SET ? = ?, WHERE Customer_ID = ?"
-            vals = (field, value, friendid)
+        if customer_id and field and value is not None:
+            query = "UPDATE CoogTechSolutions.dbo.Customer SET {fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+            vals = (value, customer_id)
             data = cursor.execute(query, vals)
             conn.commit()
             message = "Customer edited successfully!"
@@ -117,7 +117,6 @@ def delete_customer():
             query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET ACTIVE_ID = 2 ACTIVE='INACTIVE' WHERE CUSOTMER_ID = ?"
             vals = (friendid)
             data = cursor.execute(query, vals)
-            conn.commit()
             message = "Customer removed successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('deletecustomer.html')
@@ -127,6 +126,7 @@ def delete_customer():
 def view_customers():
     cursor.execute("SELECT * FROM CoogTechSolutions.dbo.Customer")
     data = cursor.fetchall()
+    conn.commit()
     return render_template('viewCustomers.html', data = data)
 
 
@@ -136,8 +136,34 @@ def view_customers():
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
 def vehicles():
-    
     return render_template('vehicles.html')
+
+@app.route('/customers/viewcustomers', methods = ['GET']) 
+def vehicle_part_report():
+    cursor.execute("""
+    SELECT VEHICLE_SERVICE.V_VIN AS "VIN", VEHICLE.V_YEAR AS "Year", VEHICLE.V_MAKE AS "Make", 
+    VEHICLE.V_MODEL AS "Model", SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part"
+
+    FROM VEHICLE
+    JOIN VEHICLE_SERVICE
+    ON VEHICLE.V_VIN = VEHICLE_SERVICE.V_VIN
+    JOIN SERVICE
+    ON VEHICLE_SERVICE.SERVICE_ID = SERVICE.SERVICE_ID
+    JOIN SERVICE_LINE
+    ON SERVICE.SERVICE_ID = SERVICE_LINE.SERVICE_ID
+    JOIN SERVICE_LINE_PART
+    ON  SERVICE_LINE.SERVICE_LINE_ID = SERVICE_LINE_PART.SERVICE_LINE_ID
+    JOIN PART
+    ON SERVICE_LINE_PART.PART_ID = PART.PART_ID
+    JOIN SUPPLIER_PART
+    ON PART.PART_ID = SUPPLIER_PART.PART_ID
+    JOIN SUPPLIER
+    ON SUPPLIER_PART.SUPPLIER_ID = SUPPLIER.SUPPLIER_ID
+
+    ORDER BY VEHICLE.V_VIN;""")
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('viewCustomers.html', data = data)
 
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
