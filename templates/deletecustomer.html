@@ -23,15 +23,18 @@
                 <td id="td"><a href ="/vehicles">Vehicles</a></td>
                 <td id="td"><a href ="/services">Services</a></td>
                 <td id="td"><a href ="/employees">Employees</a></td>
-                <td id="td"><a href ="/reports">Reports</a></td>
+                <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
         <form action="" method="post">
             <p>
-                <label for="fid">Enter Customer ID to modify:</label>
-                <input type="text" name="fid">
+                <label for="cid">Enter Customer ID to modify:</label>
+                <input type="text" name="cid">
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
     </body>
 </html>

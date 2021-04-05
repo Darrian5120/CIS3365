@@ -65,8 +65,12 @@ def new_customer():
             customer_id = cursor.fetchone()[0]
             conn.commit()
             # new customer status
+            active = request.form.get("is_active")
             query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (CUSTOMER_ID, C_ACTIVE, ACTIVE) VALUES (?,?,?)"
-            status_vals = (customer_id, 1, "ACTIVE")
+            if active is not None:
+                status_vals = (customer_id, 1, "Active")
+            else:
+                status_vals = (customer_id, 2, "Inactive")
             data = cursor.execute(query, status_vals)
             conn.commit()
             # new customer contact info
@@ -84,10 +88,10 @@ def new_customer():
             business = request.form.get("is_biz")
             query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_TYPE (CUSTOMER_ID, BUSINESS_ID, BUSINESS) VALUES (?,?,?)"
             if business is not None:
-                vals = (customer_id, 1, "Business")
+                type_vals = (customer_id, 1, "Business")
             else:
-                vals = (customer_id, 0, "Individual")
-            data = cursor.execute(query, contact_vals)
+                type_vals = (customer_id, 0, "Individual")
+            data = cursor.execute(query, type_vals)
             conn.commit()
             # new customer state
             message = "New customer entered successfully!"
@@ -106,17 +110,21 @@ def update_customer():
         value = request.form.get("value")
         #print(value)
         if customer_id and field and value is not None:
-            try:
+            sql = "SELECT CUSTOMER_ID FROM Customer where CUSTOMER_ID = ?" 
+            vals = (customer_id)
+            cursor.execute(sql, vals)
+            data = cursor.fetchall()
+            if not data:
+                message = "Invalid Customer ID! Please review Customers"
+            else: 
                 query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
                 vals = (value, customer_id)
                 data = cursor.execute(query, vals)
                 conn.commit()
                 message = "Customer edited successfully!"
                 return render_template('customers.html', data=data, message=message)
-            except:
-                print("Invalid column name")
-                message = "Invalid column name. Please enter correct column name."
-        message = "Missing values!"
+        else:
+            message = "Missing values!"
     return render_template('updatecustomer.html', message = message)
 
 # remove customer from db by setting status to inactive
@@ -124,14 +132,24 @@ def update_customer():
 def delete_customer():
     message = ''
     if request.method == 'POST':
-        friendid = request.form.get("fid")
-        if friendid is not None:
-            query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET ACTIVE_ID = 2 ACTIVE='INACTIVE' WHERE CUSOTMER_ID = ?"
-            vals = (friendid)
-            data = cursor.execute(query, vals)
-            message = "Customer removed successfully!"
-            return render_template('customers.html', data=data, message=message)
-    return render_template('deletecustomer.html')
+        customer_id = request.form.get("cid")
+        if customer_id is not None:
+            sql = "SELECT CUSTOMER_ID FROM Customer where CUSTOMER_ID = ?" 
+            vals = (customer_id)
+            cursor.execute(sql, vals)
+            data = cursor.fetchall()
+            if not data:
+                message = "Invalid Customer ID! Please review Customers"
+            else: 
+                query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE= ? WHERE CUSTOMER_ID = ?"
+                vals = (2, "INACTIVE", customer_id)
+                data = cursor.execute(query, vals)
+                conn.commit()
+                message = "Customer removed successfully!"
+                return render_template('customers.html', data=data, message=message)
+        else:
+            message = "Missing values!"
+    return render_template('deletecustomer.html', message = message)
 
 # view all customers
 @app.route('/customers/view-customers', methods = ['GET']) 
@@ -206,7 +224,7 @@ def new_employee():
     message = ''
     if request.method == 'POST':
         lname = request.form.get ("lname")
-        lname = request.form.get ("fname")
+        fname = request.form.get ("fname")
         address = request.form.get ("address")
         pnumber = request.form.get ("pnumber")
         jobfunc = request.form.get ("jobfunc")
@@ -340,11 +358,9 @@ def revenue_report():
     conn.commit()
     return render_template('report_revenue.html', data = data)
 
-
-
 ################################### VIOLATIONS ##################################################
 @app.route('/violations', methods = ['GET']) 
-def reports():
+def violation():
     return render_template('violations.html')
 
 
