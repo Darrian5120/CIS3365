@@ -50,7 +50,7 @@ def customers():
 # to the database  
 # FIXME - Data does not save to database resets after every server restart
 # FIXME - Combine customer and customer contact info
-@app.route('/customers/newcustomer', methods = ['POST','GET']) 
+@app.route('/customers/new-customer', methods = ['POST','GET']) 
 def new_customer():
     message = ''
     if request.method == 'POST':
@@ -91,7 +91,7 @@ def new_customer():
 
 # modify exisitng customer by entering id
 # FIXME- find out how to only update one field
-@app.route('/customers/updatecustomer', methods = ['POST','GET'])
+@app.route('/customers/update-customer', methods = ['POST','GET'])
 def update_customer():
     message = ''
     if request.method == 'POST':
@@ -108,7 +108,7 @@ def update_customer():
     return render_template('updatecustomer.html')
 
 # remove customer from db by setting status to inactive
-@app.route('/customers/deletecustomer',methods = ['POST','GET'])
+@app.route('/customers/delete-customer',methods = ['POST','GET'])
 def delete_customer():
     message = ''
     if request.method == 'POST':
@@ -122,7 +122,7 @@ def delete_customer():
     return render_template('deletecustomer.html')
 
 # view all customers
-@app.route('/customers/viewcustomers', methods = ['GET']) 
+@app.route('/customers/view-customers', methods = ['GET']) 
 def view_customers():
     cursor.execute("SELECT * FROM CoogTechSolutions.dbo.Customer")
     data = cursor.fetchall()
@@ -138,7 +138,7 @@ def view_customers():
 def vehicles():
     return render_template('vehicles.html')
 
-@app.route('/customers/viewcustomers', methods = ['GET']) 
+@app.route('/vehicles/vehiclepart-report', methods = ['GET']) 
 def vehicle_part_report():
     cursor.execute("""
     SELECT VEHICLE_SERVICE.V_VIN AS "VIN", VEHICLE.V_YEAR AS "Year", VEHICLE.V_MAKE AS "Make", 
@@ -163,14 +163,14 @@ def vehicle_part_report():
     ORDER BY VEHICLE.V_VIN;""")
     data = cursor.fetchall()
     conn.commit()
-    return render_template('viewCustomers.html', data = data)
+    return render_template('vehiclepartreport.html', data = data)
 
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
 def employees():
     return render_template('employees.html')
 
-@app.route ('/employees/newemployee', methods = ['POST', 'GET'])
+@app.route ('/employees/new-employee', methods = ['POST', 'GET'])
 def new_employee():
     message = ''
     if request.method == 'POST':
@@ -178,20 +178,20 @@ def new_employee():
         lname = request.form.get ("fname")
         address = request.form.get ("address")
         pnumber = request.form.get ("pnumber")
-        jobfunc = requet.form.get ("jobfunc")
+        jobfunc = request.form.get ("jobfunc")
         if lname and fname and address and pnumber and jobfunc is not None:
             
             # new employee default
-            query = ""
-            vals = 
-            data = 
-            conn.commit()
+            #query = ""
+            #vals = 
+            #data = 
+            #conn.commit()
             
             # new employee status
-            query = ""
-            vals = 
-            data = 
-            conn.commit()
+            #query = ""
+            #vals = 
+            #data = 
+            #conn.commit()
             
             # new employee contact info
             
@@ -201,47 +201,86 @@ def new_employee():
             return render_template ('employees.html' , data = data, message = message)
         return render_template ('newemployee.html')
     
-    # modify existing employee by entering id
-    @app.route ('/employees/updateemployee' , methods = ['POST' , 'GET'])
-    def update_employee():
-        if request.method == 'POST':
-            friendid = request.form.get ("fid")
-            field =  request.form.get ("field")
-            value = request.form.get ("value")
-            if friendid and field and value is not None:
-                query = 
-                vals = 
-                data = 
-                conn.commit ()
-                message = "Employee edited sucessfully!"
-                return render_template ('employees.html' data = data , message = message)
-            return render_template ('updateemployee.html')
-        
-        # remove employee from db by setting status to inactive
-        @app.route ('/employees/deleteemloyee' , methods =['POST' , 'GET'])
-        def delete_employee():
-            message = ''
-            friendid = request.form.get ("fid")
-            if friendid is not None:
-                query = 
-                vals = 
-                data = 
-                conn.commit()
-                message = "Employee removed successfully!"
-                return render_template ('employees.html' , data = data , message = message)
-            return render_template('deleteemployee.html')
-        
-        #view all employees
-        @app.route ('/employees/viewemployee' , methods = ['GET'])
-        def view_employee():
-            cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.Employee")
-            data = cursor.fetchall()
-            return render_template ('viewemployee.html' , data = data)
+# modify existing employee by entering id
+@app.route ('/employees/update-employee' , methods = ['POST' , 'GET'])
+def update_employee():
+    if request.method == 'POST':
+        friendid = request.form.get ("fid")
+        field =  request.form.get ("field")
+        value = request.form.get ("value")
+        if friendid and field and value is not None:
+            #query = 
+            #vals = 
+            #data = 
+            #conn.commit ()
+            message = "Employee edited sucessfully!"
+            #return render_template ('employees.html' data = data , message = message)
+        return render_template ('updateemployee.html')
+    
+# remove employee from db by setting status to inactive
+@app.route ('/employees/delete-emloyee' , methods =['POST' , 'GET'])
+def delete_employee():
+    message = ''
+    friendid = request.form.get ("fid")
+    if friendid is not None:
+        #query = 
+        #vals = 
+        #data = 
+        #conn.commit()
+        message = "Employee removed successfully!"
+        #return render_template ('employees.html' , data = data , message = message)
+    return render_template('deleteemployee.html')
+
+#view all employees
+@app.route ('/employees/view-employees' , methods = ['GET'])
+def view_employees():
+    cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.Employee")
+    data = cursor.fetchall()
+    return render_template ('viewemployee.html' , data = data)
         
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
 def services():
     return render_template('services.html')
+
+@app.route ('/employees/view-services' , methods = ['GET'])
+def view_services():
+    cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.SERVICE")
+    data = cursor.fetchall()
+    return render_template ('viewservices.html' , data = data)
+
+@app.route ('/services/revenue-report' , methods = ['GET'])
+def revenue_report():
+    cursor.execute("""
+        SELECT Customer.CUSTOMER_ID AS "Customer ID", Customer.C_LNAME AS "Last Name", Customer.C_FNAME AS "First Name",
+        ACCOUNT_REVENUE.REVENUE_NAME AS "Revenue Name", SERVICE.SERVICE_TYPE AS "SERVICE NAME", ACCOUNT_REVENUE.REVENUE_VALUE AS "Revenue Value"
+
+        FROM CUSTOMER
+        JOIN CUSTOMER_ORDER
+        ON CUSTOMER.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
+        JOIN SERVICE_ORDER
+        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+        JOIN SERVICE_LINE
+        ON SERVICE_LINE.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+        JOIN SERVICE
+        ON SERVICE.SERVICE_ID = SERVICE_LINE.SERVICE_ID
+        JOIN INVOICE
+        ON Customer.CUSTOMER_ID = INVOICE.CUSTOMER_ID
+        JOIN INVOICE_PAYMENT
+        ON  INVOICE.INVOICE_ID = INVOICE_PAYMENT.INVOICE_ID
+        JOIN PAYMENT
+        ON INVOICE_PAYMENT.PMT_NUMBER = PAYMENT.PMT_NUMBER
+        JOIN PAYMENT_REVENUE
+        ON PAYMENT.PMT_NUMBER = PAYMENT_REVENUE.PMT_NUMBER
+        JOIN ACCOUNT_REVENUE
+        ON PAYMENT_REVENUE.REVENUE_ID = ACCOUNT_REVENUE.REVENUE_ID
+
+        ORDER BY INVOICE.INVOICE_DATE;""")
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('revenuereport.html', data = data)
+
+
 
 ################################### VIOLATIONS ##################################################
 @app.route('/reports', methods = ['GET']) 

@@ -31,12 +31,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>VIN</th>
-                    <th>Year</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Supplier</th>
-                    <th>Part</th>
+                    <th>Service ID</th>
+                    <th>Service</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Cost</th>
                 </tr>
             </thead>    
             <tbody>
@@ -47,7 +46,6 @@
                         <td>{{row[2]}}</td>
                         <td>{{row[3]}}</td>
                         <td>{{row[4]}}</td>
-                        <td>{{row[5]}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
