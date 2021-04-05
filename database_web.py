@@ -180,6 +180,38 @@ def new_employee():
     def update_employee():
         if request.method == 'POST':
             friendid = request.form.get ("fid")
+            field =  request.form.get ("field")
+            value = request.form.get ("value")
+            if friendid and field and value is not None:
+                query = 
+                vals = 
+                data = 
+                conn.commit ()
+                message = "Employee edited sucessfully!"
+                return render_template ('employees.html' data = data , message = message)
+            return render_template ('updateemployee.html')
+        
+        # remove employee from db by setting status to inactive
+        @app.route ('/employees/deleteemloyee' , methods =['POST' , 'GET'])
+        def delete_employee():
+            message = ''
+            friendid = request.form.get ("fid")
+            if friendid is not None:
+                query = 
+                vals = 
+                data = 
+                conn.commit()
+                message = "Employee removed successfully!"
+                return render_template ('employees.html' , data = data , message = message)
+            return render_template('deleteemployee.html')
+        
+        #view all employees
+        @app.route ('/employees/viewemployee' , methods = ['GET'])
+        def view_employee():
+            cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.Employee")
+            data = cursor.fetchall()
+            return render_template ('viewemployee.html' , data = data)
+        
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
 def services():
