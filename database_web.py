@@ -57,7 +57,7 @@ def new_customer():
         lname = request.form.get("lname")
         fname = request.form.get("fname")
         bname = request.form.get("bname")
-        if lname and fname and bname is not None:
+        if lname and fname is not None:
             # new customer default
             query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?)"
             vals = (lname, fname, bname)
@@ -81,9 +81,14 @@ def new_customer():
             data = cursor.execute(query, contact_vals)
             conn.commit()
             # new customer type
-            #business = request.form.get("is_biz")
-            #query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_TYPE (CUSTOMER_ID, IS_BUSINESS) VALUES (?,?)"
-            #vals = (customer_id, business)
+            business = request.form.get("is_biz")
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_TYPE (CUSTOMER_ID, BUSINESS_ID, BUSINESS) VALUES (?,?,?)"
+            if business is not None:
+                vals = (customer_id, 1, "Business")
+            else:
+                vals = (customer_id, 0, "Individual")
+            data = cursor.execute(query, contact_vals)
+            conn.commit()
             # new customer state
             message = "New customer entered successfully!"
             return render_template('customers.html', data=data, message=message)
@@ -111,6 +116,7 @@ def update_customer():
             except:
                 print("Invalid column name")
                 message = "Invalid column name. Please enter correct column name."
+        message = "Missing values!"
     return render_template('updatecustomer.html', message = message)
 
 # remove customer from db by setting status to inactive
