@@ -20,15 +20,15 @@ import cgi
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
 # Darrian - customer create(insert), customer delete, customer update, customer report
-# Mustafa - vehicles insert, vehicle delete, vehicle update, vehicle stuff
-# Brandon - 
-# Anthony - employee create(insert), employee delete, employee update, employee report
-# Maddy - supplier create(insert), supplier delete, supplier update, supplier report
-# Jerry - 
-# Kyle - service create(insert), service delete, service update, service report
-# Jahidul - 
-# Gian - 
-# Zach - violation insert, Report delete, Report update
+# Mustafa - vehicles insert, vehicle delete, vehicle update
+# Brandon - supplier update, supplier report
+# Anthony - employee create(insert), employee delete, vehicle report
+# Maddy - supplier create(insert), supplier delete, 
+# Jerry - vehicle update, vehicle report
+# Kyle - service create(insert), service delete, 
+# Jahidul - employee update, employee report
+# Gian - service update, service report
+# Zach - violation insert, violation delete, violation update
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
