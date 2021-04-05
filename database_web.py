@@ -28,7 +28,7 @@ import cgi
 # Kyle - service create(insert), service delete, service update, service report
 # Jahidul - 
 # Gian - 
-# Zach - Report insert, Report delete, Report update
+# Zach - violation insert, Report delete, Report update
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
@@ -59,13 +59,32 @@ def new_customer():
         bname = request.form.get("bname")
         if lname and fname and bname is not None:
             # new customer default
-            query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) VALUES (?,?,?)"
+            query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?)"
             vals = (lname, fname, bname)
             data = cursor.execute(query, vals)
+            customer_id = cursor.fetchone()[0]
             conn.commit()
             # new customer status
-            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (CUSTOMER_ID, ACTIVE_ID, ACTIVE) VALUES (?,?,?)"
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (CUSTOMER_ID, C_ACTIVE, ACTIVE) VALUES (?,?,?)"
+            status_vals = (customer_id, 1, "ACTIVE")
+            data = cursor.execute(query, status_vals)
+            conn.commit()
             # new customer contact info
+            phone = request.form.get("phone")
+            email = request.form.get("email")
+            address = request.form.get("addy")
+            zip_code = request.form.get("zip")
+            city = request.form.get("city")
+            state = request.form.get("state")
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_CONTACT_INFO (CUSTOMER_ID, C_PHONE, C_EMAIL, C_ADDRESS, C_ZIP, C_CITY, STATE_NAME) VALUES (?,?,?,?,?,?,?)"
+            contact_vals = (customer_id, phone, email, address, zip_code, city, state)
+            data = cursor.execute(query, contact_vals)
+            conn.commit()
+            # new customer type
+            #business = request.form.get("is_biz")
+            #query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_TYPE (CUSTOMER_ID, IS_BUSINESS) VALUES (?,?)"
+            #vals = (customer_id, business)
+            # new customer state
             message = "New customer entered successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('newcustomer.html')
@@ -95,7 +114,7 @@ def delete_customer():
     if request.method == 'POST':
         friendid = request.form.get("fid")
         if friendid is not None:
-            query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET ACTIVE_ID = 2 ACTIVE='INACTIVE' WHERE CUSOTMER_ID = ?")
+            query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET ACTIVE_ID = 2 ACTIVE='INACTIVE' WHERE CUSOTMER_ID = ?"
             vals = (friendid)
             data = cursor.execute(query, vals)
             conn.commit()
@@ -130,7 +149,7 @@ def employees():
 def services():
     return render_template('services.html')
 
-################################### REPORTS ##################################################
+################################### VIOLATIONS ##################################################
 @app.route('/reports', methods = ['GET']) 
 def reports():
     return render_template('reports.html')
