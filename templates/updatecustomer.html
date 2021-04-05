@@ -32,6 +32,23 @@
                 <input type="text" name="cid">
             </p>
             <p>
+                <label for="tblname">Enter table to modify:</label>
+                <select name="tblname" id="tblname">
+                    <optgroup label="Customer"></optgroup>
+                        <option value="Customer SET C_LNAME">Last Name</option>
+                        <option value="Customer SET C_FNAME">First Name</option>
+                        <option value="Customer SET C_BUSINESS_NAME">Business Name</option>
+                    <optgroup label="CUSTOMER_CONTACT_INFO"></optgroup>
+                        <option value="CUSTOMER_CONTACT_INFO">Contact Informataion</option>
+                    <optgroup label="CUSTOMER_TYPE"></optgroup>
+                    <optgroup label="CUSTOMER_STATUS"></optgroup>
+                    
+                    
+                    <option value="CUSTOMER_TYPE">Type</option>
+                    <option value="CUSTOMER_STATUS">Status</option>
+                  </select>
+            </p
+            <p>
                 <label for="field">Enter field to modify:</label>
                 <input type="text" name="field">
             </p>
@@ -41,5 +58,8 @@
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
     </body>
 </html>

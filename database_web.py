@@ -96,16 +96,22 @@ def update_customer():
     message = ''
     if request.method == 'POST':
         customer_id = request.form.get("cid")
-        field = request.form.get("field")
+        field = request.form.get("tblname")
+        #print(field)
         value = request.form.get("value")
+        #print(value)
         if customer_id and field and value is not None:
-            query = "UPDATE CoogTechSolutions.dbo.Customer SET {fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-            vals = (value, customer_id)
-            data = cursor.execute(query, vals)
-            conn.commit()
-            message = "Customer edited successfully!"
-            return render_template('customers.html', data=data, message=message)
-    return render_template('updatecustomer.html')
+            try:
+                query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+                vals = (value, customer_id)
+                data = cursor.execute(query, vals)
+                conn.commit()
+                message = "Customer edited successfully!"
+                return render_template('customers.html', data=data, message=message)
+            except:
+                print("Invalid column name")
+                message = "Invalid column name. Please enter correct column name."
+    return render_template('updatecustomer.html', message = message)
 
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET'])
