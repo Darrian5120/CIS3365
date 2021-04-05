@@ -21,7 +21,7 @@ import cgi
 ############################################################################################
 # Darrian - customer create(insert), customer delete, customer update, customer report
 # Mustafa - vehicles insert, vehicle delete, vehicle update, vehicle stuff
-# Brandon - insurance policy create (insert), insurance policy delete, insurance policy update, insurance policy report 
+# Brandon - 
 # Anthony - employee create(insert), employee delete, employee update, employee report
 # Maddy - supplier create(insert), supplier delete, supplier update, supplier report
 # Jerry - 
@@ -358,6 +358,10 @@ def revenue_report():
     conn.commit()
     return render_template('report_revenue.html', data = data)
 
+#################################### Suppliers(parts) ###########################################
+@app.route('/suppliers', methods = ['GET']) 
+def suppliers():
+        return render_template('suppliers.html')
 ################################### VIOLATIONS ##################################################
 @app.route('/violations', methods = ['GET']) 
 def violation():
