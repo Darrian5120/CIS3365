@@ -394,7 +394,40 @@ def employee_part_report():
     """)
     data = cursor.fetchall()
     conn.commit()
-    return render_template('report_employeepart.html', data = data)        
+    return render_template('report_employeepart.html', data = data)
+
+# Report New Employee
+# not sure if path is right
+@app.route ('/employees/newemployee-report' , methods = ['GET'])
+def newemployee_report():
+    cursor.execute("""
+    SELECT 
+    EMPLOYEE_SERVICE_LINE_ASSIGNMENT.EMPLOYEE_ID AS "Employee ID",
+    EMPLOYEE.EMPLOYEE_FNAME AS "First Name",
+    EMPLOYEE.EMPLOYEE_LNAME AS "Last Name",
+    EMPLOYEE.EMPLOYEE_HIRE_DATE AS "Date Hired",
+    EMPLOYEE.EMPLOYEE_PAY_RATE AS "Pay Rate",
+    EMPLOYEE.EMPLOYEE_JOB_FUNC AS "Job Type",
+    Employee_Status.ACTIVE AS "Status",
+    SERVICE_LINE.SERVICE_ID AS "Service ID",
+    SERVICE.SERVICE_TYPE AS "Service Worked On"
+
+    FROM EMPLOYEE
+    JOIN Employee_Status
+    ON EMPLOYEE.EMPLOYEE_ID = Employee_Status.EMPLOYEE_ID
+    JOIN EMPLOYEE_SERVICE_LINE_ASSIGNMENT
+    ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_SERVICE_LINE_ASSIGNMENT.EMPLOYEE_ID
+    JOIN SERVICE_LINE
+    ON EMPLOYEE_SERVICE_LINE_ASSIGNMENT.SERVICE_LINE_ID = SERVICE_LINE.SERVICE_LINE_ID    
+    JOIN SERVICE
+    ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
+
+    WHERE EMPLOYEE.EMPLOYEE_HIRE_DATE > DATEADD(YEAR, -2, GETDATE());
+    """)
+    
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_newemployee.html', data = data)
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
 def services():
