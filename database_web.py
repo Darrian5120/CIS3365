@@ -9,7 +9,7 @@ import sys
 import requests
 import json
 import ssl
-import datetime
+import datetime 
 from tabulate import tabulate
 import cgi
 
@@ -116,8 +116,8 @@ if __name__ == '__main__':
     #                    'UID=;'
     #                    'PWD=;'
     #                    'Trusted_Connection=no;')
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                        'Server=DESKTOP-9PNG3JO;'
+    conn = pyodbc.connect('Driver={SQL Server};'
+                        'Server=DESKTOP-P73GEPP;'
                         'Database=CoogTechSolutions;'
                         'Trusted_Connection=yes;')
     cursor = conn.cursor()
