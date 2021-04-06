@@ -500,6 +500,35 @@ def incompleteorders_report():
     conn.commit()
     return render_template ('report_incompleteorders.hmtl' , data = data)
 
+# Report Yearly Service Order
+# not sure if path is correct
+@app.route ('/services/yearlyserviceorder-report' , methods = ['GET'])
+def yearlyserviceorder_report():
+    cursor.execute ("""
+    SELECT
+    CUSTOMER_ORDER.SERVICE_ORDER_ID AS "Order ID",
+    SERVICE.SERVICE_TYPE AS "Serviced Ordered",
+    Customer.C_FNAME AS "First Name",
+    Customer.C_LNAME AS "Last Name",
+    SERVICE_ORDER.ORDER_DATE AS "Date Ordered",
+    SERVICE_LINE.LINE_COST AS "Cost of Service"
+
+    FROM Customer
+    JOIN CUSTOMER_ORDER
+    ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
+    JOIN SERVICE_ORDER
+    ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+    JOIN SERVICE_LINE
+    ON SERVICE_ORDER.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID
+    JOIN SERVICE
+    ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
+
+    WHERE YEAR(SERVICE_ORDER.ORDER_DATE) = YEAR(GETDATE()) AND SERVICE_ORDER.ORDER_DATE < GETDATE();
+    """)
+    
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template ('report_yearlyserviceorder.hmtl' , data = data)
 #################################### Suppliers(parts) ###########################################
 @app.route('/suppliers', methods = ['GET']) 
 def suppliers():
