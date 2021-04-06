@@ -265,7 +265,75 @@ def longtermloyalcustomer_report():
 @app.route('/vehicles', methods = ['GET']) 
 def vehicles():
     return render_template('vehicles.html')
+@app.route ('/vehicles/new-vehicles', methods = ['POST', 'GET'])
+## add new vehicle ##
+def new_vehicle():
+    message = ''
+    if request.method == 'POST':
+        v_vin = request.form.get ("v_vin")
+        make = request.form.get ("make")
+        model = request.form.get ("model")
+        year = request.form.get ("year")
+        license_plate = request.form.get ("plate")
+        if v_vin and make and model and year and license_plate is not None:
 
+             # new employee default
+            #query = ""
+            #vals = 
+            #data = 
+            #conn.commit()
+            
+            # new employee status
+            #query = ""
+            #vals = 
+            #data = 
+            #conn.commit()
+            
+            # new employee contact info
+            
+            #
+            
+            message = "New vehicle entered successfully!"
+            #return render_template ('vehicles.html' , data = data, message = message)
+        return render_template ('newvehicle.html')
+
+# modify existing vehicle by entering vin
+@app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
+def update_vehicles():
+    if request.method == 'POST':
+        v_vin = request.form.get ("v_vin")
+        field =  request.form.get ("field")
+        value = request.form.get ("value")
+        if v_vin and field and value is not None:
+            #query = 
+            #vals = 
+            #data = 
+            #conn.commit ()
+            message = "Employee edited sucessfully!"
+            #return render_template ('employees.html' data = data , message = message)
+        return render_template ('updateemployee.html')
+
+# remove vehicle from db by setting status to inactive  
+@app.route ('/vehicles/delete-vehicles' , methods =['POST' , 'GET'])
+def delete_vehicle():
+    message = ''
+    v_vin = request.form.get ("v_vin")      ##NEEDS DOUBLE CHECKING##
+    if v_vin is not None:
+        #query = 
+        #vals = 
+        #data = 
+        #conn.commit()
+        message = "Employee removed successfully!"
+        #return render_template ('employees.html' , data = data , message = message)
+    return render_template('deleteemployee.html')
+
+#view all vehicles
+@app.route ('/vehicles/view-vehicles' , methods = ['GET'])
+def view_vehicles():
+    cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.vehicle")
+    data = cursor.fetchall()
+    return render_template ('viewvehicles.html' , data = data)
+## vehicle part report 
 @app.route('/vehicles/vehiclepart-report', methods = ['GET']) 
 def vehicle_part_report():
     cursor.execute("""
@@ -292,7 +360,30 @@ def vehicle_part_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_vehiclepart.html', data = data)
+## customer vheicle status report 
+@app.route('/vehicles/CustomerVehicleStatusReport', methods = ['GET']) 
+def customer_vehicle_status_report():
+    cursor.execute("""
+    SELECT 
+    Customer.CUSTOMER_ID AS "ID",
+    Customer.C_FNAME AS "First Name",
+    Customer.C_LNAME AS "Last Name",
+    VEHICLE.V_VIN AS"VEHICLE VIN" , 
+    VEHICLE.V_MAKE AS "MAKE",
+    VEHICLE.V_MODEL AS "MODEL",
+    VEHICLE.V_YEAR AS "YEAR",
+    VEHICLE_STATUS.ACTIVE AS "STATUS"
 
+
+    FROM Customer 
+    JOIN CUSTOMER_VEHICLE ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
+    JOIN VEHICLE ON CUSTOMER_VEHICLE.V_VIN = VEHICLE.V_VIN
+    JOIN VEHICLE_STATUS ON VEHICLE.V_VIN = VEHICLE_STATUS.V_VIN
+
+    ORDER BY VEHICLE_STATUS.ACTIVE""")
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_CustomerVehicleStatusReport.html', data = data)
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
 def employees():
