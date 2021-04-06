@@ -179,7 +179,8 @@ CREATE TABLE dbo.COUNTRY (
 );
 CREATE TABLE dbo.CUSTOMER_TYPE (
 	CUSTOMER_ID int not null,
-	IS_BUSINESS BIT not null,
+	BUSINESS_ID int, /*0-not business(individual) 1-business(business) */
+	BUSINESS varchar(20),
 	CONSTRAINT CUSTOMER_ID_PK3 PRIMARY KEY (CUSTOMER_ID)
 );
 CREATE TABLE dbo.EMPLOYEE_LOOKUP (
