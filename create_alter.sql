@@ -101,7 +101,7 @@ CREATE TABLE dbo.VEHICLE_STATUS (
 create table dbo.PAYMENT_REVENUE(
 	REVENUE_ID int not null,
 	PMT_NUMBER int not null,
-	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID)
+	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID, PMT_NUMBER)
 );
 ------------Jahidul---------------------------------------------------
 create table dbo.CUSTOMER_ORDER(
