@@ -70,10 +70,9 @@ CREATE TABLE dbo.INVOICE (
 ------------------Mustafa-----------------------------------------------
 --Service Line Status--
 CREATE TABLE dbo.SERVICE_LINE_STATUS (
-	SERVICE_LINE_ID int not null,
 	ACTIVE_ID int not null,
 	ACTIVE varchar(20),
-	CONSTRAINT SERVICE_LINE_ID_PK1 PRIMARY KEY (SERVICE_LINE_ID)
+	CONSTRAINT ACTIVE_ID_PK1 PRIMARY KEY (ACTIVE_ID)
 );
 --customer contact--
 CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
@@ -88,10 +87,9 @@ CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 );
 --VEHICLE STATUS--
 CREATE TABLE dbo.VEHICLE_STATUS (
-	V_VIN varchar(20) not null,
 	ACTIVE_ID int not null,
 	ACTIVE varchar(20),
-	CONSTRAINT V_VIN_PK1 PRIMARY KEY (V_VIN)
+	CONSTRAINT ACTIVE_IS_PK1 PRIMARY KEY (ACTIVE_ID)
 );
 --PAYMENT REVENUE--
 create table dbo.PAYMENT_REVENUE(
