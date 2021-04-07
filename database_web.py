@@ -25,8 +25,8 @@ import cgi
 # Anthony - employee create(insert), employee delete, vehicle report
 # Maddy - supplier create(insert), supplier delete, 
 # Jerry - vehicle update, vehicle report
-# Kyle - service create(insert), service delete, 
-# Jahidul - employee update, employee report
+# Kyle - service create(insert), service delete, employee update, employee report
+# Jahidul - 
 # Gian - service update, service report
 # Zach - violation insert, violation delete, violation update
 # EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
