@@ -9,7 +9,7 @@ root.title('Herrera Fabricating Inc.')
 root.geometry("800x800")
 
 conn = pyodbc.connect('Driver={SQL Server};'
-                      'DESKTOP-P73GEPP;'
+                      'Server=DESKTOP-9PNG3JO;'
                       'Database=CoogTechSolutions;'
                       'Trusted_Connection=yes;')
 cursor = conn.cursor()
