@@ -2,4 +2,3 @@ ACTIVE_ID|ACTIVE
 1|In Service
 2|Out of Service
 3|Awaiting Parts
-4|Waiting on Payment 

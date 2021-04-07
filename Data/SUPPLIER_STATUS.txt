@@ -1,4 +1,4 @@
 ACTIVE_ID|ACTIVE
-1|ACTIVE
-2|INACTIVE
-3|REJECTED
+1|Currently supplying
+2|Previous supplier
+3|In transition
