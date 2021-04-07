@@ -22,10 +22,10 @@ import cgi
 # Darrian - customer create(insert), customer delete, customer update, customer report
 # Mustafa - vehicles insert, vehicle delete, vehicle update
 # Brandon - supplier update, supplier report
-# Anthony - employee create(insert), employee delete, vehicle report
+# Anthony - employee create(insert), employee delete, vehicle report, employee update
 # Maddy - supplier create(insert), supplier delete, 
 # Jerry - vehicle update, vehicle report
-# Kyle - service create(insert), service delete, employee update, employee report
+# Kyle - service create(insert), service delete, employee report
 # Jahidul - 
 # Gian - service update, service report
 # Zach - violation insert, violation delete, violation update
