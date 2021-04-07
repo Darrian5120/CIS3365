@@ -2,7 +2,7 @@ USE CoogTechSolutions
 ---------------------Darrian----------------------------------------------------------------------
 --Customer Insert--
 BULK INSERT Customer
-	FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Data\Customer.txt'
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\customer.txt'
 	WITH(
 		FIRSTROW = 1,
 		FIELDTERMINATOR = '|',
@@ -11,7 +11,7 @@ BULK INSERT Customer
 	);
 --PAYMENT Insert--
 BULK INSERT PAYMENT
-	FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Data\PAYMENT.txt'
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment.txt'
 	WITH(
 		FIRSTROW = 1,
 		FIELDTERMINATOR = '|',
@@ -20,7 +20,7 @@ BULK INSERT PAYMENT
 	);
 --Invoice Payment Insert--
 BULK INSERT INVOICE_PAYMENT
-	FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Data\INVOICE_PAYMENT.txt'
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\invoice_payment.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
@@ -29,7 +29,7 @@ BULK INSERT INVOICE_PAYMENT
 	);
 --Service Line Insert--
 BULK INSERT SERVICE_LINE
-	FROM 'C:\Users\JAHID\OneDrive\Documents\GitHub\CIS3365\Data\SERVICE_LINE.txt'
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\service_line.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
