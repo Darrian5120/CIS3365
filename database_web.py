@@ -261,6 +261,35 @@ def longtermloyalcustomer_report():
     conn.commit()
     return render_template('report_longtermloyalcustomer.html', data = data)
 
+ @app.route ('/customers/report_operatingstate' , methods = ['GET'])
+def report_operatingstate():
+    cursor.execute("""
+                   
+    SELECT 
+Customer.CUSTOMER_ID AS "Customer ID",
+Customer.C_FNAME AS "First Name",
+Customer.C_LNAME AS "Last Name",
+CUSTOMER_CONTACT_INFO.C_CITY "City",
+STATE.STATE_NAME AS "State"
+
+
+FROM Customer
+JOIN CUSTOMER_CONTACT_INFO
+ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
+JOIN CUSTOMER_STATE
+ON CUSTOMER_CONTACT_INFO.CUSTOMER_ID = CUSTOMER_STATE.CUSTOMER_ID
+JOIN STATE
+ON CUSTOMER_STATE.STATE_ID = STATE.STATE_ID
+
+ORDER BY STATE.STATE_NAME, CUSTOMER_CONTACT_INFO.C_CITY;
+
+
+
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_employeestatus.html', data = data)
+   
+
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
 def vehicles():
