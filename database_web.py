@@ -386,8 +386,8 @@ def customer_vehicle_status_report():
     conn.commit()
     return render_template('report_CustomerVehicleStatusReport.html', data = data)
 
-@app.route('/customers/view-customers', methods = ['GET']) 
-def view_customers():
+@app.route('/vehicles/vehicleservice-report', methods = ['GET']) 
+def view_service_report():
     cursor.execute("""
         SELECT
         VEHICLE.V_VIN AS "Vehicle Vin",
