@@ -70,7 +70,7 @@ CREATE TABLE dbo.INVOICE (
 	INVOICE_DATE date not null,
 	AMT_OWED MONEY,
 	ACTIVE_ID INT NOT NULL,
-	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID),
+	CONSTRAINT INVOICE_ID_PK PRIMARY KEY (INVOICE_ID)
 );
 ------------------Mustafa-----------------------------------------------
 --Service Line Status--
