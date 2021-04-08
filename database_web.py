@@ -360,6 +360,7 @@ def vehicle_part_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_vehiclepart.html', data = data)
+
 ## customer vheicle status report 
 @app.route('/vehicles/CustomerVehicleStatusReport', methods = ['GET']) 
 def customer_vehicle_status_report():
@@ -384,6 +385,38 @@ def customer_vehicle_status_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_CustomerVehicleStatusReport.html', data = data)
+
+@app.route('/customers/view-customers', methods = ['GET']) 
+def view_customers():
+    cursor.execute("""
+        SELECT
+        VEHICLE.V_VIN AS "Vehicle Vin",
+        CUSTOMER.C_FNAME AS "First Name",
+        CUSTOMER.C_LNAME AS "Last Name",
+        SERVICE.SERVICE_ID AS "Service ID",
+        SERVICE.SERVICE_TYPE AS "Service Type",
+        SERVICE_STATUS.ACTIVE AS "Service Status"
+
+        FROM VEHICLE
+        JOIN VEHICLE_SERVICE
+        ON VEHICLE.V_VIN = VEHICLE_SERVICE.V_VIN
+        JOIN SERVICE
+        ON VEHICLE_SERVICE.SERVICE_ID = SERVICE.SERVICE_ID
+        JOIN SERVICE_STATUS
+        ON SERVICE.SERVICE_ID = SERVICE_STATUS.SERVICE_ID
+        JOIN CUSTOMER_VEHICLE
+        ON VEHICLE.V_VIN = CUSTOMER_VEHICLE.V_VIN
+        JOIN CUSTOMER
+        ON CUSTOMER_VEHICLE.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
+
+ORDER BY SERVICE_STATUS.ACTIVE
+
+
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('viewCustomers.html', data = data)
+
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
 def employees():
