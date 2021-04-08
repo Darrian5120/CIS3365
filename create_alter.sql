@@ -240,12 +240,11 @@ CREATE TABLE dbo.STATE_VIOLATION(
 	STATE_ID int not null
 	CONSTRAINT VIOLATION_ID_PK1 PRIMARY KEY (VIOLATION_ID, STATE_ID)
 );
-------------Jerry-----------------------------------------------------
+-----------------------------Jerry-----------------------------------------
 --ACCOUNT REVENUE Table--
 CREATE TABLE dbo.ACCOUNT_REVENUE (
 	REVENUE_ID int IDENTITY(1,1) not null,
-	REVENUE_NAME varchar(15),
-	REVENUE_VALUE MONEY,
+	REVENUE_NAME varchar(30),
 	CONSTRAINT REVENUE_ID_PK PRIMARY KEY (REVENUE_ID)
 );
 --Service Status Create--
@@ -264,7 +263,6 @@ CREATE TABLE dbo.INSURANCE_COMPANY (
 CREATE TABLE dbo.INSURANCE_POLICY (
 	POLICY_ID int IDENTITY(1,1) not null,
 	POLICY_NAME varchar(40),
-	EXPIRATION_DATE DATETIME,
 	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)
 );
 ---------------------------------------------------------------------------------------------------------------------------
