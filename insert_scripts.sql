@@ -4,7 +4,7 @@ USE CoogTechSolutions
 BULK INSERT Customer
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\customer.txt'
 	WITH(
-		FIRSTROW = 1,
+		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
@@ -13,7 +13,7 @@ BULK INSERT Customer
 BULK INSERT PAYMENT
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment.txt'
 	WITH(
-		FIRSTROW = 1,
+		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
@@ -243,7 +243,7 @@ WITH (
 				MAXERRORS = 1
 		);	
 ------------------------------Giancarlos------------------------------------
-Bulk INSERT SUPPLIER_LOOKUP
+Bulk INSERT INVOICE_STATUS
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SUPPLIER_LOOKUP.txt'
 WITH (
 			FIRSTROW =2,
@@ -267,7 +267,7 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-Bulk INSERT VEHICLE_LOOKUP
+Bulk INSERT PAYMENT_STATUS
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_LOOKUP.txt'
 WITH (
 			FIRSTROW =2,
