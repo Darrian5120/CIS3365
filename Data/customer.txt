@@ -19,7 +19,7 @@ CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID
 18|Chambers|Alexander|Clifton Chevrolet|4|1
 19|Plank|Dennis|Jag Trucking|4|1
 20|Rigoberto|Ramos||4|0
-21|Murica|Oscar||4|
+21|Murica|Oscar||4|0
 22|Barrett|Nathan|Rush Truck-San Antonio|4|1
 23|Lopez|Bernardino|AB Trucking|4|1
 24|Larret|August|Larrett Inc|4|1
