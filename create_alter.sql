@@ -244,25 +244,25 @@ CREATE TABLE dbo.STATE_VIOLATION(
 --ACCOUNT REVENUE Table--
 CREATE TABLE dbo.ACCOUNT_REVENUE (
 	REVENUE_ID int IDENTITY(1,1) not null,
-	REVENUE_NAME varchar(30),
+	REVENUE_NAME varchar(30) not null,
 	CONSTRAINT REVENUE_ID_PK PRIMARY KEY (REVENUE_ID)
 );
 --Service Status Create--
 CREATE TABLE dbo.SERVICE_STATUS (
     ACTIVE_ID int NOT NULL,
-    ACTIVE_NAME varchar(30),
+    ACTIVE_NAME varchar(30) not null,
 	CONSTRAINT SERV_ACTIVE_ID_PK1 PRIMARY KEY (ACTIVE_ID)
 );
 --INSURANCE COMPANY Table--
 CREATE TABLE dbo.INSURANCE_COMPANY (
 	INSURANCE_ID int IDENTITY(1,1) not null,
-	INSURANCE_NAME varchar(40) not null,
+	INSURANCE_NAME varchar(30) not null,
 	CONSTRAINT INSURANCE_ID_PK PRIMARY KEY (INSURANCE_ID)
 );
 --INSURANCE POLICY Table--
 CREATE TABLE dbo.INSURANCE_POLICY (
 	POLICY_ID int IDENTITY(1,1) not null,
-	POLICY_NAME varchar(40),
+	POLICY_NAME varchar(30) not null,
 	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)
 );
 ---------------------------------------------------------------------------------------------------------------------------
