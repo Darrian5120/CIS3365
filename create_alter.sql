@@ -101,7 +101,7 @@ create table dbo.PAYMENT_REVENUE(
 	REVENUE_ID int not null,
 	PMT_ID int not null,
 	INVOICE_ID int not null,
-	REVENUE_VALUE int not null,
+	REVENUE_VALUE MONEY not null,
 	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID, PMT_ID, INVOICE_ID)
 );
 ------------Jahidul---------------------------------------------------

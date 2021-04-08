@@ -110,7 +110,7 @@ Bulk INSERT PAYMENT_REVENUE
 				MAXERRORS = 1
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
-Bulk INSERT CUSTOMER_ORDER
+/*Bulk INSERT CUSTOMER_ORDER
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
       
 	WITH(
@@ -118,7 +118,7 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
-		);
+		);*/
 Bulk INSERT CUSTOMER_VEHICLE
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
 	WITH(
