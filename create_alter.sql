@@ -104,11 +104,11 @@ create table dbo.PAYMENT_REVENUE(
 	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID, PMT_NUMBER)
 );
 ------------Jahidul---------------------------------------------------
-create table dbo.CUSTOMER_ORDER(
+/*create table dbo.CUSTOMER_ORDER(
 	SERVICE_ORDER_ID int not null,
 	CUSTOMER_ID int not null,
 	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (SERVICE_ORDER_ID, CUSTOMER_ID)
-);
+);*/
 create table dbo.CUSTOMER_VEHICLE(
 	V_VIN varchar(20) not null,
 	CUSTOMER_ID int not null,
