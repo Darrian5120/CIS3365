@@ -23,9 +23,9 @@ import cgi
 # Mustafa - vehicles insert, vehicle delete, vehicle update
 # Brandon - supplier update, supplier report
 # Anthony - employee create(insert), employee delete, vehicle report, employee update
-# Maddy - supplier create(insert), supplier delete, 
+# Maddy - documentation
 # Jerry - vehicle update, vehicle report
-# Kyle - service create(insert), service delete, employee report, violation report
+# Kyle - service create(insert), service delete, employee report, violation report, supplier create(insert), supplier delete
 # Jahidul - 
 # Gian - service update, service report
 # Zach - violation insert, violation delete, violation update
