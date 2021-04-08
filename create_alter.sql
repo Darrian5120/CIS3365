@@ -101,6 +101,7 @@ CREATE TABLE dbo.VEHICLE_STATUS (
 create table dbo.PAYMENT_REVENUE(
 	REVENUE_ID int not null,
 	PMT_NUMBER int not null,
+	PYAMENT_VALUE int not null,
 	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID, PMT_NUMBER)
 );
 ------------Jahidul---------------------------------------------------
@@ -117,11 +118,13 @@ create table dbo.CUSTOMER_VEHICLE(
 create table dbo.VEHICLE_POLICY(
 	V_VIN varchar(20) not null,
 	POLICY_ID int not null,
+	EXPIRATION_DATE date not null,
 	CONSTRAINT V_VIN_PK4 PRIMARY KEY (V_VIN, POLICY_ID)
 );
 create table dbo.COMPANY_INSURANCE_POLICY(
 	INSURANCE_ID int not null,
 	POLICY_ID int not null,
+	COVARAGE_COST money not null,
 	CONSTRAINT INSURANCE_ID_PK1 PRIMARY KEY (INSURANCE_ID, POLICY_ID)
 );
 ----------------------------Kyle--------------------------------------
