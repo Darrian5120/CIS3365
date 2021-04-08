@@ -1,4 +1,4 @@
-SUPPLIER_ID|SUPPLIER_NAME|
+SUPPLIER_ID|SUPPLIER_NAME|ACTIVE_ID
 1|Air Liquide|
 2|Black Rose Steel & Trading|
 3|Fruitland Manufacturing|
