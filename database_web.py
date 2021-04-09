@@ -94,28 +94,28 @@ def new_customer():
 # FIXME- find out how to only update one field
 @app.route('/customers/update-customer', methods = ['POST','GET'])
 def update_customer():
-    #if request.method == 'POST':
-        # get customer id from gui dropdown
+    # get customer id from gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
     cursor.execute(sql)
     rows = cursor.fetchall()
     customers = []
     for customer in rows:
         customers.append(customer)
-    customer_id = request.form.get("customer")
-    print(customer_id)
-    #field = request.form.get("tblname")
-    #value = request.form.get("value")
-    # find if id exist
-    #if field and value is not None:
-        #query = "UPDATE {fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-        #vals = (value, customer_id)
-        #data = cursor.execute(query, vals)
-        #conn.commit()
-        #message = "Customer edited successfully!"
-        #return render_template('customers.html', data=data, message=message)
-    #else: # missing id in gui
-    #   message = "Missing values!"
+    if request.method == 'POST':
+        customer = request.form.get('customer')
+        print(customer)
+        #field = request.form.get("tblname")
+        #value = request.form.get("value")
+        # find if id exist
+        #if field and value is not None:
+            #query = "UPDATE {fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+            #vals = (value, customer_id)
+            #data = cursor.execute(query, vals)
+            #conn.commit()
+            #message = "Customer edited successfully!"
+            #return render_template('customers.html', data=data, message=message)
+        #else: # missing id in gui
+        #   message = "Missing values!"
     return render_template('updatecustomer.html', customers = customers)
 
 # remove customer from db by setting status to inactive
@@ -372,9 +372,7 @@ def view_service_report():
         JOIN CUSTOMER
         ON CUSTOMER_VEHICLE.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
 
-ORDER BY SERVICE_STATUS.ACTIVE
-
-
+        ORDER BY SERVICE_STATUS.ACTIVE;
     """)
     data = cursor.fetchall()
     conn.commit()
@@ -436,14 +434,15 @@ def update_employee():
                 
             # update     
             else :
+                None
+    return None
                 
-    
 # remove employee from db by setting status to inactive
 @app.route ('/employees/delete-emloyee' , methods =['POST' , 'GET'])
 def delete_employee():
     message = ''
     if request.method == 'POST':
-    employee_id = request.form.get ("eid")
+        employee_id = request.form.get ("eid")
     
     # find if id exist
     if employee_id is not None:
@@ -452,7 +451,7 @@ def delete_employee():
         cursor.execute(sql, vals)
         data = cursor.fetchall()
         
-        if not data # id doesn't exist
+        if employee_id not in data: # id doesn't exist
             message = "Invalid Employee ID! Please review Employee"
         else:
             query = "UPDATE CoogTechSolutions.dbo.EMPLOYEE_STATUS SET E_ACTIVE = ?, ACTIVE = ? WHERE EMPLOYEE_ID = ?"
@@ -462,10 +461,10 @@ def delete_employee():
             message = "Employee removed successfully!"
             return render_template ('employee.html', data = data, message = message)
         
-        else: # missing id in gui
-            message = "Messing Value!"
+        #else: # missing id in gui
+        message = "Messing Value!"
             
-  return render_template('deleteemployee.html', message = message)
+    return render_template('deleteemployee.html', message = message)
 
 #view all employees
 @app.route ('/employees/view-employees' , methods = ['GET'])
