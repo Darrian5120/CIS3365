@@ -225,14 +225,6 @@ WITH (
 				FIELDTERMINATOR = '|',
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
-		);		
-Bulk INSERT EMPLOYEE_LOOKUP
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\EMPLOYEE_LOOKUP.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
 		);
 Bulk INSERT SERVICE_ORDER
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_ORDER.txt'
