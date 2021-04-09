@@ -30,28 +30,31 @@
         </table>
         <form action="" method="post">
             <p>
-                <label for="cid">Enter Customer ID to modify:</label>
-                <input type="text" name="cid">
+                <select name= colours method="GET" action="/">
+                    {% for customer in customers %}
+                    <option value="customer" SELECTED>{{ customer }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p>
                 <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
                 <label for="tblname">Enter field to modify:</label>
                 <select name="tblname" id="tblname">
                     <optgroup label="CUSTOMER"></optgroup>
-                        <option value="Customer SET C_LNAME">Last Name</option>
                         <option value="Customer SET C_FNAME">First Name</option>
+                        <option value="Customer SET C_LNAME">Last Name</option>
                         <option value="Customer SET C_BUSINESS_NAME">Business Name</option>
-                    <optgroup label="CUSTOMER_CONTACT_INFO"></optgroup>
+                    <optgroup label="CUSTOMER CONTACT INFO"></optgroup>
                         <option value="CUSTOMER_CONTACT_INFO SET C_PHONE">Phone</option>
                         <option value="CUSTOMER_CONTACT_INFO SET C_EMAIL">Email</option>
                         <option value="CUSTOMER_CONTACT_INFO SET C_ADDRESS">Address</option>
                         <option value="CUSTOMER_CONTACT_INFO SET C_CITY">City</option>
                         <option value="CUSTOMER_CONTACT_INFO SET STATE_NAME">State</option>
                         <option value="CUSTOMER_CONTACT_INFO SET C_ZIP">Zip Code</option>
-                    <optgroup label="CUSTOMER_TYPE"></optgroup>
-                        <option value="CUSTOMER_TYPE SET BUSINESS">Business or Individual</option>
-                    <optgroup label="CUSTOMER_STATUS"></optgroup>
-                        <option value="CUSTOMER_STATUS SET ACTIVE">ACTIVE or INACTIVE</option>
+                    <optgroup label="CUSTOMER TYPE"></optgroup>
+                        <option value="Customer SET BUSINESS_ID">Business or Individual</option>
+                    <optgroup label="CUSTOMER STATUS"></optgroup>
+                        <option value="Customer SET ACTIVE_ID">Active or Inactive</option>
                   </select>
                 </p>
             <p>

@@ -51,7 +51,7 @@ def customers():
 # to the database  
 # FIXME - Data does not save to database resets after every server restart
 # FIXME - Combine customer and customer contact info
-@app.route('/customers/new-customer', methods = ['POST','GET']) 
+@app.route('/customers/new-customer', methods = ['POST','GET']) # Finished
 def new_customer():
     message = ''
     if request.method == 'POST':
@@ -83,7 +83,7 @@ def new_customer():
             val = (state)
             cursor.execute(query, val)
             data = cursor.fetchall()
-            query = "INSERT INTO CUSTOMER_STATE (CUSTOMER_ID, STATE) VALUES ({},{})".format(customer_id, data)
+            query = "INSERT INTO CUSTOMER_STATE (CUSTOMER_ID, STATE_ID) VALUES ({},{})".format(customer_id, data[0][0])
             cursor.execute(query)
             conn.commit()
             message = "New customer entered successfully!"
@@ -94,61 +94,29 @@ def new_customer():
 # FIXME- find out how to only update one field
 @app.route('/customers/update-customer', methods = ['POST','GET'])
 def update_customer():
-    message = ''
-    if request.method == 'POST':
-        # get info from gui
-        customer_id = request.form.get("cid")
-        field = request.form.get("tblname")
-        value = request.form.get("value")
-        # find if id exist
-        if customer_id and field and value is not None:
-            sql = "SELECT CUSTOMER_ID FROM Customer where CUSTOMER_ID = ?" 
-            vals = (customer_id)
-            cursor.execute(sql, vals)
-            data = cursor.fetchall()
-            if not data: # id doesn't exist
-                message = "Invalid Customer ID! Please review Customers"
-            else:
-                # update both customer type fields - DO NOT COPY THIS ####################
-                if field == "CUSTOMER_TYPE SET BUSINESS":
-                    query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                    if value == 'Business' or value == 'BUSINESS':
-                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_TYPE SET BUSINESS_ID = ?, BUSINESS = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                        vals = (1, "BUSINESS", customer_id)
-                        data = cursor.execute(query, vals)
-                        conn.commit()
-                        return render_template('customers.html', data=data, message=message)
-                    else:
-                        vals = ("Individual", customer_id)
-                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_TYPE SET BUSINESS_ID = ?, BUSINESS = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                        vals = (0, "INDIVIDUAL", customer_id)
-                        data = cursor.execute(query, vals)
-                        conn.commit()
-                        return render_template('customers.html', data=data, message=message)
-                # update both customer status fields - MUST COPY FOR STATUS TABLES ########################
-                if field == "CUSTOMER_STATUS SET ACTIVE":
-                    query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                    if value == 'Active' or value == 'ACTIVE':
-                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                        vals = (1, "ACTIVE", customer_id)
-                        data = cursor.execute(query, vals)
-                        conn.commit()
-                        return render_template('customers.html', data=data, message=message)
-                    else:
-                        query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                        vals = (2, "INACTIVE", customer_id)
-                        data = cursor.execute(query, vals)
-                        conn.commit()
-                        return render_template('customers.html', data=data, message=message)
-                query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-                vals = (value, customer_id)
-                data = cursor.execute(query, vals)
-                conn.commit()
-                message = "Customer edited successfully!"
-                return render_template('customers.html', data=data, message=message)
-        else: # missing id in gui
-            message = "Missing values!"
-    return render_template('updatecustomer.html', message = message)
+    #if request.method == 'POST':
+        # get customer id from gui dropdown
+    sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer)
+    customer_id = request.form.get("customer")
+    print(customer_id)
+    #field = request.form.get("tblname")
+    #value = request.form.get("value")
+    # find if id exist
+    #if field and value is not None:
+        #query = "UPDATE {fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
+        #vals = (value, customer_id)
+        #data = cursor.execute(query, vals)
+        #conn.commit()
+        #message = "Customer edited successfully!"
+        #return render_template('customers.html', data=data, message=message)
+    #else: # missing id in gui
+    #   message = "Missing values!"
+    return render_template('updatecustomer.html', customers = customers)
 
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET'])
@@ -182,14 +150,16 @@ def view_customers():
         SELECT CUSTOMER.CUSTOMER_ID AS "ID", CUSTOMER.C_FNAME, CUSTOMER.C_LNAME,
         CUSTOMER.C_BUSINESS_NAME, CUSTOMER_CONTACT_INFO.C_PHONE, CUSTOMER_CONTACT_INFO.C_EMAIL,
         CUSTOMER_CONTACT_INFO.C_ADDRESS, CUSTOMER_CONTACT_INFO.C_CITY, CUSTOMER_CONTACT_INFO.STATE_NAME,
-        CUSTOMER_CONTACT_INFO.C_ZIP, CUSTOMER_STATUS.ACTIVE 
+        CUSTOMER_CONTACT_INFO.C_ZIP, Customer.ACTIVE_ID, CUSTOMER_STATUS.ACTIVE_NAME 
+
         FROM Customer
         JOIN CUSTOMER_CONTACT_INFO
         ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
         JOIN CUSTOMER_STATUS
-        ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
-        WHERE CUSTOMER_STATUS.C_ACTIVE = 1 OR CUSTOMER_STATUS.C_ACTIVE = 3
-        ORDER BY CUSTOMER_STATUS.C_ACTIVE, Customer.CUSTOMER_ID
+        ON Customer.ACTIVE_ID = CUSTOMER_STATUS.ACTIVE_ID
+
+        
+        ORDER BY CUSTOMER.ACTIVE_ID, Customer.CUSTOMER_ID
     """)
     data = cursor.fetchall()
     conn.commit()
