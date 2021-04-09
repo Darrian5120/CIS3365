@@ -1,8 +1,6 @@
-<!DOCTYPE HTML>
 <html>
-	<link rel="stylesheet" href="home.css"> 
-	<head>
-		<title> Herrera Fabricating Inc.</title>
+    <head>
+        <title> Herrera Fabricating Inc.</title>
 		<!-- this sets the page for responsive scaling -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -12,10 +10,6 @@
             .topnav {border:0px; background-color:#333; overflow:hidden; margin:auto; width: 100%; text-align: center;} /*syle the topnav*/
             .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
             .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
-
-            .genres {background-color:#ddd; overflow:hidden;} /*syle the topnav*/
-            .genres a {float:center; display:block; color:#333; text-align:center; padding:14px 16px; text-decoration:none;}
-            .genres a:hover {background-color:rgb(165, 58, 58); color:black}
             
             #td {width: 16%; text-align: center; margin: 0; padding: 0;}
         </style>
@@ -34,17 +28,29 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <div class="genres">
-            <a href ="/customers/new-customer">Add new customer</a>
-            <a href ="/customers/update-customer">Modify Customer</a>
-            <a href ="/customers/delete-customer">Set Customer Inactive</a>
-            <a href ="/customers/view-customers">View Customers</a>
-            <a href ="/customers/inactive-report">Inactive Customers Report</a>
-	    <a href ="/customers/report_operatingstate">Operating States Report</a>
-        </div>
-        
-        
+        <form action="" method="post">
+            <p>
+                <label for="SUPPLIER_ID">Enter Supplier ID to modify:</label>
+                <input type="text" name="SUPPLIER_ID">
+            </p>
+            <p>
+                <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
+                <label for="tblname">Enter field to modify:</label>
+                <select name="tblname" id="tblname">
+                    <optgroup label="SUPPLIER"></optgroup>
+                        <option value="SUPPLIER SET SUPPLIER_NAME">Supplier Name</option>
+                    <optgroup label="SUPPLIER_STATUS"></optgroup>
+                        <option value="CUSTOMER_STATUS SET ACTIVE">ACTIVE or INACTIVE</option>
+                  </select>
+                </p>
+            <p>
+                <label for="tblname">New Value:</label>
+                <input type="text" name="value">
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
     </body>
-    <script>
-    </script>
-    </html>
+</html>

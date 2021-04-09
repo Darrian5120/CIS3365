@@ -1,8 +1,7 @@
-<!DOCTYPE HTML>
+  
 <html>
-	<link rel="stylesheet" href="home.css"> 
-	<head>
-		<title> Herrera Fabricating Inc.</title>
+    <head>
+        <title> Herrera Fabricating Inc.</title>
 		<!-- this sets the page for responsive scaling -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -17,10 +16,12 @@
             .genres a {float:center; display:block; color:#333; text-align:center; padding:14px 16px; text-decoration:none;}
             .genres a:hover {background-color:rgb(165, 58, 58); color:black}
             
-            #td {width: 16%; text-align: center; margin: 0; padding: 0;}
+            table {text-align: center; margin-left: auto; margin-right: auto; border-collapse: collapse;}
+            table, td, th {border: 1px solid black;}
+            #td {border: 0px; width: 16%; text-align: center; margin: 0; padding: 0;}
         </style>
-	</head>
-	<body>
+    </head>
+    <body>
         <div class="header">
             <h1>Herrera Fabricating Inc.</h1>
         </div>
@@ -34,17 +35,33 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <div class="genres">
-            <a href ="/customers/new-customer">Add new customer</a>
-            <a href ="/customers/update-customer">Modify Customer</a>
-            <a href ="/customers/delete-customer">Set Customer Inactive</a>
-            <a href ="/customers/view-customers">View Customers</a>
-            <a href ="/customers/inactive-report">Inactive Customers Report</a>
-	    <a href ="/customers/report_operatingstate">Operating States Report</a>
-        </div>
-        
-        
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                  
+                </tr>
+            </thead>    
+            <tbody>
+                {% for row in data %}    
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>{{row[4]}}</td>
+
+                   
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
     </body>
     <script>
+
     </script>
-    </html>
+</html>
