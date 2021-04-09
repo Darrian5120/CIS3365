@@ -236,7 +236,7 @@ WITH (
 		);	
 ------------------------------Giancarlos------------------------------------
 Bulk INSERT INVOICE_STATUS
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SUPPLIER_LOOKUP.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\invoice_status.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
@@ -260,7 +260,7 @@ WITH (
 				MAXERRORS = 1
 		);
 Bulk INSERT PAYMENT_STATUS
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_LOOKUP.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment_status.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',

@@ -211,12 +211,12 @@ CREATE TABLE dbo.CUSTOMER_STATE (
 );
 CREATE TABLE dbo.INVOICE_STATUS(
 	ACTIVE_ID int not null,
-	ACTIVE_NAME varchar(15)
+	ACTIVE_NAME varchar(15) not null,
 	CONSTRAINT I_ACTIVE_ID_PK2 PRIMARY KEY (ACTIVE_ID)
 );
 CREATE TABLE dbo.PAYMENT_STATUS(
 	ACTIVE_ID int not null,
-	ACTIVE_NAME varchar(15)
+	ACTIVE_NAME varchar(15) not null,
 	CONSTRAINT P_ACTIVE_ID_PK PRIMARY KEY (ACTIVE_ID)
 );
 ------------------------------Zach------------------------------------------
@@ -232,12 +232,12 @@ CREATE TABLE dbo.STATE(
 );
 CREATE TABLE dbo.Employee_Status(
 	ACTIVE_ID int not null,
-	ACTIVE_NAME varchar(15)
+	ACTIVE_NAME varchar(20) not null,
 	CONSTRAINT E_ACTIVE_ID_PK2 PRIMARY KEY (ACTIVE_ID)
 );
 CREATE TABLE dbo.STATE_VIOLATION(
 	VIOLATION_ID int IDENTITY(1,1) not null,
-	STATE_ID int not null
+	STATE_ID int not null,
 	CONSTRAINT VIOLATION_ID_PK1 PRIMARY KEY (VIOLATION_ID, STATE_ID)
 );
 -----------------------------Jerry-----------------------------------------
@@ -256,13 +256,13 @@ CREATE TABLE dbo.SERVICE_STATUS (
 --INSURANCE COMPANY Table--
 CREATE TABLE dbo.INSURANCE_COMPANY (
 	INSURANCE_ID int IDENTITY(1,1) not null,
-	INSURANCE_NAME varchar(30) not null,
+	INSURANCE_NAME varchar(50) not null,
 	CONSTRAINT INSURANCE_ID_PK PRIMARY KEY (INSURANCE_ID)
 );
 --INSURANCE POLICY Table--
 CREATE TABLE dbo.INSURANCE_POLICY (
 	POLICY_ID int IDENTITY(1,1) not null,
-	POLICY_NAME varchar(30) not null,
+	POLICY_NAME varchar(50) not null,
 	CONSTRAINT POLICY_ID_PK PRIMARY KEY (POLICY_ID)
 );
 ---------------------------------------------------------------------------------------------------------------------------
