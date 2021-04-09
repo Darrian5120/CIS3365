@@ -720,7 +720,7 @@ def update_supplier():
                         conn.commit()
                         return render_template('suppliers.html', data=data, message=message)
                     else:
-                        query = "UPDATE CoogTechSolutions.dbo.SUPPLIER_STATUS SET C_ACTIVE = ?, ACTIVE = ? WHERE SUPPLIER_ID = ?".format(fld = field)
+                        query = "UPDATE CoogTechSolutions.dbo.SUPPLIER_STATUS SET S_ACTIVE = ?, ACTIVE = ? WHERE SUPPLIER_ID = ?".format(fld = field)
                         vals = (2, "INACTIVE", supplier_id)
                         data = cursor.execute(query, vals)
                         conn.commit()
@@ -734,7 +734,22 @@ def update_supplier():
         else: # missing id in gui
             message = "Missing values!"
     return render_template('updatesupplier.html', message = message)
-    
+
+# view all Suppliers
+@app.route('/suppliers/view-suppliers', methods = ['GET']) 
+def view_suppliers():
+    cursor.execute("""
+        SELECT SUPPLIER.SUPPLIER_ID AS "ID", SUPPLIER.SUPPLIER_NAME, SUPPLIER_STATUS.ACTIVE 
+        FROM SUPPLIER
+        JOIN SUPPLIER_STATUS
+        ON SUPPLIER.SUPPLIER_ID = SUPPLIER_STATUS.SUPPLIER_ID
+        WHERE SUPPLIER_STATUS.S_ACTIVE = 1 OR SUPPLIER_STATUS.S_ACTIVE = 3
+        ORDER BY SUPPLIER_STATUS.S_ACTIVE, SUPPLIER.SUPPLIER_ID
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_supplier.html', data = data)
+
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
     #conn = pyodbc.connect('Driver={SQL Server};'
