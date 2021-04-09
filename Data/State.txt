@@ -55,3 +55,51 @@ STATE_ID|STATE_ABBREVIATION|STATE_NAME
 54|MP|Northern Mariana Islands
 55|VI|Virgin Islands
 56|AS|American Samoa
+57|NL|Newfoundland and Labrador
+58|PE|Prince Edward Island
+59|NS|Nova Scotia
+60|NB|New Brunswick
+61|QC|Quebec
+62|ON|Ontario
+63|MB|Manitoba
+64|SK|Saskatchewan
+65|AB|Alberta
+66|BC|British Columbia
+67|YT|Yukon
+68|NT|Northwest Territories
+69|NU|Nunavut
+70|AA|Armed Forces Americas
+71|AE|Armed Forces Europe
+72|AP|Armed Forces Pacific
+73|AG|Aguascalientes
+74|BN|Baja California Norte
+75|BS|Baja California Sur
+76|CH|Coahuila
+77|CI|Chihuahua
+78|CL|Colima
+79|CP|Campeche
+80|CS|Chiapas
+81|DF|Districto Federal
+82|DG|Durango
+83|GE|Guerrero
+84|GJ|Guanajuato
+85|HD|Hidalgo
+86|JA|Jalisco
+87|MC|Michoacán
+88|MR|Morelos
+89|MX|México
+90|NA|Nayarit
+91|NL|Nuevo León
+92|OA|Oaxaca
+93|PU|Puebla
+94|QE|Querétaro
+95|QI|Quintana Roo
+96|SI|Sinaloa
+97|SL|San Luis Potosí
+98|SO|Sonora
+99|TA|Tamaulipas
+100|TB|Tabasco
+101|TL|Tlaxcala
+102|VC|Veracruz
+103|YU|Yucatán
+104|ZA|Zacatecas
