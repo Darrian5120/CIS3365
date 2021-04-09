@@ -24,3 +24,28 @@ CUSTOMER_ID|C_PHONE|C_EMAIL|C_ADDRESS|C_ZIP|C_CITY|C_STATE
 23|753-546-2475||432 main st|77024|Houston|Texas
 24|475-489-2874||5th st|77323|Austin|Texas
 25|512-837-4783||3rd st|74337|Austin|Texas
+26|942-324-1342||4th st|77423|Austin|Texas
+27|832-384-2424||5th st|77442|Austin|Texas
+28|842-424-2344||6th st|77432|Austin|Texas
+29|844-283-2424||7th st|77234|Austin|Texas
+30|834-245-2343|313 washington ave|72323|Houston|Texas
+31|842-423-2342|245 Jefferson Dr|38313|Houston|Texas
+32|382-432-4241|1003 wirt rd|74294|Houston|Texas
+33|821-392-4921|10331 Silber Rd|74828|Houston|Texas
+34|842-313-3144|19342 ChimneyRock rd|77024|Houston|Texas
+35|831-234-2424|4728 Alleyway dr|77031|Houston|Texas
+36|832-384-2384|8422 Lettacevale Dr|77301|Houston|Texas
+38|742-329-3174|8429 Woodward dr|74223|Dallas|Texas
+39|821-428-4824|84297 Johnson Dr|84202|Dallas|Texas
+40|832-238-2342|1342 Wirt St|77023|Houston|Texas
+41|293-123-3123|123 Firelane dr|77045|Houston|Texas
+42|301-313-3414|345 Spring Cypress rd| 77429|Cypress|Texas
+43|313-424-4242|3913 Mason Rd|77319|Katy|Texas
+45|382-234-3234|2321 Mason Rd|73212|Katy|Texas
+46|424-535-6764|342 Sugarvale dr|34221|Katy|Texas
+47|324-453-5454|105 Johnson St|77042|Houston|Texas
+48|833-234-3823|3742 lakeview dr|88428|Housotn|Texas
+49|382-381-4272|6493 Streetview dr|83233|Houston|Texas
+50|742-484-2483|1st street|77332|Austin|Texas
+51|742-472-4750|2nd Street|37424|Austin|Texas
+51|848-427-4827|3rd Street|84714|Austin|Texas
