@@ -232,31 +232,30 @@ def inactive_report():
 @app.route ('/customer/longtermloyalcustomer-report' , methods = ['GET'])
 def longtermloyalcustomer_report():
     cursor.execute("""
-    SELECT 
-    Customer.CUSTOMER_ID AS "ID",
-    Customer.C_FNAME AS "First Name",
-    Customer.C_LNAME AS "Last Name",
-    CUSTOMER_STATUS.ACTIVE AS "Customer Type",
-    CUSTOMER_VEHICLE.V_VIN AS "VIN #",
-    VEHICLE.V_MAKE AS "Make",
-    VEHICLE.V_MODEL AS "Model",
-    SERVICE_ORDER.ORDER_DATE AS "First Time Customer Date"
+        SELECT 
+        Customer.CUSTOMER_ID AS "ID",
+        Customer.C_FNAME AS "First Name",
+        Customer.C_LNAME AS "Last Name",
+        CUSTOMER_STATUS.ACTIVE AS "Customer Type",
+        CUSTOMER_VEHICLE.V_VIN AS "VIN #",
+        VEHICLE.V_MAKE AS "Make",
+        VEHICLE.V_MODEL AS "Model",
+        SERVICE_ORDER.ORDER_DATE AS "First Time Customer Date"
 
-    FROM Customer 
-    JOIN CUSTOMER_STATUS
-    ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
-    JOIN CUSTOMER_VEHICLE
-    ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
-    JOIN VEHICLE
-    ON CUSTOMER_VEHICLE.V_VIN = VEHICLE.V_VIN
-    JOIN CUSTOMER_ORDER
-    ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
-    JOIN SERVICE_ORDER
-    ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+        FROM Customer 
+        JOIN CUSTOMER_STATUS
+        ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
+        JOIN CUSTOMER_VEHICLE
+        ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
+        JOIN VEHICLE
+        ON CUSTOMER_VEHICLE.V_VIN = VEHICLE.V_VIN
+        JOIN CUSTOMER_ORDER
+        ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
+        JOIN SERVICE_ORDER
+        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
 
-    WHERE (CUSTOMER_STATUS.C_ACTIVE= 1 OR CUSTOMER_STATUS.C_ACTIVE= 3) AND SERVICE_ORDER.ORDER_DATE < DATEADD(YEAR, -1, GETDATE());
+        WHERE (CUSTOMER_STATUS.C_ACTIVE= 1 OR CUSTOMER_STATUS.C_ACTIVE= 3) AND SERVICE_ORDER.ORDER_DATE < DATEADD(YEAR, -1, GETDATE());
     """)
-    
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_longtermloyalcustomer.html', data = data)
@@ -337,26 +336,27 @@ def view_vehicles():
 @app.route('/vehicles/vehiclepart-report', methods = ['GET']) 
 def vehicle_part_report():
     cursor.execute("""
-    SELECT VEHICLE_SERVICE.V_VIN AS "VIN", VEHICLE.V_YEAR AS "Year", VEHICLE.V_MAKE AS "Make", 
-    VEHICLE.V_MODEL AS "Model", SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part"
+        SELECT VEHICLE_SERVICE.V_VIN AS "VIN", VEHICLE.V_YEAR AS "Year", VEHICLE.V_MAKE AS "Make", 
+        VEHICLE.V_MODEL AS "Model", SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part"
 
-    FROM VEHICLE
-    JOIN VEHICLE_SERVICE
-    ON VEHICLE.V_VIN = VEHICLE_SERVICE.V_VIN
-    JOIN SERVICE
-    ON VEHICLE_SERVICE.SERVICE_ID = SERVICE.SERVICE_ID
-    JOIN SERVICE_LINE
-    ON SERVICE.SERVICE_ID = SERVICE_LINE.SERVICE_ID
-    JOIN SERVICE_LINE_PART
-    ON  SERVICE_LINE.SERVICE_LINE_ID = SERVICE_LINE_PART.SERVICE_LINE_ID
-    JOIN PART
-    ON SERVICE_LINE_PART.PART_ID = PART.PART_ID
-    JOIN SUPPLIER_PART
-    ON PART.PART_ID = SUPPLIER_PART.PART_ID
-    JOIN SUPPLIER
-    ON SUPPLIER_PART.SUPPLIER_ID = SUPPLIER.SUPPLIER_ID
+        FROM VEHICLE
+        JOIN VEHICLE_SERVICE
+        ON VEHICLE.V_VIN = VEHICLE_SERVICE.V_VIN
+        JOIN SERVICE
+        ON VEHICLE_SERVICE.SERVICE_ID = SERVICE.SERVICE_ID
+        JOIN SERVICE_LINE
+        ON SERVICE.SERVICE_ID = SERVICE_LINE.SERVICE_ID
+        JOIN SERVICE_LINE_PART
+        ON  SERVICE_LINE.SERVICE_LINE_ID = SERVICE_LINE_PART.SERVICE_LINE_ID
+        JOIN PART
+        ON SERVICE_LINE_PART.PART_ID = PART.PART_ID
+        JOIN SUPPLIER_PART
+        ON PART.PART_ID = SUPPLIER_PART.PART_ID
+        JOIN SUPPLIER
+        ON SUPPLIER_PART.SUPPLIER_ID = SUPPLIER.SUPPLIER_ID
 
-    ORDER BY VEHICLE.V_VIN;""")
+        ORDER BY VEHICLE.V_VIN;
+    """)
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_vehiclepart.html', data = data)
@@ -365,23 +365,24 @@ def vehicle_part_report():
 @app.route('/vehicles/CustomerVehicleStatusReport', methods = ['GET']) 
 def customer_vehicle_status_report():
     cursor.execute("""
-    SELECT 
-    Customer.CUSTOMER_ID AS "ID",
-    Customer.C_FNAME AS "First Name",
-    Customer.C_LNAME AS "Last Name",
-    VEHICLE.V_VIN AS"VEHICLE VIN" , 
-    VEHICLE.V_MAKE AS "MAKE",
-    VEHICLE.V_MODEL AS "MODEL",
-    VEHICLE.V_YEAR AS "YEAR",
-    VEHICLE_STATUS.ACTIVE AS "STATUS"
+        SELECT 
+        Customer.CUSTOMER_ID AS "ID",
+        Customer.C_FNAME AS "First Name",
+        Customer.C_LNAME AS "Last Name",
+        VEHICLE.V_VIN AS"VEHICLE VIN" , 
+        VEHICLE.V_MAKE AS "MAKE",
+        VEHICLE.V_MODEL AS "MODEL",
+        VEHICLE.V_YEAR AS "YEAR",
+        VEHICLE_STATUS.ACTIVE AS "STATUS"
 
 
-    FROM Customer 
-    JOIN CUSTOMER_VEHICLE ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
-    JOIN VEHICLE ON CUSTOMER_VEHICLE.V_VIN = VEHICLE.V_VIN
-    JOIN VEHICLE_STATUS ON VEHICLE.V_VIN = VEHICLE_STATUS.V_VIN
+        FROM Customer 
+        JOIN CUSTOMER_VEHICLE ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
+        JOIN VEHICLE ON CUSTOMER_VEHICLE.V_VIN = VEHICLE.V_VIN
+        JOIN VEHICLE_STATUS ON VEHICLE.V_VIN = VEHICLE_STATUS.V_VIN
 
-    ORDER BY VEHICLE_STATUS.ACTIVE""")
+        ORDER BY VEHICLE_STATUS.ACTIVE
+    """)
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_CustomerVehicleStatusReport.html', data = data)
@@ -558,21 +559,21 @@ def newemployee_report():
 @app.route ('/employees/employeestatus-report' , methods = ['GET'])
 def employeestatus_report():
     cursor.execute("""
-    SELECT 
-    EMPLOYEE.EMPLOYEE_ID AS "Employee ID",
-    EMPLOYEE.EMPLOYEE_FNAME AS "First Name",
-    EMPLOYEE.EMPLOYEE_LNAME AS "Last Name",
-    EMPLOYEE_LOOKUP.EMPLOYEE_CURR_SERVICE AS "Employee Current Service",
-    EMPLOYEE_STATUS.ACTIVE AS "Employee Status"
+        SELECT 
+        EMPLOYEE.EMPLOYEE_ID AS "Employee ID",
+        EMPLOYEE.EMPLOYEE_FNAME AS "First Name",
+        EMPLOYEE.EMPLOYEE_LNAME AS "Last Name",
+        EMPLOYEE_LOOKUP.EMPLOYEE_CURR_SERVICE AS "Employee Current Service",
+        EMPLOYEE_STATUS.ACTIVE AS "Employee Status"
 
-    FROM EMPLOYEE
-    JOIN EMPLOYEE_STATUS
-    ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_STATUS.EMPLOYEE_ID
-    JOIN EMPLOYEE_LOOKUP
-    ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_LOOKUP.EMPLOYEE_ID
+        FROM EMPLOYEE
+        JOIN EMPLOYEE_STATUS
+        ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_STATUS.EMPLOYEE_ID
+        JOIN EMPLOYEE_LOOKUP
+        ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_LOOKUP.EMPLOYEE_ID
 
-    ORDER BY EMPLOYEE_STATUS.ACTIVE;
-
+        ORDER BY EMPLOYEE_STATUS.ACTIVE;
+    """)
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_employeestatus.html', data = data)
@@ -658,28 +659,26 @@ def incompleteorders_report():
 @app.route ('/services/yearlyserviceorder-report' , methods = ['GET'])
 def yearlyserviceorder_report():
     cursor.execute ("""
-    SELECT
-    CUSTOMER_ORDER.SERVICE_ORDER_ID AS "Order ID",
-    SERVICE.SERVICE_TYPE AS "Serviced Ordered",
-    Customer.C_FNAME AS "First Name",
-    Customer.C_LNAME AS "Last Name",
-    SERVICE_ORDER.ORDER_DATE AS "Date Ordered",
-    SERVICE_LINE.LINE_COST AS "Cost of Service"
+        SELECT
+        CUSTOMER_ORDER.SERVICE_ORDER_ID AS "Order ID",
+        SERVICE.SERVICE_TYPE AS "Serviced Ordered",
+        Customer.C_FNAME AS "First Name",
+        Customer.C_LNAME AS "Last Name",
+        SERVICE_ORDER.ORDER_DATE AS "Date Ordered",
+        SERVICE_LINE.LINE_COST AS "Cost of Service"
 
-    FROM Customer
-    JOIN CUSTOMER_ORDER
-    ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
-    JOIN SERVICE_ORDER
-    ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
-    JOIN SERVICE_LINE
-    ON SERVICE_ORDER.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID
-    JOIN SERVICE
-    ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
+        FROM Customer
+        JOIN CUSTOMER_ORDER
+        ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
+        JOIN SERVICE_ORDER
+        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+        JOIN SERVICE_LINE
+        ON SERVICE_ORDER.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID
+        JOIN SERVICE
+        ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
 
-    WHERE YEAR(SERVICE_ORDER.ORDER_DATE) = YEAR(GETDATE()) AND SERVICE_ORDER.ORDER_DATE < GETDATE();
-    """)\
-
-
+        WHERE YEAR(SERVICE_ORDER.ORDER_DATE) = YEAR(GETDATE()) AND SERVICE_ORDER.ORDER_DATE < GETDATE();
+    """)
     data = cursor.fetchall()
     conn.commit()
     return render_template ('report_yearlyserviceorder.hmtl' , data = data)
