@@ -1,6 +1,6 @@
 PART_ID|PART_NAME
 1|Battery
-2|Brakes
+2|Brake Pad
 3|Axle
 4|Fuel Injector
 5|Piston
@@ -9,7 +9,7 @@ PART_ID|PART_NAME
 8|Engine Fan
 9|Clutch
 10|Jack
-11|Spare Tire
+11|Tire
 12|Transmission
 13|Shock Absorbers
 14|Air Filter
@@ -18,7 +18,7 @@ PART_ID|PART_NAME
 17|Muffler
 18|Tire Pressure Gauge
 19|Alternator
-20|Power Steering Fluid
+20|Tailgate Cylinder
 21|Paint
 22|Box Door
 23|Wheels
@@ -33,6 +33,25 @@ PART_ID|PART_NAME
 32|Trailer
 33|Tool Box
 34|Bed
-35|Power Take-Off
+35|Power Take-Off Transmission
 36|Tire
 37|Wheel
+38|Bolts
+39|Hood
+40|Aluminum
+41|Stainless Steel
+42|Low Carbon Mild Steel
+43|Fuel
+44|Pusher
+45|Tailgate
+46|Fender
+47|Pressure Blast Tank
+48|Electric Switch
+49|Fuel Pump
+50|Rack
+51|Cabin Door
+52|Antenna
+53|Fuel Tank
+54|Driver seat
+55|Bushings
+56|Glass
