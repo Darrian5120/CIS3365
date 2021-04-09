@@ -415,6 +415,8 @@ ORDER BY SERVICE_STATUS.ACTIVE
 def employees():
     return render_template('employees.html')
 
+# Employee insert/create
+# Not sure if i should add more inserts?
 @app.route ('/employees/new-employee', methods = ['POST', 'GET'])
 def new_employee():
     message = ''
@@ -422,59 +424,78 @@ def new_employee():
         lname = request.form.get ("lname")
         fname = request.form.get ("fname")
         address = request.form.get ("address")
-        pnumber = request.form.get ("pnumber")
+        hdate = request.form.get ("hdate")
+        hrs = request.form.get ("hrs")
+        prate = request.form.get ("prate")
+        phone = request.form.get ("phone")
+        binfo = request.form.get ("binfo")
+        tax = request.form.get ("tax")
         jobfunc = request.form.get ("jobfunc")
-        if lname and fname and address and pnumber and jobfunc is not None:
+        active = request.form.get ("active")
+        if lname and fname is not None:
             
             # new employee default
-            #query = ""
-            #vals = 
-            #data = 
-            #conn.commit()
+            query = "INSERT INTO Employee (EMP_LNAME, EMP_FNAME, EMP_ADDRESS, EMP_HIRE_DATE, EMP_HOURS, EMP_PAY_RATE, EMP_PHONE, EMP_BANK_INFO, EMP_TAX, EMP_JOB_FUNC, ACTIVE_ID) OUTPUT INSERTED.EMPLOYEE_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+            vals = (lname, fname, address, hdate, hrs, prate, phone, binfo, tax, jobfunc, active)
+            data = cursor.execute (query, vals)
+            emlpoyee_id = cursor.fetchone()[0]
+            conn.commit()
             
-            # new employee status
-            #query = ""
-            #vals = 
-            #data = 
-            #conn.commit()
-            
-            # new employee contact info
-            
-            #
+            # 
             
             message = "New employee entered successfully!"
             return render_template ('employees.html' , data = data, message = message)
         return render_template ('newemployee.html')
     
+# ask for help here
 # modify existing employee by entering id
 @app.route ('/employees/update-employee' , methods = ['POST' , 'GET'])
 def update_employee():
     if request.method == 'POST':
-        friendid = request.form.get ("fid")
-        field =  request.form.get ("field")
+        employee_id = request.form.get ("eid")
+        field =  request.form.get ("tblname")
         value = request.form.get ("value")
-        if friendid and field and value is not None:
-            #query = 
-            #vals = 
-            #data = 
-            #conn.commit ()
-            message = "Employee edited sucessfully!"
-            #return render_template ('employees.html' data = data , message = message)
-        return render_template ('updateemployee.html')
+        if employee_id and field and value is not None:
+            sql = "SELECT EMPLOYEE_ID FROM Employee where EMPLOYEE_ID = ?"
+            vals = (employee_id)
+            data = cursor.fetchall()
+            
+            # id doesn't exist
+            if not data:
+                messgae = "Invalid Employee ID! Please review Employee"
+                
+            # update     
+            else :
+                
     
 # remove employee from db by setting status to inactive
 @app.route ('/employees/delete-emloyee' , methods =['POST' , 'GET'])
 def delete_employee():
     message = ''
-    friendid = request.form.get ("fid")
-    if friendid is not None:
-        #query = 
-        #vals = 
-        #data = 
-        #conn.commit()
-        message = "Employee removed successfully!"
-        #return render_template ('employees.html' , data = data , message = message)
-    return render_template('deleteemployee.html')
+    if request.method == 'POST':
+    employee_id = request.form.get ("eid")
+    
+    # find if id exist
+    if employee_id is not None:
+        query = "SELECT EMPLOYEE_ID FROM Employee where EMPLOYEE_ID = ?"
+        vals = (employee_id)
+        cursor.execute(sql, vals)
+        data = cursor.fetchall()
+        
+        if not data # id doesn't exist
+            message = "Invalid Employee ID! Please review Employee"
+        else:
+            query = "UPDATE CoogTechSolutions.dbo.EMPLOYEE_STATUS SET E_ACTIVE = ?, ACTIVE = ? WHERE EMPLOYEE_ID = ?"
+            vals = (4, "TERMINATED", employee_id)
+            data = cursor.execute(query, vals)
+            conn.commit()
+            message = "Employee removed successfully!"
+            return render_template ('employee.html', data = data, message = message)
+        
+        else: # missing id in gui
+            message = "Messing Value!"
+            
+  return render_template('deleteemployee.html', message = message)
 
 #view all employees
 @app.route ('/employees/view-employees' , methods = ['GET'])
