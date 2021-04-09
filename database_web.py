@@ -58,21 +58,14 @@ def new_customer():
         lname = request.form.get("lname")
         fname = request.form.get("fname")
         bname = request.form.get("bname")
+        active = request.form.get("active")
+        business = request.form.get("business")
         if lname and fname is not None:
             # new customer default
-            query = "INSERT INTO CoogTechSolutions.dbo.Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?)"
-            vals = (lname, fname, bname)
+            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
+            vals = (lname, fname, bname, active, business)
             data = cursor.execute(query, vals)
             customer_id = cursor.fetchone()[0]
-            conn.commit()
-            # new customer status
-            active = request.form.get("is_active")
-            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_STATUS (CUSTOMER_ID, C_ACTIVE, ACTIVE) VALUES (?,?,?)"
-            if active is not None:
-                status_vals = (customer_id, 1, "Active")
-            else:
-                status_vals = (customer_id, 2, "Inactive")
-            data = cursor.execute(query, status_vals)
             conn.commit()
             # new customer contact info
             phone = request.form.get("phone")
@@ -85,16 +78,14 @@ def new_customer():
             contact_vals = (customer_id, phone, email, address, zip_code, city, state)
             data = cursor.execute(query, contact_vals)
             conn.commit()
-            # new customer type
-            business = request.form.get("is_biz")
-            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_TYPE (CUSTOMER_ID, BUSINESS_ID, BUSINESS) VALUES (?,?,?)"
-            if business is not None:
-                type_vals = (customer_id, 1, "Business")
-            else:
-                type_vals = (customer_id, 0, "Individual")
-            data = cursor.execute(query, type_vals)
-            conn.commit()
             # new customer state
+            query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
+            val = (state)
+            cursor.execute(query, val)
+            data = cursor.fetchall()
+            query = "INSERT INTO CUSTOMER_STATE (CUSTOMER_ID, STATE) VALUES ({},{})".format(customer_id, data)
+            cursor.execute(query)
+            conn.commit()
             message = "New customer entered successfully!"
             return render_template('customers.html', data=data, message=message)
     return render_template('newcustomer.html')

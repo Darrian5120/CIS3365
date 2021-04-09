@@ -1,5 +1,5 @@
 ACTIVE_ID|ACTIVE_NAME
-1|ACTIVE
-2|INACTIVE
-3|ACTIVE-PREMIUM
-4|INACTIVE-PREMIUM
+1|Active
+2|Inactive
+3|Active-Premium
+4|Inactive-Premium
