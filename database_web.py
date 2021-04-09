@@ -23,7 +23,7 @@ import cgi
 # Mustafa - vehicles insert, vehicle delete, vehicle update
 # Brandon - supplier update, supplier report
 # Anthony - employee create(insert), employee delete, vehicle report, employee update
-# Maddy - supplier create(insert), supplier delete
+# Maddy - supplier create(insert), supplier delete, 
 # Jerry - vehicle update, vehicle report
 # Kyle - service create(insert), service delete, employee report, violation report
 # Jahidul - 
@@ -260,35 +260,6 @@ def longtermloyalcustomer_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_longtermloyalcustomer.html', data = data)
-
- @app.route ('/customers/report_operatingstate' , methods = ['GET'])
-def report_operatingstate():
-    cursor.execute("""
-                   
-    SELECT 
-Customer.CUSTOMER_ID AS "Customer ID",
-Customer.C_FNAME AS "First Name",
-Customer.C_LNAME AS "Last Name",
-CUSTOMER_CONTACT_INFO.C_CITY "City",
-STATE.STATE_NAME AS "State"
-
-
-FROM Customer
-JOIN CUSTOMER_CONTACT_INFO
-ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
-JOIN CUSTOMER_STATE
-ON CUSTOMER_CONTACT_INFO.CUSTOMER_ID = CUSTOMER_STATE.CUSTOMER_ID
-JOIN STATE
-ON CUSTOMER_STATE.STATE_ID = STATE.STATE_ID
-
-ORDER BY STATE.STATE_NAME, CUSTOMER_CONTACT_INFO.C_CITY;
-
-
-
-    data = cursor.fetchall()
-    conn.commit()
-    return render_template('report_employeestatus.html', data = data)
-   
 
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
@@ -706,8 +677,9 @@ def yearlyserviceorder_report():
     ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
 
     WHERE YEAR(SERVICE_ORDER.ORDER_DATE) = YEAR(GETDATE()) AND SERVICE_ORDER.ORDER_DATE < GETDATE();
-    """)
-    
+    """)\
+
+
     data = cursor.fetchall()
     conn.commit()
     return render_template ('report_yearlyserviceorder.hmtl' , data = data)
@@ -715,47 +687,54 @@ def yearlyserviceorder_report():
 @app.route('/suppliers', methods = ['GET']) 
 def suppliers():
         return render_template('suppliers.html')
-        
- @app.route ('/customers/view-inactive-trade-supplier' , methods = ['GET'])
-def report_inactivetradesupplier():
-    cursor.execute("""
-                   
-    SELECT
-VEHICLE.V_VIN AS "Vehicle Vin",
-CUSTOMER.C_FNAME AS "First Name",
-CUSTOMER.C_LNAME AS "Last Name",
-SERVICE.SERVICE_ID AS "Service ID",
-SERVICE.SERVICE_TYPE AS "Service Type",
-SERVICE_STATUS.ACTIVE AS "Service Status"
-
-
-FROM VEHICLE
-JOIN VEHICLE_SERVICE
-ON VEHICLE.V_VIN = VEHICLE_SERVICE.V_VIN
-JOIN SERVICE
-ON VEHICLE_SERVICE.SERVICE_ID = SERVICE.SERVICE_ID
-JOIN SERVICE_STATUS
-ON SERVICE.SERVICE_ID = SERVICE_STATUS.SERVICE_ID
-JOIN CUSTOMER_VEHICLE
-ON VEHICLE.V_VIN = CUSTOMER_VEHICLE.V_VIN
-JOIN CUSTOMER
-ON CUSTOMER_VEHICLE.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
-
-ORDER BY SERVICE_STATUS.ACTIVE
-
-
-    data = cursor.fetchall()
-    conn.commit()
-    return render_template('report_employeestatus.html', data = data)
-   
-
 ################################### VIOLATIONS ##################################################
 @app.route('/violations', methods = ['GET']) 
 def violation():
     return render_template('violations.html')
 
+# Update Supplier
 
-
+@app.route('/supplier/update-supplier', methods = ['POST','GET'])
+def update_supplier():
+    message = ''
+    if request.method == 'POST':
+        # get info from gui
+        supplier_id = request.form.get("SUPPLIER_ID")
+        field = request.form.get("tblname")
+        value = request.form.get("value")
+        # find if id exist
+        if supplier_id and field and value is not None:
+            sql = "SELECT SUPPLIER_ID FROM SUPPLIER where SUPPLIER_ID = ?" 
+            vals = (supplier_id)
+            cursor.execute(sql, vals)
+            data = cursor.fetchall()
+            if not data: # id doesn't exist
+                message = "Invalid Supplier ID! Please review Suppliers"
+                # update both supplier status fields - MUST COPY FOR STATUS TABLES ########################
+                if field == "SUPPLIER_STATUS SET ACTIVE":
+                    query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE SUPPLIER_ID = ?".format(fld = field)
+                    if value == 'Active' or value == 'ACTIVE':
+                        query = "UPDATE CoogTechSolutions.dbo.SUPPLIER_STATUS SET S_ACTIVE = ?, ACTIVE = ? WHERE SUPPLIER_ID = ?".format(fld = field)
+                        vals = (1, "ACTIVE", supplier_id)
+                        data = cursor.execute(query, vals)
+                        conn.commit()
+                        return render_template('suppliers.html', data=data, message=message)
+                    else:
+                        query = "UPDATE CoogTechSolutions.dbo.SUPPLIER_STATUS SET C_ACTIVE = ?, ACTIVE = ? WHERE SUPPLIER_ID = ?".format(fld = field)
+                        vals = (2, "INACTIVE", supplier_id)
+                        data = cursor.execute(query, vals)
+                        conn.commit()
+                        return render_template('suppliers.html', data=data, message=message)
+                query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE SUPPLIER_ID = ?".format(fld = field)
+                vals = (value, supplier_id)
+                data = cursor.execute(query, vals)
+                conn.commit()
+                message = "Supplier edited successfully!"
+                return render_template('suppliers.html', data=data, message=message)
+        else: # missing id in gui
+            message = "Missing values!"
+    return render_template('updatesupplier.html', message = message)
+    
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
     #conn = pyodbc.connect('Driver={SQL Server};'
@@ -771,3 +750,4 @@ if __name__ == '__main__':
     cursor = conn.cursor()
     app.run()
     conn.close()
+
