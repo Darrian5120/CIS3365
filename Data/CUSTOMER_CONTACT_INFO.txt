@@ -26,26 +26,76 @@ CUSTOMER_ID|C_PHONE|C_EMAIL|C_ADDRESS|C_ZIP|C_CITY|C_STATE
 25|512-837-4783||3rd st|74337|Austin|Texas
 26|942-324-1342||4th st|77423|Austin|Texas
 27|832-384-2424||5th st|77442|Austin|Texas
-28|842-424-2344||6th st|77432|Austin|Texas
-29|844-283-2424||7th st|77234|Austin|Texas
-30|834-245-2343|313 washington ave|72323|Houston|Texas
-31|842-423-2342|245 Jefferson Dr|38313|Houston|Texas
-32|382-432-4241|1003 wirt rd|74294|Houston|Texas
-33|821-392-4921|10331 Silber Rd|74828|Houston|Texas
-34|842-313-3144|19342 ChimneyRock rd|77024|Houston|Texas
-35|831-234-2424|4728 Alleyway dr|77031|Houston|Texas
-36|832-384-2384|8422 Lettacevale Dr|77301|Houston|Texas
-38|742-329-3174|8429 Woodward dr|74223|Dallas|Texas
-39|821-428-4824|84297 Johnson Dr|84202|Dallas|Texas
-40|832-238-2342|1342 Wirt St|77023|Houston|Texas
-41|293-123-3123|123 Firelane dr|77045|Houston|Texas
-42|301-313-3414|345 Spring Cypress rd| 77429|Cypress|Texas
-43|313-424-4242|3913 Mason Rd|77319|Katy|Texas
-45|382-234-3234|2321 Mason Rd|73212|Katy|Texas
-46|424-535-6764|342 Sugarvale dr|34221|Katy|Texas
-47|324-453-5454|105 Johnson St|77042|Houston|Texas
-48|833-234-3823|3742 lakeview dr|88428|Housotn|Texas
-49|382-381-4272|6493 Streetview dr|83233|Houston|Texas
-50|742-484-2483|1st street|77332|Austin|Texas
-51|742-472-4750|2nd Street|37424|Austin|Texas
-51|848-427-4827|3rd Street|84714|Austin|Texas
+28|842-424-2344||12 6th st|77432|Austin|Texas
+29|844-283-2424||183 7th st|77234|Austin|Texas
+30|834-245-2343||313 washington ave|72323|Houston|Texas
+31|842-423-2342||245 Jefferson Dr|38313|Houston|Texas
+32|382-432-4241||1003 wirt rd|74294|Houston|Texas
+33|821-392-4921||10331 Silber Rd|74828|Houston|Texas
+34|842-313-3144||19342 ChimneyRock rd|77024|Houston|Texas
+35|831-234-2424||4728 Alleyway dr|77031|Houston|Texas
+36|832-384-2384||8422 Lettacevale Dr|77301|Houston|Texas
+37|289-731-3718||36834 Vespuchi Ave|82813|Dallas|Texas
+38|742-329-3174||8429 Woodward dr|74223|Dallas|Texas
+39|821-428-4824||84297 Johnson Dr|84202|Dallas|Texas
+40|832-238-2342||1342 Wirt St|77023|Houston|Texas
+41|293-123-3123||123 Firelane dr|77045|Houston|Texas
+42|301-313-3414||345 Spring Cypress rd| 77429|Cypress|Texas
+43|313-424-4242||3913 Mason Rd|77319|Katy|Texas
+44|371-381-4823||8983 Lettucvine dr|77391|Houston|Texas
+45|382-234-3234||2321 Mason Rd|73212|Katy|Texas
+46|424-535-6764||342 Sugarvale dr|34221|Katy|Texas
+47|324-453-5454||105 Johnson St|77042|Houston|Texas
+48|833-234-3823||3742 lakeview dr|88428|Housotn|Texas
+49|382-381-4272||6493 Streetview dr|83233|Houston|Texas
+50|742-484-2483||1st street|77332|Austin|Texas
+51|742-472-4750||2nd Street|37424|Austin|Texas
+52|848-427-4827||3rd Street|84714|Austin|Texas
+53|833-314-5642||37812 Adams Ave|88252|Dallas|Texas
+54|382-241-4141||1231 Jefferson Dr|37718|Pasadina|Texas
+55|832-238-3378||1847 Rockerfeller St|77187|Fort worth|Texas
+56|372-374-5378||4727 Aber Ln|72878|New Orleans|Louisiana 
+57|821-438-4387||74232 Amaya Avenue|71878|New Orleans|Louisiana
+58|327-274-2741||3728 Brett Way|72387|College station|Texas
+59|832-492-4788||73277 Briarcliffe Court|73874|college station|Texas
+60|489-248-2498||83748 Britton Drive|83781|college station|Texas
+61|373-382-2837||738 Bunker Lane|37287|college station|Texas
+62|389-389-4874||7375 Bunker Hill dr|77024|Houston|Texas
+63|849-237-8487||7484 Chimney rock rd|77392|Houston|Texas
+64|843-472-4817||2384 Vinewood hills|38732|New orleans|Louisiana
+65|382-384-4274||374 vespuchi dr|38273|Fort worth|Texas
+66|954-437-5724||7287 hollow lane|77023|Houston|Texas
+67|923-853-5839||8298 Lettuce vine blv|72838|Houston|Texas
+68|913-382-3898||89 15th st|89828|Austin|Texas
+69|932-482-4834||388 Burgos dr|83922|Dallas|Texas
+70|839-384-8573||389 Burke court|89288|Dallas|Texas
+71|843-576-5839||4850 Burns Dr|38942|Dallas|Texas
+72|847-287-5372||752 Chester court|84982|Dalls|Texas
+73|839-498-4832||930 Edgeworth dr|38293|Fortworth|Texas
+74|949-485-3843||8493 Edwards st|83924|Dallas|Texas
+75|832-485-3273||3829 Alabama st|77005|Houston|Texas
+76|829-589-3842||8938 Garrott st|77006|Houston|Texas
+77|839-860-3839||8398 Feedback ave|83932|Dallas|Texas
+78|843-849-4839||8489 Emma Place dr|93029|Dallas|Texas
+79|723-859-1983||9294 Fairfield st|77013|Houston|Texas
+80|892-484-3841||8849 Fieldcrest dr|98208|Dallas|Texas
+81|739-483-4759||939 Fink St|82984|Dallas|Texas
+82|829-485-3813||4953 Flatwood dr|77209|Houston|Texas
+83|785-843-3943||298 Fiatlane dr|77299|Houston|Texas
+84|920-382-8492||3894 Mountainvale dr|82988|Dallas|Texas
+85|832-472-3728||8392 Montrose ave|77008|Houston|Texas
+86|382-839-3819||2713 Highville ave|93293|Austin|Texas
+87|382-372-3818||93909 Lookalive ave|80834|Austin|Texas
+88|739-843-2839||123 Gale ln|83911|Houston|Texas
+89|892-847-4831||1833 Harvey Dr|83021|Austin|Texas
+90|993-329-4928||9219 Sleepless ave|83198|Houston|Texas
+91|839-234-1738||8397 Sheepless Dr|83813|Dallas|Texas
+92|839-289-1648||6393 Lightfull Dr|83911|Austin|Texas
+93|839-283-2839||7492 Tablelight ave|92010|Houston|Texas
+94|831-293-3729||31983 Gonzales dr|92911|Houston|Texas
+95|832-471-1732||8273 Goodman Ln|93912|Dallas|Texas
+96|839-294-2371||928 Goldplace dr|73197|Houston|Texas
+97|268-371-4719||82864 Vespuchi dr|83813|Austin|Texas
+98|722-372-3197||37193 Pelito dr|83912|Fort worth|Texas
+99|833-283-2838||9392 Fleeka ave|35482|College station|Texas
+100|939-274-2748||Lastlane dr|89284|Houston|Texas
