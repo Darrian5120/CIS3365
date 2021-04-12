@@ -225,37 +225,53 @@ def longtermloyalcustomer_report():
 @app.route('/vehicles', methods = ['GET']) 
 def vehicles():
     return render_template('vehicles.html')
-@app.route ('/vehicles/new-vehicles', methods = ['POST', 'GET'])
-## add new vehicle ##
+
+@app.route ('/vehicles/new-vehicle', methods = ['POST', 'GET'])
 def new_vehicle():
     message = ''
+    sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer)
     if request.method == 'POST':
-        v_vin = request.form.get ("v_vin")
-        make = request.form.get ("make")
-        model = request.form.get ("model")
-        year = request.form.get ("year")
-        license_plate = request.form.get ("plate")
-        if v_vin and make and model and year and license_plate is not None:
-
-             # new employee default
-            #query = ""
-            #vals = 
-            #data = 
-            #conn.commit()
-            
-            # new employee status
-            #query = ""
-            #vals = 
-            #data = 
-            #conn.commit()
-            
-            # new employee contact info
-            
-            #
-            
-            message = "New vehicle entered successfully!"
-            #return render_template ('vehicles.html' , data = data, message = message)
-        return render_template ('newvehicle.html')
+        vin = request.form.get("vin")
+        make = request.form.get("make")
+        model = request.form.get("model")
+        year = request.form.get("year")
+        license_plate = request.form.get("plate")
+        color = request.form.get("color")
+        if vin and make and model and year and license_plate is not None:
+            # insert vehicle table
+            query = "INSERT INTO VEHICLE (V_VIN, V_MAKE, V_MODEL, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID) VALUES (?,?,?,?,?,?)"
+            vals = (vin, make, model, year, license_plate, color)
+            cursor.execute(query, vals)
+            conn.commit()
+            # insert customer_vehicle table
+            customer_id = request.form.get('customer')
+            x = customer_id.split(", ")
+            y = int(x[0][1:])
+            query = "INSERT INTO VEHICLE (V_VIN, CUSTOMER_ID) VALUES (?,?)"
+            vals = (vin, y)
+            cursor.execute(query, vals)
+            conn.commit()
+            # insert insurance
+            ins = request.form.get("ins_name")
+            query = "INSERT INTO INSURANCE_COMPANY (INSURANCE_NAME) VALUES (?)"
+            vals = (ins)
+            cursor.execute(query, vals)
+            conn.commit()
+            # insert policy
+            policy = request.form.get("policy")
+            query = "INSERT INTO INSURANCE_POLICY (POLICY_NAME) VALUES (?)"
+            vals = (policy)
+            cursor.execute(query, vals)
+            conn.commit()
+            expiration = request.form.get("exp")
+            # FIXME - may remove company_insurance_policy and move to vehicle_policy
+            return render_template ('newvehicle.html', customers=customers)
+    return render_template ('newvehicle.html', customers=customers)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])

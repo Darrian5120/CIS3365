@@ -124,7 +124,7 @@ create table dbo.VEHICLE_POLICY(
 create table dbo.COMPANY_INSURANCE_POLICY(
 	INSURANCE_ID int not null,
 	POLICY_ID int not null,
-	COVARAGE_COST money not null,
+	COVARAGE_COST money,
 	CONSTRAINT INSURANCE_ID_PK1 PRIMARY KEY (INSURANCE_ID, POLICY_ID)
 );
 ----------------------------Kyle--------------------------------------
