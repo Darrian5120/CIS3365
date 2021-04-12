@@ -50,7 +50,7 @@ CREATE TABLE dbo.EMPLOYEE (
 --Supplier Create Script--
 CREATE TABLE dbo.SUPPLIER (
 	SUPPLIER_ID int IDENTITY(1,1) not null,
-	SUPPLIER_NAME varchar(50),
+	SUPPLIER_NAME varchar(50) NOT NULL,
 	ACTIVE_ID INT NOT NULL,
 	CONSTRAINT SUPPLIER_ID_PK PRIMARY KEY (SUPPLIER_ID)
 );
@@ -156,7 +156,7 @@ CREATE TABLE dbo.VEHICLE(
 --------------------------------Brandon--------------------------------
 CREATE TABLE dbo.PART (
   PART_ID INT IDENTITY(1,1) NOT NULL,
-  PART_NAME varchar(50),
+  PART_NAME varchar(50) NOT NULL,
   CONSTRAINT PART_ID_PK1 PRIMARY KEY (PART_ID)
  );
 CREATE TABLE dbo.EMPLOYEE_SERVICE_LINE_ASSIGNMENT (
@@ -222,12 +222,12 @@ CREATE TABLE dbo.PAYMENT_STATUS(
 );
 ------------------------------Zach------------------------------------------
 CREATE TABLE dbo.SUPPLIER_PART (
-	PART_ID int IDENTITY(1,1) not null,
+	PART_ID int not null,
 	SUPPLIER_ID INT not null,
 	CONSTRAINT PART_ID_PK PRIMARY KEY (PART_ID, SUPPLIER_ID)
 );
 CREATE TABLE dbo.STATE(
-	STATE_ID int not null,
+	STATE_ID int IDENTITY(1,1) not null,
 	STATE_ABBREVIATION varchar(2) not null,
 	STATE_NAME varchar(30),
 	CONSTRAINT STATE_ID_PK PRIMARY KEY (STATE_ID)

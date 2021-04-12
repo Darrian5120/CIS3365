@@ -19,9 +19,9 @@ import pprint
 # Every category should have a CRUD operation, please pick one to code with python AND html
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
-# Darrian - customer create(insert), customer delete, customer update, customer report
+# Darrian -
 # Mustafa - vehicles insert, vehicle delete, vehicle update
-# Brandon
+# Brandon - 
 # Anthony - employee create(insert), employee delete, vehicle report, employee update
 # Jerry - vehicle update, vehicle report
 # Kyle - service create(insert), service delete, employee report, violation report
@@ -701,8 +701,8 @@ def new_supplier():
             vals = (part_id, supplier_id)
             cursor.execute(query, vals)
             message = "New Supplier/part entered successfully!"
-            return render_template('customers.html', message=message)
-    return render_template('newcustomer.html')
+            return render_template('suppliers.html', message=message)
+    return render_template('newsupplier.html')
 
 @app.route('/supplier/update-supplier', methods = ['POST','GET'])
 def update_supplier():
@@ -751,36 +751,42 @@ def delete_supplier():
     sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
     cursor.execute(sql)
     rows = cursor.fetchall()
-    customers = []
-    for customer in rows:
-        customers.append(customer)
+    suppliers = []
+    for supplier in rows:
+        suppliers.append(supplier)
     if request.method == 'POST':
         # convert customer id to int for sql statement
-        customer_id = request.form.get('customer')
-        print(customer_id)
-        x = customer_id.split(", ")
+        supplier_id = request.form.get('supplier')
+        print(supplier_id)
+        x = supplier_id.split(", ")
         y = int(x[0][1:])
         # set inactive partial delete
-        sql = "UPDATE Customer SET ACTIVE_ID = 2 WHERE CUSTOMER_ID = ?"
+        sql = "UPDATE SUPPLIER SET ACTIVE_ID = 2 WHERE SUPPLIER_ID = ?"
         vals = (y)
         cursor.execute(sql, vals)
         conn.commit()
-        message = 'Customer removed Sucessfully'
-        return render_template('deletecustomer.html', customers=customers, message = message)
+        message = 'Supplier removed Sucessfully'
+        return render_template('deletesupplier.html', suppliers=suppliers, message = message)
         #return redirect(url_for('edit_customer', customer_id=customer_id))
-    return render_template('deletecustomer.html', customers=customers)
+    return render_template('deletesupplier.html', suppliers=suppliers)
 
 
 # view all Suppliers
 @app.route('/suppliers/view-suppliers', methods = ['GET']) 
 def view_suppliers():
     cursor.execute("""
-        SELECT SUPPLIER.SUPPLIER_ID AS "ID", SUPPLIER.SUPPLIER_NAME, SUPPLIER_STATUS.ACTIVE 
+        SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part",
+        SUPPLIER_STATUS.ACTIVE_NAME AS "Active"
+
         FROM SUPPLIER
         JOIN SUPPLIER_STATUS
-        ON SUPPLIER.SUPPLIER_ID = SUPPLIER_STATUS.SUPPLIER_ID
-        WHERE SUPPLIER_STATUS.S_ACTIVE = 1 OR SUPPLIER_STATUS.S_ACTIVE = 3
-        ORDER BY SUPPLIER_STATUS.S_ACTIVE, SUPPLIER.SUPPLIER_ID
+        ON SUPPLIER.ACTIVE_ID = SUPPLIER_STATUS.ACTIVE_ID
+        JOIN SUPPLIER_PART
+        ON SUPPLIER.SUPPLIER_ID = SUPPLIER_PART.SUPPLIER_ID
+        JOIN PART
+        ON SUPPLIER_PART.PART_ID = PART.PART_ID
+
+        ORDER BY SUPPLIER.SUPPLIER_NAME, PART.PART_NAME
     """)
     data = cursor.fetchall()
     conn.commit()
