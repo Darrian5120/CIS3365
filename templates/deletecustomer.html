@@ -28,8 +28,11 @@
         </table>
         <form action="" method="post">
             <p>
-                <label for="cid">Enter Customer ID to modify:</label>
-                <input type="text" name="cid">
+                <select name="customer">
+                    {% for customer in customers[0:] %}
+                    <option value="{{ customer }}" >{{ customer }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>

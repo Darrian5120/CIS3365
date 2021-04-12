@@ -1,6 +1,5 @@
 import flask
-from flask import request, make_response, render_template
-from flask import Flask
+from flask import Flask, request, make_response, render_template, url_for, redirect
 import pyodbc
 import pandas as pd 
 import datetime
@@ -12,6 +11,7 @@ import ssl
 import datetime
 from tabulate import tabulate
 import cgi
+import pprint 
 
 ############################################## READ ME #####################################
 # RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSER
@@ -83,6 +83,7 @@ def new_customer():
             val = (state)
             cursor.execute(query, val)
             data = cursor.fetchall()
+            print(data)
             query = "INSERT INTO CUSTOMER_STATE (CUSTOMER_ID, STATE_ID) VALUES ({},{})".format(customer_id, data[0][0])
             cursor.execute(query)
             conn.commit()
@@ -92,9 +93,9 @@ def new_customer():
 
 # modify exisitng customer by entering id
 # FIXME- find out how to only update one field
-@app.route('/customers/update-customer', methods = ['POST','GET'])
+@app.route('/customers/update', methods = ['POST','GET'])
 def update_customer():
-    # get customer id from gui dropdown
+    # send list of customer id's to gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -102,46 +103,48 @@ def update_customer():
     for customer in rows:
         customers.append(customer)
     if request.method == 'POST':
-        customer = request.form.get('customer')
-        print(customer)
-        #field = request.form.get("tblname")
-        #value = request.form.get("value")
-        # find if id exist
-        #if field and value is not None:
-            #query = "UPDATE {fld} = ? WHERE CUSTOMER_ID = ?".format(fld = field)
-            #vals = (value, customer_id)
-            #data = cursor.execute(query, vals)
-            #conn.commit()
-            #message = "Customer edited successfully!"
-            #return render_template('customers.html', data=data, message=message)
-        #else: # missing id in gui
-        #   message = "Missing values!"
-    return render_template('updatecustomer.html', customers = customers)
+        # convert customer id to int for sql statement
+        customer_id = request.form.get('customer')
+        print(customer_id)
+        x = customer_id.split(", ")
+        y = int(x[0][1:])
+        # get table, column, and new value data
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Customer edited Sucessfully'
+        return render_template('updatecustomer.html', customers=customers, message = message)
+        #return redirect(url_for('edit_customer', customer_id=customer_id))
+    return render_template('updatecustomer.html', customers=customers)
 
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET'])
 def delete_customer():
-    message = ''
+     # send list of customer id's to gui dropdown
+    sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer)
     if request.method == 'POST':
-        customer_id = request.form.get("cid")
-        # find if id exist
-        if customer_id is not None:
-            sql = "SELECT CUSTOMER_ID FROM Customer where CUSTOMER_ID = ?" 
-            vals = (customer_id)
-            cursor.execute(sql, vals)
-            data = cursor.fetchall()
-            if not data: # id doesn't exist
-                message = "Invalid Customer ID! Please review Customers"
-            else: 
-                query = "UPDATE CoogTechSolutions.dbo.CUSTOMER_STATUS SET C_ACTIVE = ?, ACTIVE= ? WHERE CUSTOMER_ID = ?"
-                vals = (2, "INACTIVE", customer_id)
-                data = cursor.execute(query, vals)
-                conn.commit()
-                message = "Customer removed successfully!"
-                return render_template('customers.html', data=data, message=message)
-        else: # missing id in gui
-            message = "Missing values!"
-    return render_template('deletecustomer.html', message = message)
+        # convert customer id to int for sql statement
+        customer_id = request.form.get('customer')
+        print(customer_id)
+        x = customer_id.split(", ")
+        y = int(x[0][1:])
+        # set inactive partial delete
+        sql = "UPDATE Customer SET ACTIVE_ID = 2 WHERE CUSTOMER_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Customer removed Sucessfully'
+        return render_template('deletecustomer.html', customers=customers, message = message)
+        #return redirect(url_for('edit_customer', customer_id=customer_id))
+    return render_template('deletecustomer.html', customers=customers)
 
 # view all customers
 @app.route('/customers/view-customers', methods = ['GET']) 
@@ -150,7 +153,7 @@ def view_customers():
         SELECT CUSTOMER.CUSTOMER_ID AS "ID", CUSTOMER.C_FNAME, CUSTOMER.C_LNAME,
         CUSTOMER.C_BUSINESS_NAME, CUSTOMER_CONTACT_INFO.C_PHONE, CUSTOMER_CONTACT_INFO.C_EMAIL,
         CUSTOMER_CONTACT_INFO.C_ADDRESS, CUSTOMER_CONTACT_INFO.C_CITY, CUSTOMER_CONTACT_INFO.STATE_NAME,
-        CUSTOMER_CONTACT_INFO.C_ZIP, Customer.ACTIVE_ID, CUSTOMER_STATUS.ACTIVE_NAME 
+        CUSTOMER_CONTACT_INFO.C_ZIP, CUSTOMER_STATUS.ACTIVE_NAME 
 
         FROM Customer
         JOIN CUSTOMER_CONTACT_INFO
@@ -169,20 +172,18 @@ def view_customers():
 def inactive_report():
     cursor.execute("""
         SELECT Customer.C_FNAME AS "First Name", Customer.C_LNAME AS "Last Name", 
-        CUSTOMER_CONTACT_INFO.C_PHONE AS "Phone", CUSTOMER_STATUS.ACTIVE
+        CUSTOMER_CONTACT_INFO.C_PHONE AS "Phone", CUSTOMER_STATUS.ACTIVE_NAME
 
         FROM Customer
         JOIN CUSTOMER_STATUS
-        ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
+        ON Customer.ACTIVE_ID = CUSTOMER_STATUS.ACTIVE_ID
         JOIN CUSTOMER_CONTACT_INFO
         ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
-        JOIN CUSTOMER_ORDER
-        ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
         JOIN SERVICE_ORDER
-        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+        ON SERVICE_ORDER.CUSTOMER_ID = Customer.CUSTOMER_ID
 
-        WHERE CUSTOMER_STATUS.C_ACTIVE = 2 OR CUSTOMER_STATUS.C_ACTIVE = 4 /*OR SERVICE_ORDER.ORDER_DATE < GETDATE()*/
-        ORDER BY CUSTOMER.C_LNAME, CUSTOMER.C_FNAME;
+        WHERE Customer.ACTIVE_ID = 2 OR Customer.ACTIVE_ID = 4 /*OR SERVICE_ORDER.ORDER_DATE < GETDATE()*/
+        ORDER BY Customer.ACTIVE_ID, CUSTOMER.C_LNAME;
     """)
     data = cursor.fetchall()
     conn.commit()

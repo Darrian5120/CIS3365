@@ -28,11 +28,11 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form action="" method="POST">
+        <form method="POST" action="">
             <p>
-                <select name= colours method="GET" action="/">
-                    {% for customer in customers %}
-                    <option value="{{ customer }}" name = "customer" SELECTED>{{ customer }}</option>"
+                <select name="customer">
+                    {% for customer in customers[0:] %}
+                    <option value="{{ customer }}" >{{ customer }}</option>"
                     {% endfor %}
                 </select>
             </p>
@@ -58,7 +58,7 @@
                   </select>
                 </p>
             <p>
-                <label for="lname">New Value:</label>
+                <label for="value">New Value:</label>
                 <input type="text" name="value">
             </p>
             <p><input type="submit" value="Submit"></p>
