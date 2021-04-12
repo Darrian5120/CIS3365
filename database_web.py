@@ -420,52 +420,61 @@ def new_employee():
 # modify existing employee by entering id
 @app.route ('/employees/update-employee' , methods = ['POST' , 'GET'])
 def update_employee():
+    
+    sql = "SELECT EMPLOYEE_ID, E_FNAME, E_LNAME FROM Employee"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    employees = []
+    
+    for employee in rows:
+        employees.append(employees)
     if request.method == 'POST':
-        employee_id = request.form.get ("eid")
-        field =  request.form.get ("tblname")
-        value = request.form.get ("value")
-        if employee_id and field and value is not None:
-            sql = "SELECT EMPLOYEE_ID FROM Employee where EMPLOYEE_ID = ?"
-            vals = (employee_id)
-            data = cursor.fetchall()
-            
-            # id doesn't exist
-            if not data:
-                messgae = "Invalid Employee ID! Please review Employee"
-                
-            # update     
-            else :
-                None
-    return None
+        
+        employee_id = request.form.get ('employee')
+        print(employee_id)
+        x = employee_id.split(", ")
+        y = int (x[0][1:])
+        
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Employee edidted sucessfully'
+        
+        return render_template('updateemployee.html', employees = employees, message = message)
+    
+    return render_template ('updateemployee.html', employees = employees)
+    
                 
 # remove employee from db by setting status to inactive
 @app.route ('/employees/delete-emloyee' , methods =['POST' , 'GET'])
 def delete_employee():
-    message = ''
+    sql = "SELECT EMPLOYEE_ID, E_FNAME, E_LNAME FROM Employee"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    employee = []
+    for employee in rows:
+        employees.append(employee)
     if request.method == 'POST':
-        employee_id = request.form.get ("eid")
-    
-    # find if id exist
-    if employee_id is not None:
-        query = "SELECT EMPLOYEE_ID FROM Employee where EMPLOYEE_ID = ?"
-        vals = (employee_id)
+        
+        employee_id = request.form.get('employee')
+        print(employee_id)
+        x = employee_id.split(", ")
+        y = int(x[0][1:])
+        
+        sql = "UPDATE Employee SET ACTIVE_ID = 3 WHERE EMPLOYEE_ID = ?"
+        vals = (y)
         cursor.execute(sql, vals)
-        data = cursor.fetchall()
+        conn.commit()
+        message = 'Employee removed sucessfully'
         
-        if employee_id not in data: # id doesn't exist
-            message = "Invalid Employee ID! Please review Employee"
-        else:
-            query = "UPDATE CoogTechSolutions.dbo.EMPLOYEE_STATUS SET E_ACTIVE = ?, ACTIVE = ? WHERE EMPLOYEE_ID = ?"
-            vals = (4, "TERMINATED", employee_id)
-            data = cursor.execute(query, vals)
-            conn.commit()
-            message = "Employee removed successfully!"
-            return render_template ('employee.html', data = data, message = message)
+        return render_template('deleteemployee.html', employees = employees, message = message)
         
-        #else: # missing id in gui
-        message = "Messing Value!"
-            
-    return render_template('deleteemployee.html', message = message)
+    return render_template('deleteemployee.html',  employees = employees)
+        
+    
 
 #view all employees
 @app.route ('/employees/view-employees' , methods = ['GET'])
