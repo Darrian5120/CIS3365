@@ -19,7 +19,7 @@ import pprint
 # Every category should have a CRUD operation, please pick one to code with python AND html
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
-# Darrian -
+# Darrian - update supplier
 # Mustafa - vehicles insert, vehicle delete, vehicle update
 # Brandon - 
 # Anthony - employee create(insert), employee delete, vehicle report, employee update
@@ -383,8 +383,7 @@ def view_service_report():
 def employees():
     return render_template('employees.html')
 
-# Employee insert/create
-# Not sure if i should add more inserts?
+# Employee insert/create FINISHED @anthony
 @app.route ('/employees/new-employee', methods = ['POST', 'GET'])
 def new_employee():
     message = ''
@@ -400,20 +399,15 @@ def new_employee():
         tax = request.form.get ("tax")
         jobfunc = request.form.get ("jobfunc")
         active = request.form.get ("active")
-        if lname and fname is not None:
-            
+        if lname and fname is not None:   
             # new employee default
             query = "INSERT INTO Employee (EMP_LNAME, EMP_FNAME, EMP_ADDRESS, EMP_HIRE_DATE, EMP_HOURS, EMP_PAY_RATE, EMP_PHONE, EMP_BANK_INFO, EMP_TAX, EMP_JOB_FUNC, ACTIVE_ID) OUTPUT INSERTED.EMPLOYEE_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
             vals = (lname, fname, address, hdate, hrs, prate, phone, binfo, tax, jobfunc, active)
-            data = cursor.execute (query, vals)
-            emlpoyee_id = cursor.fetchone()[0]
+            cursor.execute (query, vals)
             conn.commit()
-            
-            # 
-            
             message = "New employee entered successfully!"
-            return render_template ('employees.html' , data = data, message = message)
-        return render_template ('newemployee.html')
+            return render_template ('newemployee.html', message = message)
+    return render_template ('newemployee.html')
     
 # ask for help here
 # modify existing employee by entering id
