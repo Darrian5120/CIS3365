@@ -21,9 +21,8 @@ import pprint
 ############################################################################################
 # Darrian - customer create(insert), customer delete, customer update, customer report
 # Mustafa - vehicles insert, vehicle delete, vehicle update
-# Brandon - supplier update, supplier report
+# Brandon
 # Anthony - employee create(insert), employee delete, vehicle report, employee update
-# Maddy - supplier create(insert), supplier delete, 
 # Jerry - vehicle update, vehicle report
 # Kyle - service create(insert), service delete, employee report, violation report
 # Jahidul - 
@@ -473,8 +472,7 @@ def delete_employee():
         return render_template('deleteemployee.html', employees = employees, message = message)
         
     return render_template('deleteemployee.html',  employees = employees)
-        
-    
+           
 
 #view all employees
 @app.route ('/employees/view-employees' , methods = ['GET'])
@@ -677,12 +675,34 @@ def yearlyserviceorder_report():
 @app.route('/suppliers', methods = ['GET']) 
 def suppliers():
         return render_template('suppliers.html')
-################################### VIOLATIONS ##################################################
-@app.route('/violations', methods = ['GET']) 
-def violation():
-    return render_template('violations.html')
 
-# Update Supplier
+@app.route('/customers/new-supplier', methods = ['POST','GET'])
+def new_supplier():
+    # get info from html
+    if request.method == 'POST':
+        supplier = request.form.get("sup_name")
+        part = request.form.get("part_name")
+        status = request.form.get("active")
+        if supplier and part and status is not None:
+            # insert supplier
+            query = "INSERT INTO SUPPLIER (SUPPLIER_NAME, ACTIVE_ID) OUTPUT INSERTED.SUPPLIER_ID VALUES (?,?)"
+            vals = (supplier, status)
+            cursor.execute(query, vals)
+            supplier_id = cursor.fetchone()[0]
+            conn.commit()
+            # insert part
+            query = "INSERT INTO PART (PART_NAME) OUTPUT INSERTED.PART_ID VALUES (?)"
+            vals = (part)
+            cursor.execute(query, vals)
+            part_id = cursor.fetchone()[0]
+            conn.commit()
+            # insert supplier part
+            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID) OUTPUT INSERTED.PART_ID VALUES (?,?)"
+            vals = (part_id, supplier_id)
+            cursor.execute(query, vals)
+            message = "New Supplier/part entered successfully!"
+            return render_template('customers.html', message=message)
+    return render_template('newcustomer.html')
 
 @app.route('/supplier/update-supplier', methods = ['POST','GET'])
 def update_supplier():
@@ -725,6 +745,32 @@ def update_supplier():
             message = "Missing values!"
     return render_template('updatesupplier.html', message = message)
 
+@app.route('/customers/delete-supplier',methods = ['POST','GET'])
+def delete_supplier():
+     # send list of customer id's to gui dropdown
+    sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer)
+    if request.method == 'POST':
+        # convert customer id to int for sql statement
+        customer_id = request.form.get('customer')
+        print(customer_id)
+        x = customer_id.split(", ")
+        y = int(x[0][1:])
+        # set inactive partial delete
+        sql = "UPDATE Customer SET ACTIVE_ID = 2 WHERE CUSTOMER_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Customer removed Sucessfully'
+        return render_template('deletecustomer.html', customers=customers, message = message)
+        #return redirect(url_for('edit_customer', customer_id=customer_id))
+    return render_template('deletecustomer.html', customers=customers)
+
+
 # view all Suppliers
 @app.route('/suppliers/view-suppliers', methods = ['GET']) 
 def view_suppliers():
@@ -739,6 +785,14 @@ def view_suppliers():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_supplier.html', data = data)
+
+################################### VIOLATIONS ##################################################
+@app.route('/violations', methods = ['GET']) 
+def violation():
+    return render_template('violations.html')
+
+# Update Supplier
+
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
