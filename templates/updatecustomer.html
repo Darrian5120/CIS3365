@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title> Herrera Fabricating Inc.</title>
+		<!-- this sets the page for responsive scaling -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {box-sizing: border-box;}
+            body {margin: 0;}
+            .header {background-color:rgb(165, 58, 58); padding:50px; text-align:center} /*syle the header*/
+            .topnav {border:0px; background-color:#333; overflow:hidden; margin:auto; width: 100%; text-align: center;} /*syle the topnav*/
+            .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
+            .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
+            
+            #td {width: 16%; text-align: center; margin: 0; padding: 0;}
+        </style>
+	</head>
+	<body>
+        <div class="header">
+            <h1>Herrera Fabricating Inc.</h1>
+        </div>
+        <table class="topnav" cellspacing="0" cellpadding="0">
+            <tr>
+                <td id="td"><a href ="/customers">Customers</a></td>
+                <td id="td"><a href ="/vehicles">Vehicles</a></td>
+                <td id="td"><a href ="/services">Services</a></td>
+                <td id="td"><a href ="/suppliers">Suppliers</a></td>
+                <td id="td"><a href ="/employees">Employees</a></td>
+                <td id="td"><a href ="/violations">Violations</a></td>
+            </tr>
+        </table>
+        <form method="POST" action="">
+            <p>
+                <select name="customer">
+                    {% for customer in customers[0:] %}
+                    <option value="{{ customer }}" >{{ customer }}</option>"
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
+                <label for="tblname">Enter field to modify:</label>
+                <select name="tblname" id="tblname">
+                    <optgroup label="CUSTOMER"></optgroup>
+                        <option value="Customer SET C_FNAME">First Name</option>
+                        <option value="Customer SET C_LNAME">Last Name</option>
+                        <option value="Customer SET C_BUSINESS_NAME">Business Name</option>
+                    <optgroup label="CUSTOMER CONTACT INFO"></optgroup>
+                        <option value="CUSTOMER_CONTACT_INFO SET C_PHONE">Phone</option>
+                        <option value="CUSTOMER_CONTACT_INFO SET C_EMAIL">Email</option>
+                        <option value="CUSTOMER_CONTACT_INFO SET C_ADDRESS">Address</option>
+                        <option value="CUSTOMER_CONTACT_INFO SET C_CITY">City</option>
+                        <option value="CUSTOMER_CONTACT_INFO SET STATE_NAME">State</option>
+                        <option value="CUSTOMER_CONTACT_INFO SET C_ZIP">Zip Code</option>
+                    <optgroup label="CUSTOMER TYPE"></optgroup>
+                        <option value="Customer SET BUSINESS_ID">Business or Individual</option>
+                    <optgroup label="CUSTOMER STATUS"></optgroup>
+                        <option value="Customer SET ACTIVE_ID">Active or Inactive</option>
+                  </select>
+                </p>
+            <p>
+                <label for="value">New Value:</label>
+                <input type="text" name="value">
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </body>
+</html>

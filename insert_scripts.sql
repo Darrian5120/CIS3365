@@ -4,7 +4,7 @@ USE CoogTechSolutions
 BULK INSERT Customer
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\customer.txt'
 	WITH(
-		FIRSTROW = 1,
+		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
@@ -13,7 +13,7 @@ BULK INSERT Customer
 BULK INSERT PAYMENT
 	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment.txt'
 	WITH(
-		FIRSTROW = 1,
+		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
@@ -110,7 +110,7 @@ Bulk INSERT PAYMENT_REVENUE
 				MAXERRORS = 1
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
-Bulk INSERT CUSTOMER_ORDER
+/*Bulk INSERT CUSTOMER_ORDER
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
       
 	WITH(
@@ -118,7 +118,7 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
-		);
+		);*/
 Bulk INSERT CUSTOMER_VEHICLE
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
 	WITH(
@@ -225,14 +225,6 @@ WITH (
 				FIELDTERMINATOR = '|',
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
-		);		
-Bulk INSERT EMPLOYEE_LOOKUP
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\EMPLOYEE_LOOKUP.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
 		);
 Bulk INSERT SERVICE_ORDER
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_ORDER.txt'
@@ -242,9 +234,18 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);	
+
+Bulk INSERT ROLE
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\ROLE.txt'
+WITH (
+			FIRSTROW = 2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
 ------------------------------Giancarlos------------------------------------
-Bulk INSERT SUPPLIER_LOOKUP
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SUPPLIER_LOOKUP.txt'
+Bulk INSERT INVOICE_STATUS
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\invoice_status.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
@@ -267,8 +268,8 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-Bulk INSERT VEHICLE_LOOKUP
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_LOOKUP.txt'
+Bulk INSERT PAYMENT_STATUS
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\payment_status.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',

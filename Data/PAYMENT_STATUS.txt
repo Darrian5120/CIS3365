@@ -1,0 +1,3 @@
+ACTIVE_ID|ACTIVE_NAME
+1|Fully paid
+2|Payment Owed
