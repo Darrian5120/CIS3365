@@ -10,8 +10,8 @@ EMP_ID|EMP_LNAME|EMP_FNAME|ROLE_ID|ACTIVE_ID
 9|Puerto|Pedro|4|1
 10|Medina|Pedro|2|1
 11|Para|Omar|6|1
-12|Bibriesca|4|1
-13|Castaneda|5|1
+12|Bibriesca|John|4|1
+13|Castaneda|May|5|1
 14|Avila|Carlos|3|1
 15|Carabez|Ricardo|3|1
 16|Alanis|Roberto|5|1
