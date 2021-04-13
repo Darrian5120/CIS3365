@@ -234,6 +234,15 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);	
+
+Bulk INSERT ROLE
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\ROLE.txt'
+WITH (
+			FIRSTROW = 2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
 ------------------------------Giancarlos------------------------------------
 Bulk INSERT INVOICE_STATUS
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\invoice_status.txt'
