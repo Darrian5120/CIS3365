@@ -105,16 +105,44 @@ create table dbo.PAYMENT_REVENUE(
 	CONSTRAINT REVENUE_ID_PK1 PRIMARY KEY (REVENUE_ID, PMT_ID, INVOICE_ID)
 );
 ------------Jahidul---------------------------------------------------
-/*create table dbo.CUSTOMER_ORDER(
-	SERVICE_ORDER_ID int not null,
-	CUSTOMER_ID int not null,
-	CONSTRAINT SERVICE_ORDER_ID_PK2 PRIMARY KEY (SERVICE_ORDER_ID, CUSTOMER_ID)
-);*/
+
+-----SUPPLIER_CONTACT_INFO-----
+
+CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
+	SUPPLIER_ID INT not null,
+	CONTACT_ID INT not null,
+	S_ADDRESS_LINE1 varchar(30)  not null,
+	S_ADDRESS_LINE2 varchar(30) not null,
+	S_CITY varchar(30) not null,
+	S_STATE varchar(10) not null,
+	S_ZIP INT not null,
+	S_COUNTRY varchar(30) not null,
+	S_PHONE INT not null,
+	S_EMAIL varchar(30) not null,
+	CONSTRAINT SUPPLIER_ID_PK1 PRIMARY KEY(SUPPLIER_ID)
+);
+
+----EMPLOYEE_CONTACT_INFO-----
+
+CREATE TABLE dbo.EMPLOYEE_CONTACT_INFO (
+	EMPLOYEE_ID INT not null,
+	CONTACT_ID INT not null,
+	E_ADDRESS_LINE1 varchar(30)  not null,
+	E_ADDRESS_LINE2 varchar(30) not null,
+	E_CITY varchar(30) not null,
+	E_STATE varchar(10) not null,
+	E_ZIP INT not null,
+	E_COUNTRY varchar(30) not null,
+	E_PHONE INT not null,
+	E_EMAIL varchar(30) not null,
+	CONSTRAINT EMPLOYEE_ID_PK1 PRIMARY KEY(EMPLOYEE_ID)
+);
 create table dbo.CUSTOMER_VEHICLE(
 	V_VIN varchar(20) not null,
 	CUSTOMER_ID int not null,
 	CONSTRAINT V_VIN_PK2 PRIMARY KEY (V_VIN, CUSTOMER_ID)
 );
+
 create table dbo.VEHICLE_POLICY(
 	V_VIN varchar(20) not null,
 	POLICY_ID int not null,
