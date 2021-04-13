@@ -7,11 +7,11 @@ EMPLOYEE_ID|CONTACT_ID|E_ADDRESS_LINE1|E_ADDRESS_LINE2|E_CITY|E_STATE|E_ZIP|E_CO
 6|6|13155 Woodforest Blvd.||Houston|Tx|77015|7133346111|gersonbanegas12@gmail.com
 7|7|1829 Charles Rd.||Houston|TX|77093|2812442607|victorbarron65@gmail.com
 8|8|13753 Waxahachie St.||Houston|TX|77015|7169230064|hectorvaladez90@gmail.com
-9|9|458 Monroe St.|Apt 456|Houston|TX|77036|7134572630|pedropuerto@34@gmail.com
+9|9|458 Monroe St.|BLDG E, APT 456|Houston|TX|77036|7134572630|pedropuerto@34@gmail.com
 10|10|2712 Clousson Rd.||Houston|TX|77063|7132018443|pedromedina90@hotmail.com
 11|11|4273 Shingleton Rd.||Houston|TX|77044|7134101682|omarpara83@gmail.com
 12|12|4746 Werninger St.||Houston|TX|77056|8326847496|johnbiriesca467@gmail.com
-13|13|4267 Circle Dr.|Apt 204|Houston|TX|77063|8324650160|maycastaneda20@gmail.com
+13|13|4267 Circle Dr.|BLDG B, APT 204|Houston|TX|77063|8324650160|maycastaneda20@gmail.com
 14|14|12129 Ticonderogard Rd.||Houston|TX|77044|2814136024|carlosavila195@gmail.com
 15|15|11235 Valley Kings Dr.||Houston|TX|77044|8328783729|ricardocarabez71@hotmail.com
 16|16|11521 Bannister Ln.||Houston|TX|77075|2818854176|robertoalanis52@gmail.com
