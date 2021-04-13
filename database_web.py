@@ -313,8 +313,8 @@ def view_vehicles():
 @app.route('/vehicles/vehiclepart-report', methods = ['GET']) 
 def vehicle_part_report():
     cursor.execute("""
-        SELECT VEHICLE_SERVICE.V_VIN AS "VIN", VEHICLE.V_YEAR AS "Year", VEHICLE.V_MAKE AS "Make", 
-        VEHICLE.V_MODEL AS "Model", SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part"
+        SELECT VEHICLE_SERVICE.V_VIN AS 'VIN', VEHICLE.V_YEAR AS 'Year', VEHICLE.V_MAKE AS 'Make', 
+        VEHICLE.V_MODEL AS 'Model', SUPPLIER.SUPPLIER_NAME AS 'Supplier', PART.PART_NAME AS 'Part'
 
         FROM VEHICLE
         JOIN VEHICLE_SERVICE
