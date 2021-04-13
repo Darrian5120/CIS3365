@@ -78,12 +78,14 @@ CREATE TABLE dbo.SERVICE_LINE_STATUS (
 CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 	CUSTOMER_ID INT not null,
 	CONTACT_ID INT not null,
+	C_ADDRESS_LINE1 varchar(30) not null,
+	C_ADDRESS_LINE2 varchar(30) not null,
+	C_CITY varchar(30) not null,
+	C_ZIP INT not null,
+	STATE_NAME varchar(15) not null,
+	COUNTRY_NAME varchar(30) not null,
 	C_PHONE varchar(15)  not null,
 	C_EMAIL varchar(30) not null,
-	C_ADDRESS varchar(30) not null,
-	C_ZIP INT not null,
-	C_CITY varchar(30) not null,
-	STATE_NAME varchar(10) not null,
 	CONSTRAINT CUSTOMER_ID_PK1 PRIMARY KEY(CUSTOMER_ID)
 );
 --VEHICLE STATUS--
@@ -294,7 +296,8 @@ CREATE TABLE dbo.INSURANCE_COMPANY (
 	I_STATE varchar(50),
 	I_ZIP int,
 	I_COUNTRY varchar(50),
-	I_PHONE varchar(15) not null,
+	I_PHONE varchar(15),
+	I_EMAIL varchar(30),
 	CONSTRAINT INSURANCE_ID_PK PRIMARY KEY (INSURANCE_ID)
 );
 --INSURANCE POLICY Table--
