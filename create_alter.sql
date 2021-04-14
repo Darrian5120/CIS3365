@@ -114,17 +114,8 @@ CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
 	S_STATE varchar(15) not null,
 	S_ZIP varchar(7) not null,
 	S_COUNTRY varchar(30) not null,
-<<<<<<< HEAD
-<<<<<<< HEAD
 	S_PHONE varchar(15) not null,
 	S_EMAIL varchar(35) not null,
-=======
-	S_PHONE INT not null,
-=======
-	S_PHONE varchar(15) not null,
->>>>>>> parent of 97436d6 (Revert "Merge branch 'master' of https://github.com/Darrian5120/CIS3365")
-	S_EMAIL varchar(30) not null,
->>>>>>> 97436d646c5cee6b698fcdd87f35c45c59579050
 	CONSTRAINT SUPPLIER_ID_PK1 PRIMARY KEY(SUPPLIER_ID, CONTACT_ID)
 );
 
@@ -139,17 +130,8 @@ CREATE TABLE dbo.EMPLOYEE_CONTACT_INFO (
 	E_STATE varchar(15) not null,
 	E_ZIP INT not null,
 	E_COUNTRY varchar(30) not null,
-<<<<<<< HEAD
-<<<<<<< HEAD
 	E_PHONE varchar(15) not null,
 	E_EMAIL varchar(35) not null,
-=======
-	E_PHONE INT not null,
-=======
-	E_PHONE varchar(15) not null,
->>>>>>> parent of 97436d6 (Revert "Merge branch 'master' of https://github.com/Darrian5120/CIS3365")
-	E_EMAIL varchar(30) not null,
->>>>>>> 97436d646c5cee6b698fcdd87f35c45c59579050
 	CONSTRAINT EMPLOYEE_ID_PK1 PRIMARY KEY(EMPLOYEE_ID, CONTACT_ID)
 );
 create table dbo.CUSTOMER_VEHICLE(
@@ -164,8 +146,8 @@ create table dbo.MAKE(
 );
 create table dbo.MODEL(
 	MODEL_ID int not null,
-	MAKE_NAME int not null,
-	CONSTRAINT MAKE_PK PRIMARY KEY (MAKE_ID)
+	MODEL_NAME int not null,
+	CONSTRAINT MODEL_PK PRIMARY KEY (MODEL_ID)
 );
 create table dbo.POLICY(
 	CUSTOMER_ID INT NOT NULL,
