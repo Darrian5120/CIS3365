@@ -1,101 +1,101 @@
-CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID
-1|Cartwright|Bobby|Best American|4|1
-2|Melissa|Amy|Cowgirl Trucking|4|1
-3|Melesio|John|Texstar Excavating|4|1
-4|Garcia|Ernesto|Ernesto Garcia Trucking|4|1
-5|Nieto|Jaimes|Niceford|4|1
-6|County Land|Mid|Mid County Land|4|1
-7|Jachon|E|Jachon Int'l LTD|4|1
-8|Chrome|ATC|Chrome ATC|4|1
-9|Molina|John||4|0
-10|Stair|Joseph||4|0
-11|Victor|Alejandro|Circle V Trucking|4|1
-12|Buege|James|Rush Truck-Austin|4|1
-13|Odell|Trent|Headway Oilfield Service|4|1
-14|Stroup|Paul|Paul Stroup Custom Dozing|4|1
-15|Ramirez Saldana|Mariano||4|0
-16|Thomas|Kirk||4|0
-17|Park|William|Performance Truck of Houston|4|1
-18|Chambers|Alexander|Clifton Chevrolet|4|1
-19|Plank|Dennis|Jag Trucking|4|1
-20|Rigoberto|Ramos||4|0
-21|Murica|Oscar||4|0
-22|Barrett|Nathan|Rush Truck-San Antonio|4|1
-23|Lopez|Bernardino|AB Trucking|4|1
-24|Larret|August|Larrett Inc|4|1
-25|Guttierez|Miguel|Rush Truck-Houston|4|1
-26|Gray|Jake|Red Trucking|4|1
-27|Cicero|Jay||4|0
-28|Arebalo|Carlos||4|0
-29|Gonzales|Ricky|Elite Landscaping|4|1
-30|Escobar|Leo||4|0
-31|Agrueta|Fredy||4|0
-32|Carter|Tyrae|R & A Transport Inc|4|1
-33|Grantham|Weston|Holt Tuck Centers CAT|4|1
-34|Getachew|Ben||4|0
-35|Cantu|Carlos|Raga Equipment|4|1
-36|Raggio|Gaston||4|0
-37|Warren|Christopher|Grande Sales & Services|4|1
-38|Hronek|Jason|H&H Top Soil and Select Fill|4|1
-39|Loya|Francisco||4|0
-40|Tran|David|Parody Trucking|4|1
-41|Quinonez|Cesar|SM Trucking|1|1
-42|Fontenot|Rick||1|0
-43|Gilbert|George|George Gilbert Enterprises|1|1
-44|Ted|Johnathan|CKG Services|1|1
-45|Anthony|Vincent|Cowboy Top Soil|1|1
-46|Picton|Harold|Coast Materials Inc|1|1
-47|Salinas|Hector|H Salinas Trucking|1|1
-48|Martin|Katia||1|0
-49|Jack|Billy|Billy Jack Construction Co|1|1
-50|Vasquez|Edmond||1|0
-51|Lamar|Vince|Vince Delivery|1|1
-52|Alvarez|Zach|Visa Pool Plastering|1|1
-53|Jones|Brandon|BJ Vacumme|1|1
-54|Romar|Alex|Romar Unlimited Incorporation|1|1
-55|Schmitz|Glenn|J&B Pavelk Inc.|1|1
-56|Diggs|Tom|Hauling Valley LLC|1|1
-57|Sorto|Dionicio||1|0
-58|Sheridan|MJ||1|0
-59|Hamrick|Bill|FAA Truck|2|1
-60|Dugas|KJ||2|0
-61|Bradley|Craig|DAM Truck Services|2|1
-62|Loera|Ramon||2|0
-63|Warner|Bryan|Premium Contractors|2|1
-64|Shah|Andy|Shah Transport LLC|2|1
-65|Alvaro|Edmund||2|0
-66|Medina|David||2|0
-67|Hughes|Jeff|Hughes Trucking|2|1
-68|Garibay|Marco||2|0
-69|Adams|Adrian|Adams Trucking|2|1
-70|Jones|Johnathan|JJ Excavation|2|1
-71|Stanley|Robert||2|0
-72|Gil|Rene||2|0
-73|Castanon|Jose|Clark Freight Lines Inc|2|1
-74|Butler|John|JB Ranch|2|1
-75|Gilco|Clark|Gilco Contracting|2|1
-76|Cason|Jacob|Circle M Transport|2|1
-77|Olivares|Eliud|Elite HTX Trucking LLC|2|1
-78|Hilby|Malik|Hilby Limited Trucking|2|1
-79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC|2|1
-80|Lopez|Irma||2|0
-81|Lane|John|Houston Tree Transplanting|2|1
-82|Scott|Logan|D&D Truck Sales Inc|2|1
-83|Strother|Sophia|Selectrucks Of Houston|2|1
-84|Smith|Kenneth|Rush Truck-Waco|2|1
-85|Woods|Russel|South Texas Logging & Transport|2|1
-86|Midgley|Tyler|SJC Trucking|2|1
-87|Rojas|Pedro||2|0
-88|Overton|Anthony|OKB Transport|2|1
-89|Masters|Simon|Texas Truck Sales|2|1
-90|Devin|Jeffrey|Vanguard Truck Center|2|1
-91|Argueta|Julio||2|0
-92|Ranier|Sandhu||2|0
-93|Brimm|Richard||2|0
-94|Cruz|Rigoberto||2|0
-95|McNeal|Bo||2|0
-96|Garza|Javier||2|0
-97|Martinez|Eduardo||2|0
-98|Esperanza|Jose||2|0
-99|Hogan|Bob|General Parts & Supply|2|1
-100|Benitez|Rodger|Benitez Trucking Enterprises|2|1
+CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID|C_ADDRESS_LINE1|C_ADDRESS_LINE2|C_CITY|STATE_NAME|C_ZIP|COUNTRY_NAME|C_PHONE|C_EMAIL
+1|American|Best|Best American|4|1|123 smith street||Houston|Texas|77024|United States|832-431-2231|bestamerican@gmail.com
+2|Melissa|Amy|Cowgirl Trucking|4|1|1196 COUNTY RD||Liberty|Texas|77575|United States|832-748-5406|cowgirl@cowgirl.customer.com
+3|Melesio|John|Texstar Excavating|4|1|321 smith dr ||Cypress|Texas|77429|United States|832-821-3921|melisio@gmail.com
+4|Garcia|Ernesto|Ernesto Garcia Trucking|4|1|9851 washington ave||Houston|Texas|77006|United States|832-855-4234|ernestotrucking@yahoo.com
+5|Nieto|Jaimes|Niceford|4|1|4105 alabams st||Houston|Texas|77006|United States|713-912-4123|
+6|County Land|Mid|Mid County Land|4|1|450 main st||Houston|Texas|77006|United States|281-394-3213|
+7|Jachon|E|Jachon Int'l LTD|4|1|9889 cowboy ave||Pasadena|Texas|77302|United States|512-321-4234|
+8|Chrome|ATC|Chrome ATC|4|1|3821 johnson st||Cypress|Texas|77429|United States|832-231-3131|
+9|Molina|John||4|0|5314 Adams st||Houston|Texas|77024|United States|713-903-9398|
+10|Stair|Joseph||4|0|732 lettuce vine st||Cypress|Texas|77429|United States|281-312-1331|
+11|Victor|Alejandro|Circle V Trucking|4|1|1500 interstate ave||Pasadena |Texas|77420|United States|832-932-1231|
+12|Buege|James|Rush Truck-Austin|4|1|500 local state dr||Houston|Texas|77024|United States|512-321-3134|
+13|Odell|Trent|Headway Oilfield Service|4|1|7423 steelwood dr||cypress|Texas|77429|United States|713-132-1313|
+14|Stroup|Paul|Paul Stroup Custom Dozing|4|1|800 jason ave||Austin|Texas|73942|United States|832-534-2345|
+15|Ramirez Saldana|Mariano||4|0|813 Harrison Dr||Fort worth|Texas|73193|United States|293-312-3234|
+16|Thomas|Kirk||4|0|2138 Washington ave||Houston|Texas|77429|United States|283-331-3124|MarianoServices@yahoo.com
+17|Park|William|Performance Truck of Houston|4|1|435 congress dr||San Antonio|Texas|73023|United States|842-424-4213|
+18|Chambers|Alexander|Clifton Chevrolet|4|1|654 wick st||Fort worth|Texas|77493|United States|840-423-6543|
+19|Plank|Dennis|Jag Trucking|4|1|953 barker cypress rd||Cypress|Texas|77439|United States|832-944-3135|
+20|Rigoberto|Ramos||4|0|843 kingsbrook rd||houston|Texas|77039|United States|618-313-4684|ptoh@customer.com
+21|Murica|Oscar||4|0|675 kingsway ave||katy|Texas|77329|United States|918-323-2345|
+22|Barrett|Nathan|Rush Truck-San Antonio|4|1|759 licoln ave||Katy|Texas|77493|United States|843-347-4822|
+23|Lopez|Bernardino|AB Trucking|4|1|432 main st||Houston|Texas|77024|United States|753-546-2475|
+24|Larret|August|Larrett Inc|4|1|5th st||Austin|Texas|77323|United States|475-489-2874|
+25|Guttierez|Miguel|Rush Truck-Houston|4|1|3rd st||Austin|Texas|74337|United States|512-837-4783|
+26|Gray|Jake|Red Trucking|4|1|4th st||Austin|Texas|77423|United States|942-324-1342|
+27|Cicero|Jay||4|0|5th st||Austin|Texas|77442|United States|832-384-2424|
+28|Arebalo|Carlos||4|0|12 6th st||Austin|Texas|77432|United States|842-424-2344|
+29|Gonzales|Ricky|Elite Landscaping|4|1|183 7th st||Austin|Texas|77234|United States|844-283-2424|
+30|Escobar|Leo||4|0|313 washington ave||Houston|Texas|72323|United States|834-245-2343|
+31|Agrueta|Fredy||4|0|245 Jefferson Dr||Houston|Texas|38313|United States|842-423-2342|
+32|Carter|Tyrae|R & A Transport Inc|4|1|1003 wirt rd||Houston|Texas|74294|United States|382-432-4241|
+33|Grantham|Weston|Holt Tuck Centers CAT|4|1|10331 Silber Rd||Houston|Texas|74828|United States|821-392-4921|
+34|Getachew|Ben||4|0|19342 ChimneyRock rd||Houston|Texas|77024|United States|842-313-3144|
+35|Cantu|Carlos|Raga Equipment|4|1|4728 Alleyway dr||Houston|Texas|77031|United States|831-234-2424|
+36|Raggio|Gaston||4|0|8422 Lettacevale Dr||Houston|Texas|77301|United States|832-384-2384|
+37|Warren|Christopher|Grande Sales & Services|4|1|36834 Vespuchi Ave||Dallas|Texas|82813|United States|289-731-3718|
+38|Hronek|Jason|H&H Top Soil and Select Fill|4|1|8429 Woodward dr||Dallas|Texas|74223|United States|742-329-3174|
+39|Loya|Francisco||4|0|84297 Johnson Dr||Dallas|Texas|84202|United States|821-428-4824|
+40|Tran|David|Parody Trucking|4|1|1342 Wirt St||Houston|Texas|77023|United States|832-238-2342|
+41|Quinonez|Cesar|SM Trucking|1|1|123 Firelane dr||Houston|Texas|77045|United States|293-123-3123|
+42|Fontenot|Rick||1|0|345 Spring Cypress rd||Cypress|Texas|77429|United States|301-313-3414|
+43|Gilbert|George|George Gilbert Enterprises|1|1|3913 Mason Rd||Katy|Texas|77319|United States|313-424-4242|
+44|Ted|Johnathan|CKG Services|1|1|8983 Lettucvine dr||Houston|Texas|77391|United States|371-381-4823|
+45|Anthony|Vincent|Cowboy Top Soil|1|1|2321 Mason Rd||Katy|Texas|73212|United States|382-234-3234|
+46|Picton|Harold|Coast Materials Inc|1|1|342 Sugarvale dr||Katy|Texas|34221|United States|424-535-6764|
+47|Salinas|Hector|H Salinas Trucking|1|1|105 Johnson St||Houston|Texas|77042|United States|324-453-5454|
+48|Martin|Katia||1|0|3742 lakeview dr||Housotn|Texas|88428|United States|833-234-3823|
+49|Jack|Billy|Billy Jack Construction Co|1|1|6493 Streetview dr||Houston|Texas|83233|United States|382-381-4272|
+50|Vasquez|Edmond||1|0|1st street||Austin|Texas|77332|United States|742-484-2483|
+51|Lamar|Vince|Vince Delivery|1|1|2nd Street||Austin|Texas|37424|United States|742-472-4750|
+52|Alvarez|Zach|Visa Pool Plastering|1|1|3rd Street||Austin|Texas|84714|United States|848-427-4827|
+53|Jones|Brandon|BJ Vacumme|1|1|37812 Adams Ave||Dallas|Texas|88252|United States|833-314-5642|
+54|Romar|Alex|Romar Unlimited Incorporation|1|1|1231 Jefferson Dr||Pasadina|Texas|37718|United States|382-241-4141|
+55|Schmitz|Glenn|J&B Pavelk Inc.|1|1|1847 Rockerfeller St||Fort worth|Texas|77187|United States|832-238-3378|
+56|Diggs|Tom|Hauling Valley LLC|1|1|4727 Aber Ln||New Orleans|Louisiana |72878|United States|372-374-5378|
+57|Sorto|Dionicio||1|0|74232 Amaya Avenue||New Orleans|Louisiana |71878|United States|821-438-4387|
+58|Sheridan|MJ||1|0|3728 Brett Way||College station|Texas|72387|United States|327-274-2741|
+59|Hamrick|Bill|FAA Truck|2|1|73277 Briarcliffe Court||college station|Texas|73874|United States|832-492-4788|
+60|Dugas|KJ||2|0|83748 Britton Drive||college station|Texas|83781|United States|489-248-2498|
+61|Bradley|Craig|DAM Truck Services|2|1|738 Bunker Lane||college station|Texas|37287|United States|373-382-2837|
+62|Loera|Ramon||2|0|7375 Bunker Hill dr||Houston|Texas|77024|United States|389-389-4874|
+63|Warner|Bryan|Premium Contractors|2|1|7484 Chimney rock rd||Houston|Texas|77392|United States|849-237-8487|
+64|Shah|Andy|Shah Transport LLC|2|1|2384 Vinewood hills||New orleans|Louisiana |38732|United States|843-472-4817|
+65|Alvaro|Edmund||2|0|374 vespuchi dr||Fort worth|Texas|38273|United States|382-384-4274|
+66|Medina|David||2|0|7287 hollow lane||Houston|Texas|77023|United States|954-437-5724|
+67|Hughes|Jeff|Hughes Trucking|2|1|8298 Lettuce vine blv||Houston|Texas|72838|United States|923-853-5839|
+68|Garibay|Marco||2|0|89 15th st||Austin|Texas|89828|United States|913-382-3898|
+69|Adams|Adrian|Adams Trucking|2|1|388 Burgos dr||Dallas|Texas|83922|United States|932-482-4834|
+70|Jones|Johnathan|JJ Excavation|2|1|389 Burke court||Dallas|Texas|89288|United States|839-384-8573|
+71|Stanley|Robert||2|0|4850 Burns Dr||Dallas|Texas|38942|United States|843-576-5839|
+72|Gil|Rene||2|0|752 Chester court||Dalls|Texas|84982|United States|847-287-5372|
+73|Castanon|Jose|Clark Freight Lines Inc|2|1|930 Edgeworth dr||Fortworth|Texas|38293|United States|839-498-4832|
+74|Butler|John|JB Ranch|2|1|8493 Edwards st||Dallas|Texas|83924|United States|949-485-3843|
+75|Gilco|Clark|Gilco Contracting|2|1|3829 Alabama st||Houston|Texas|77005|United States|832-485-3273|
+76|Cason|Jacob|Circle M Transport|2|1|8938 Garrott st||Houston|Texas|77006|United States|829-589-3842|
+77|Olivares|Eliud|Elite HTX Trucking LLC|2|1|8398 Feedback ave||Dallas|Texas|83932|United States|839-860-3839|
+78|Hilby|Malik|Hilby Limited Trucking|2|1|8489 Emma Place dr||Dallas|Texas|93029|United States|843-849-4839|
+79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC|2|1|9294 Fairfield st||Houston|Texas|77013|United States|723-859-1983|
+80|Lopez|Irma||2|0|8849 Fieldcrest dr||Dallas|Texas|98208|United States|892-484-3841|
+81|Lane|John|Houston Tree Transplanting|2|1|939 Fink St||Dallas|Texas|82984|United States|739-483-4759|
+82|Scott|Logan|D&D Truck Sales Inc|2|1|4953 Flatwood dr||Houston|Texas|77209|United States|829-485-3813|
+83|Strother|Sophia|Selectrucks Of Houston|2|1|298 Fiatlane dr||Houston|Texas|77299|United States|785-843-3943|
+84|Smith|Kenneth|Rush Truck-Waco|2|1|3894 Mountainvale dr||Dallas|Texas|82988|United States|920-382-8492|
+85|Woods|Russel|South Texas Logging & Transport|2|1|8392 Montrose ave||Houston|Texas|77008|United States|832-472-3728|
+86|Midgley|Tyler|SJC Trucking|2|1|2713 Highville ave||Austin|Texas|93293|United States|382-839-3819|
+87|Rojas|Pedro||2|0|93909 Lookalive ave||Austin|Texas|80834|United States|382-372-3818|
+88|Overton|Anthony|OKB Transport|2|1|123 Gale ln||Houston|Texas|83911|United States|739-843-2839|
+89|Masters|Simon|Texas Truck Sales|2|1|1833 Harvey Dr||Austin|Texas|83021|United States|892-847-4831|
+90|Devin|Jeffrey|Vanguard Truck Center|2|1|9219 Sleepless ave||Houston|Texas|83198|United States|993-329-4928|
+91|Argueta|Julio||2|0|8397 Sheepless Dr||Dallas|Texas|83813|United States|839-234-1738|
+92|Ranier|Sandhu||2|0|6393 Lightfull Dr||Austin|Texas|83911|United States|839-289-1648|
+93|Brimm|Richard||2|0|7492 Tablelight ave||Houston|Texas|92010|United States|839-283-2839|
+94|Cruz|Rigoberto||2|0|31983 Gonzales dr||Houston|Texas|92911|United States|831-293-3729|
+95|McNeal|Bo||2|0|8273 Goodman Ln||Dallas|Texas|93912|United States|832-471-1732|
+96|Garza|Javier||2|0|928 Goldplace dr||Houston|Texas|73197|United States|839-294-2371|
+97|Martinez|Eduardo||2|0|82864 Vespuchi dr||Austin|Texas|83813|United States|268-371-4719|
+98|Esperanza|Jose||2|0|37193 Pelito dr||Fort worth|Texas|83912|United States|722-372-3197|
+99|Hogan|Bob|General Parts & Supply|2|1|9392 Fleeka ave||College station|Texas|35482|United States|833-283-2838|
+100|Benitez|Rodger|Benitez Trucking Enterprises|2|1|Lastlane dr||Houston|Texas|89284|United States|939-274-2748|

@@ -93,8 +93,8 @@ Bulk INSERT VEHICLE_STATUS
 				MAXERRORS = 1
 		);
 --Customer contact info Insert--
-Bulk INSERT CUSTOMER_CONTACT_INFO
-	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\customer_contact_info.txt'
+Bulk INSERT VEHICLE_CONDITION
+	FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\vehicle_condition.txt'
 	WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',

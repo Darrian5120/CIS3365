@@ -20,14 +20,14 @@ import pprint
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
 # Darrian - update supplier
-# Mustafa - vehicles insert, vehicle delete, vehicle update
+# Mustafa - vehicles insert, vehicle update
 # Brandon - 
-# Anthony - employee create(insert), employee delete, vehicle report, employee update
+# Anthony - employee create(insert), vehicle report, employee update
 # Jerry - vehicle update, vehicle report
-# Kyle - service create(insert), service delete, employee report, violation report
+# Kyle - service create(insert), employee report, violation report
 # Jahidul - 
 # Gian - service update, service report
-# Zach - violation insert, violation delete, violation update
+# Zach - violation insert, violation update
 # EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
 
 app = flask.Flask(__name__)
@@ -59,7 +59,7 @@ def new_customer():
         bname = request.form.get("bname")
         active = request.form.get("active")
         business = request.form.get("business")
-        if lname and fname is not None:
+        if lname and fname and active is not None:
             # new customer default
             query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
             vals = (lname, fname, bname, active, business)
