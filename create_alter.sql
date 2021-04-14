@@ -114,7 +114,7 @@ CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
 	S_STATE varchar(10) not null,
 	S_ZIP INT not null,
 	S_COUNTRY varchar(30) not null,
-	S_PHONE INT not null,
+	S_PHONE varchar(15) not null,
 	S_EMAIL varchar(30) not null,
 	CONSTRAINT SUPPLIER_ID_PK1 PRIMARY KEY(SUPPLIER_ID, CONTACT_ID)
 );
@@ -130,7 +130,7 @@ CREATE TABLE dbo.EMPLOYEE_CONTACT_INFO (
 	E_STATE varchar(10) not null,
 	E_ZIP INT not null,
 	E_COUNTRY varchar(30) not null,
-	E_PHONE INT not null,
+	E_PHONE varchar(15) not null,
 	E_EMAIL varchar(30) not null,
 	CONSTRAINT EMPLOYEE_ID_PK1 PRIMARY KEY(EMPLOYEE_ID, CONTACT_ID)
 );

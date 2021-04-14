@@ -110,15 +110,24 @@ Bulk INSERT PAYMENT_REVENUE
 				MAXERRORS = 1
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
-/*Bulk INSERT CUSTOMER_ORDER
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_ORDER.txt'
+Bulk INSERT EMPLOYEE_CONTACT_INFO
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\EMPLOYEE_CONTACT_INFO.txt'
       
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
-		);*/
+		);
+Bulk INSERT SUPPLIER_CONTACT_INFO
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\Supplier_Contact_Info.txt'
+      
+	WITH(
+		FIRSTROW = 2,
+		FIELDTERMINATOR = '|',
+		ROWTERMINATOR = '\n',
+		MAXERRORS = 1
+		);
 Bulk INSERT CUSTOMER_VEHICLE
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
 	WITH(
@@ -127,16 +136,8 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
 		);
-Bulk INSERT VEHICLE_POLICY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\VEHICLE_POLICY.txt'
-	WITH(
-		FIRSTROW = 2,
-		FIELDTERMINATOR = '|',
-		ROWTERMINATOR = '\n',
-		MAXERRORS = 1
-		);
-Bulk INSERT COMPANY_INSURANCE_POLICY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\COMPANY_INSURANCE_POLICY.txt'
+Bulk INSERT POLICY
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\POLICY.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
