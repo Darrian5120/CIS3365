@@ -1,6 +1,10 @@
 EMPLOYEE_ID|CONTACT_ID|E_ADDRESS_LINE1|E_ADDRESS_LINE2|E_CITY|E_STATE|E_ZIP|E_COUNTRY|EMP_PHONE|E_EMAIL
 <<<<<<< HEAD
+<<<<<<< HEAD
 1|1|1148 Margaret Street||Houston|TX|77087|United States|7138445031|herrera12@gmail.com
+=======
+1|1|1148 Margaret Street||Houston|TX|77087|United States|71384455031|herrera12@gmail.com
+>>>>>>> parent of 97436d6 (Revert "Merge branch 'master' of https://github.com/Darrian5120/CIS3365")
 2|1|2284 Del Dew Drive||Houston|TX|77001|United States|2812679191|garciablanca45@gmail.com
 3|1|2249 Mulberry St.||Houston|TX|77060|United States|2817775681|ignacio_m@gmail.com
 4|1|7907 Parkglen Dr.||Houston|TX|77049|United States|2816696390|a_castillo@gmail.com
@@ -24,6 +28,7 @@ EMPLOYEE_ID|CONTACT_ID|E_ADDRESS_LINE1|E_ADDRESS_LINE2|E_CITY|E_STATE|E_ZIP|E_CO
 22|1|1921 Van Buren Circle||Pasadena|TX|77502|United States|8323296323|luisalvarez784@gmail.com
 23|1|1190 Millrose St.||Houston|TX|77040|United States|7137446443|georgehernandez984@hotmail.com
 24|1|12635 Tidwell Rd.||Houston|TX|77044|United States|2818301165|hectortorres76@gmail.com
+<<<<<<< HEAD
 =======
 1|1|1148 Margaret Street||Houston|TX|77087|US|71384455031|herrera12@gmail.com
 2|2|2284 Del Dew Drive||Houston|TX|77001|2812679191|garciablanca45@gmail.com
@@ -50,3 +55,5 @@ EMPLOYEE_ID|CONTACT_ID|E_ADDRESS_LINE1|E_ADDRESS_LINE2|E_CITY|E_STATE|E_ZIP|E_CO
 23|23|1190 Millrose St.||Houston|TX|77040|7137446443|georgehernandez984@hotmail.com
 24|24|12635 Tidwell Rd.||Houston|TX|77044|2818301165|hectortorres76@gmail.com
 >>>>>>> 97436d646c5cee6b698fcdd87f35c45c59579050
+=======
+>>>>>>> parent of 97436d6 (Revert "Merge branch 'master' of https://github.com/Darrian5120/CIS3365")
