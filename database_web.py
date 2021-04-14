@@ -59,7 +59,7 @@ def new_customer():
         bname = request.form.get("bname")
         active = request.form.get("active")
         business = request.form.get("business")
-        if lname and fname and active and business is not None:
+        if lname and fname is not None:
             # new customer default
             query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
             vals = (lname, fname, bname, active, business)
@@ -69,55 +69,12 @@ def new_customer():
             # new customer contact info
             phone = request.form.get("phone")
             email = request.form.get("email")
-            address1 = request.form.get("addy1")
-            address2 = request.form.get("addy2")
+            address = request.form.get("addy")
             zip_code = request.form.get("zip")
             city = request.form.get("city")
             state = request.form.get("state")
-            country = request.form.get("country")
-            # https://stackoverflow.com/questions/29431920/auto-increment-on-composite-primary-key
-            # don't copy
-            query1 = """
-                CREATE TRIGGER TRG
-                ON CUSTOMER_CONTACT_INFO
-                INSTEAD OF INSERT
-
-                AS
-
-                DECLARE @sid INT
-                DECLARE @iid INT
-                DECLARE @add varchar(30)
-                DECLARE @ddd varchar(30)
-                DECLARE @cit varchar(30)
-                DECLARE @zip=C_ZIP INT
-                DECLARE @stn varchar(150)
-                DECLARE @cty varchar(30)
-                DECLARE @num varchar(15)
-                DECLARE @eml varchar(30)
-
-                SELECT @iid=CUSTOMER_ID FROM INSERTED
-                SELECT @add=C_ADDRESS_LINE1 FROM INSERTED
-                SELECT @ddd=C_ADDRESS_LINE2 FROM INSERTED
-                SELECT @cit=C_CITY FROM INSERTED
-                SELECT @zip=C_ZIP FROM INSERTED
-                SELECT @stn=STATE_NAME FROM INSERTED
-                SELECT @cty=COUNTRY_NAME FROM INSERTED
-                SELECT @num=C_PHONE FROM INSERTED
-                SELECT @eml=C_EMAIL FROM INSERTED
-
-                IF NOT EXISTS (SELECT * FROM CUSTOMER_CONTACT_INFO WHERE CUSTOMER_ID=@iid)
-                SET @sid=1
-                ELSE
-                SET @sid=(  SELECT MAX(T.CUSTOMER_ID)+1 
-                            FROM CUSTOMER_CONTACT_INFO T
-                            WHERE T.CUSTOMER_ID=@Iid
-                        )
-
-                INSERT INTO testTbl (CUSTOMER_ID, CONTACT_ID, C_ADDRESS_LINE1, C_ADDRESS_LINE2, C_CITY, C_ZIP, STATE_NAME, COUNTRY_NAME, C_PHONE, C_EMAIL)
-                            VALUES  (@iid,@sid,@add,@ddd,@cit,@zip,@stn,@cty,@num,@eml)
-            """
-            query = "INSERT INTO CUSTOMER_CONTACT_INFO (CUSTOMER_ID, C_ADDRESS_LINE1, C_ADDRESS_LINE2, C_CITY, C_ZIP, STATE_NAME, COUNTRY_NAME, C_PHONE, C_EMAIL) VALUES (?,?,?,?,?,?,?,?,?)"
-            contact_vals = (customer_id, address1, address2, city, zip_code, state, country, phone, email)
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_CONTACT_INFO (CUSTOMER_ID, C_PHONE, C_EMAIL, C_ADDRESS, C_ZIP, C_CITY, STATE_NAME) VALUES (?,?,?,?,?,?,?)"
+            contact_vals = (customer_id, phone, email, address, zip_code, city, state)
             data = cursor.execute(query, contact_vals)
             conn.commit()
             # new customer state
@@ -153,7 +110,7 @@ def update_customer():
         # get table, column, and new value data
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ? AND CONTACT_ID = 1".format(field)
+        sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
         vals = (value, y)
         cursor.execute(sql, vals)
         conn.commit()
@@ -635,6 +592,32 @@ def view_services():
     data = cursor.fetchall()
     return render_template ('viewservices.html' , data = data)
 
+# remove service from db by settiing status to inactive
+@app.route('services/delete-service', methods = ['POST', 'GET'])
+def delete_sevice():
+    
+    sql = "SELECT SERVICE_ID, SERVICE_TYPE FROM Service"
+    cursor.execute(sql)
+    row = crsor.fetchall()
+    service = []
+    for service in rows:
+        services.append(service)
+    if request.method == 'POST':
+        
+        service_id = request.form.get('service')
+        print(employee_id)
+        x = service_id.split(", ")
+        y = int(x[0][1:])
+        
+        sql = "UPDATE Service SET ACTIVE_ID = 2 WHERE SERVICE_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Service removed sucessfully'
+        return render_template('deleteservice.html', services = services, message = message)
+        
+    return render_template('deleteservice.html', services = services)
+
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
     cursor.execute("""
@@ -855,10 +838,17 @@ def violation():
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
-    #conn = pyodbc.connect('Driver={SQL Server Native Client 11.0};Server=COT-CIS3365-05.cougarnet.uh.edu,1433;Database=CoogTechSolutions;UID=cougarnet\\dmwoodar;PWD=6@e@XveTj4E;')
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=DESKTOP-9PNG3JO;Database=CoogTechSolutions;Trusted_Connection=yes;')#PWD=6@e@XveTj4E;.cougarnet.uh.edu
+    #conn = pyodbc.connect('Driver={SQL Server};'
+    #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
+    #                    'Database=CoogTechSolutions;'
+    #                    'UID=;'
+    #                    'PWD=;'
+    #                    'Trusted_Connection=no;')
+    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
+                        'Server=DESKTOP-9PNG3JO;'
+                        'Database=CoogTechSolutions;'
+                        'Trusted_Connection=yes;')
     cursor = conn.cursor()
-    #connect()
     app.run()
     conn.close()
 
