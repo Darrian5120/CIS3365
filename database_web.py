@@ -30,28 +30,6 @@ import pprint
 # Zach - violation insert, violation delete, violation update
 # EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
 
-def connect():
-    global conn
-    conn = None
-    try:
-        #server = 'CoT-CIS3365-05.cougarnet.uh.edu' 
-        server = '172.26.54.39'
-        database = 'CoogTechSolutions' 
-        username = 'cougarnet\\dmwoodar' 
-        password = '' 
-        conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';PORT=14330;DATABASE='+database+';UID='+username+';PWD='+password)
-        #conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';Trusted_Connection=yes')
-        # Making Cursor Object For Query Execution
-        global cursor
-        cursor = conn.cursor()
-        # If Connection Is Successful
-        print("Connected")
-    # If connection is not successful
-    except:
-        print("Can't connect to database")
-        return 0
-
-
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
 ############################# HOME PAGE ####################################################
@@ -98,6 +76,7 @@ def new_customer():
             state = request.form.get("state")
             country = request.form.get("country")
             # https://stackoverflow.com/questions/29431920/auto-increment-on-composite-primary-key
+            # don't copy
             query1 = """
                 CREATE TRIGGER TRG
                 ON CUSTOMER_CONTACT_INFO
