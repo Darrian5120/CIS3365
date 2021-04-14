@@ -20,14 +20,14 @@ import pprint
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
 # Darrian - update supplier
-# Mustafa - vehicles insert, vehicle update
+# Mustafa - vehicles insert, vehicle delete, vehicle update
 # Brandon - 
-# Anthony - employee create(insert), vehicle report, employee update
+# Anthony - employee create(insert), employee delete, vehicle report, employee update
 # Jerry - vehicle update, vehicle report
-# Kyle - service create(insert), employee report, violation report
+# Kyle - service create(insert), service delete, employee report, violation report
 # Jahidul - 
 # Gian - service update, service report
-# Zach - violation insert, violation update
+# Zach - violation insert, violation delete, violation update
 # EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
 
 app = flask.Flask(__name__)
@@ -59,20 +59,23 @@ def new_customer():
         bname = request.form.get("bname")
         active = request.form.get("active")
         business = request.form.get("business")
-        phone = request.form.get("phone")
-        email = request.form.get("email")
-        address = request.form.get("addy1")
-        address2 = request.form.get("addy2")
-        zip_code = request.form.get("zip")
-        city = request.form.get("city")
-        state = request.form.get("state")
-        country = request.form.get("country")
-        if lname and fname and active is not None:
+        if lname and fname is not None:
             # new customer default
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID, ADDRESS_LINE1, ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP,COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
-            vals = (lname, fname, bname, active, business, address, address2, city, state, zip_code, country, phone, email)
+            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
+            vals = (lname, fname, bname, active, business)
             data = cursor.execute(query, vals)
             customer_id = cursor.fetchone()[0]
+            conn.commit()
+            # new customer contact info
+            phone = request.form.get("phone")
+            email = request.form.get("email")
+            address = request.form.get("addy")
+            zip_code = request.form.get("zip")
+            city = request.form.get("city")
+            state = request.form.get("state")
+            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_CONTACT_INFO (CUSTOMER_ID, C_PHONE, C_EMAIL, C_ADDRESS, C_ZIP, C_CITY, STATE_NAME) VALUES (?,?,?,?,?,?,?)"
+            contact_vals = (customer_id, phone, email, address, zip_code, city, state)
+            data = cursor.execute(query, contact_vals)
             conn.commit()
             # new customer state
             query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
@@ -607,7 +610,7 @@ def delete_sevice():
     
     sql = "SELECT SERVICE_ID, SERVICE_TYPE FROM Service"
     cursor.execute(sql)
-    row = crsor.fetchall()
+    row = cursor.fetchall()
     service = []
     for service in rows:
         services.append(service)
@@ -626,6 +629,36 @@ def delete_sevice():
         return render_template('deleteservice.html', services = services, message = message)
         
     return render_template('deleteservice.html', services = services)
+
+# Service line delete to inactive
+@app.route('services/delete-serviceline', methods = ['POST', 'GET'])
+def delete_serviceline():
+    
+    sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST FROM service_line"
+    cursor.execute(sql)
+    row = cursor.fetchall()
+    servicelines = []
+    for serviceline in rows:
+        servicelines.append(serviceline)
+    if request.method == 'POST':
+        
+        serviceline_id = request.form.get('serviceline')
+        print(serviceline_id)
+        x = serviceline_id.split(", ")
+        y = int(x[0][1:])
+        
+        sql = "UPDATE service_line SET ACTIVE_ID = 2 WHERE SERVICE_ORDER_ID = ?, SERVICE_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Service line removed sucessfully'
+        return render_template('updateserviceline.html', servicelines = servicelines, message = message)
+        
+    return render_template('updateserviceline.html', servicelines = servicelines)
+
+# Service Order delete to inactive
+
+# Invoice delete to inactive
 
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
