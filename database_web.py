@@ -59,23 +59,20 @@ def new_customer():
         bname = request.form.get("bname")
         active = request.form.get("active")
         business = request.form.get("business")
+        phone = request.form.get("phone")
+        email = request.form.get("email")
+        address = request.form.get("addy1")
+        address2 = request.form.get("addy2")
+        zip_code = request.form.get("zip")
+        city = request.form.get("city")
+        state = request.form.get("state")
+        country = request.form.get("country")
         if lname and fname and active is not None:
             # new customer default
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
-            vals = (lname, fname, bname, active, business)
+            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID, ADDRESS_LINE1, ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP,COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            vals = (lname, fname, bname, active, business, address, address2, city, state, zip_code, country, phone, email)
             data = cursor.execute(query, vals)
             customer_id = cursor.fetchone()[0]
-            conn.commit()
-            # new customer contact info
-            phone = request.form.get("phone")
-            email = request.form.get("email")
-            address = request.form.get("addy")
-            zip_code = request.form.get("zip")
-            city = request.form.get("city")
-            state = request.form.get("state")
-            query = "INSERT INTO CoogTechSolutions.dbo.CUSTOMER_CONTACT_INFO (CUSTOMER_ID, C_PHONE, C_EMAIL, C_ADDRESS, C_ZIP, C_CITY, STATE_NAME) VALUES (?,?,?,?,?,?,?)"
-            contact_vals = (customer_id, phone, email, address, zip_code, city, state)
-            data = cursor.execute(query, contact_vals)
             conn.commit()
             # new customer state
             query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
