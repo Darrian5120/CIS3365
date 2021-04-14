@@ -83,7 +83,7 @@ CREATE TABLE dbo.CUSTOMER_CONTACT_INFO (
 	STATE_NAME varchar(15) not null,
 	COUNTRY_NAME varchar(30) not null,
 	C_PHONE varchar(15)  not null,
-	C_EMAIL varchar(30) not null,
+	C_EMAIL varchar(30),
 	CONSTRAINT CUSTOMER_ID_PK1 PRIMARY KEY(CUSTOMER_ID, CONTACT_ID)
 );
 --VEHICLE STATUS--
