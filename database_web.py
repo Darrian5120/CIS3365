@@ -292,16 +292,28 @@ def update_vehicles():
 # remove vehicle from db by setting status to inactive  
 @app.route ('/vehicles/delete-vehicles' , methods =['POST' , 'GET'])
 def delete_vehicle():
-    message = ''
-    v_vin = request.form.get ("v_vin")      ##NEEDS DOUBLE CHECKING##
-    if v_vin is not None:
-        #query = 
-        #vals = 
-        #data = 
-        #conn.commit()
-        message = "Employee removed successfully!"
-        #return render_template ('employees.html' , data = data , message = message)
-    return render_template('deleteemployee.html')
+   
+    sql = "SELECT V_ID, V_VIN, V_LICENSE_PLATE FROM VEHICLE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    vehicles = []
+    for vehicle in rows:
+        vehicles.append(vehicle)
+    if request.method == 'POST':
+        
+        vehicle_id = request.form.get('vehicle')
+        print(vehicle_id)
+        x = vehicle_id.split(", ")
+        y = int(x[0][1:])
+        
+        sql = "UPDATE Vehicle SET ACTIVE_ID = 2 WHERE V_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Vehicle removed sucessfully'
+        return render_template('deletevehicel.html', vehicles = vehicles, message = message)
+        
+    return render_template('deletevehicle.html', vehicles = vehicles)
 
 #view all vehicles
 @app.route ('/vehicles/view-vehicles' , methods = ['GET'])
