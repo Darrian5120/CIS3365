@@ -39,7 +39,7 @@ app.config["DEBUG"] = True # browser can see error messages
 def home():
     return render_template('home.html')
 
-############################# CUSTOMER DONE#####################################################
+############################# CUSTOMER #####################################################
 # Customer home page. Can select multiple CRUD options for customers
 # reference customer.html for menu options.
 @app.route('/customers', methods = ['GET']) 
@@ -416,24 +416,22 @@ def employees():
 def new_employee():
     message = ''
     if request.method == 'POST':
-        lname = request.form.get("lname")
-        fname = request.form.get("fname")
-        role = request.form.get("role")
-        active = request.form.get("active")
-        phone = request.form.get("phone")
-        email = request.form.get("email")
-        address = request.form.get("addy1")
-        address2 = request.form.get("addy2")
-        zip_code = request.form.get("zip")
-        city = request.form.get("city")
-        state = request.form.get("state")
-        country = request.form.get("country")
+        lname = request.form.get ("lname")
+        fname = request.form.get ("fname")
+        address = request.form.get ("address")
+        hdate = request.form.get ("hdate")
+        hrs = request.form.get ("hrs")
+        prate = request.form.get ("prate")
+        phone = request.form.get ("phone")
+        binfo = request.form.get ("binfo")
+        tax = request.form.get ("tax")
+        jobfunc = request.form.get ("jobfunc")
+        active = request.form.get ("active")
         if lname and fname is not None:   
             # new employee default
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, ROLE_ID, ACTIVE_ID, ADDRESS_LINE1, ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP,COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
-            vals = (lname, fname, role, active, address, address2, city, state, zip_code, country, phone, email)
-            cursor.execute(query, vals)
-            employee_id = cursor.fetchone()[0]
+            query = "INSERT INTO Employee (EMP_LNAME, EMP_FNAME, EMP_ADDRESS, EMP_HIRE_DATE, EMP_HOURS, EMP_PAY_RATE, EMP_PHONE, EMP_BANK_INFO, EMP_TAX, EMP_JOB_FUNC, ACTIVE_ID) OUTPUT INSERTED.EMPLOYEE_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+            vals = (lname, fname, address, hdate, hrs, prate, phone, binfo, tax, jobfunc, active)
+            cursor.execute (query, vals)
             conn.commit()
             message = "New employee entered successfully!"
             return render_template ('newemployee.html', message = message)
@@ -659,8 +657,56 @@ def delete_serviceline():
     return render_template('updateserviceline.html', servicelines = servicelines)
 
 # Service Order delete to inactive
+@app.route('services/delete-serviceorder', methods = ['POST', 'GET'])
+def delete_serviceorder():
+    
+    sql = "SELECT SERVICE_ORDER_ID, ORDER_DATE FROM service_order"
+    cursor.execute(sql)
+    row = cursor.fetchall()
+    serviceorders = []
+    for serviceorder in rows:
+        serviceorders.append(serviceline)
+    if request.method == 'POST':
+        
+        serviceorder_id = request.form.get('serviceorder')
+        print(serviceorder_id)
+        x = serviceorder_id.split(", ")
+        y = int(x[0][1:])
+        
+        sql = "UPDATE service_order SET ACTIVE_ID = 2 WHERE SERVICE_ORDER_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Service order removed sucessfully'
+        return render_template('updateserviceorder.html', serviceorders = serviceorders, message = message)
+        
+    return render_template('updateserviceorder.html', serviceorders = serviceorders)
 
 # Invoice delete to inactive
+@app.route('services/delete-invoice', methods = ['POST', 'GET'])
+def delete_invoice():
+    
+    sql = "SELECT INVOICE_ID, TOTAL_COST, INVOICE_DATE FROM Invoice"
+    cursor.execute(sql)
+    row = cursor.fetchall()
+    invoices = []
+    for invoice in rows:
+        invoices.append(invoice)
+    if request.method == 'POST':
+        
+        invoice_id = request.form.get('invoice')
+        print(invoice_id)
+        x = invoice_id.split(", ")
+        y = int(x[0][1:])
+        
+        sql = "UPDATE Invoice SET ACTIVE_ID = 2 WHERE INVOICE_ID = ?"
+        vals = (y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Invoice removed sucessfully'
+        return render_template('updateinvoice.html', invoices = invoices, message = message)
+        
+    return render_template('updateinvoice.html', invoices = invoices)
 
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
