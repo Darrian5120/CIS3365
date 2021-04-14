@@ -111,11 +111,11 @@ CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
 	S_ADDRESS_LINE1 varchar(30)  not null,
 	S_ADDRESS_LINE2 varchar(30),
 	S_CITY varchar(30) not null,
-	S_STATE varchar(10) not null,
-	S_ZIP INT not null,
+	S_STATE varchar(15) not null,
+	S_ZIP varchar(7) not null,
 	S_COUNTRY varchar(30) not null,
 	S_PHONE varchar(15) not null,
-	S_EMAIL varchar(30) not null,
+	S_EMAIL varchar(35) not null,
 	CONSTRAINT SUPPLIER_ID_PK1 PRIMARY KEY(SUPPLIER_ID, CONTACT_ID)
 );
 
@@ -127,17 +127,27 @@ CREATE TABLE dbo.EMPLOYEE_CONTACT_INFO (
 	E_ADDRESS_LINE1 varchar(30)  not null,
 	E_ADDRESS_LINE2 varchar(30),
 	E_CITY varchar(30) not null,
-	E_STATE varchar(10) not null,
+	E_STATE varchar(15) not null,
 	E_ZIP INT not null,
 	E_COUNTRY varchar(30) not null,
 	E_PHONE varchar(15) not null,
-	E_EMAIL varchar(30) not null,
+	E_EMAIL varchar(35) not null,
 	CONSTRAINT EMPLOYEE_ID_PK1 PRIMARY KEY(EMPLOYEE_ID, CONTACT_ID)
 );
 create table dbo.CUSTOMER_VEHICLE(
 	V_ID int not null,
 	CUSTOMER_ID int not null,
 	CONSTRAINT V_ID_PK2 PRIMARY KEY (V_ID, CUSTOMER_ID)
+);
+create table dbo.MAKE(
+	MAKE_ID int not null,
+	MAKE_NAME int not null,
+	CONSTRAINT MAKE_PK PRIMARY KEY (MAKE_ID)
+);
+create table dbo.MODEL(
+	MODEL_ID int not null,
+	MAKE_NAME int not null,
+	CONSTRAINT MAKE_PK PRIMARY KEY (MAKE_ID)
 );
 create table dbo.POLICY(
 	CUSTOMER_ID INT NOT NULL,
@@ -331,7 +341,7 @@ add CONSTRAINT ACTIVE_ID_FK4 FOREIGN KEY (ACTIVE_ID) REFERENCES EMPLOYEE_STATUS(
 CONSTRAINT ROLE_ID_FK FOREIGN KEY (ROLE_ID) REFERENCES ROLE(ROLE_ID);
 --Alter Invoice--
 ALTER TABLE INVOICE
-add CONSTRAINT SL_ID_FK FOREIGN KEY (SERVICE_ORDER_ID) REFERENCES SERVICE_LINE,
+add CONSTRAINT SO_ID_FK FOREIGN KEY (SERVICE_ORDER_ID) REFERENCES SERVICE_ORDER,
 CONSTRAINT ACTIVE_ID_FK7 FOREIGN KEY (ACTIVE_ID) REFERENCES INVOICE_STATUS(ACTIVE_ID);
 
 ---------------------------Mustafa------------------------------------------------------
