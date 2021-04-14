@@ -137,7 +137,7 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_VEHICLE.txt'
 		MAXERRORS = 1
 		);
 Bulk INSERT POLICY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\POLICY.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\policy.txt'
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
