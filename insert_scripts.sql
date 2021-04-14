@@ -111,8 +111,7 @@ Bulk INSERT PAYMENT_REVENUE
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
 Bulk INSERT EMPLOYEE_CONTACT_INFO
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\EMPLOYEE_CONTACT_INFO.txt'
-      
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\model.txt'  
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
@@ -120,8 +119,7 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\EMPLOYEE_CONTACT_INFO.txt'
 		MAXERRORS = 1
 		);
 Bulk INSERT SUPPLIER_CONTACT_INFO
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\Supplier_Contact_Info.txt'
-      
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\make.txt'      
 	WITH(
 		FIRSTROW = 2,
 		FIELDTERMINATOR = '|',
