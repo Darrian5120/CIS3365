@@ -1,25 +1,25 @@
 EMPLOYEE_ID|CONTACT_ID|E_ADDRESS_LINE1|E_ADDRESS_LINE2|E_CITY|E_STATE|E_ZIP|E_COUNTRY|EMP_PHONE|E_EMAIL
-1|1|1148 Margaret Street||Houston|TX|77087|US|71384455031|herrera12@gmail.com
-2|2|2284 Del Dew Drive||Houston|TX|77001|2812679191|garciablanca45@gmail.com
-3|3|2249 Mulberry St.||Houston|TX|77060|2817775681|ignacio_m@gmail.com
-4|4|7907 Parkglen Dr.||Houston|TX|77049|2816696390|a_castillo@gmail.com
-5|5|3520 Poe Rd.||Houston|TX|77040|8329558271|yeisonbanegas47@gmail.com
-6|6|13155 Woodforest Blvd.||Houston|Tx|77015|7133346111|gersonbanegas12@gmail.com
-7|7|1829 Charles Rd.||Houston|TX|77093|2812442607|victorbarron65@gmail.com
-8|8|13753 Waxahachie St.||Houston|TX|77015|7169230064|hectorvaladez90@gmail.com
-9|9|458 Monroe St.|BLDG E, APT 456|Houston|TX|77036|7134572630|pedropuerto@34@gmail.com
-10|10|2712 Clousson Rd.||Houston|TX|77063|7132018443|pedromedina90@hotmail.com
-11|11|4273 Shingleton Rd.||Houston|TX|77044|7134101682|omarpara83@gmail.com
-12|12|4746 Werninger St.||Houston|TX|77056|8326847496|johnbiriesca467@gmail.com
-13|13|4267 Circle Dr.|BLDG B, APT 204|Houston|TX|77063|8324650160|maycastaneda20@gmail.com
-14|14|12129 Ticonderogard Rd.||Houston|TX|77044|2814136024|carlosavila195@gmail.com
-15|15|11235 Valley Kings Dr.||Houston|TX|77044|8328783729|ricardocarabez71@hotmail.com
-16|16|11521 Bannister Ln.||Houston|TX|77075|2818854176|robertoalanis52@gmail.com
-17|17|2090 Chapel St.||Houston|TX|77002|281-664-1463|ernestoalanis91@gmail.com
-18|18|2416 Firnat St.||Houston|TX|77093|8322790356|israelramirez10@gmail.com
-19|19|14437 Brownsville St.||Houston|TX|77015|2818003641|fidenciodominguez61@gmail.com
-20|20|12833 Ticonderogard Rd.||Houston|TX|77044|8322029001|manueljuarez64@gmail.com
-21|21|12914 Ticonderogard Rd.||Houston|TX|77044|7135806884|omarbibriesca31@gmail.com
-22|22|1921 Van Buren Circle||Pasadena|TX|77502|8323296323|luisalvarez784@gmail.com
-23|23|1190 Millrose St.||Houston|TX|77040|7137446443|georgehernandez984@hotmail.com
-24|24|12635 Tidwell Rd.||Houston|TX|77044|2818301165|hectortorres76@gmail.com
+1|1|1148 Margaret Street||Houston|TX|77087|United States|71384455031|herrera12@gmail.com
+2|1|2284 Del Dew Drive||Houston|TX|77001|United States|2812679191|garciablanca45@gmail.com
+3|1|2249 Mulberry St.||Houston|TX|77060|United States|2817775681|ignacio_m@gmail.com
+4|1|7907 Parkglen Dr.||Houston|TX|77049|United States|2816696390|a_castillo@gmail.com
+5|1|3520 Poe Rd.||Houston|TX|77040|United States|8329558271|yeisonbanegas47@gmail.com
+6|1|13155 Woodforest Blvd.||Houston|TX|77015|United States|7133346111|gersonbanegas12@gmail.com
+7|1|1829 Charles Rd.||Houston|TX|77093|United States|2812442607|victorbarron65@gmail.com
+8|1|13753 Waxahachie St.||Houston|TX|77015|United States|7169230064|hectorvaladez90@gmail.com
+9|1|458 Monroe St.|BLDG E, APT 456|Houston|TX|77036|United States|7134572630|pedropuerto@34@gmail.com
+10|1|2712 Clousson Rd.||Houston|TX|77063|United States|7132018443|pedromedina90@hotmail.com
+11|1|4273 Shingleton Rd.||Houston|TX|77044|United States|7134101682|omarpara83@gmail.com
+12|1|4746 Werninger St.||Houston|TX|77056|United States|8326847496|johnbiriesca467@gmail.com
+13|1|4267 Circle Dr.|BLDG B, APT 204|Houston|TX|77063|United States|8324650160|maycastaneda20@gmail.com
+14|1|12129 Ticonderogard Rd.||Houston|TX|77044|United States|2814136024|carlosavila195@gmail.com
+15|1|11235 Valley Kings Dr.||Houston|TX|77044|United States|8328783729|ricardocarabez71@hotmail.com
+16|1|11521 Bannister Ln.||Houston|TX|77075|United States|2818854176|robertoalanis52@gmail.com
+17|1|2090 Chapel St.||Houston|TX|77002|United States|2816641463|ernestoalanis91@gmail.com
+18|1|2416 Firnat St.||Houston|TX|77093|United States|8322790356|israelramirez10@gmail.com
+19|1|14437 Brownsville St.||Houston|TX|77015|United States|2818003641|fidenciodominguez61@gmail.com
+20|1|12833 Ticonderogard Rd.||Houston|TX|77044|United States|8322029001|manueljuarez64@gmail.com
+21|1|12914 Ticonderogard Rd.||Houston|TX|77044|United States|7135806884|omarbibriesca31@gmail.com
+22|1|1921 Van Buren Circle||Pasadena|TX|77502|United States|8323296323|luisalvarez784@gmail.com
+23|1|1190 Millrose St.||Houston|TX|77040|United States|7137446443|georgehernandez984@hotmail.com
+24|1|12635 Tidwell Rd.||Houston|TX|77044|United States|2818301165|hectortorres76@gmail.com
