@@ -1,12 +1,11 @@
 import flask
-from flask import Flask, request, make_response, render_template, url_for, redirect
+from flask import Flask, jsonify, request, make_response, render_template, url_for, redirect
 import pyodbc
 import pandas as pd 
 import datetime
 import time
 import sys
 import requests
-import json
 import ssl
 import datetime
 from tabulate import tabulate
@@ -155,14 +154,11 @@ def delete_customer():
 @app.route('/customers/view-customers', methods = ['GET']) 
 def view_customers():
     cursor.execute("""
-        SELECT CUSTOMER.CUSTOMER_ID AS "ID", CUSTOMER.C_FNAME, CUSTOMER.C_LNAME,
-        CUSTOMER.C_BUSINESS_NAME, CUSTOMER_CONTACT_INFO.C_PHONE, CUSTOMER_CONTACT_INFO.C_EMAIL,
-        CUSTOMER_CONTACT_INFO.C_ADDRESS, CUSTOMER_CONTACT_INFO.C_CITY, CUSTOMER_CONTACT_INFO.STATE_NAME,
-        CUSTOMER_CONTACT_INFO.C_ZIP, CUSTOMER_STATUS.ACTIVE_NAME 
+        SELECT *
 
         FROM Customer
-        JOIN CUSTOMER_CONTACT_INFO
-        ON Customer.CUSTOMER_ID = CUSTOMER_CONTACT_INFO.CUSTOMER_ID
+        JOIN CUSTOMER_TYPE
+        ON Customer.BUSINESS_ID = CUSTOMER_TYPE.BUSINESS_ID
         JOIN CUSTOMER_STATUS
         ON Customer.ACTIVE_ID = CUSTOMER_STATUS.ACTIVE_ID
 
@@ -236,18 +232,45 @@ def vehicles():
 def new_vehicle():
     message = ''
     # dropdowns
-    sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
+    join = """"
+        SELECT MAKE.MAKE_ID, MAKE.MAKE_NAME, MODEL.MODEL_ID, MODEL.MODEL_NAME
+        FROM MODEL
+        JOIN MAKE
+        WHERE MAKE.MAKE_ID = MODEL.MODEL_ID;
+    """
+    cursor.execute(join)
+    rows = cursor.fetchall()
+    results = []
+    for x in rows:
+        results.append(x)
+    jsonify(results)
+    sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
     cursor.execute(sql)
     rows = cursor.fetchall()
-    customers = []
-    for customer in rows:
-        customers.append(customer)
+    makes = []
+    gui_makes = []
+    for make in rows:
+        makes.append(make)
+        gui_makes.append(make[0])
+    g_makes = tuple(gui_makes)
+    sql = "SELECT MODEL_ID, MODEL_NAME FROM MODEL WHERE MAKE_ID IN {}".format(g_makes)
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    models = []
+    for model in rows:
+        models.append(model)
     sql = "SELECT CONDITION_ID, CONDITION FROM VEHICLE_CONDITION"
     cursor.execute(sql)
     rows = cursor.fetchall()
     conditions = []
     for condition in rows:
         conditions.append(condition)
+    sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer)
     sql = "SELECT INSURANCE_ID, INSURANCE_NAME FROM INSURANCE_COMPANY"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -260,6 +283,9 @@ def new_vehicle():
     policies = []
     for policy in rows:
         policies.append(policy)
+    
+        
+    
     if request.method == 'POST':
         vin = request.form.get("vin")
         make = request.form.get("make")
@@ -307,8 +333,8 @@ def new_vehicle():
             vals = (cust, v_id, comp, pol, date)
             cursor.execute(query, vals)
             conn.commit()
-            return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies)
-    return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies)
+            return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=makes, models=models)
+    return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=make, models=models)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])

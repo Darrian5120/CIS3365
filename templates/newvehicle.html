@@ -32,24 +32,28 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form action="" method="POST">
+        <form action="" method="POST" id="form1">
             <h3>Vehicle</h3>
             <p>
                 <label for="vin">VIN</label>
                 <input type="text" name="vin">
             </p>
             <p>
-                <label for="model">Year</label>
-                <input type="text" name="model">
-            </p>
-            <p>
                 <label for="make">Make</label>
-                <input type="text" name="make">
+                <select name="make" id="make">
+                    <option value="">Make</option>
+                    {% for make in makes[0:] %}
+                    <option value="{{ make }}" >{{ make }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p>
                 <label for="model">Model</label>
-                <input type="text" name="model">
-            </p>
+                <select name="model" id="model">
+                    {% for model in models[0:] %}
+                    <option value="{{ model }}" >{{ model }}</option>"
+                    {% endfor %}
+                </select>
             <p>
                 <label for="color">Color</label>
                 <input type="text" name="color">
@@ -113,6 +117,28 @@
         {% endif %}
     </body>
     <script>
+        var subjectObject = {
+            "Front-end": {["HTML","CSS","JavaScript"]},
+            "Back-end": {
+                "PHP": ["Variables", "Strings", "Arrays"],
+                "SQL": ["SELECT", "UPDATE", "DELETE"]
+            }
+        }
 
+        window.onload = function() {
+            var makeSel = document.getElementById("make");
+            var modelSel = document.getElementById("model");
+            for (var x in subjectObject) {
+                makeSel.options[makeSel.options.length] = new Option(x, x);
+        }
+
+        makeSel.onchange = function() {
+            //empty Chapters- and Topics- dropdowns
+            modelSel.length = 1;
+            //display correct values
+            for (var y in makeSel[this.value]) {
+            topicSel.options[topicSel.options.length] = new Option(y, y);
+            }
+        }
     </script>
 </html>

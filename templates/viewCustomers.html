@@ -40,14 +40,17 @@
                     <th>Customer ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Business Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Address</th>
+                    <th>Business</th>
+                    <th>Acitve</th>
+                    <th>Type</th>
+                    <th>Address Line 1</th>
+                    <th>Address Line 2</th>
                     <th>City</th>
                     <th>State</th>
                     <th>Zip Code</th>
-                    <th>Active</th>
+                    <th>Country</th>
+                    <th>Phone</th>
+                    <th>Email</th>
                 </tr>
             </thead>    
             <tbody>
@@ -64,7 +67,9 @@
                         <td>{{row[8]}}</td>
                         <td>{{row[9]}}</td>
                         <td>{{row[10]}}</td>
-
+                        <td>{{row[11]}}</td>
+                        <td>{{row[12]}}</td>
+                        <td>{{row[13]}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -330,7 +330,7 @@ WITH (
 				MAXERRORS = 1
 		);
 Bulk INSERT INSURANCE_COMPANY
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\INSURANCE_COMPANY.txt'
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\insurance_company.txt'
 WITH (
 			FIRSTROW =2,
 				FIELDTERMINATOR = '|',
