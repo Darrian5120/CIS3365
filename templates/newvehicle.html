@@ -39,11 +39,15 @@
                 <input type="text" name="vin">
             </p>
             <p>
+                <label for="model">Year</label>
+                <input type="text" name="model">
+            </p>
+            <p>
                 <label for="make">Make</label>
                 <input type="text" name="make">
             </p>
             <p>
-                <label for="model">Year</label>
+                <label for="model">Model</label>
                 <input type="text" name="model">
             </p>
             <p>
@@ -63,6 +67,15 @@
                     <option value="3">Awaiting Parts</option>
                 </select>
             </p>
+            <p>
+                <label for="active">Condition</label>
+                <select name="condition">
+                    <option value="">Condition</option>
+                    {% for condition in conditions[0:] %}
+                    <option value="{{ condition }}" >{{ condition }}</option>"
+                    {% endfor %}
+                </select>
+            </p>
             <h3>Customer</h3>
             <p>
                 <select name="customer">
@@ -73,16 +86,24 @@
             </p>
             <h3>Insurance</h3>
             <p>
-                <label for="ins_name">Insurance Company Name</label>
-                <input type="text" name="ins_name">
+                <label for="company">Insurance Company</label>
+                <select name="company">
+                    {% for company in companies[0:] %}
+                    <option value="{{ company }}" >{{ company }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p>
-                <label for="policy">Insurance Policy Name</label>
-                <input type="text" name="policy">
+                <label for="policy">Insurance Policy</label>
+                <select name="customer">
+                    {% for company in companies[0:] %}
+                    <option value="{{ company }}" >{{ company }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p>
                 <label for="exp">Expiration Date</label>
-                <input type="text" name="exp">
+                <input type="date" name="exp">
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>
