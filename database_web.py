@@ -121,7 +121,7 @@ def update_customer():
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET']) # FINISHED
 def delete_customer():
-     # send list of customer id's to gui dropdown
+    # send list of customer id's to gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -240,9 +240,6 @@ def new_vehicle():
         #if model in data:
         #    data[model]
         data.setdefault(make, []).append(model)
-    response = jsonify(data)
-    response.status_code = 200
-    dump = json.dumps(data)
     #####################
     sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
     cursor.execute(sql)
@@ -283,11 +280,10 @@ def new_vehicle():
         model = request.form.get("model")
         cursor.execute("SELECT MODEL_ID FROM MODEL WHERE MODEL_NAME = '{}'".format(model))
         model = cursor.fetchone()[0]
-        year = str(request.form.get("year"))
-        print(year)
+        year = (request.form.get("year"))
         license_plate = request.form.get("plate")
         color = request.form.get("color")
-        active = request.form.get("active")
+        active = int(request.form.get("active"))
         if vin is not None:#and make and model and year and license_plate is not None:
             condition_id = request.form.get('condition')
             x1 = condition_id.split(", ")
@@ -295,9 +291,14 @@ def new_vehicle():
             # insert vehicle table
             query = "INSERT INTO VEHICLE (V_VIN, MAKE_ID, MODEL_ID, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?,?)"
             vals = (vin, make, model, year, license_plate, color, active, cond)
+            print(vals)
             cursor.execute(query, vals)
             v_id = cursor.fetchone()[0]
+            print(v_id)
             conn.commit()
+            print(v_id)
+            print(v_id)
+            print(v_id)
             # insert customer_vehicle table
             customer_id = request.form.get('customer')
             x = customer_id.split(", ")
@@ -319,8 +320,8 @@ def new_vehicle():
             vals = (cust, v_id, comp, pol, date)
             cursor.execute(query, vals)
             conn.commit()
-            return render_template ('newvehicle.html', makes = makes, response=response,dump=dump,customers=customers, conditions=conditions, companies = companies, policies = policies, data = data)
-    return render_template ('newvehicle.html', makes = makes, response=response,dump=dump,customers=customers, conditions=conditions, companies = companies, policies = policies, data = data)
+            return render_template ('newvehicle.html', makes = makes, customers=customers, conditions=conditions, companies = companies, policies = policies, data = data)
+    return render_template ('newvehicle.html', makes = makes, customers=customers, conditions=conditions, companies = companies, policies = policies, data = data)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
@@ -339,35 +340,36 @@ def update_vehicles():
         return render_template ('updateemployee.html')
 
 # remove vehicle from db by setting status to inactive  
-@app.route ('/vehicles/delete-vehicles' , methods =['POST' , 'GET'])
+@app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET'])
 def delete_vehicle():
-   
-    sql = "SELECT V_ID, V_VIN, V_LICENSE_PLATE FROM VEHICLE"
-    cursor.execute(sql)
+    cursor.execute("""
+        SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
+        FROM VEHICLE
+        JOIN MAKE
+        ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+        JOIN MODEL
+        ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+    """)
     rows = cursor.fetchall()
     vehicles = []
     for vehicle in rows:
         vehicles.append(vehicle)
     if request.method == 'POST':
-        
         vehicle_id = request.form.get('vehicle')
-        print(vehicle_id)
         x = vehicle_id.split(", ")
         y = int(x[0][1:])
-        
         sql = "UPDATE Vehicle SET ACTIVE_ID = 2 WHERE V_ID = ?"
         vals = (y)
         cursor.execute(sql, vals)
         conn.commit()
         message = 'Vehicle removed sucessfully'
-        return render_template('deletevehicel.html', vehicles = vehicles, message = message)
-        
+        return render_template('deletevehicle.html', vehicles = vehicles, message = message)
     return render_template('deletevehicle.html', vehicles = vehicles)
 
 #view all vehicles
 @app.route ('/vehicles/view-vehicles' , methods = ['GET'])
 def view_vehicles():
-    cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.vehicle")
+    cursor.execute ("SELECT * FROM VEHICLE")
     data = cursor.fetchall()
     return render_template ('viewvehicles.html' , data = data)
 ## vehicle part report 

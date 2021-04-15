@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title> Herrera Fabricating Inc.</title>
+		<!-- this sets the page for responsive scaling -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {box-sizing: border-box;}
+            body {margin: 0;}
+            .header {background-color:rgb(165, 58, 58); padding:50px; text-align:center} /*syle the header*/
+            .topnav {border:0px; background-color:#333; overflow:hidden; margin:auto; width: 100%; text-align: center;} /*syle the topnav*/
+            .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
+            .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
+            #td {width: 20%; text-align: center; margin: 0; padding: 0;}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Herrera Fabricating Inc.</h1>
+        </div>
+        <table class="topnav" cellspacing="0" cellpadding="0">
+            <tr>
+                <td id="td"><a href ="/customers">Customers</a></td>
+                <td id="td"><a href ="/vehicles">Vehicles</a></td>
+                <td id="td"><a href ="/services">Services</a></td>
+                <td id="td"><a href ="/employees">Employees</a></td>
+                <td id="td"><a href ="/reports">Reports</a></td>
+            </tr>
+        </table>
+        <form action="" method="post">
+            <p>
+                <select name="vehicle">
+                    {% for vehicle in vehicles[0:] %}
+                    <option value="{{ vehicle }}" >{{ vehicle }}</option>"
+                    {% endfor %}
+                </select>
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+	    {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </body>
+</html>
