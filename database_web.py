@@ -660,7 +660,11 @@ def new_service():
             service_id = cursor.fetchone()[0]
             conn.commit()
             
-            # add service line
+            # add service line HELP
+            
+            # add service order HELP
+            
+            # add invoice HELP
             
 # modify service
 @app.route('/service/upate', methods = ['POST', 'GET'])
@@ -668,8 +672,8 @@ def update_service():
     sql = "SELECT SERVICE_ID, SERVICE_TYPE, COST, ACTIVE_ID FROM Service"
     cursor.execute(sql)
     rows = cursor.fetchall()
-    service = []
-    for services in rows:
+    services = []
+    for service in rows:
         services.append(service)
     if request.method == 'POST':
         service_id = request.form.get('service')
@@ -687,11 +691,77 @@ def update_service():
     return render_template('updateservice.html', services = services)
 
 # modify service line
+@app.route('/service/upate-serviceline', methods = ['POST', 'GET'])
+def update_serviceline():
+    sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST, ACTIVE_ID FROM service_line"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    servicelines = []
+    for serviceline in rows:
+        servicelines.append(serviceline)
+    if request.method == 'POST':
+        serviceline_id = request.form.get('serviceline')
+        print(serviceline_id)
+        x = serviceline_id.split(", ")
+        y = int(x[0][1:])
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE SERVICE_ORDER_ID = ?, SERVICE_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Service line edited sucessfully' 
+        return render_template('updateserviceline.html', servicelines = servicelines, message = message)   
+    return render_template('updateserviceline.html', servicelines = servicelines)
+
 
 # modify service order
+@app.route('/service/upate-serviceorder', methods = ['POST', 'GET'])
+def update_serviceorder():
+    sql = "SELECT SERVICE_ORDER_ID, CUSTOMER_ID, ORDER_DATE, ACTIVE_ID FROM service_order"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    serviceorders = []
+    for serviceorder in rows:
+        serviceorders.append(serviceorder)
+    if request.method == 'POST':
+        serviceorder_id = request.form.get('serviceorder')
+        print(serviceorder_id)
+        x = serviceorder_id.split(", ")
+        y = int(x[0][1:])
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE SERVICE_ORDER_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Service order edited sucessfully' 
+        return render_template('updateserviceorder.html', serviceorders = serviceorders, message = message)   
+    return render_template('updateserviceorder.html', serviceorders = serviceorders)
 
 # modify invoice 
-
+@app.route('/service/upate-invoice', methods = ['POST', 'GET'])
+def update_invoice():
+    sql = "SELECT INVOICE_ID, SERVICE_ORDER_ID, TOTAL_COST, INVOICE_DATE, AMT_OWNED, ACTIVE_ID FROM Invoice"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    invoices = []
+    for invoice in rows:
+        invoices.append(invoice)
+    if request.method == 'POST':
+        invoice_id = request.form.get('invoice')
+        print(invoice_id)
+        x = invoice_id.split(", ")
+        y = int(x[0][1:])
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE INVOICE_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Invoice edited sucessfully' 
+        return render_template('updateinvoice.html', invoices = invoices, message = message)   
+    return render_template('updateinvoice.html', invoices = invoices)
         
         
 
