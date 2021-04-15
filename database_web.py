@@ -608,6 +608,26 @@ def view_services():
     data = cursor.fetchall()
     return render_template ('viewservices.html' , data = data)
 
+# add service deafult
+# Not finish dont know how to add service line
+@app.route('/services/new-service', methods = ['POST', 'GET'])
+def new_service():
+    message = ''
+    if request.method == 'POST':
+        sertype = request.form.get("sertype")
+        cost = request.form.get("cost")
+        actid = request.form.get("actid")
+        if sertype and cost is not None:
+            # default service
+            query = "INSERT INTO Service (SERVICE_TYPE, COST, ACTIVE_ID) OUTPUT INSERTED.SERVICE_ID VALUES (?, ?, ?)"
+            vals = (sertype, cost, actid)
+            data = cursor.execute(query, vals)
+            service_id = cursor.fetchone()[0]
+            conn.commit()
+            
+            # add service line
+            
+
 # remove service from db by settiing status to inactive
 @app.route('services/delete-service', methods = ['POST', 'GET'])
 def delete_sevice():
