@@ -88,7 +88,7 @@ def new_customer():
 
 # modify exisitng customer by entering id
 # FIXME- find out how to only update one field
-@app.route('/customers/update', methods = ['POST','GET'])
+@app.route('/customers/update', methods = ['POST','GET']) # FINISHED
 def update_customer():
     # send list of customer id's to gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
@@ -110,6 +110,15 @@ def update_customer():
         vals = (value, y)
         cursor.execute(sql, vals)
         conn.commit()
+        if field == 'Customer SET STATE_NAME':
+            query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
+            val = value
+            cursor.execute(query, val)
+            data = cursor.fetchall()
+            sql = "UPDATE CUSTOMER_STATE SET STATE_ID = ? WHERE CUSTOMER_ID = ?"
+            vals = (data[0][0], y)
+            cursor.execute(sql, vals)
+            conn.commit()
         message = 'Customer edited Sucessfully'
         return render_template('updatecustomer.html', customers=customers, message = message)
         #return redirect(url_for('edit_customer', customer_id=customer_id))
