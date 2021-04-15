@@ -166,7 +166,7 @@ create table dbo.POLICY(
 	V_ID INT NOT NULL,
 	INSURANCE_ID int not null,
 	POLICY_ID int not null,
-	EXPIRATION_DATE DATETIME,
+	EXPIRATION_DATE DATE,
 	CONSTRAINT CPOLICY_ID_PK1 PRIMARY KEY (CUSTOMER_ID, V_ID, INSURANCE_ID, POLICY_ID)
 );
 ----------------------------Kyle--------------------------------------

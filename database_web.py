@@ -145,7 +145,7 @@ def delete_customer():
     return render_template('deletecustomer.html', customers=customers)
 
 # view all customers
-@app.route('/customers/view-customers', methods = ['GET']) 
+@app.route('/customers/view-customers', methods = ['GET'])#FINISHED 
 def view_customers():
     cursor.execute("""
         SELECT *
@@ -222,7 +222,7 @@ def longtermloyalcustomer_report():
 def vehicles():
     return render_template('vehicles.html')
 
-@app.route ('/vehicles/new-vehicle', methods = ['POST', 'GET'])
+@app.route ('/vehicles/new-vehicle', methods = ['POST', 'GET'])#FINISHED
 def new_vehicle():
     # dropdowns
     ###
@@ -340,7 +340,7 @@ def update_vehicles():
         return render_template ('updateemployee.html')
 
 # remove vehicle from db by setting status to inactive  
-@app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET'])
+@app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET']) #FINISHED
 def delete_vehicle():
     cursor.execute("""
         SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
@@ -367,9 +367,28 @@ def delete_vehicle():
     return render_template('deletevehicle.html', vehicles = vehicles)
 
 #view all vehicles
-@app.route ('/vehicles/view-vehicles' , methods = ['GET'])
+@app.route ('/vehicles/view-vehicles' , methods = ['GET'])#FINISHED
 def view_vehicles():
-    cursor.execute ("SELECT * FROM VEHICLE")
+    cursor.execute ("""
+        SELECT VEHICLE.V_ID, VEHICLE.V_VIN, VEHICLE.V_LICENSE_PLATE, VEHICLE.V_YEAR, MAKE.MAKE_NAME, 
+        MODEL.MODEL_NAME, VEHICLE.V_COLOR, VEHICLE_CONDITION.CONDITION, VEHICLE_STATUS.ACTIVE_NAME, 
+        INSURANCE_COMPANY.INSURANCE_NAME,INSURANCE_POLICY.POLICY_NAME, POLICY.EXPIRATION_DATE
+        FROM VEHICLE
+        JOIN VEHICLE_STATUS
+        ON VEHICLE.ACTIVE_ID = VEHICLE_STATUS.ACTIVE_ID
+        JOIN VEHICLE_CONDITION
+        ON VEHICLE.CONDITION_ID = VEHICLE_CONDITION.CONDITION_ID
+        JOIN MAKE
+        ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+        JOIN MODEL
+        ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+        JOIN POLICY
+        ON VEHICLE.V_ID=POLICY.V_ID
+        JOIN INSURANCE_COMPANY
+        ON POLICY.INSURANCE_ID=INSURANCE_COMPANY.INSURANCE_ID
+        JOIN INSURANCE_POLICY
+        ON POLICY.POLICY_ID=INSURANCE_POLICY.POLICY_ID
+    """)
     data = cursor.fetchall()
     return render_template ('viewvehicles.html' , data = data)
 ## vehicle part report 
