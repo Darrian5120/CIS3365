@@ -326,18 +326,44 @@ def new_vehicle():
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
 def update_vehicles():
+   # send list of customer id's to gui dropdown
+    cursor.execute("""
+        SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
+        FROM VEHICLE
+        JOIN MAKE
+        ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+        JOIN MODEL
+        ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+    """)
+    rows = cursor.fetchall()
+    vehicles = []
+    for vehicle in rows:
+        vehicles.append(vehicle)
     if request.method == 'POST':
-        v_vin = request.form.get ("v_vin")
-        field =  request.form.get ("field")
-        value = request.form.get ("value")
-        if v_vin and field and value is not None:
-            #query = 
-            #vals = 
-            #data = 
-            #conn.commit ()
-            message = "Employee edited sucessfully!"
-            #return render_template ('employees.html' data = data , message = message)
-        return render_template ('updateemployee.html')
+        # convert customer id to int for sql statement
+        vehicle_id = request.form.get('vehicle')
+        x = vehicle_id.split(", ")
+        y = int(x[0][1:])
+        # get table, column, and new value data
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        if field == 'Customer SET STATE_NAME':
+            query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
+            val = value
+            cursor.execute(query, val)
+            data = cursor.fetchall()
+            sql = "UPDATE CUSTOMER_STATE SET STATE_ID = ? WHERE CUSTOMER_ID = ?"
+            vals = (data[0][0], y)
+            cursor.execute(sql, vals)
+            conn.commit()
+        message = 'Customer edited Sucessfully'
+        return render_template('updatecustomer.html', customers=customers, message = message)
+        #return redirect(url_for('edit_customer', customer_id=customer_id))
+    return render_template('updatecustomer.html', customers=customers)
 
 # remove vehicle from db by setting status to inactive  
 @app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET']) #FINISHED
