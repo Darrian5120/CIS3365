@@ -68,7 +68,7 @@
                 </select>
             </p>
             <p>
-                <label for="active">Condition</label>
+                <label for="condition">Condition</label>
                 <select name="condition">
                     <option value="">Condition</option>
                     {% for condition in conditions[0:] %}
@@ -78,6 +78,7 @@
             </p>
             <h3>Customer</h3>
             <p>
+                <label for="customer">Customer</label>
                 <select name="customer">
                     {% for customer in customers[0:] %}
                     <option value="{{ customer }}" >{{ customer }}</option>"

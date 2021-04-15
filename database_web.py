@@ -268,34 +268,42 @@ def new_vehicle():
         license_plate = request.form.get("plate")
         color = request.form.get("color")
         active = request.form.get("active")
-        condition = request.form.get("condition")
-        if vin and make and model and year and license_plate is not None:
+        if vin is not None:#and make and model and year and license_plate is not None:
+            print(vin)
             condition_id = request.form.get('condition')
+            print(vin)
             x1 = condition_id.split(", ")
             cond = int(x1[0][1:])
+            print(cond)
             # insert vehicle table
-            query = "INSERT INTO VEHICLE (V_VIN, V_MAKE, V_MODEL, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?)"
+            query = "INSERT INTO VEHICLE (V_VIN, V_MAKE, V_MODEL, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?,?)"
             vals = (vin, make, model, year, license_plate, color, active, cond)
             cursor.execute(query, vals)
             v_id = cursor.fetchone()[0]
+            print(v_id)
             conn.commit()
             # insert customer_vehicle table
             customer_id = request.form.get('customer')
             x = customer_id.split(", ")
             cust = int(x[0][1:])
+            print(cust)
             query = "INSERT INTO CUSTOMER_VEHICLE (V_ID, CUSTOMER_ID) VALUES (?,?)"
             vals = (v_id, cust)
             cursor.execute(query, vals)
             conn.commit()
             # insert policy
             date = request.form.get('date')
+            print(date)
             policy = request.form.get('policy')
             x2 = condition_id.split(", ")
             pol = int(x2[0][1:])
             company = request.form.get('company')
             x3 = condition_id.split(", ")
             comp = int(x3[0][1:])
-            query = "INSERT INTO POLICY (CUSTOMER_ID, V_ID, INSURANCE_ID, POLICY_ID, EXPIRATION_DATE) VALUES (?,?,?,?)"
+            print(comp)
+            print(pol)
+            
+            query = "INSERT INTO POLICY (CUSTOMER_ID, V_ID, INSURANCE_ID, POLICY_ID, EXPIRATION_DATE) VALUES (?,?,?,?,?)"
             vals = (cust, v_id, comp, pol, date)
             cursor.execute(query, vals)
             conn.commit()
