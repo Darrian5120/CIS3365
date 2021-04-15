@@ -929,6 +929,28 @@ def violation():
 
 # Update Supplier
 
+# create violation
+@app.route('/violations/new-violation', methods = ['POST', 'GET'])
+def new_violation():
+    message = ''
+    if request.method =='POST':
+        vioname = request.form.get("vioname")
+        lcode = request.form.get("lcode")
+        vid = request.form.get("vid")
+        viodate = request.form.get("viodate")
+        if vioname and lcode is not None:
+            
+            # new violation default
+            query = "INSERT INTO VIOLATION (VIOLATION_NAME, LAW_CODE, V_ID, VIOLATION_DATE) OUTPUT INSERTED.VIOLATION_ID VALUES (?, ?, ?, ?)"
+            vals = (vioname, lcode, vid, viodate)
+            data = cursor.execute(query, vals)
+            violation_id = cursor.fetchone()[0]
+            conn.commit()
+            
+            message = "New violation entered sucessfully"
+           return render_template('violation.html', data = data, message = message)
+    return render_template('newviolation.html')
+       
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
