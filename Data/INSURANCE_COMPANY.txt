@@ -1,4 +1,4 @@
-INSURANCE_ID|INSURANCE_NAME
+INSURANCE_ID|INSURANCE_NAME||||||||
 1|Otterstedt||||||||
 2|Berkshire||||||||
 3|Auto Owners||||||||

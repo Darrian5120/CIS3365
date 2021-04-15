@@ -629,7 +629,7 @@ def new_service():
             
 
 # remove service from db by settiing status to inactive
-@app.route('services/delete-service', methods = ['POST', 'GET'])
+@app.route('/services/delete-service', methods = ['POST', 'GET'])
 def delete_sevice():
     
     sql = "SELECT SERVICE_ID, SERVICE_TYPE FROM Service"
@@ -655,7 +655,7 @@ def delete_sevice():
     return render_template('deleteservice.html', services = services)
 
 # Service line delete to inactive
-@app.route('services/delete-serviceline', methods = ['POST', 'GET'])
+@app.route('/services/delete-serviceline', methods = ['POST', 'GET'])
 def delete_serviceline():
     
     sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST FROM service_line"
@@ -681,7 +681,7 @@ def delete_serviceline():
     return render_template('updateserviceline.html', servicelines = servicelines)
 
 # Service Order delete to inactive
-@app.route('services/delete-serviceorder', methods = ['POST', 'GET'])
+@app.route('/services/delete-serviceorder', methods = ['POST', 'GET'])
 def delete_serviceorder():
     
     sql = "SELECT SERVICE_ORDER_ID, ORDER_DATE FROM service_order"
@@ -707,7 +707,7 @@ def delete_serviceorder():
     return render_template('updateserviceorder.html', serviceorders = serviceorders)
 
 # Invoice delete to inactive
-@app.route('services/delete-invoice', methods = ['POST', 'GET'])
+@app.route('/services/delete-invoice', methods = ['POST', 'GET'])
 def delete_invoice():
     
     sql = "SELECT INVOICE_ID, TOTAL_COST, INVOICE_DATE FROM Invoice"
@@ -959,16 +959,14 @@ def new_violation():
         vid = request.form.get("vid")
         viodate = request.form.get("viodate")
         if vioname and lcode is not None:
-            
             # new violation default
             query = "INSERT INTO VIOLATION (VIOLATION_NAME, LAW_CODE, V_ID, VIOLATION_DATE) OUTPUT INSERTED.VIOLATION_ID VALUES (?, ?, ?, ?)"
             vals = (vioname, lcode, vid, viodate)
             data = cursor.execute(query, vals)
             violation_id = cursor.fetchone()[0]
             conn.commit()
-            
             message = "New violation entered sucessfully"
-           return render_template('violation.html', data = data, message = message)
+            return render_template('violation.html', data = data, message = message)
     return render_template('newviolation.html')
 
 # modify violation
