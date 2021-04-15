@@ -26,9 +26,9 @@ INSURANCE_ID|INSURANCE_NAME|I_ADDRESS_LINE1|I_ADDRESS_LINE2|I_CITY|I_STATE|I_ZIP
 25|DB Insurance||||||||
 26|AIG||||||||
 27|Great American||||||||
-28|ACE / Westchester||||||||
+28|ACE/Westchester||||||||
 29|NICO||||||||
-30|National Casualty / Nationwide||||||||
+30|National Casualty/Nationwide||||||||
 31|Scottsdale Brokerage||||||||
 32|IAT||||||||
 33|Crum Forster||||||||
