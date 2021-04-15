@@ -128,7 +128,7 @@ Bulk INSERT PAYMENT_REVENUE
 				MAXERRORS = 1
 		);
 ----------------------------------------Jahidul--------------------------------------------------------------
-Bulk INSERT EMPLOYEE_CONTACT_INFO
+Bulk INSERT MODEL
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\model.txt'  
 	WITH(
 		FIRSTROW = 2,
@@ -136,7 +136,7 @@ FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\model.txt'
 		ROWTERMINATOR = '\n',
 		MAXERRORS = 1
 		);
-Bulk INSERT SUPPLIER_CONTACT_INFO
+Bulk INSERT MAKE
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\make.txt'      
 	WITH(
 		FIRSTROW = 2,
