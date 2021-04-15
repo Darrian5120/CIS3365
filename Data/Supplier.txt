@@ -1,21 +1,21 @@
-SUPPLIER_ID|SUPPLIER_NAME|ACTIVE_ID
-1|Air Liquide|1
-2|Black Rose Steel & Trading|1
-3|Fruitland Manufacturing|1
-4|Ridewell Suspensions|1
-5|US Tarp|1
-6|Link Manufacturing, Ltd|1
-7|Buyers Products Company|1
-8|W&C - Watson & Chalin|1
-9|Airman Products|1
-10|Hendrickson|1
-11|SSAB|1
-12|Anthony Liftgates, Inc|1
-13|Jackrabbit Steel Products, Inc|1
-14|Rush Truck Center - Austin|1
-15|HIAB|1
-16|Dayton Parts, LLC|1
-17|Fleetrite|1
-18|Transwest Trucks|1
-19|United Truck Centers|1
-20|Kyrish Truck Centers|1
+SUPPLIER_ID|SUPPLIER_NAME|ACTIVE_ID|S_ADDRESS_LINE1|S_ADDRESS_LINE2|S_CITY|S_STATE|S_ZIP|S_COUNTRY|S_PHONE|S_EMAIL
+1|Air Liquide|1|9811 Katy Fwy|#100|Houston|TX|77024|United States|713-624-8000|wecanhelp@airgas.com 
+2|Black Rose Steel & Trading|1|304 E Walker St||League City|TX|77573|United States|281-332-7673|supportbrst@yahoo.com
+3|Fruitland Manufacturing|1|324 Leaside Ave||Stoney Creek|ON|L8E2N7|Canada|905-662-6552|SALES@FRUITLAND-MFG.COM
+4|Ridewell Suspensions|1|3715 E Farm Rd 94||Springfield|MO|65803|United States|417-833-4565|jrapp@ridewellcorp.com
+5|US Tarp|1|1425 Kalamazoo St||South Haven|MI|49090|United States|800-249-0297|technicalsupport@ustarp.com
+6|Link Manufacturing, Ltd|1|223 15th St NE||Sioux Center|IA|51250|United States|800-222-6283|hr@linkmfg.com
+7|Buyers Products Company|1|9049 Tyler Blvd||Mentor|Ohio|44060|United States|440-299-​5428|gettechnicalsupport@gmail.com
+8|W&C - Watson & Chalin|1|725 E University Dr|| McKinney|TX|75069|United States|800-445-0736|supportwcm@yahoo.com
+9|Airman Products|1|6150 Whitmore Lake Rd||Brighton|MI|48116|United States|248-960-1354|sales@airmanproducts.com
+10|Hendrickson|1|19201 Colorado Sand Dr||Pflugerville|TX|78660|United States|931-801-3288|victor.valdez@pfisd.net
+11|SSAB|1|12400 Highway 43 north||Axis|AL|36505|United States|(251) 662-4400|jeff.pallitto@ssab.com
+12|Anthony Liftgates, Inc|1|1037 W Howard St||Pontiac|IL|61764|United States|815-842-3383|sales@anthonyliftgates.com
+13|Jackrabbit Steel Products, Inc|1|9009 Jackrabbit Rd|#3107|Houston|TX|77095|United States|281-550-4551|sales@jackrabbitsteel.com
+14|Rush Truck Center - Austin|1|4606 I-10 Frontage Rd||Sealy|TX|77474|United States|979-256-4930|wilsonc@rushenterprises.com
+15|HIAB|1|11989 Farm to Market Rd 529|| Houston|TX|77041|United States|832-509-0672|support@hiab.com
+16|Dayton Parts, LLC|1|490 Railroad Ave||Shiremanstown|PA|17011|United States|800-233-0899|customerservice@daytonparts.com
+17|Fleetrite|1|3780 Losee Rd||North Las Vegas|Nevada|89030|United States|702-583-5526|support@fleettire.com
+18|Transwest Trucks|1|20770 E I-76 Frontage Rd||Brighton|CO|80603|United States|303-289-3161|support@transwest.com
+19|United Truck Centers|1|13101 Foothill Blvd||Sylmar|CA|91342|United States|818-837-4595|support@unitedtruckcentersinc
+20|Kyrish Truck Centers|1|1380 Ackerman Rd||San Antonio|TX|78219|United States|210-661-8371|website@kyrishtrucks.com

@@ -1,0 +1,4 @@
+Condition_id|condition
+1|Poor
+2|Good
+3|Excellent

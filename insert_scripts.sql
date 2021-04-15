@@ -1,4 +1,22 @@
 USE CoogTechSolutions
+
+Bulk INSERT CUSTOMER_STATUS
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_STATUS.txt'
+WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+Bulk INSERT CUSTOMER_TYPE
+FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_TYPE.txt'
+WITH (
+			FIRSTROW =2,
+				FIELDTERMINATOR = '|',
+				ROWTERMINATOR = '\n',
+				MAXERRORS = 1
+		);
+
 ---------------------Darrian----------------------------------------------------------------------
 --Customer Insert--
 BULK INSERT Customer
@@ -151,14 +169,7 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-Bulk INSERT CUSTOMER_STATUS
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_STATUS.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);		
+		
 Bulk INSERT SUPPLIER_STATUS
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SUPPLIER_STATUS.txt'
 WITH (
@@ -217,14 +228,7 @@ WITH (
 				ROWTERMINATOR = '\n',
 				MAXERRORS = 1
 		);
-Bulk INSERT CUSTOMER_TYPE
-FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\CUSTOMER_TYPE.txt'
-WITH (
-			FIRSTROW =2,
-				FIELDTERMINATOR = '|',
-				ROWTERMINATOR = '\n',
-				MAXERRORS = 1
-		);
+
 Bulk INSERT SERVICE_ORDER
 FROM 'C:\Users\darri\Documents\GitHub\CIS3365\Data\SERVICE_ORDER.txt'
 WITH (
