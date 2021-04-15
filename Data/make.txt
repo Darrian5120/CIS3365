@@ -1,2 +1,5 @@
 MAKE_ID|MAKE_NAME
 1|Kenworth
+2|Ford
+3|Peterbilt
+4|Freightliner
