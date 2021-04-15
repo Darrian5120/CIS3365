@@ -126,7 +126,7 @@ def update_customer():
     return render_template('updatecustomer.html', customers=customers)
 
 # remove customer from db by setting status to inactive
-@app.route('/customers/delete-customer',methods = ['POST','GET'])
+@app.route('/customers/delete-customer',methods = ['POST','GET']) # FINISHED
 def delete_customer():
      # send list of customer id's to gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
@@ -235,12 +235,31 @@ def vehicles():
 @app.route ('/vehicles/new-vehicle', methods = ['POST', 'GET'])
 def new_vehicle():
     message = ''
+    # dropdowns
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
     cursor.execute(sql)
     rows = cursor.fetchall()
     customers = []
     for customer in rows:
         customers.append(customer)
+    sql = "SELECT CONDITION_ID, CONDITION FROM VEHICLE_CONDITION"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    conditions = []
+    for condition in rows:
+        conditions.append(condition)
+    sql = "SELECT INSURANCE_ID, INSURANCE_NAME FROM INSURANCE_COMPANY"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    companies = []
+    for company in rows:
+        companies.append(company)
+    sql = "SELECT POLICY_ID, POLICY_NAME FROM INSURANCE_POLICY"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    companies = []
+    for company in rows:
+        companies.append(company)
     if request.method == 'POST':
         vin = request.form.get("vin")
         make = request.form.get("make")
@@ -248,36 +267,29 @@ def new_vehicle():
         year = request.form.get("year")
         license_plate = request.form.get("plate")
         color = request.form.get("color")
+        active = request.form.get("active")
+        condition = request.form.get("condition")
         if vin and make and model and year and license_plate is not None:
+            condition_id = request.form.get('condition')
+            x1 = condition_id.split(", ")
+            cond = int(x1[0][1:])
             # insert vehicle table
-            query = "INSERT INTO VEHICLE (V_VIN, V_MAKE, V_MODEL, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID) VALUES (?,?,?,?,?,?)"
-            vals = (vin, make, model, year, license_plate, color)
+            query = "INSERT INTO VEHICLE (V_VIN, V_MAKE, V_MODEL, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?)"
+            vals = (vin, make, model, year, license_plate, color, active, cond)
             cursor.execute(query, vals)
+            v_id = cursor.fetchone()[0]
             conn.commit()
             # insert customer_vehicle table
             customer_id = request.form.get('customer')
             x = customer_id.split(", ")
-            y = int(x[0][1:])
-            query = "INSERT INTO VEHICLE (V_VIN, CUSTOMER_ID) VALUES (?,?)"
-            vals = (vin, y)
-            cursor.execute(query, vals)
-            conn.commit()
-            # insert insurance
-            ins = request.form.get("ins_name")
-            query = "INSERT INTO INSURANCE_COMPANY (INSURANCE_NAME) VALUES (?)"
-            vals = (ins)
+            cust = int(x[0][1:])
+            query = "INSERT INTO CUSTOMER_VEHICLE (V_ID, CUSTOMER_ID) VALUES (?,?)"
+            vals = (v_id, cust)
             cursor.execute(query, vals)
             conn.commit()
             # insert policy
-            policy = request.form.get("policy")
-            query = "INSERT INTO INSURANCE_POLICY (POLICY_NAME) VALUES (?)"
-            vals = (policy)
-            cursor.execute(query, vals)
-            conn.commit()
-            expiration = request.form.get("exp")
-            # FIXME - may remove company_insurance_policy and move to vehicle_policy
-            return render_template ('newvehicle.html', customers=customers)
-    return render_template ('newvehicle.html', customers=customers)
+            return render_template ('newvehicle.html', customers=customers, conditions=conditions)
+    return render_template ('newvehicle.html', customers=customers, conditions=conditions)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
