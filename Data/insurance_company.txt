@@ -1,17 +1,17 @@
-INSURANCE_ID|INSURANCE_NAME||||||||
-1|Otterstedt||||||||
-2|Berkshire||||||||
-3|Auto Owners||||||||
-4|Progressive||||||||
-5|Travelers||||||||
-6|Seneca||||||||
-7|Great Lakes||||||||
-8|Allied World||||||||
-9|Allianz||||||||
-10|Ace Hazmat||||||||
-11|ACE Fleet||||||||
-12|United Specialty||||||||
-13|Hudson Fleet||||||||
+INSURANCE_ID|INSURANCE_NAME|I_ADDRESS_LINE1|I_ADDRESS_LINE2|I_CITY|I_STATE|I_ZIP|I_COUNTRY|I_PHONE|I_EMAIL
+1|Otterstedt|540 Sylvan Avenue||Englewood Cliffs|NJ|07632|United States|201-227-1800|claims@otterstedt.com
+2|Berkshire|15851 Dallas Pkwy|#1120|Addison|TX|75001|United States|888-495-8949|auto@bhhc.com
+3|Auto Owners|6101 Anacapri Blvd||Lansing|MI|48917|United States|800-346-0346|aoacctg@aoins.com
+4|Progressive|6300 Wilson Mills Road||Mayfield Village|Ohio|44143|United States|888-806-9598|commercialauto@email.progressive.com
+5|Travelers|P.O. Box 5600||Hartford|CT|06102|United States|800-252-2268|MWCP@travelers.com
+6|Seneca|2400 Lakeside Blvd|Suite 200|Richardson|TX|75082|United States|972-380-3035|jgriego@senecainsurance.com
+7|Great Lakes|3205 Peach Street||Erie|PA|16508|United States|814-456-0498|eiepa@greatlakesins.com
+8|Allied World|199 Water Street|25th Floor|New York|NY|10038|United States|212-635-5533|info@awac.com
+9|Allianz|2000 West Loop South||Houston|TX|77056|United States|314-513-1150|AGCSCommunication@agcs.allianz.com
+10|Ace Commercial|200 S. Main Street|Suite 130|Corona|CA|92882|United States|888-300-7888|general@acetruckinsurance.com
+11|Business Insurers of the Carolinas|501 Eastowne Drive|Suite 250|Chapel Hill|NC|27514|United States|919-968-4611|dp@business-insurers.com
+12|United Insurance|470 Forest Avenue||Portland|ME|04101|United States|800-734-2333|EdmundTherrien@UnitedInsurance.net
+13|Hudson Fleet|100 William Street|5th Floor|New York|NY|10038|United States|212-978-2800|HudsonClaims300@hudsoninsgroup.com
 14|Markel||||||||
 15|Chubb||||||||
 16|Arch||||||||
