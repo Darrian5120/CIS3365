@@ -95,9 +95,9 @@
             </p>
             <p>
                 <label for="policy">Insurance Policy</label>
-                <select name="customer">
-                    {% for company in companies[0:] %}
-                    <option value="{{ company }}" >{{ company }}</option>"
+                <select name="policy">
+                    {% for policy in policies[0:] %}
+                    <option value="{{ policy }}" >{{ policy }}</option>"
                     {% endfor %}
                 </select>
             </p>

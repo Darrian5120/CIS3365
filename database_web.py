@@ -257,9 +257,9 @@ def new_vehicle():
     sql = "SELECT POLICY_ID, POLICY_NAME FROM INSURANCE_POLICY"
     cursor.execute(sql)
     rows = cursor.fetchall()
-    companies = []
-    for company in rows:
-        companies.append(company)
+    policies = []
+    for policy in rows:
+        policies.append(policy)
     if request.method == 'POST':
         vin = request.form.get("vin")
         make = request.form.get("make")
@@ -288,8 +288,19 @@ def new_vehicle():
             cursor.execute(query, vals)
             conn.commit()
             # insert policy
-            return render_template ('newvehicle.html', customers=customers, conditions=conditions)
-    return render_template ('newvehicle.html', customers=customers, conditions=conditions)
+            date = request.form.get('date')
+            policy = request.form.get('policy')
+            x2 = condition_id.split(", ")
+            pol = int(x2[0][1:])
+            company = request.form.get('company')
+            x3 = condition_id.split(", ")
+            comp = int(x3[0][1:])
+            query = "INSERT INTO POLICY (CUSTOMER_ID, V_ID, INSURANCE_ID, POLICY_ID, EXPIRATION_DATE) VALUES (?,?,?,?)"
+            vals = (cust, v_id, comp, pol, date)
+            cursor.execute(query, vals)
+            conn.commit()
+            return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies)
+    return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
