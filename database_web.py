@@ -663,11 +663,11 @@ def new_service():
     if request.method == 'POST':
         sertype = request.form.get("sertype")
         cost = request.form.get("cost")
-        actid = request.form.get("actid")
+        active = request.form.get("active")
         if sertype and cost is not None:
             # default service
             query = "INSERT INTO Service (SERVICE_TYPE, COST, ACTIVE_ID) OUTPUT INSERTED.SERVICE_ID VALUES (?, ?, ?)"
-            vals = (sertype, cost, actid)
+            vals = (sertype, cost, active)
             data = cursor.execute(query, vals)
             service_id = cursor.fetchone()[0]
             conn.commit()

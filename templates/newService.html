@@ -28,12 +28,21 @@
         </table>
         <form action="" method="post">
             <p>
-                <label for="fname">Service Type</label>
-                <input type="text" name="sType">
+                <label for="sertype">Service Type</label>
+                <input type="text" name="sertype">
             </p>
             <p>
-                <label for="lname">Service Cost</label>
-                <input type="text" name="sSost">
+                <label for="cost">Service Cost</label>
+                <input type="text" name="cost">
+            </p>
+	    <p>
+                <label for="active">Status </label>
+                <select name="active" id="active">
+                    <option value="">Status</option>
+                    <option value="1">Available Service</option>
+		    <option value="2">Unavailable Service</option>
+		    <option value="3">Special Request</option>
+                </select>
             </p>
             
             <p><input type="submit" value="Submit"></p>

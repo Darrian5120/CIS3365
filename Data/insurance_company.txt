@@ -12,25 +12,25 @@ INSURANCE_ID|INSURANCE_NAME|I_ADDRESS_LINE1|I_ADDRESS_LINE2|I_CITY|I_STATE|I_ZIP
 11|Business Insurers of the Carolinas|501 Eastowne Drive|Suite 250|Chapel Hill|NC|27514|United States|919-968-4611|dp@business-insurers.com
 12|United Insurance|470 Forest Avenue||Portland|ME|04101|United States|800-734-2333|EdmundTherrien@UnitedInsurance.net
 13|Hudson Fleet|100 William Street|5th Floor|New York|NY|10038|United States|212-978-2800|HudsonClaims300@hudsoninsgroup.com
-14|Markel||||||||
-15|Chubb||||||||
-16|Arch||||||||
-17|Acuity||||||||
-18|A-One RRG||||||||
-19|Tokio Marine||||||||
-20|Sompo International||||||||
-21|National General||||||||
-22|Lexington||||||||
-23|Lancer||||||||
-24|Eastern Atlantic Insurance Company||||||||
-25|DB Insurance||||||||
-26|AIG||||||||
-27|Great American||||||||
-28|ACE/Westchester||||||||
-29|NICO||||||||
-30|National Casualty/Nationwide||||||||
-31|Scottsdale Brokerage||||||||
-32|IAT||||||||
-33|Crum Forster||||||||
-34|Canal||||||||
-35|Northland||||||||
+14|Markel|Ten Parkway North||Deerfield|IL|60015|United States|888-642-4968|information@markelcorp.com
+15|Chubb|Two Riverway|9th Floor|Houston|TX|77056|United States|713-403-3000|ESIS.Reply@esis.com
+16|Arch|15303 North Dallas Parkway|Suite 1060|Addison|TX|75001|United States|214-438-4000|claims@archinsurancesolutions.com
+17|Acuity|2800 South Taylor Drive||Sheboygan|WI|53081|United States|833-242-5600|customercare@acuity.com
+18|A-One RRG|12791 Western Ave|Suite J|Garden Grove|CA|92841|United States|800-874-9781|A-One@riskservcos.com
+19|Tokio Marine|499 Washington Blvd|#1500|Jersey City|NJ|07310|United States|800-628-2796|claim-account-coordination@tmamerica.com
+20|Sompo International|7101 82nd Street||Lubbock|TX|79424|United States|806-473-0333|csparro@sompo-intl.com
+21|National General|5620 University Pkwy||Winston-Salem|NC|27105|United States|888-293-5108|Service@NGIC.com
+22|Winchester Insurance Agency|41 South Main Street||Winchester|KY|40391|United States|859-744-2200|Hilary.Ballard@kyinsurance.com
+23|Lancer|6676 Corporate Center Parkway||Jacksonville|FL|32216|United States|800-782-8902|custservice@lancerinsurance.com
+24|Eastern Atlantic Insurance Company|5300 Derry St||Harrisburg|PA|17111|United States|866-239-2455|claims@IADclaims.com
+25|DB Insurance|1440 Kapiolani Blvd|Suite 950|Honolulu|Hawaii|96814|United States|808-942-5353|DBInsurance11964@tnwinc.com
+26|AIG|Attn: The Truck Insurance Group|Po Box 26610|Shawnee Mission|KS|66225|United States|800-426-3168|ATLPCMail@aig.com
+27|Great American|301 E. Fourth St|22nd Floor|Cincinnati|Ohio|45202|United States|800-643-7882|truckers@gaig.com
+28|ACE / Westchester|2001 Bryan Street|Suite 3400|Dallas|TX|75201|United States|214-754-0777|stephanie.moss@westchester.com
+29|NICO|1314 Douglas Street|Suite 1400|Omaha|NE|68102|United States|866-720-7861|claims@nationalindemnity.com
+30|Nationwide|8877 N. Gainey Center Drive||Scottsdale|AZ|85258|United States|866-238-3357|newclaim@nationwide.com
+31|Scottsdale Brokerage|14631 N. Scottsdale Road|Suite 150|Scottsdale|AZ|85254|United States|480-296-7100|Info@burnsandwilcoxbrokerage.com
+32|IAT|702 Oberlin Road||Raleigh|NC|27605|United States|866-576-7971|new.loss@iatinsurance.com
+33|Crum Forster|11490 Westheimer Rd|Suite 300|Houston|TX|77077|United States|800-392-1970|crumandforsternol@cfins.com
+34|Canal|P.O Box 7||Greenville|SC|29602|United States|800-452-6911|claims@canal-ins.com
+35|Northland|P.O. Box 64816||St. Paul|MN|55102||800-328-5972|nccc@northlandins.com
