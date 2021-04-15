@@ -40,23 +40,21 @@
                 <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
                 <label for="tblname">Enter field to modify:</label>
                 <select name="tblname" id="tblname">
+                    <optgroup label="VEHICLE"></optgroup>
+                        <option value="VEHICLE SET V_VIN">VIN</option>
+                        <option value="Customer SET V_LICENSE_PLATE">License Plate</option>
+                        <option value="Customer SET V_YEAR">Year</option>
+                        <option value="Customer SET MAKE_ID">Make</option>
+                        <option value="Customer SET MODEL_ID">Model</option>
+                        <option value="Customer SET V_COLOR">Color</option>
+                        <option value="Customer SET CONDITION_ID">Condition</option>
+                        <option value="Customer SET ACTIVE_ID">Status</option>
                     <optgroup label="CUSTOMER"></optgroup>
-                        <option value="Customer SET C_FNAME">First Name</option>
-                        <option value="Customer SET C_LNAME">Last Name</option>
-                        <option value="Customer SET C_BUSINESS_NAME">Business Name</option>
-                    <optgroup label="CUSTOMER CONTACT INFO"></optgroup>
-                        <option value="Customer SET C_ADDRESS_LINE1">Address Line 1</option>
-                        <option value="Customer SET C_ADDRESS_LINE2">Address Line 2</option>
-                        <option value="Customer SET C_CITY">City</option>
-                        <option value="Customer SET STATE_NAME">State</option>
-                        <option value="Customer SET C_ZIP">Zip Code</option>
-                        <option value="Customer SET COUNTRY_NAME">Country</option>
-                        <option value="Customer SET C_PHONE">Phone</option>
-                        <option value="Customer SET C_EMAIL">Email</option>
-                    <optgroup label="CUSTOMER TYPE"></optgroup>
-                        <option value="Customer SET BUSINESS_ID">Business or Individual</option>
-                    <optgroup label="CUSTOMER STATUS"></optgroup>
-                        <option value="Customer SET ACTIVE_ID">Active or Inactive</option>
+                        <option value="CUSTOMER_VEHICLE SET CUSTOMER_ID">Customer</option>
+                    <optgroup label="INSURANCE"></optgroup>
+                        <option value="POLICY SET INSURANCE_ID">Insurance</option>
+                        <option value="POLICY SET POLICY_ID">Policy</option>
+                        <option value="POLICY SET EXPIRATION_DATE">Expiration</option>
                   </select>
                 </p>
             <p>
