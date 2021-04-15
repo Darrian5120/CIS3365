@@ -17,6 +17,7 @@
             
             #td {width: 16%; text-align: center; margin: 0; padding: 0;}
         </style>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
         <div class="header">
@@ -40,19 +41,23 @@
             </p>
             <p>
                 <label for="make">make</label>
-                <select name="make" id="make">
+                <!--<select id="make" name="make" placeholder="Phantasyland">
+                    <option></option>
+                    <option>Kenworth</option>
+                    <option>Ford</option>
+                    <option>Peterbilt</option>
+                    <option>Freightliner</option>
+                </select>-->
+                <select id="make" name="make">
+                    <option></option>
                     {% for make in makes[0:] %}
-                    <option value="{{ make }}" >{{ make }}</option>
+                    <option value="{{ make }}">{{ make }}</option>
                     {% endfor %}
                 </select>
             <p>
             <p>
                 <label for="model">Model</label>
-                <select name="model" id="model">
-                    {% for model in models[0:] %}
-                    <option value="{{ model }}" >{{ model }}</option>
-                    {% endfor %}
-                </select>
+                <select id="model" name="model" ></select>
             <p>
                 <label for="color">Color</label>
                 <input type="text" name="color">
@@ -73,7 +78,6 @@
             <p>
                 <label for="condition">Condition</label>
                 <select name="condition">
-                    <option value="">Condition</option>
                     {% for condition in conditions[0:] %}
                     <option value="{{ condition }}" >{{ condition }}</option>"
                     {% endfor %}
@@ -106,8 +110,8 @@
                 </select>
             </p>
             <p>
-                <label for="exp">Expiration Date</label>
-                <input type="date" name="exp">
+                <label for="year">Expiration Date</label>
+                <input type="date" name="year">
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>
@@ -115,23 +119,38 @@
             <p>{{ message }}</p>
         {% endif %}
     </body>
-    <script>
-        var subjectObject =  {{ json|safe }}
-
-        window.onload = function() {
-            var makeSel = document.getElementById("make");
-            var modelSel = document.getElementById("model");
-            for (var x in subjectObject) {
-                makeSel.options[makeSel.options.length] = new Option(x, x);
-        }
-
-        makeSel.onchange = function() {
-            //empty Chapters- and Topics- dropdowns
-            modelSel.length = 1;
-            //display correct values
-            for (var y in makeSel[this.value]) {
-            topicSel.options[topicSel.options.length] = new Option(y, y);
+    <script type="text/javascript">
+        jQuery(function($) {
+            // method 1
+            /*var vehicles = {
+                'Kenworth': ['W900', 'T880', 'W900L', 'T680', 'T170', 'T270', 'T370', 'K270E', 'K370E'],
+                'Ford': ['LCF'],
+                'Peterbilt': ['389', '579', '365', '367', '520', '569'],
+                'Freightliner': ['eM2']
+            }*/
+            // method 2
+            //var vehicles = JSON.parse('{{ data|safe }}');
+            // method 3
+            // https://stackoverflow.com/questions/42674581/how-to-parse-a-json-dumped-python-dict-as-javascript-object-in-django-template
+            function escapeRegExp(str) {
+                return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
             }
-        }
+            function replaceAll(str, find, replace) {
+                return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+            }
+            var str = "{{ data|safe }}";
+            var new_str = replaceAll(str, "'", "\"");
+            var vehicles = JSON.parse(new_str); 
+
+            var $vehicles = $('#model');
+            $('#make').change(function () {
+                var make = $(this).val(), lcns = vehicles[make] || [];
+                
+                var html = $.map(lcns, function(lcn){
+                    return '<option value="' + lcn + '">' + lcn + '</option>'
+                }).join('');
+                $vehicles.html(html)
+            });
+        });
     </script>
 </html>

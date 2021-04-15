@@ -2,6 +2,7 @@ import flask
 from flask import Flask, jsonify, request, make_response, render_template, url_for, redirect
 import pyodbc
 from collections import defaultdict
+import json
 import datetime
 import sys
 
@@ -231,15 +232,24 @@ def new_vehicle():
         JOIN MODEL
         ON MAKE.MAKE_ID = MODEL.MAKE_ID;
     """)
-    #rows = cursor.fetchall()
+    #https://stackoverflow.com/questions/3199171/append-multiple-values-for-one-key-in-a-dictionary
+    #https://stackoverflow.com/questions/18351921/how-to-populate-a-cascading-dropdown-with-jquery
+    # create json for jquery
     data = {}
     for (make, model) in cursor:
         #if model in data:
         #    data[model]
         data.setdefault(make, []).append(model)
-    make_model = jsonify(data)
-    return make_model
+    response = jsonify(data)
+    response.status_code = 200
+    dump = json.dumps(data)
     #####################
+    sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    makes = []
+    for make in rows:
+        makes.append(make[1])
     sql = "SELECT CONDITION_ID, CONDITION FROM VEHICLE_CONDITION"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -264,58 +274,53 @@ def new_vehicle():
     policies = []
     for policy in rows:
         policies.append(policy)
-    
-        
-    
+
     if request.method == 'POST':
         vin = request.form.get("vin")
         make = request.form.get("make")
+        cursor.execute("SELECT MAKE_ID FROM MAKE WHERE MAKE_NAME = '{}'".format(make))
+        make = cursor.fetchone()[0]
         model = request.form.get("model")
-        year = request.form.get("year")
+        cursor.execute("SELECT MODEL_ID FROM MODEL WHERE MODEL_NAME = '{}'".format(model))
+        model = cursor.fetchone()[0]
+        year = str(request.form.get("year"))
+        print(year)
         license_plate = request.form.get("plate")
         color = request.form.get("color")
         active = request.form.get("active")
         if vin is not None:#and make and model and year and license_plate is not None:
-            print(vin)
             condition_id = request.form.get('condition')
-            print(vin)
             x1 = condition_id.split(", ")
             cond = int(x1[0][1:])
-            print(cond)
             # insert vehicle table
-            query = "INSERT INTO VEHICLE (V_VIN, V_MAKE, V_MODEL, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?,?)"
+            query = "INSERT INTO VEHICLE (V_VIN, MAKE_ID, MODEL_ID, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?,?)"
             vals = (vin, make, model, year, license_plate, color, active, cond)
             cursor.execute(query, vals)
             v_id = cursor.fetchone()[0]
-            print(v_id)
             conn.commit()
             # insert customer_vehicle table
             customer_id = request.form.get('customer')
             x = customer_id.split(", ")
             cust = int(x[0][1:])
-            print(cust)
             query = "INSERT INTO CUSTOMER_VEHICLE (V_ID, CUSTOMER_ID) VALUES (?,?)"
             vals = (v_id, cust)
             cursor.execute(query, vals)
             conn.commit()
             # insert policy
             date = request.form.get('date')
-            print(date)
             policy = request.form.get('policy')
             x2 = condition_id.split(", ")
             pol = int(x2[0][1:])
             company = request.form.get('company')
             x3 = condition_id.split(", ")
             comp = int(x3[0][1:])
-            print(comp)
-            print(pol)
             
             query = "INSERT INTO POLICY (CUSTOMER_ID, V_ID, INSURANCE_ID, POLICY_ID, EXPIRATION_DATE) VALUES (?,?,?,?,?)"
             vals = (cust, v_id, comp, pol, date)
             cursor.execute(query, vals)
             conn.commit()
-            #return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=makes, models=model, json=make_model)
-    #return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=make, models=models, json=make_model)
+            return render_template ('newvehicle.html', makes = makes, response=response,dump=dump,customers=customers, conditions=conditions, companies = companies, policies = policies, data = data)
+    return render_template ('newvehicle.html', makes = makes, response=response,dump=dump,customers=customers, conditions=conditions, companies = companies, policies = policies, data = data)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
