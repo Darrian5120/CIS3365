@@ -1,16 +1,9 @@
 import flask
 from flask import Flask, jsonify, request, make_response, render_template, url_for, redirect
 import pyodbc
-import pandas as pd 
+from collections import defaultdict
 import datetime
-import time
 import sys
-import requests
-import ssl
-import datetime
-from tabulate import tabulate
-import cgi
-import pprint 
 
 ############################################## READ ME #####################################
 # RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSER
@@ -230,35 +223,23 @@ def vehicles():
 
 @app.route ('/vehicles/new-vehicle', methods = ['POST', 'GET'])
 def new_vehicle():
-    message = ''
     # dropdowns
-    join = """"
-        SELECT MAKE.MAKE_ID, MAKE.MAKE_NAME, MODEL.MODEL_ID, MODEL.MODEL_NAME
-        FROM MODEL
-        JOIN MAKE
-        WHERE MAKE.MAKE_ID = MODEL.MODEL_ID;
-    """
-    cursor.execute(join)
-    rows = cursor.fetchall()
-    results = []
-    for x in rows:
-        results.append(x)
-    jsonify(results)
-    sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    makes = []
-    gui_makes = []
-    for make in rows:
-        makes.append(make)
-        gui_makes.append(make[0])
-    g_makes = tuple(gui_makes)
-    sql = "SELECT MODEL_ID, MODEL_NAME FROM MODEL WHERE MAKE_ID IN {}".format(g_makes)
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    models = []
-    for model in rows:
-        models.append(model)
+    ###
+    cursor.execute("""
+        SELECT MAKE.MAKE_NAME, MODEL.MODEL_NAME
+        FROM MAKE
+        JOIN MODEL
+        ON MAKE.MAKE_ID = MODEL.MAKE_ID;
+    """)
+    #rows = cursor.fetchall()
+    data = {}
+    for (make, model) in cursor:
+        #if model in data:
+        #    data[model]
+        data.setdefault(make, []).append(model)
+    make_model = jsonify(data)
+    return make_model
+    #####################
     sql = "SELECT CONDITION_ID, CONDITION FROM VEHICLE_CONDITION"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -333,8 +314,8 @@ def new_vehicle():
             vals = (cust, v_id, comp, pol, date)
             cursor.execute(query, vals)
             conn.commit()
-            return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=makes, models=models)
-    return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=make, models=models)
+            #return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=makes, models=model, json=make_model)
+    #return render_template ('newvehicle.html', customers=customers, conditions=conditions, companies = companies, policies = policies, makes=make, models=models, json=make_model)
 
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
