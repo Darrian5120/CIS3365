@@ -61,12 +61,6 @@ def new_customer():
         business = request.form.get("business")
         if lname and fname is not None:
             # new customer default
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
-            vals = (lname, fname, bname, active, business)
-            data = cursor.execute(query, vals)
-            customer_id = cursor.fetchone()[0]
-            conn.commit()
-            # new customer contact info
             phone = request.form.get("phone")
             email = request.form.get("email")
             address = request.form.get("addy1")
@@ -75,9 +69,10 @@ def new_customer():
             city = request.form.get("city")
             state = request.form.get("state")
             country = request.form.get("country")
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID, ADDRESS_LINE1, ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP,COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID, C_ADDRESS_LINE1, C_ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP, COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
             vals = (lname, fname, bname, active, business, address, address2, city, state, zip_code, country, phone, email)
             data = cursor.execute(query, vals)
+            customer_id = cursor.fetchone()[0]
             conn.commit()
             # new customer state
             query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
