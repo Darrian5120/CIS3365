@@ -59,9 +59,14 @@ def new_customer():
         bname = request.form.get("bname")
         active = request.form.get("active")
         business = request.form.get("business")
-        print(active)
-        if lname and fname and active is not None:
-            # new customer
+        if lname and fname is not None:
+            # new customer default
+            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?)"
+            vals = (lname, fname, bname, active, business)
+            data = cursor.execute(query, vals)
+            customer_id = cursor.fetchone()[0]
+            conn.commit()
+            # new customer contact info
             phone = request.form.get("phone")
             email = request.form.get("email")
             address = request.form.get("addy1")
@@ -70,10 +75,9 @@ def new_customer():
             city = request.form.get("city")
             state = request.form.get("state")
             country = request.form.get("country")
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID, C_ADDRESS_LINE1, C_ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP, COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            query = "INSERT INTO Customer (C_LNAME, C_FNAME, C_BUSINESS_NAME, ACTIVE_ID, BUSINESS_ID, ADDRESS_LINE1, ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP,COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
             vals = (lname, fname, bname, active, business, address, address2, city, state, zip_code, country, phone, email)
             data = cursor.execute(query, vals)
-            customer_id = cursor.fetchone()[0]
             conn.commit()
             # new customer state
             query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
@@ -446,13 +450,16 @@ def update_employee():
     cursor.execute(sql)
     rows = cursor.fetchall()
     employees = []
+    
     for employee in rows:
         employees.append(employees)
     if request.method == 'POST':
+        
         employee_id = request.form.get ('employee')
         print(employee_id)
         x = employee_id.split(", ")
         y = int (x[0][1:])
+        
         field = request.form.get('tblname')
         value = request.form.get('value')
         sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
@@ -476,10 +483,12 @@ def delete_employee():
     for employee in rows:
         employees.append(employee)
     if request.method == 'POST':
+        
         employee_id = request.form.get('employee')
         print(employee_id)
         x = employee_id.split(", ")
         y = int(x[0][1:])
+        
         sql = "UPDATE Employee SET ACTIVE_ID = 3 WHERE EMPLOYEE_ID = ?"
         vals = (y)
         cursor.execute(sql, vals)
@@ -600,7 +609,7 @@ def view_services():
     return render_template ('viewservices.html' , data = data)
 
 # remove service from db by settiing status to inactive
-@app.route('/services/delete-service', methods = ['POST', 'GET'])
+@app.route('services/delete-service', methods = ['POST', 'GET'])
 def delete_sevice():
     
     sql = "SELECT SERVICE_ID, SERVICE_TYPE FROM Service"
@@ -626,7 +635,7 @@ def delete_sevice():
     return render_template('deleteservice.html', services = services)
 
 # Service line delete to inactive
-@app.route('/services/delete-serviceline', methods = ['POST', 'GET'])
+@app.route('services/delete-serviceline', methods = ['POST', 'GET'])
 def delete_serviceline():
     
     sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST FROM service_line"
@@ -652,7 +661,7 @@ def delete_serviceline():
     return render_template('updateserviceline.html', servicelines = servicelines)
 
 # Service Order delete to inactive
-@app.route('/services/delete-serviceorder', methods = ['POST', 'GET'])
+@app.route('services/delete-serviceorder', methods = ['POST', 'GET'])
 def delete_serviceorder():
     
     sql = "SELECT SERVICE_ORDER_ID, ORDER_DATE FROM service_order"
@@ -678,7 +687,7 @@ def delete_serviceorder():
     return render_template('updateserviceorder.html', serviceorders = serviceorders)
 
 # Invoice delete to inactive
-@app.route('/services/delete-invoice', methods = ['POST', 'GET'])
+@app.route('services/delete-invoice', methods = ['POST', 'GET'])
 def delete_invoice():
     
     sql = "SELECT INVOICE_ID, TOTAL_COST, INVOICE_DATE FROM Invoice"
@@ -941,7 +950,34 @@ def new_violation():
             message = "New violation entered sucessfully"
            return render_template('violation.html', data = data, message = message)
     return render_template('newviolation.html')
-       
+
+# modify violation
+@app.route('/violations/update', methods = ['POST', 'GET'])
+def update_violation():
+    
+    sql = "SELECT VIOLATION_ID, VIOLATION_NAME, LAW_CODE FROM VIOLATION"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    violations = []
+    for violation in rows:
+        violations.append(violation)
+    if request.method == 'POST':
+        
+        violation_id = request.form.get('violation')
+        print(violation_id)
+        x = violation_id.split(", ")
+        y = int([0][1:])
+        
+        field = request.form.get('tblname')
+        value = request.form.get('value')
+        sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+        vals = (value, y)
+        cursor.execute(sql, vals)
+        conn.commit()
+        message = 'Violation edited sucessfully'
+        return render_template('updateviolation.html', violations = violations, message = message)
+        
+    return render_template('updateviolation.html', violations = violation)
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
