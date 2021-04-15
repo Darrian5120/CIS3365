@@ -667,11 +667,12 @@ def new_service():
             service_id = cursor.fetchone()[0]
             conn.commit()
             
-            # add service line HELP
             
-            # add service order HELP
+# add service line 
+           
+# add service order 
             
-            # add invoice HELP
+# add invoice 
             
 # modify service
 @app.route('/service/upate', methods = ['POST', 'GET'])
