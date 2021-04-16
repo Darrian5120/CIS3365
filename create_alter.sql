@@ -122,17 +122,9 @@ CREATE TABLE dbo.VEHICLE_CONDITION (
 CREATE TABLE dbo.EMPLOYEE_CONTACT_INFO (
 	EMPLOYEE_ID INT not null,
 	CONTACT_ID INT not null,
-	E_ADDRESS_LINE1 varchar(30)  not null,
-	E_ADDRESS_LINE2 varchar(30),
-	E_CITY varchar(30) not null,
-	E_STATE varchar(15) not null,
-	E_ZIP INT not null,
-	E_COUNTRY varchar(30) not null,
-	E_PHONE varchar(15) not null,
-	E_EMAIL varchar(35) not null,
 	CONSTRAINT EMPLOYEE_ID_PK1 PRIMARY KEY(EMPLOYEE_ID, CONTACT_ID)
 );
-CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
+/*CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
 	SUPPLIER_ID INT not null,
 	CONTACT_ID INT not null,
 	S_ADDRESS_LINE1 varchar(30)  not null,
@@ -144,7 +136,7 @@ CREATE TABLE dbo.SUPPLIER_CONTACT_INFO (
 	S_PHONE varchar(15) not null,
 	S_EMAIL varchar(35) not null,
 	CONSTRAINT SUPPLIER_ID_PK1 PRIMARY KEY(SUPPLIER_ID, CONTACT_ID)
-);
+);*/
 create table dbo.CUSTOMER_VEHICLE(
 	V_ID int not null,
 	CUSTOMER_ID int not null,
