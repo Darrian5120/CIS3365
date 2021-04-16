@@ -9,7 +9,7 @@ SUPPLIER_ID|SUPPLIER_NAME|ACTIVE_ID|S_ADDRESS_LINE1|S_ADDRESS_LINE2|S_CITY|S_STA
 8|W&C - Watson & Chalin|1|725 E University Dr|| McKinney|TX|75069|United States|800-445-0736|supportwcm@yahoo.com
 9|Airman Products|1|6150 Whitmore Lake Rd||Brighton|MI|48116|United States|248-960-1354|sales@airmanproducts.com
 10|Hendrickson|1|19201 Colorado Sand Dr||Pflugerville|TX|78660|United States|931-801-3288|victor.valdez@pfisd.net
-11|SSAB|1|12400 Highway 43 north||Axis|AL|36505|United States|(251) 662-4400|jeff.pallitto@ssab.com
+11|SSAB|1|12400 Highway 43 north||Axis|AL|36505|United States|251-662-4400|jeff.pallitto@ssab.com
 12|Anthony Liftgates, Inc|1|1037 W Howard St||Pontiac|IL|61764|United States|815-842-3383|sales@anthonyliftgates.com
 13|Jackrabbit Steel Products, Inc|1|9009 Jackrabbit Rd|#3107|Houston|TX|77095|United States|281-550-4551|sales@jackrabbitsteel.com
 14|Rush Truck Center - Austin|1|4606 I-10 Frontage Rd||Sealy|TX|77474|United States|979-256-4930|wilsonc@rushenterprises.com

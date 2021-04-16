@@ -114,7 +114,7 @@ def update_customer():
             cursor.execute(sql, vals)
             conn.commit()
         message = 'Customer edited Sucessfully'
-        return render_template('updatecustomer.html', customers=customers, message = message)
+        return render_template('customers.html')
         #return redirect(url_for('edit_customer', customer_id=customer_id))
     return render_template('updatecustomer.html', customers=customers)
 
@@ -1113,32 +1113,68 @@ def suppliers():
         return render_template('suppliers.html')
 
 @app.route('/suppliers/new-supplierpart', methods = ['POST','GET'])
-def new_supplier():
+def new_supplierpart():
     # get info from html
+    sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    suppliers = []
+    for supplier in rows:
+        suppliers.append(supplier[1])
     if request.method == 'POST':
         supplier = request.form.get("supplier")
-        part = request.form.get("part_name")
-        status = request.form.get("active")
-        if supplier and part and status is not None:
-            # insert supplier
-            query = "INSERT INTO SUPPLIER (SUPPLIER_NAME, ACTIVE_ID) OUTPUT INSERTED.SUPPLIER_ID VALUES (?,?)"
-            vals = (supplier, status)
-            cursor.execute(query, vals)
-            supplier_id = cursor.fetchone()[0]
-            conn.commit()
+        part = request.form.get("part")
+        cost = request.form.get("cost")
+        # get id data
+        cursor.execute("SELECT SUPPLIER_ID FROM SUPPLIER WHERE SUPPLIER_NAME = '{}'".format(supplier))
+        supplier = cursor.fetchone()[0]
+        if supplier and part is not None:
             # insert part
             query = "INSERT INTO PART (PART_NAME) OUTPUT INSERTED.PART_ID VALUES (?)"
             vals = (part)
-            cursor.execute(query, vals)
+            data = cursor.execute(query, vals)
             part_id = cursor.fetchone()[0]
             conn.commit()
-            # insert supplier part
-            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID) OUTPUT INSERTED.PART_ID VALUES (?,?)"
-            vals = (part_id, supplier_id)
+            # insert supplier_part
+            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST) VALUES (?,?,?)"
+            vals = (part_id, supplier, cost)
             cursor.execute(query, vals)
-            message = "New Supplier/part entered successfully!"
-            return render_template('suppliers.html', message=message)
-    return render_template('newsupplier.html')
+            conn.commit()
+            message = "Item added successfuly"
+            return render_template('suppliers.html')
+    return render_template('newsupplierpart.html', suppliers=suppliers)
+
+@app.route('/suppliers/new-supplier', methods = ['POST','GET'])
+def new_supplier():
+    message = ''
+    sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM SUPPLIER_STATUS"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    actives = []
+    for active in rows:
+        actives.append(active[1])
+    if request.method == 'POST':
+        supplier = request.form.get("supplier")
+        if supplier is not None:
+            # new customer default
+            phone = request.form.get("phone")
+            email = request.form.get("email")
+            address = request.form.get("addy1")
+            address2 = request.form.get("addy2")
+            zip_code = request.form.get("zip")
+            city = request.form.get("city")
+            state = request.form.get("state")
+            country = request.form.get("country")
+            active = request.form.get("active")
+            cursor.execute("SELECT ACTIVE_ID FROM SUPPLIER_STATUS WHERE ACTIVE_NAME = '{}'".format(active))
+            active = cursor.fetchone()[0]
+            query = "INSERT INTO SUPPLIER (SUPPLIER_NAME, ACTIVE_ID, S_ADDRESS_LINE1, S_ADDRESS_LINE2, S_CITY, S_STATE,  S_ZIP, S_COUNTRY, S_PHONE, S_EMAIL) VALUES (?,?,?,?,?,?,?,?,?,?)"
+            vals = (supplier, active, address, address2, city, state, zip_code, country, phone, email)
+            cursor.execute(query, vals)
+            conn.commit()
+            message = "New customer entered successfully!"
+            return render_template('suppliers.html')
+    return render_template('newsupplier.html', actives=actives)
 
 @app.route('/supplier/update-supplier', methods = ['POST','GET'])
 def update_supplier():
@@ -1181,7 +1217,7 @@ def update_supplier():
             message = "Missing values!"
     return render_template('updatesupplier.html', message = message)
 
-@app.route('/customers/delete-supplier',methods = ['POST','GET'])
+@app.route('/suppliers/delete-supplier',methods = ['POST','GET'])
 def delete_supplier():
      # send list of customer id's to gui dropdown
     sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
@@ -1189,26 +1225,41 @@ def delete_supplier():
     rows = cursor.fetchall()
     suppliers = []
     for supplier in rows:
-        suppliers.append(supplier)
+        suppliers.append(supplier[1])
     if request.method == 'POST':
         # convert customer id to int for sql statement
-        supplier_id = request.form.get('supplier')
-        print(supplier_id)
-        x = supplier_id.split(", ")
-        y = int(x[0][1:])
-        # set inactive partial delete
-        sql = "UPDATE SUPPLIER SET ACTIVE_ID = 2 WHERE SUPPLIER_ID = ?"
-        vals = (y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Supplier removed Sucessfully'
-        return render_template('deletesupplier.html', suppliers=suppliers, message = message)
-        #return redirect(url_for('edit_customer', customer_id=customer_id))
+        supplier = request.form.get('supplier')
+        if supplier is not None:
+            cursor.execute("SELECT SUPPLIER_ID FROM SUPPLIER WHERE SUPPLIER_NAME = '{}'".format(supplier))
+            supplier = cursor.fetchone()[0]
+            # set inactive partial delete
+            sql = "UPDATE SUPPLIER SET ACTIVE_ID = 2 WHERE SUPPLIER_ID = ?"
+            vals = (supplier)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('suppliers.html')
     return render_template('deletesupplier.html', suppliers=suppliers)
 
 # view all Suppliers
 @app.route('/suppliers/view-suppliers', methods = ['GET']) 
 def view_suppliers():
+    cursor.execute("""
+        SELECT SUPPLIER_ID, SUPPLIER_NAME, SUPPLIER_STATUS.ACTIVE_NAME, S_ADDRESS_LINE1, 
+        S_ADDRESS_LINE2, S_CITY, S_STATE,  S_ZIP, 
+        S_COUNTRY, S_PHONE, S_EMAIL
+
+        FROM SUPPLIER
+        JOIN SUPPLIER_STATUS
+        ON SUPPLIER.ACTIVE_ID = SUPPLIER_STATUS.ACTIVE_ID
+
+        ORDER BY SUPPLIER.SUPPLIER_NAME
+    """)
+    data = cursor.fetchall()
+    return render_template('viewsuppliers.html', data = data)
+
+# view all Suppliers_part
+@app.route('/suppliers/view-parts', methods = ['GET']) 
+def view_parts():
     cursor.execute("""
         SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", 
         SUPPLIER_PART.PART_COST, SUPPLIER_STATUS.ACTIVE_NAME AS "Active"
@@ -1224,8 +1275,7 @@ def view_suppliers():
         ORDER BY SUPPLIER.SUPPLIER_NAME, PART.PART_NAME
     """)
     data = cursor.fetchall()
-    conn.commit()
-    return render_template('report_supplier.html', data = data)
+    return render_template('viewparts.html', data = data)
 
 ################################### VIOLATIONS ##################################################
 @app.route('/violations', methods = ['GET']) 

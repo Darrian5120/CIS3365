@@ -34,27 +34,40 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <table>
-            <thead>
-                <tr>
-                    <th>Supplier Name</th>
-                    <th>Part Name</th>
-                    <th>Part Cost</th>
-                    <th>Active</th>
-                </tr>
-            </thead>    
-            <tbody>
-                {% for row in data %}    
-                    <tr>
-                        <td>{{row[0]}}</td>
-                        <td>{{row[1]}}</td>
-                        <td>{{row[2]}}</td>
-                        <td>{{row[3]}}</td>
-
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table> 
+                <table>
+                        <thead>
+                            <tr>
+                                <th>Supplier ID</th>
+                                <th>Supplier Name</th>
+                                <th>Active</th>
+                                <th>Address Line 1</th>
+                                <th>Address Line 2</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip Code</th>
+                                <th>Country</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>    
+                        <tbody>
+                            {% for row in data %}    
+                                <tr>
+                                    <td align="left">{{row[0]}}</td>
+                                    <td align="left">{{row[1]}}</td>
+                                    <td align="right">{{row[2]}}</td>
+                                    <td align="left">{{row[3]}}</td>
+                                    <td align="left">{{row[4]}}</td>
+                                    <td align="left">{{row[5]}}</td>
+                                    <td align="left">{{row[6]}}</td>
+                                    <td align="left">{{row[7]}}</td>
+                                    <td align="left">{{row[8]}}</td>
+                                    <td align="left">{{row[9]}}</td>
+                                    <td align="left">{{row[10]}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
     </body>
     <script>
 

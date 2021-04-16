@@ -1,8 +1,6 @@
-<!DOCTYPE HTML>
 <html>
-	<link rel="stylesheet" href="home.css"> 
-	<head>
-		<title> Herrera Fabricating Inc.</title>
+    <head>
+        <title> Herrera Fabricating Inc.</title>
 		<!-- this sets the page for responsive scaling -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -16,7 +14,7 @@
             .genres {background-color:#ddd; overflow:hidden;} /*syle the topnav*/
             .genres a {float:center; display:block; color:#333; text-align:center; padding:14px 16px; text-decoration:none;}
             .genres a:hover {background-color:rgb(165, 58, 58); color:black}
-            
+            #form {margin: 0 auto; text-align: center;}
             #td {width: 16%; text-align: center; margin: 0; padding: 0;}
         </style>
 	</head>
@@ -34,16 +32,31 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <div class="genres">
-            <a href ="/suppliers/new-supplierpart">Add New Supplier/Part</a>
-            <a href ="/suppliers/new-supplier">Add New Supplier</a>
-            <a href ="/suppliers/update-supplierpart">Modify Supplier/Part</a>
-            <a href ="/suppliers/delete-supplier">Set Supplier Inactive</a>
-            <a href ="/suppliers/view-parts">View Parts</a>
-            <a href ="/suppliers/view-suppliers">View Suppliers</a>
-	    <a href ="/suppliers/view-inactive-trade-supplier">View Inactive Trade Suppliers</a>
-        </div>
+        <form action="" method="post">
+            <br><br>
+            <p>
+                <label for="supplier">Supplier</label>
+                <select name="supplier">
+                    {% for supplier in suppliers[0:] %}
+                    <option value="{{ supplier }}" >{{ supplier }}</option>"
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label for="part">Part</label>
+                <input type="text" name="part"/>
+            </p>
+            <p>
+                <label for="cost">Cost</label>
+                <input type="text" name="cost"/>
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
     </body>
     <script>
+
     </script>
-    </html>
+</html>

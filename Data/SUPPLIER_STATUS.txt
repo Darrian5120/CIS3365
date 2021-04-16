@@ -1,4 +1,4 @@
 ACTIVE_ID|ACTIVE_NAME
-1|Currently supplying
-2|Previous supplier
-3|In transition
+1|Current Supplier
+2|Inactive Supplier
+3|In Transition
