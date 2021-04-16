@@ -1,25 +1,25 @@
 EMP_ID|EMP_LNAME|EMP_FNAME|ROLE_ID|ACTIVE_ID|E_ADDRESS_LINE1|E_ADDRESS_LINE2|E_CITY|E_STATE|E_ZIP|E_COUNTRY|EMP_PHONE|E_EMAIL
-1|Herrera|Martin|1|2|1148 Margaret Street||Houston|TX|77087|United States|71384455031|herrera12@gmail.com
-2|Garcia|Blanca|1|2|2284 Del Dew Drive||Houston|TX|77001|United States|2812679191|garciablanca45@gmail.com
-3|Martinez|Ignacio|3|1|2249 Mulberry St.||Houston|TX|77060|United States|2817775681|ignacio_m@gmail.com
-4|Castillo|Adrian|6|1|7907 Parkglen Dr.||Houston|TX|77049|United States|2816696390|a_castillo@gmail.com
-5|Banegas|Yeison|4|1|3520 Poe Rd.||Houston|TX|77040|United States|8329558271|yeisonbanegas47@gmail.com
-6|Banegas|Gerson|4|1|13155 Woodforest Blvd.||Houston|TX|77015|United States|7133346111|gersonbanegas12@gmail.com
-7|Barron|Victor|6|1|1829 Charles Rd.||Houston|TX|77093|United States|2812442607|victorbarron65@gmail.com
-8|Valadez|Hector|3|1|13753 Waxahachie St.||Houston|TX|77015|United States|7169230064|hectorvaladez90@gmail.com
-9|Puerto|Pedro|4|1|458 Monroe St.|BLDG E, APT 456|Houston|TX|77036|United States|7134572630|pedropuerto@34@gmail.com
-10|Medina|Pedro|2|1|2712 Clousson Rd.||Houston|TX|77063|United States|7132018443|pedromedina90@hotmail.com
-11|Para|Omar|6|1|4273 Shingleton Rd.||Houston|TX|77044|United States|7134101682|omarpara83@gmail.com
-12|Bibriesca|John|4|1|4746 Werninger St.||Houston|TX|77056|United States|8326847496|johnbiriesca467@gmail.com
-13|Castaneda|May|5|1|4267 Circle Dr.|BLDG B, APT 204|Houston|TX|77063|United States|8324650160|maycastaneda20@gmail.com
-14|Avila|Carlos|3|1|12129 Ticonderogard Rd.||Houston|TX|77044|United States|2814136024|carlosavila195@gmail.com
-15|Carabez|Ricardo|3|1|11235 Valley Kings Dr.||Houston|TX|77044|United States|8328783729|ricardocarabez71@hotmail.com
-16|Alanis|Roberto|5|1|11521 Bannister Ln.||Houston|TX|77075|United States|2818854176|robertoalanis52@gmail.com
-17|Alanis|Ernesto|5|1|2090 Chapel St.||Houston|TX|77002|United States|2816641463|ernestoalanis91@gmail.com
-18|Ramirez|Israel|4|1|2416 Firnat St.||Houston|TX|77093|United States|8322790356|israelramirez10@gmail.com
-19|Dominguez|Fidencio|5|1|14437 Brownsville St.||Houston|TX|77015|United States|2818003641|fidenciodominguez61@gmail.com
-20|Juarez|Manuel|3|1|12833 Ticonderogard Rd.||Houston|TX|77044|United States|8322029001|manueljuarez64@gmail.com
-21|Bibriesca|Omar|3|1|12914 Ticonderogard Rd.||Houston|TX|77044|United States|7135806884|omarbibriesca31@gmail.com
-22|Alvarez|Luis|4|1|1921 Van Buren Circle||Pasadena|TX|77502|United States|8323296323|luisalvarez784@gmail.com
-23|Hernandez|George|5|1|1190 Millrose St.||Houston|TX|77040|United States|7137446443|georgehernandez984@hotmail.com
-24|Torres|Hector|5|1|12635 Tidwell Rd.||Houston|TX|77044|United States|2818301165|hectortorres76@gmail.com
+1|Herrera|Martin|1|2|1148 Margaret Street||Houston|Texas|77087|United States|7138445031|herrera12@gmail.com
+2|Garcia|Blanca|1|2|2284 Del Dew Drive||Houston|Texas|77001|United States|2812679191|garciablanca45@gmail.com
+3|Martinez|Ignacio|3|1|2249 Mulberry St.||Houston|Texas|77060|United States|2817775681|ignacio_m@gmail.com
+4|Castillo|Adrian|6|1|7907 Parkglen Dr.||Houston|Texas|77049|United States|2816696390|a_castillo@gmail.com
+5|Banegas|Yeison|4|1|3520 Poe Rd.||Houston|Texas|77040|United States|8329558271|yeisonbanegas47@gmail.com
+6|Banegas|Gerson|4|1|13155 Woodforest Blvd.||Houston|Texas|77015|United States|7133346111|gersonbanegas12@gmail.com
+7|Barron|Victor|6|1|1829 Charles Rd.||Houston|Texas|77093|United States|2812442607|victorbarron65@gmail.com
+8|Valadez|Hector|3|1|13753 Waxahachie St.||Houston|Texas|77015|United States|7169230064|hectorvaladez90@gmail.com
+9|Puerto|Pedro|4|1|458 Monroe St.|BLDG E, APT 456|Houston|Texas|77036|United States|7134572630|pedropuerto@34@gmail.com
+10|Medina|Pedro|2|1|2712 Clousson Rd.||Houston|Texas|77063|United States|7132018443|pedromedina90@hotmail.com
+11|Para|Omar|6|1|4273 Shingleton Rd.||Houston|Texas|77044|United States|7134101682|omarpara83@gmail.com
+12|Bibriesca|John|4|1|4746 Werninger St.||Houston|Texas|77056|United States|8326847496|johnbiriesca467@gmail.com
+13|Castaneda|May|5|1|4267 Circle Dr.|BLDG B, APT 204|Houston|Texas|77063|United States|8324650160|maycastaneda20@gmail.com
+14|Avila|Carlos|3|1|12129 Ticonderogard Rd.||Houston|Texas|77044|United States|2814136024|carlosavila195@gmail.com
+15|Carabez|Ricardo|3|1|11235 Valley Kings Dr.||Houston|Texas|77044|United States|8328783729|ricardocarabez71@hotmail.com
+16|Alanis|Roberto|5|1|11521 Bannister Ln.||Houston|Texas|77075|United States|2818854176|robertoalanis52@gmail.com
+17|Alanis|Ernesto|5|1|2090 Chapel St.||Houston|Texas|77002|United States|2816641463|ernestoalanis91@gmail.com
+18|Ramirez|Israel|4|1|2416 Firnat St.||Houston|Texas|77093|United States|8322790356|israelramirez10@gmail.com
+19|Dominguez|Fidencio|5|1|14437 Brownsville St.||Houston|Texas|77015|United States|2818003641|fidenciodominguez61@gmail.com
+20|Juarez|Manuel|3|1|12833 Ticonderogard Rd.||Houston|Texas|77044|United States|8322029001|manueljuarez64@gmail.com
+21|Bibriesca|Omar|3|1|12914 Ticonderogard Rd.||Houston|Texas|77044|United States|7135806884|omarbibriesca31@gmail.com
+22|Alvarez|Luis|4|1|1921 Van Buren Circle||Pasadena|Texas|77502|United States|8323296323|luisalvarez784@gmail.com
+23|Hernandez|George|5|1|1190 Millrose St.||Houston|Texas|77040|United States|7137446443|georgehernandez984@hotmail.com
+24|Torres|Hector|5|1|12635 Tidwell Rd.||Houston|Texas|77044|United States|2818301165|hectortorres76@gmail.com

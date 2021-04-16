@@ -32,25 +32,22 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form action="" method="post">
+        <form action="" method="post" id="frm">
             <p>
-                <label for="lname">First Name</label>
+                <label for="fname">First Name</label>
                 <input type="text" name="fname">
             </p>
             <p>
-                <label for="fname">Last Name</label>
+                <label for="lname">Last Name</label>
                 <input type="text" name="lname">
             </p>
             <p>
                 <label for="role">Role</label>
                 <select name="role" id="role">
-                    <option value="">Job Function</option>
-                    <option value="1">Office Manager</option>
-                    <option value="2">Office Assitant</option>
-                    <option value="3">Painter</option>
-                    <option value="4">Welder</option>
-                    <option value="5">Frameworker</option>
-                    <option value="6">Electrical Technician</option>
+                    <option>Job Function</option>
+                    {% for role in roles[0:] %}
+                    <option value="{{ role }}" >{{ role }}</option>
+                    {% endfor %}
                 </select>
             </p>
             <p>
@@ -87,11 +84,10 @@
             <p>
                 <label for="active">Active </label>
                 <select name="active" id="active">
-                    <option value="">Status</option>
-                    <option value="1">Active-Servicing</option>
-                    <option value="2">Active-Available</option>
-                    <option value="3">Leave</option>
-                    <option value="4">Terminated</option>
+                    <option></option>
+                    {% for active in actives[0:] %}
+                    <option value="{{ active }}" >{{ active }}</option>
+                    {% endfor %}
                 </select>
             </p>
             <p><input type="submit" value="Submit"></p>

@@ -26,20 +26,75 @@
                 <td id="td"><a href ="/reports">Reports</a></td>
             </tr>
         </table>
-        <form action="" method="post">
+        <form action="" method="post" id="frm">
             <p>
-                <label for="fid">Enter Customer ID to modify:</label>
-                <input type="text" name="fid">
+                <select name="employee">
+                    {% for employee in employees[0:] %}
+                    <option value="{{ employee }}" >{{ employee }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p>
-                <label for="fname">Enter field to modify:</label>
-                <input type="text" name="field">
+                <label for="tblname">Enter field to modify:</label>
+                <select name="tblname" id="tblname" onChange="myFunction(value)">
+                        <option></option>
+                    <optgroup label="Employee"></optgroup>
+                        <option value="EMPLOYEE SET EMPLOYEE_FNAME">First Name</option>
+                        <option value="EMPLOYEE SET EMPLOYEE_LNAME">Last Name</option>
+                        <option value="EMPLOYEE SET E_ADDRESS_LINE1">Address Line 1</option>
+                        <option value="EMPLOYEE SET E_ADDRESS_LINE2">Address Line 2</option>
+                        <option value="EMPLOYEE SET E_CITY">City</option>
+                        <option value="EMPLOYEE SET E_STATE">State</option>
+                        <option value="EMPLOYEE SET E_ZIP">Zip Code</option>
+                        <option value="EMPLOYEE SET E_COUNTRY">Country</option>
+                        <option value="EMPLOYEE SET E_PHONE">Phone</option>
+                        <option value="EMPLOYEE SET E_EMAIL">Email</option>
+                        <option value="EMPLOYEE SET ROLE_ID">Role</option>
+                        <option value="EMPLOYEE SET ACTIVE_ID">Status</option>
+                </select>
             </p>
-            <p>
-                <label for="lname">New Value:</label>
-                <input type="text" name="value">
-            </p>
-            <p><input type="submit" value="Submit"></p>
         </form>
     </body>
+    <script>
+        var statuses = JSON.parse('{{ statuses | tojson | safe }}');
+        var roles = JSON.parse('{{ roles | tojson | safe }}');
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        //https://www.geeksforgeeks.org/how-to-create-a-form-dynamically-with-the-javascript/#:~:text=Approach%201%3A%20Use%20document.,body%3E%20element%20of%20the%20document.
+        function myFunction(value) {
+            if (value=="EMPLOYEE SET ACTIVE_ID"){
+                var select = document.createElement("select");
+                select.name = "status";
+                select.id = "status"; 
+                for (i=0; i<=statuses.length-1; i++) {
+                    option = document.createElement('option');
+                    option.value = statuses[i];
+                    option.text = statuses[i];
+                    select.appendChild(option);
+                }
+                frm.appendChild(select);
+                frm.appendChild(s);
+            }
+            if (value=="EMPLOYEE SET ROLE_ID"){
+                var select = document.createElement("select");
+                select.name = "role";
+                select.id = "role"; 
+                for (i=0; i<=roles.length-1; i++) {
+                    option = document.createElement('option');
+                    option.value = roles[i];
+                    option.text = roles[i];
+                    select.appendChild(option);
+                }
+                frm.appendChild(select);
+                frm.appendChild(s);
+            } else {
+                var x = document.createElement("INPUT");
+                x.type = "text";
+                x.name="value";
+                frm.appendChild(x);
+                frm.appendChild(s); 
+            }     
+        }
+    </script>
 </html>

@@ -28,8 +28,13 @@
         </table>
         <form action="" method="post">
             <p>
-                <label for="eid">Enter Employee ID to modify:</label>
-                <input type="text" name="eid">
+                
+                <label>Employee ID</label>
+                <select name="employee">
+                    {% for employee in employees[0:] %}
+                    <option value="{{ employee }}" >{{ employee }}</option>
+                    {% endfor %}
+                </select>
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>

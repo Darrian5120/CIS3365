@@ -629,7 +629,18 @@ def employees():
 # Employee insert/create FINISHED @anthony
 @app.route ('/employees/new-employee', methods = ['POST', 'GET'])
 def new_employee():
-    message = ''
+    sql = "SELECT ACTIVE_NAME FROM EMPLOYEE_STATUS"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    actives = []
+    for active in rows:
+        actives.append(active[0])
+    sql = "SELECT ROLE_NAME FROM ROLE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    roles = []
+    for role in rows:
+        roles.append(role[0])
     if request.method == 'POST':
         lname = request.form.get("lname")
         fname = request.form.get("fname")
@@ -644,79 +655,109 @@ def new_employee():
         state = request.form.get("state")
         country = request.form.get("country")
         if lname and fname is not None:   
+            cursor.execute("SELECT ROLE_ID FROM ROLE WHERE ROLE_NAME = '{}'".format(role))
+            role = cursor.fetchone()[0]
+            cursor.execute("SELECT ACTIVE_ID FROM EMPLOYEE_STATUS WHERE ACTIVE_NAME = '{}'".format(active))
+            active = cursor.fetchone()[0]
             # new employee default
-            query = "INSERT INTO Customer (C_LNAME, C_FNAME, ROLE_ID, ACTIVE_ID, ADDRESS_LINE1, ADDRESS_LINE2, C_CITY, STATE_NAME,  C_ZIP,COUNTRY_NAME, C_PHONE, C_EMAIL) OUTPUT INSERTED.CUSTOMER_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            query = "INSERT INTO EMPLOYEE (EMPLOYEE_LNAME, EMPLOYEE_FNAME, ROLE_ID, ACTIVE_ID, E_ADDRESS_LINE1, E_ADDRESS_LINE2, E_CITY, E_STATE, E_ZIP, E_COUNTRY, E_PHONE, E_EMAIL) OUTPUT INSERTED.EMPLOYEE_ID VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
             vals = (lname, fname, role, active, address, address2, city, state, zip_code, country, phone, email)
             cursor.execute(query, vals)
-            employee_id = cursor.fetchone()[0]
             conn.commit()
-            message = "New employee entered successfully!"
-            return render_template ('newemployee.html', message = message)
-    return render_template ('newemployee.html')
+            return render_template ('employees.html')
+    return render_template ('newemployee.html',roles=roles,actives=actives)
     
 # ask for help here
 # modify existing employee by entering id
 @app.route ('/employees/update-employee' , methods = ['POST' , 'GET'])
 def update_employee():
-    
-    sql = "SELECT EMPLOYEE_ID, E_FNAME, E_LNAME FROM Employee"
-    cursor.execute(sql)
+    cursor.execute("SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME FROM Employee")
     rows = cursor.fetchall()
     employees = []
-    
     for employee in rows:
-        employees.append(employees)
+        employees.append(employee)
+    sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM EMPLOYEE_STATUS"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    statuses = []
+    for status in rows:
+        statuses.append(status[1])
+    sql = "SELECT ROLE_NAME FROM ROLE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    roles = []
+    for role in rows:
+        roles.append(role[0])
     if request.method == 'POST':
-        
         employee_id = request.form.get ('employee')
         print(employee_id)
         x = employee_id.split(", ")
         y = int (x[0][1:])
-        
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Employee edidted sucessfully'
-        
-        return render_template('updateemployee.html', employees = employees, message = message)
-    
-    return render_template ('updateemployee.html', employees = employees)
+        if field == "EMPLOYEE SET ACTIVE_ID":
+            value = request.form.get('status')
+            cursor.execute("SELECT ACTIVE_ID FROM EMPLOYEE_STATUS WHERE ACTIVE_NAME = '{}'".format(value))
+            status = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
+            vals = (status, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('employees.html')
+        if field == "EMPLOYEE SET ROLE_ID":
+            value = request.form.get('role')
+            cursor.execute("SELECT ROLE_ID FROM ROLE WHERE ROLE_NAME = '{}'".format(value))
+            role = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
+            vals = (status, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('employees.html')
+        else: 
+            sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('suppliers.html')
+    return render_template ('updateemployee.html', employees=employees,statuses=statuses,roles=roles)
     
                 
 # remove employee from db by setting status to inactive
-@app.route ('/employees/delete-emloyee' , methods =['POST' , 'GET'])
+@app.route ('/employees/delete-employee' , methods =['POST' , 'GET'])
 def delete_employee():
-    sql = "SELECT EMPLOYEE_ID, E_FNAME, E_LNAME FROM Employee"
+    sql = "SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME FROM Employee"
     cursor.execute(sql)
     rows = cursor.fetchall()
-    employee = []
+    employees = []
     for employee in rows:
         employees.append(employee)
     if request.method == 'POST':
-        
         employee_id = request.form.get('employee')
         print(employee_id)
         x = employee_id.split(", ")
         y = int(x[0][1:])
-        
-        sql = "UPDATE Employee SET ACTIVE_ID = 3 WHERE EMPLOYEE_ID = ?"
-        vals = (y)
+        print(y)
+        sql = "UPDATE EMPLOYEE SET ACTIVE_ID = 4 WHERE EMPLOYEE_ID = ?"
+        vals = y
         cursor.execute(sql, vals)
         conn.commit()
-        message = 'Employee removed sucessfully'
-        
-        return render_template('deleteemployee.html', employees = employees, message = message)
-        
-    return render_template('deleteemployee.html',  employees = employees)
+        return render_template('employees.html')
+    return render_template('deleteemployee.html', employees = employees)
            
 
 #view all employees
 @app.route ('/employees/view-employees' , methods = ['GET'])
 def view_employees():
-    cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.Employee")
+    cursor.execute ("""
+        SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME, ROLE.ROLE_NAME,
+        EMPLOYEE_STATUS.ACTIVE_NAME, E_ADDRESS_LINE1, E_ADDRESS_LINE2, E_CITY,
+        E_STATE, E_ZIP, E_COUNTRY, E_PHONE, E_EMAIL
+        FROM Employee
+        JOIN EMPLOYEE_STATUS
+        ON EMPLOYEE_STATUS.ACTIVE_ID=EMPLOYEE.ACTIVE_ID
+        JOIN ROLE
+        ON ROLE.ROLE_ID=EMPLOYEE.ROLE_ID
+    """)
     data = cursor.fetchall()
     return render_template ('viewemployee.html' , data = data)
 
