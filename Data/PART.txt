@@ -34,24 +34,22 @@ PART_ID|PART_NAME
 33|Tool Box
 34|Bed
 35|Power Take-Off Transmission
-36|Tire
-37|Wheel
-38|Bolts
-39|Hood
-40|Aluminum
-41|Stainless Steel
-42|Low Carbon Mild Steel
-43|Fuel
-44|Pusher
-45|Tailgate
-46|Fender
-47|Pressure Blast Tank
-48|Electric Switch
-49|Fuel Pump
-50|Rack
-51|Cabin Door
-52|Antenna
-53|Fuel Tank
-54|Driver seat
-55|Bushings
-56|Glass
+36|Bolts
+37|Hood
+38|Aluminum
+39|Stainless Steel
+40|Low Carbon Mild Steel
+41|Fuel
+42|Pusher
+43|Tailgate
+44|Fender
+45|Pressure Blast Tank
+46|Electric Switch
+47|Fuel Pump
+48|Rack
+49|Cabin Door
+50|Antenna
+51|Fuel Tank
+52|Driver seat
+53|Bushings
+54|Glass
