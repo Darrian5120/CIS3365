@@ -237,8 +237,6 @@ def new_vehicle():
     # create json for jquery
     data = {}
     for (make, model) in cursor:
-        #if model in data:
-        #    data[model]
         data.setdefault(make, []).append(model)
     #####################
     sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
@@ -291,14 +289,9 @@ def new_vehicle():
             # insert vehicle table
             query = "INSERT INTO VEHICLE (V_VIN, MAKE_ID, MODEL_ID, V_YEAR, V_LICENSE_PLATE, V_COLOR, ACTIVE_ID, CONDITION_ID) OUTPUT INSERTED.V_ID VALUES (?,?,?,?,?,?,?,?)"
             vals = (vin, make, model, year, license_plate, color, active, cond)
-            print(vals)
             cursor.execute(query, vals)
             v_id = cursor.fetchone()[0]
-            print(v_id)
             conn.commit()
-            print(v_id)
-            print(v_id)
-            print(v_id)
             # insert customer_vehicle table
             customer_id = request.form.get('customer')
             x = customer_id.split(", ")
@@ -315,7 +308,6 @@ def new_vehicle():
             company = request.form.get('company')
             x3 = condition_id.split(", ")
             comp = int(x3[0][1:])
-            
             query = "INSERT INTO POLICY (CUSTOMER_ID, V_ID, INSURANCE_ID, POLICY_ID, EXPIRATION_DATE) VALUES (?,?,?,?,?)"
             vals = (cust, v_id, comp, pol, date)
             cursor.execute(query, vals)
@@ -339,6 +331,50 @@ def update_vehicles():
     vehicles = []
     for vehicle in rows:
         vehicles.append(vehicle)
+    sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    makes = []
+    for make in rows:
+        #makes.append([x for x in make])
+        makes.append(make[1])
+    sql = "SELECT MODEL_ID, MODEL_NAME FROM MODEL"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    models = []
+    for model in rows:
+        models.append(model[1])
+    sql = "SELECT CONDITION_ID, CONDITION FROM VEHICLE_CONDITION"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    conditions = []
+    for condition in rows:
+        conditions.append(condition[1])
+    sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer[2])
+    sql = "SELECT INSURANCE_ID, INSURANCE_NAME FROM INSURANCE_COMPANY"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    companies = []
+    for company in rows:
+        companies.append(company[1])
+    sql = "SELECT POLICY_ID, POLICY_NAME FROM INSURANCE_POLICY"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    policies = []
+    for policy in rows:
+        policies.append(policy[1])
+    sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM VEHICLE_STATUS"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    statuses = []
+    for status in rows:
+        statuses.append(status[1])
+    ####################################################
     if request.method == 'POST':
         # convert customer id to int for sql statement
         v_id = request.form.get('vehicle')
@@ -347,12 +383,76 @@ def update_vehicles():
         # get table, column, and new value data
         field = request.form.get('tblname')
         value = request.form.get('value')
+        if field == "VEHICLE SET MAKE_ID":
+            value = request.form.get('make')
+            cursor.execute("SELECT MAKE_ID FROM MAKE WHERE MAKE_NAME = '{}'".format(value))
+            make = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (make, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        if field == "VEHICLE SET MODEL_ID":
+            value = request.form.get('model')
+            cursor.execute("SELECT MODEL_ID FROM MODEL WHERE MODEL_NAME = '{}'".format(value))
+            model = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (model, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        if field == "VEHICLE SET CONDITION_ID":
+            value = request.form.get('condition')
+            cursor.execute("SELECT CONDITION_ID FROM VEHICLE_CONDITION WHERE CONDITION = '{}'".format(value))
+            condition = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (condition, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        if field == "CUSTOMER_VEHICLE SET CUSTOMER_ID": # FIXME
+            value = request.form.get('customer')
+            cursor.execute("SELECT CUSTOMER_ID FROM CUSTOMER_VEHICLE WHERE CUSTOMER_LNAME = '{}'".format(value))
+            customer = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (customer, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        if field == "VEHICLE SET ACTIVE_ID":
+            value = request.form.get('status')
+            cursor.execute("SELECT ACTIVE_ID FROM VEHICLE_STATUS WHERE ACTIVE_NAME = '{}'".format(value))
+            status = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (status, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        if field == "POLICY SET INSURANCE_ID":
+            value = request.form.get('company')
+            cursor.execute("SELECT INSURANCE_ID FROM INSURANCE_COMPANY WHERE INSURANCE_NAME = '{}'".format(value))
+            company = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (company, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        if field == "POLICY SET POLICY_ID":
+            value = request.form.get('policy')
+            cursor.execute("SELECT POLICY_ID FROM INSURANCE_POLICY WHERE POLICY_NAME = '{}'".format(value))
+            policy = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (policy, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        
         sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
         vals = (value, y)
         cursor.execute(sql, vals)
         conn.commit()
-        return render_template('updatevehicle.html', vehicles=vehicles)
-    return render_template('updatevehicle.html', vehicles=vehicles)
+        return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+    return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
 
 # remove vehicle from db by setting status to inactive  
 @app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET']) #FINISHED
@@ -1196,6 +1296,7 @@ if __name__ == '__main__':
                         'Database=CoogTechSolutions;'
                         'Trusted_Connection=yes;')
     cursor = conn.cursor()
+    
     app.run()
     conn.close()
 
