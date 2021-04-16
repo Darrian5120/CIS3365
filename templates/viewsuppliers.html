@@ -39,7 +39,6 @@
                             <tr>
                                 <th>Supplier ID</th>
                                 <th>Supplier Name</th>
-                                <th>Active</th>
                                 <th>Address Line 1</th>
                                 <th>Address Line 2</th>
                                 <th>City</th>
@@ -48,20 +47,21 @@
                                 <th>Country</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Status</th>
                             </tr>
                         </thead>    
                         <tbody>
                             {% for row in data %}    
                                 <tr>
-                                    <td align="left">{{row[0]}}</td>
+                                    <td align="right">{{row[0]}}</td>
                                     <td align="left">{{row[1]}}</td>
-                                    <td align="right">{{row[2]}}</td>
+                                    <td align="left">{{row[2]}}</td>
                                     <td align="left">{{row[3]}}</td>
                                     <td align="left">{{row[4]}}</td>
                                     <td align="left">{{row[5]}}</td>
-                                    <td align="left">{{row[6]}}</td>
+                                    <td align="right">{{row[6]}}</td>
                                     <td align="left">{{row[7]}}</td>
-                                    <td align="left">{{row[8]}}</td>
+                                    <td align="right">{{row[8]}}</td>
                                     <td align="left">{{row[9]}}</td>
                                     <td align="left">{{row[10]}}</td>
                                 </tr>

@@ -28,29 +28,68 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form action="" method="post">
+        <form method="POST" action="" id="frm">
             <p>
-                <label for="SUPPLIER_ID">Enter Supplier ID to modify:</label>
-                <input type="text" name="SUPPLIER_ID">
+                <select name="supplier">
+                    {% for supplier in suppliers[0:] %}
+                    <option value="{{ supplier }}" >{{ supplier }}</option>"
+                    {% endfor %}
+                </select>
             </p>
             <p>
                 <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
                 <label for="tblname">Enter field to modify:</label>
-                <select name="tblname" id="tblname">
+                <select name="tblname" id="tblname" onChange="myFunction(value)">
+                        <option></option>
                     <optgroup label="SUPPLIER"></optgroup>
-                        <option value="SUPPLIER SET SUPPLIER_NAME">Supplier Name</option>
-                    <optgroup label="SUPPLIER_STATUS"></optgroup>
-                        <option value="CUSTOMER_STATUS SET ACTIVE">ACTIVE or INACTIVE</option>
+                        <option value="SUPPLIER SET SUPPLIER_NAME">VIN</option>
+                        <option value="SUPPLIER SET S_ADDRESS_LINE1">Address Line 1</option>
+                        <option value="SUPPLIER SET S_ADDRESS_LINE2">Address Line 2</option>
+                        <option value="SUPPLIER SET S_CITY">City</option>
+                        <option value="SUPPLIER SET S_STATE">State</option>
+                        <option value="SUPPLIER SET S_ZIP">Zip Code</option>
+                        <option value="SUPPLIER SET S_COUNTRY">Country</option>
+                        <option value="SUPPLIER SET S_PHONE">Phone</option>
+                        <option value="SUPPLIER SET S_EMAIL">Email</option>
+                        <option value="SUPPLIER SET ACTIVE_ID">Status</option>
+                    <optgroup label="PART"></optgroup>
+                        <option value="CUSTOMER_VEHICLE SET CUSTOMER_ID">Customer</option>
                   </select>
                 </p>
-            <p>
-                <label for="tblname">New Value:</label>
-                <input type="text" name="value">
-            </p>
-            <p><input type="submit" value="Submit"></p>
+            
+            
         </form>
         {% if message %}
             <p>{{ message }}</p>
         {% endif %}
     </body>
+    <script>
+        var statuses = JSON.parse('{{ statuses | tojson | safe }}');
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        //https://www.geeksforgeeks.org/how-to-create-a-form-dynamically-with-the-javascript/#:~:text=Approach%201%3A%20Use%20document.,body%3E%20element%20of%20the%20document.
+        function myFunction(value) {
+            if (value=="SUPPLIER SET ACTIVE_ID"){
+                var select = document.createElement("select");
+                select.name = "status";
+                select.id = "status"; 
+                for (i=0; i<=statuses.length-1; i++) {
+                    option = document.createElement('option');
+                    option.value = statuses[i];
+                    option.text = statuses[i];
+                    select.appendChild(option);
+                }
+                frm.appendChild(select);
+                frm.appendChild(s);
+            }
+            else {
+                var x = document.createElement("INPUT");
+                x.type = "text";
+                x.name="value";
+                frm.appendChild(x);
+                frm.appendChild(s); 
+            }     
+        }
+    </script>
 </html>

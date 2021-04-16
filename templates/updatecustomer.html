@@ -70,6 +70,32 @@
         {% endif %}
     </body>
     <script>
-        
+        var statuses = JSON.parse('{{ statuses | tojson | safe }}');
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        //https://www.geeksforgeeks.org/how-to-create-a-form-dynamically-with-the-javascript/#:~:text=Approach%201%3A%20Use%20document.,body%3E%20element%20of%20the%20document.
+        function myFunction(value) {
+            if (value=="SUPPLIER SET ACTIVE_ID"){
+                var select = document.createElement("select");
+                select.name = "status";
+                select.id = "status"; 
+                for (i=0; i<=statuses.length-1; i++) {
+                    option = document.createElement('option');
+                    option.value = statuses[i];
+                    option.text = statuses[i];
+                    select.appendChild(option);
+                }
+                frm.appendChild(select);
+                frm.appendChild(s);
+            }
+            else {
+                var x = document.createElement("INPUT");
+                x.type = "text";
+                x.name="value";
+                frm.appendChild(x);
+                frm.appendChild(s); 
+            }     
+        }
     </script>
 </html>

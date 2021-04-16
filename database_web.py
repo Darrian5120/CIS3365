@@ -1112,7 +1112,7 @@ def yearlyserviceorder_report():
 def suppliers():
         return render_template('suppliers.html')
 
-@app.route('/suppliers/new-supplierpart', methods = ['POST','GET'])
+@app.route('/suppliers/new-supplierpart', methods = ['POST','GET'])#FINISHED
 def new_supplierpart():
     # get info from html
     sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
@@ -1144,7 +1144,7 @@ def new_supplierpart():
             return render_template('suppliers.html')
     return render_template('newsupplierpart.html', suppliers=suppliers)
 
-@app.route('/suppliers/new-supplier', methods = ['POST','GET'])
+@app.route('/suppliers/new-supplier', methods = ['POST','GET'])#FINISHED
 def new_supplier():
     message = ''
     sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM SUPPLIER_STATUS"
@@ -1176,48 +1176,49 @@ def new_supplier():
             return render_template('suppliers.html')
     return render_template('newsupplier.html', actives=actives)
 
-@app.route('/supplier/update-supplier', methods = ['POST','GET'])
+@app.route('/suppliers/update-supplierpart', methods = ['POST','GET'])
 def update_supplier():
-    message = ''
+    # send list of customer id's to gui dropdown
+    cursor.execute("SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER")
+    rows = cursor.fetchall()
+    suppliers = []
+    for supplier in rows:
+        suppliers.append(supplier)
+    sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM SUPPLIER_STATUS"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    statuses = []
+    for status in rows:
+        statuses.append(status[1])
+    ####################################################
     if request.method == 'POST':
-        # get info from gui
-        supplier_id = request.form.get("SUPPLIER_ID")
-        field = request.form.get("tblname")
-        value = request.form.get("value")
-        # find if id exist
-        if supplier_id and field and value is not None:
-            sql = "SELECT SUPPLIER_ID FROM SUPPLIER where SUPPLIER_ID = ?" 
-            vals = (supplier_id)
-            cursor.execute(sql, vals)
-            data = cursor.fetchall()
-            if not data: # id doesn't exist
-                message = "Invalid Supplier ID! Please review Suppliers"
-                # update both supplier status fields - MUST COPY FOR STATUS TABLES ########################
-                if field == "SUPPLIER_STATUS SET ACTIVE":
-                    query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE SUPPLIER_ID = ?".format(fld = field)
-                    if value == 'Active' or value == 'ACTIVE':
-                        query = "UPDATE CoogTechSolutions.dbo.SUPPLIER_STATUS SET S_ACTIVE = ?, ACTIVE = ? WHERE SUPPLIER_ID = ?".format(fld = field)
-                        vals = (1, "ACTIVE", supplier_id)
-                        data = cursor.execute(query, vals)
-                        conn.commit()
-                        return render_template('suppliers.html', data=data, message=message)
-                    else:
-                        query = "UPDATE CoogTechSolutions.dbo.SUPPLIER_STATUS SET S_ACTIVE = ?, ACTIVE = ? WHERE SUPPLIER_ID = ?".format(fld = field)
-                        vals = (2, "INACTIVE", supplier_id)
-                        data = cursor.execute(query, vals)
-                        conn.commit()
-                        return render_template('suppliers.html', data=data, message=message)
-                query = "UPDATE CoogTechSolutions.dbo.{fld} = ? WHERE SUPPLIER_ID = ?".format(fld = field)
-                vals = (value, supplier_id)
-                data = cursor.execute(query, vals)
-                conn.commit()
-                message = "Supplier edited successfully!"
-                return render_template('suppliers.html', data=data, message=message)
-        else: # missing id in gui
-            message = "Missing values!"
-    return render_template('updatesupplier.html', message = message)
+        # convert customer id to int for sql statement
+        supplier_id = request.form.get('supplier')
+        x = v_id.split(", ")
+        y = int(x[0][1:])
+        # get table, column, and new value data
+        field = request.form.get('tblname')
+        value = request.form.get('value')
 
-@app.route('/suppliers/delete-supplier',methods = ['POST','GET'])
+        if field == "SUPPLIER SET ACTIVE_ID":
+            value = request.form.get('status')
+            cursor.execute("SELECT ACTIVE_ID FROM SUPPLIER_STATUS WHERE ACTIVE_NAME = '{}'".format(value))
+            status = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE SUPPLIER_ID = ?".format(field)
+            vals = (status, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('suppliers.html')
+        else: 
+            sql = "UPDATE {} = ? WHERE SUPPLIER_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('suppliers.html')
+    return render_template('updatesupplier.html', suppliers=suppliers,statuses=statuses)
+
+
+@app.route('/suppliers/delete-supplier',methods = ['POST','GET'])#FINISHED
 def delete_supplier():
      # send list of customer id's to gui dropdown
     sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
@@ -1241,12 +1242,12 @@ def delete_supplier():
     return render_template('deletesupplier.html', suppliers=suppliers)
 
 # view all Suppliers
-@app.route('/suppliers/view-suppliers', methods = ['GET']) 
+@app.route('/suppliers/view-suppliers', methods = ['GET']) #FINISHED
 def view_suppliers():
     cursor.execute("""
-        SELECT SUPPLIER_ID, SUPPLIER_NAME, SUPPLIER_STATUS.ACTIVE_NAME, S_ADDRESS_LINE1, 
-        S_ADDRESS_LINE2, S_CITY, S_STATE,  S_ZIP, 
-        S_COUNTRY, S_PHONE, S_EMAIL
+        SELECT SUPPLIER_ID, SUPPLIER_NAME, S_ADDRESS_LINE1, 
+        S_ADDRESS_LINE2, S_CITY, S_STATE, S_ZIP,
+        S_COUNTRY, S_PHONE, S_EMAIL,  SUPPLIER_STATUS.ACTIVE_NAME
 
         FROM SUPPLIER
         JOIN SUPPLIER_STATUS
@@ -1258,7 +1259,7 @@ def view_suppliers():
     return render_template('viewsuppliers.html', data = data)
 
 # view all Suppliers_part
-@app.route('/suppliers/view-parts', methods = ['GET']) 
+@app.route('/suppliers/view-parts', methods = ['GET'])#FINISHED 
 def view_parts():
     cursor.execute("""
         SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", 
