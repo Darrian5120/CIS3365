@@ -12,15 +12,7 @@ import sys
 # Every category should have a CRUD operation, please pick one to code with python AND html
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
-# Darrian - update supplier
-# Mustafa - vehicles insert, vehicle delete, vehicle update
-# Brandon - 
-# Anthony - employee create(insert), employee delete, vehicle report, employee update
-# Jerry - vehicle update, vehicle report
-# Kyle - service create(insert), service delete, employee report, violation report
-# Jahidul - 
-# Gian - service update, service report
-# Zach - violation insert, violation delete, violation update
+# Customer, Supplier, Vehicle
 # EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
 
 app = flask.Flask(__name__)
@@ -103,6 +95,12 @@ def update_customer():
     types = []
     for type in rows:
         statuses.append(type[1])
+    sql = "SELECT STATE_ID, STATE_NAME FROM STATE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    states = []
+    for state in rows:
+        states.append(state[1])
     if request.method == 'POST':
         # convert customer id to int for sql statement
         customer_id = request.form.get('customer')
@@ -112,22 +110,44 @@ def update_customer():
         # get table, column, and new value data
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        if field == 'Customer SET STATE_NAME':
+        if field == "SUPPLIER SET ACTIVE_ID":
+            value = request.form.get('status')
+            cursor.execute("SELECT ACTIVE_ID FROM CUSTOMER_STATUS WHERE ACTIVE_NAME = '{}'".format(value))
+            status = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+        if field == "CUSTOMER SET BUSINESS_ID":
+            value = request.form.get('type')
+            cursor.execute("SELECT BUSINESS_ID FROM CUSTOMER_TYPES WHERE BUSINESS = '{}'".format(value))
+            type = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
+            vals = (type, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+        if field == 'state':
+            value = request.form.get('state')
+            print(value)
             query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
             val = value
+            print(val)
             cursor.execute(query, val)
-            data = cursor.fetchall()
-            sql = "UPDATE CUSTOMER_STATE SET STATE_ID = ? WHERE CUSTOMER_ID = ?"
-            vals = (data[0][0], y)
+            data = cursor.fetchone()[0]
+            print(data)
+            print(y)
+            sql = "INSERT INTO CUSTOMER_STATE (CUSTOMER_ID, STATE_ID) VALUES (?,?)"
+            vals = (y, data)
+            cursor.execute(sql, vals)
+            conn.commit()
+        else:
+            sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
+            vals = (value, y)
             cursor.execute(sql, vals)
             conn.commit()
         return render_template('customers.html')
         #return redirect(url_for('edit_customer', customer_id=customer_id))
-    return render_template('updatecustomer.html', customers=customers,types=types,statuses=statuses)
+    return render_template('updatecustomer.html', customers=customers,types=types,statuses=statuses,states=states)
 
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET']) # FINISHED
@@ -171,7 +191,6 @@ def view_customers():
         ORDER BY CUSTOMER.ACTIVE_ID, Customer.CUSTOMER_ID
     """)
     data = cursor.fetchall()
-    conn.commit()
     return render_template('viewCustomers.html', data = data)
 
 @app.route ('/customers/inactive-report' , methods = ['GET'])

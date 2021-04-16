@@ -28,7 +28,7 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form method="POST" action="">
+        <form method="POST" action="" id="frm">
             <p>
                 <select name="customer">
                     {% for customer in customers[0:] %}
@@ -39,12 +39,11 @@
             <p>
                 <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
                 <label for="tblname">Enter field to modify:</label>
-                <select name="tblname" id="tblname">
-                    <optgroup label="CUSTOMER"></optgroup>
+                <select name="tblname" id="tblname" onChange="myFunction(value)">
+                    <optgroup label="CUSTOMER CONTACT INFO"></optgroup>
                         <option value="Customer SET C_FNAME">First Name</option>
                         <option value="Customer SET C_LNAME">Last Name</option>
                         <option value="Customer SET C_BUSINESS_NAME">Business Name</option>
-                    <optgroup label="CUSTOMER CONTACT INFO"></optgroup>
                         <option value="Customer SET C_ADDRESS_LINE1">Address Line 1</option>
                         <option value="Customer SET C_ADDRESS_LINE2">Address Line 2</option>
                         <option value="Customer SET C_CITY">City</option>
@@ -57,9 +56,10 @@
                         <option value="Customer SET BUSINESS_ID">Type</option>
                     <optgroup label="CUSTOMER STATUS"></optgroup>
                         <option value="Customer SET ACTIVE_ID">Status</option>
+                    <optgroup label="OPERATING STATE"></optgroup>
+                        <option value="state">State</option>
                   </select>
                 </p>
-            <p><input type="submit" value="Submit"></p>
         </form>
         {% if message %}
             <p>{{ message }}</p>
@@ -68,6 +68,7 @@
     <script>
         var statuses = JSON.parse('{{ statuses | tojson | safe }}');
         var types = JSON.parse('{{ types | tojson | safe }}');
+        var states = JSON.parse('{{ states | tojson | safe }}');
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
@@ -90,10 +91,23 @@
                 var select = document.createElement("select");
                 select.name = "type";
                 select.id = "type"; 
-                for (i=0; i<=statuses.length-1; i++) {
+                for (i=0; i<=types.length-1; i++) {
                     option = document.createElement('option');
                     option.value = types[i];
                     option.text = types[i];
+                    select.appendChild(option);
+                }
+                frm.appendChild(select);
+                frm.appendChild(s);
+            }
+            if (value=="state"){
+                var select = document.createElement("select");
+                select.name = "state";
+                select.id = "state"; 
+                for (i=0; i<=states.length-1; i++) {
+                    option = document.createElement('option');
+                    option.value = states[i];
+                    option.text = states[i];
                     select.appendChild(option);
                 }
                 frm.appendChild(select);
