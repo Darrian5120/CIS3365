@@ -706,10 +706,12 @@ def update_employee():
             return render_template('employees.html')
         if field == "EMPLOYEE SET ROLE_ID":
             value = request.form.get('role')
+            print(value)
             cursor.execute("SELECT ROLE_ID FROM ROLE WHERE ROLE_NAME = '{}'".format(value))
             role = cursor.fetchone()[0]
+            print(role)
             sql = "UPDATE {} = ? WHERE EMPLOYEE_ID = ?".format(field)
-            vals = (status, y)
+            vals = (role, y)
             cursor.execute(sql, vals)
             conn.commit()
             return render_template('employees.html')
