@@ -2,7 +2,7 @@ INSURANCE_ID|INSURANCE_NAME|I_ADDRESS_LINE1|I_ADDRESS_LINE2|I_CITY|I_STATE|I_ZIP
 1|Otterstedt|540 Sylvan Avenue||Englewood Cliffs|NJ|07632|United States|201-227-1800|claims@otterstedt.com
 2|Berkshire|15851 Dallas Pkwy|#1120|Addison|TX|75001|United States|888-495-8949|auto@bhhc.com
 3|Auto Owners|6101 Anacapri Blvd||Lansing|MI|48917|United States|800-346-0346|aoacctg@aoins.com
-4|Progressive|6300 Wilson Mills Road||Mayfield Village|Ohio|44143|United States|888-806-9598|commercialauto@email.progressive.com
+4|Progressive|6300 Wilson Mills Road||Mayfield Village|OH|44143|United States|888-806-9598|commercialauto@email.progressive.com
 5|Travelers|P.O. Box 5600||Hartford|CT|06102|United States|800-252-2268|MWCP@travelers.com
 6|Seneca|2400 Lakeside Blvd|Suite 200|Richardson|TX|75082|United States|972-380-3035|jgriego@senecainsurance.com
 7|Great Lakes|3205 Peach Street||Erie|PA|16508|United States|814-456-0498|eiepa@greatlakesins.com
@@ -23,9 +23,9 @@ INSURANCE_ID|INSURANCE_NAME|I_ADDRESS_LINE1|I_ADDRESS_LINE2|I_CITY|I_STATE|I_ZIP
 22|Winchester Insurance Agency|41 South Main Street||Winchester|KY|40391|United States|859-744-2200|Hilary.Ballard@kyinsurance.com
 23|Lancer|6676 Corporate Center Parkway||Jacksonville|FL|32216|United States|800-782-8902|custservice@lancerinsurance.com
 24|Eastern Atlantic Insurance Company|5300 Derry St||Harrisburg|PA|17111|United States|866-239-2455|claims@IADclaims.com
-25|DB Insurance|1440 Kapiolani Blvd|Suite 950|Honolulu|Hawaii|96814|United States|808-942-5353|DBInsurance11964@tnwinc.com
+25|DB Insurance|1440 Kapiolani Blvd|Suite 950|Honolulu|HI|96814|United States|808-942-5353|DBInsurance11964@tnwinc.com
 26|AIG|Attn: The Truck Insurance Group|Po Box 26610|Shawnee Mission|KS|66225|United States|800-426-3168|ATLPCMail@aig.com
-27|Great American|301 E. Fourth St|22nd Floor|Cincinnati|Ohio|45202|United States|800-643-7882|truckers@gaig.com
+27|Great American|301 E. Fourth St|22nd Floor|Cincinnati|OH|45202|United States|800-643-7882|truckers@gaig.com
 28|ACE / Westchester|2001 Bryan Street|Suite 3400|Dallas|TX|75201|United States|214-754-0777|stephanie.moss@westchester.com
 29|NICO|1314 Douglas Street|Suite 1400|Omaha|NE|68102|United States|866-720-7861|claims@nationalindemnity.com
 30|Nationwide|8877 N. Gainey Center Drive||Scottsdale|AZ|85258|United States|866-238-3357|newclaim@nationwide.com
