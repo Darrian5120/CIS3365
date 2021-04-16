@@ -91,6 +91,18 @@ def update_customer():
     customers = []
     for customer in rows:
         customers.append(customer)
+    sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM CUSTOMER_STATUS"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    statuses = []
+    for status in rows:
+        statuses.append(status[1])
+    sql = "SELECT BUSINESS_ID, BUSINESS FROM CUSTOMER_TYPE"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    types = []
+    for type in rows:
+        statuses.append(type[1])
     if request.method == 'POST':
         # convert customer id to int for sql statement
         customer_id = request.form.get('customer')
@@ -113,10 +125,9 @@ def update_customer():
             vals = (data[0][0], y)
             cursor.execute(sql, vals)
             conn.commit()
-        message = 'Customer edited Sucessfully'
         return render_template('customers.html')
         #return redirect(url_for('edit_customer', customer_id=customer_id))
-    return render_template('updatecustomer.html', customers=customers)
+    return render_template('updatecustomer.html', customers=customers,types=types,statuses=statuses)
 
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET']) # FINISHED
@@ -1194,7 +1205,7 @@ def update_supplier():
     if request.method == 'POST':
         # convert customer id to int for sql statement
         supplier_id = request.form.get('supplier')
-        x = v_id.split(", ")
+        x = supplier_id.split(", ")
         y = int(x[0][1:])
         # get table, column, and new value data
         field = request.form.get('tblname')

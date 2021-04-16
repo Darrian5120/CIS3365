@@ -54,15 +54,11 @@
                         <option value="Customer SET C_PHONE">Phone</option>
                         <option value="Customer SET C_EMAIL">Email</option>
                     <optgroup label="CUSTOMER TYPE"></optgroup>
-                        <option value="Customer SET BUSINESS_ID">Business or Individual</option>
+                        <option value="Customer SET BUSINESS_ID">Type</option>
                     <optgroup label="CUSTOMER STATUS"></optgroup>
-                        <option value="Customer SET ACTIVE_ID">Active or Inactive</option>
+                        <option value="Customer SET ACTIVE_ID">Status</option>
                   </select>
                 </p>
-            <p>
-                <label for="value">New Value:</label>
-                <input type="text" name="value">
-            </p>
             <p><input type="submit" value="Submit"></p>
         </form>
         {% if message %}
@@ -71,12 +67,13 @@
     </body>
     <script>
         var statuses = JSON.parse('{{ statuses | tojson | safe }}');
+        var types = JSON.parse('{{ types | tojson | safe }}');
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
         //https://www.geeksforgeeks.org/how-to-create-a-form-dynamically-with-the-javascript/#:~:text=Approach%201%3A%20Use%20document.,body%3E%20element%20of%20the%20document.
         function myFunction(value) {
-            if (value=="SUPPLIER SET ACTIVE_ID"){
+            if (value=="CUSTOMER SET ACTIVE_ID"){
                 var select = document.createElement("select");
                 select.name = "status";
                 select.id = "status"; 
@@ -84,6 +81,19 @@
                     option = document.createElement('option');
                     option.value = statuses[i];
                     option.text = statuses[i];
+                    select.appendChild(option);
+                }
+                frm.appendChild(select);
+                frm.appendChild(s);
+            }
+            if (value=="CUSTOMER SET BUSINESS_ID"){
+                var select = document.createElement("select");
+                select.name = "type";
+                select.id = "type"; 
+                for (i=0; i<=statuses.length-1; i++) {
+                    option = document.createElement('option');
+                    option.value = types[i];
+                    option.text = types[i];
                     select.appendChild(option);
                 }
                 frm.appendChild(select);
