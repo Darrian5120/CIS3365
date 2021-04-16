@@ -33,23 +33,17 @@
             </tr>
         </table>
         <form action="" method="post">
-            <p>
-                <label for="sup_name">Supplier Name</label>
-                <input type="text" name="sup_name">
-            </p>
-            <p>
-                <label for="part_name">Part Name</label>
-                <input type="text" name="part_name">
-            </p>
-            <p>
-                <label for="active">Status </label>
-                <select name="active" id="active">
-                    <option value=""></option>
-                    <option value="1">Currently Supplying</option>
-                    <option value="2">Previous supplier</option>
-                    <option value="3">In transition</option>
-                </select>
-            </p>
+            <br><br>
+            <select name="supplier">
+                {% for supplier in suppliers[0:] %}
+                <option value="{{ supplier }}" >{{ supplier }}</option>"
+                {% endfor %}
+            </select>
+            <select name="part">
+                {% for part in parts[0:] %}
+                <option value="{{ part }}" >{{ part }}</option>"
+                {% endfor %}
+            </select>
             <p><input type="submit" value="Submit"></p>
         </form>
         {% if message %}

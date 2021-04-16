@@ -1112,11 +1112,11 @@ def yearlyserviceorder_report():
 def suppliers():
         return render_template('suppliers.html')
 
-@app.route('/customers/new-supplier', methods = ['POST','GET'])
+@app.route('/suppliers/new-supplierpart', methods = ['POST','GET'])
 def new_supplier():
     # get info from html
     if request.method == 'POST':
-        supplier = request.form.get("sup_name")
+        supplier = request.form.get("supplier")
         part = request.form.get("part_name")
         status = request.form.get("active")
         if supplier and part and status is not None:
@@ -1206,13 +1206,12 @@ def delete_supplier():
         #return redirect(url_for('edit_customer', customer_id=customer_id))
     return render_template('deletesupplier.html', suppliers=suppliers)
 
-
 # view all Suppliers
 @app.route('/suppliers/view-suppliers', methods = ['GET']) 
 def view_suppliers():
     cursor.execute("""
-        SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part",
-        SUPPLIER_STATUS.ACTIVE_NAME AS "Active"
+        SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", 
+        SUPPLIER_PART.PART_COST, SUPPLIER_STATUS.ACTIVE_NAME AS "Active"
 
         FROM SUPPLIER
         JOIN SUPPLIER_STATUS
