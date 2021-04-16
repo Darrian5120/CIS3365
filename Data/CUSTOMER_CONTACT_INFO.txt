@@ -1,101 +1,101 @@
 CUSTOMER_ID|CONTACT_ID|C_ADDRESS_LINE1|C_ADDRESS_LINE2|C_CITY|C_ZIP|STATE_NAME|COUNTRY_NAME|C_PHONE|C_EMAIL
-1|1|123 smith street||Houston|77024|Texas|United States|832-431-2231|bestamerican@gmail.com
-2|1|1196 COUNTY RD||Liberty|77575|Texas|United States|832-748-5406|cowgirl@cowgirl.customer.com
-3|1|321 smith dr ||Cypress|77429|Texas|United States|832-821-3921|melisio@gmail.com
-4|1|9851 washington ave||Houston|77006|Texas|United States|832-855-4234|ernestotrucking@yahoo.com
-5|1|4105 alabams st||Houston|77006|Texas|United States|713-912-4123|
-6|1|450 main st||Houston|77006|Texas|United States|281-394-3213|
-7|1|9889 cowboy ave||Pasadena|77302|Texas|United States|512-321-4234|
-8|1|3821 johnson st||Cypress|77429|Texas|United States|832-231-3131|
-9|1|5314 Adams st||Houston|77024|Texas|United States|713-903-9398|
-10|1|732 lettuce vine st||Cypress|77429|Texas|United States|281-312-1331|
-11|1|1500 interstate ave||Pasadena |77420|Texas|United States|832-932-1231|
-12|1|500 local state dr||Houston|77024|Texas|United States|512-321-3134|
-13|1|7423 steelwood dr||cypress|77429|Texas|United States|713-132-1313|
-14|1|800 jason ave||Austin|73942|Texas|United States|832-534-2345|
-15|1|813 Harrison Dr||Fort worth|73193|Texas|United States|293-312-3234|
-16|1|2138 Washington ave||Houston|77429|Texas|United States|283-331-3124|MarianoServices@yahoo.com
-17|1|435 congress dr||San Antonio|73023|Texas|United States|842-424-4213|
-18|1|654 wick st||Fort worth|77493|Texas|United States|840-423-6543|
-19|1|953 barker cypress rd||Cypress|77439|Texas|United States|832-944-3135|
-20|1|843 kingsbrook rd||houston|77039|Texas|United States|618-313-4684|ptoh@customer.com
-21|1|675 kingsway ave||katy|77329|Texas|United States|918-323-2345|
-22|1|759 licoln ave||Katy|77493|Texas|United States|843-347-4822|
-23|1|432 main st||Houston|77024|Texas|United States|753-546-2475|
-24|1|5th st||Austin|77323|Texas|United States|475-489-2874|
-25|1|3rd st||Austin|74337|Texas|United States|512-837-4783|
-26|1|4th st||Austin|77423|Texas|United States|942-324-1342|
-27|1|5th st||Austin|77442|Texas|United States|832-384-2424|
-28|2|12 6th st||Austin|77432|Texas|United States|842-424-2344|
-29|2|183 7th st||Austin|77234|Texas|United States|844-283-2424|
-30|2|313 washington ave||Houston|72323|Texas|United States|834-245-2343|
-31|2|245 Jefferson Dr||Houston|38313|Texas|United States|842-423-2342|
-32|2|1003 wirt rd||Houston|74294|Texas|United States|382-432-4241|
-33|2|10331 Silber Rd||Houston|74828|Texas|United States|821-392-4921|
-34|2|19342 ChimneyRock rd||Houston|77024|Texas|United States|842-313-3144|
-35|2|4728 Alleyway dr||Houston|77031|Texas|United States|831-234-2424|
-36|2|8422 Lettacevale Dr||Houston|77301|Texas|United States|832-384-2384|
-37|2|36834 Vespuchi Ave||Dallas|82813|Texas|United States|289-731-3718|
-38|2|8429 Woodward dr||Dallas|74223|Texas|United States|742-329-3174|
-39|2|84297 Johnson Dr||Dallas|84202|Texas|United States|821-428-4824|
-40|2|1342 Wirt St||Houston|77023|Texas|United States|832-238-2342|
-41|2|123 Firelane dr||Houston|77045|Texas|United States|293-123-3123|
-42|2|345 Spring Cypress rd||Cypress|77429|Texas|United States|301-313-3414|
-43|2|3913 Mason Rd||Katy|77319|Texas|United States|313-424-4242|
-44|2|8983 Lettucvine dr||Houston|77391|Texas|United States|371-381-4823|
-45|2|2321 Mason Rd||Katy|73212|Texas|United States|382-234-3234|
-46|2|342 Sugarvale dr||Katy|34221|Texas|United States|424-535-6764|
-47|2|105 Johnson St||Houston|77042|Texas|United States|324-453-5454|
-48|2|3742 lakeview dr||Housotn|88428|Texas|United States|833-234-3823|
-49|2|6493 Streetview dr||Houston|83233|Texas|United States|382-381-4272|
-50|2|1st street||Austin|77332|Texas|United States|742-484-2483|
-51|2|2nd Street||Austin|37424|Texas|United States|742-472-4750|
-52|2|3rd Street||Austin|84714|Texas|United States|848-427-4827|
-53|2|37812 Adams Ave||Dallas|88252|Texas|United States|833-314-5642|
-54|2|1231 Jefferson Dr||Pasadina|37718|Texas|United States|382-241-4141|
-55|2|1847 Rockerfeller St||Fort worth|77187|Texas|United States|832-238-3378|
-56|2|4727 Aber Ln||New Orleans|72878|Louisiana |United States|372-374-5378|
-57|2|74232 Amaya Avenue||New Orleans|71878|Louisiana |United States|821-438-4387|
-58|2|3728 Brett Way||College station|72387|Texas|United States|327-274-2741|
-59|2|73277 Briarcliffe Court||college station|73874|Texas|United States|832-492-4788|
-60|2|83748 Britton Drive||college station|83781|Texas|United States|489-248-2498|
-61|2|738 Bunker Lane||college station|37287|Texas|United States|373-382-2837|
-62|2|7375 Bunker Hill dr||Houston|77024|Texas|United States|389-389-4874|
-63|2|7484 Chimney rock rd||Houston|77392|Texas|United States|849-237-8487|
-64|2|2384 Vinewood hills||New orleans|38732|Louisiana |United States|843-472-4817|
-65|2|374 vespuchi dr||Fort worth|38273|Texas|United States|382-384-4274|
-66|2|7287 hollow lane||Houston|77023|Texas|United States|954-437-5724|
-67|2|8298 Lettuce vine blv||Houston|72838|Texas|United States|923-853-5839|
-68|2|89 15th st||Austin|89828|Texas|United States|913-382-3898|
-69|2|388 Burgos dr||Dallas|83922|Texas|United States|932-482-4834|
-70|2|389 Burke court||Dallas|89288|Texas|United States|839-384-8573|
-71|2|4850 Burns Dr||Dallas|38942|Texas|United States|843-576-5839|
-72|2|752 Chester court||Dalls|84982|Texas|United States|847-287-5372|
-73|2|930 Edgeworth dr||Fortworth|38293|Texas|United States|839-498-4832|
-74|2|8493 Edwards st||Dallas|83924|Texas|United States|949-485-3843|
-75|2|3829 Alabama st||Houston|77005|Texas|United States|832-485-3273|
-76|2|8938 Garrott st||Houston|77006|Texas|United States|829-589-3842|
-77|1|8398 Feedback ave||Dallas|83932|Texas|United States|839-860-3839|
-78|1|8489 Emma Place dr||Dallas|93029|Texas|United States|843-849-4839|
-79|1|9294 Fairfield st||Houston|77013|Texas|United States|723-859-1983|
-80|1|8849 Fieldcrest dr||Dallas|98208|Texas|United States|892-484-3841|
-81|1|939 Fink St||Dallas|82984|Texas|United States|739-483-4759|
-82|1|4953 Flatwood dr||Houston|77209|Texas|United States|829-485-3813|
-83|1|298 Fiatlane dr||Houston|77299|Texas|United States|785-843-3943|
-84|1|3894 Mountainvale dr||Dallas|82988|Texas|United States|920-382-8492|
-85|1|8392 Montrose ave||Houston|77008|Texas|United States|832-472-3728|
-86|1|2713 Highville ave||Austin|93293|Texas|United States|382-839-3819|
-87|1|93909 Lookalive ave||Austin|80834|Texas|United States|382-372-3818|
-88|1|123 Gale ln||Houston|83911|Texas|United States|739-843-2839|
-89|1|1833 Harvey Dr||Austin|83021|Texas|United States|892-847-4831|
-90|1|9219 Sleepless ave||Houston|83198|Texas|United States|993-329-4928|
-91|1|8397 Sheepless Dr||Dallas|83813|Texas|United States|839-234-1738|
-92|1|6393 Lightfull Dr||Austin|83911|Texas|United States|839-289-1648|
-93|1|7492 Tablelight ave||Houston|92010|Texas|United States|839-283-2839|
-94|1|31983 Gonzales dr||Houston|92911|Texas|United States|831-293-3729|
-95|1|8273 Goodman Ln||Dallas|93912|Texas|United States|832-471-1732|
-96|1|928 Goldplace dr||Houston|73197|Texas|United States|839-294-2371|
-97|2|82864 Vespuchi dr||Austin|83813|Texas|United States|268-371-4719|
-98|2|37193 Pelito dr||Fort worth|83912|Texas|United States|722-372-3197|
-99|2|9392 Fleeka ave||College station|35482|Texas|United States|833-283-2838|
-100|2|Lastlane dr||Houston|89284|Texas|United States|939-274-2748|
+1|1|123 smith street|Houston|77024|Texas|United States|832-431-2231|bestamerican@gmail.com
+2|1|1196 COUNTY RD|Liberty|77575|Texas|United States|832-748-5406|cowgirl@cowgirl.customer.com
+3|1|321 smith dr |Cypress|77429|Texas|United States|832-821-3921|melisio@gmail.com
+4|1|9851 washington ave|Houston|77006|Texas|United States|832-855-4234|ernestotrucking@yahoo.com
+5|1|4105 alabams st|Houston|77006|Texas|United States|713-912-4123|nicefordjaimes@gmail.com
+6|1|450 main st|Houston|77006|Texas|United States|281-394-3213|midcountyland@gmail.com
+7|1|9889 cowboy ave|Pasadena|77302|Texas|United States|512-321-4234|ejachon@gmail.com
+8|1|3821 johnson st|Cypress|77429|Texas|United States|832-231-3131|atcchrome@gmail.com
+9|1|5314 Adams st|Houston|77024|Texas|United States|713-903-9398|johnmolina@gmail.com
+10|1|732 lettuce vine st|Cypress|77429|Texas|United States|281-312-1331|Josephstair@gmail.com
+11|1|1500 interstate ave|Pasadena |77420|Texas|United States|832-932-1231|alejandrovictor@gmail.com
+12|1|500 local state dr|Houston|77024|Texas|United States|512-321-3134|jamesbuege@gmail.com
+13|1|7423 steelwood dr|cypress|77429|Texas|United States|713-132-1313|trentodell@gmail.com
+14|1|800 jason ave|Austin|73942|Texas|United States|832-534-2345|paulstroup@gmail.com
+15|1|813 Harrison Dr|Fort worth|73193|Texas|United States|293-312-3234|marianoramirezsaldana@gmail.com
+16|1|2138 Washington ave|Houston|77429|Texas|United States|283-331-3124|kirkthomas@gmail.com
+17|1|435 congress dr|San Antonio|73023|Texas|United States|842-424-4213|williampark@gmail.com
+18|1|654 wick st|Fort worth|77493|Texas|United States|840-423-6543|alexanderchambers@gmail.com
+19|1|953 barker cypress rd|Cypress|77439|Texas|United States|832-944-3135|dennisplank@gmail.com
+20|1|843 kingsbrook rd|houston|77039|Texas|United States|618-313-4684|ptoh@customer.com
+21|1|675 kingsway ave|katy|77329|Texas|United States|918-323-2345|oscarmurica@gmail.com
+22|1|759 licoln ave|Katy|77493|Texas|United States|843-347-4822|nathanbarrett@gmail.com
+23|1|432 main st|Houston|77024|Texas|United States|753-546-2475|bernardinolopez@gmail.com
+24|1|5th st|Austin|77323|Texas|United States|475-489-2874|augustlarret@gmail.com
+25|1|3rd st|Austin|74337|Texas|United States|512-837-4783|miguelgutierrez@gmail.com
+26|1|4th st|Austin|77423|Texas|United States|942-324-1342|jakegray@gmail.com
+27|1|5th st|Austin|77442|Texas|United States|832-384-2424|jaycicero@gmail.com
+28|2|12 6th st|Austin|77432|Texas|United States|842-424-2344|carlosarebalo@gmail.com
+29|2|183 7th st|Austin|77234|Texas|United States|844-283-2424|rickygonzales@gmail.com
+30|2|313 washington ave|Houston|72323|Texas|United States|834-245-2343|leoescobar@gmail.com
+31|2|245 Jefferson Dr|Houston|38313|Texas|United States|842-423-2342|fredyagrueta@gmail.com
+32|2|1003 wirt rd|Houston|74294|Texas|United States|382-432-4241|tyraecarter@gmail.com
+33|2|10331 Silber Rd|Houston|74828|Texas|United States|821-392-4921|westongrantham@gmail.com
+34|2|19342 ChimneyRock rd|Houston|77024|Texas|United States|842-313-3144|bengetachew@gmail.com
+35|2|4728 Alleyway dr|Houston|77031|Texas|United States|831-234-2424|carloscantu@gmail.com
+36|2|8422 Lettacevale Dr|Houston|77301|Texas|United States|832-384-2384|gastonraggio@gmail.com
+37|2|36834 Vespuchi Ave|Dallas|82813|Texas|United States|289-731-3718|christopherwarren@gmail.com
+38|2|8429 Woodward dr|Dallas|74223|Texas|United States|742-329-3174|jasonhronek@gmail.com
+39|2|84297 Johnson Dr|Dallas|84202|Texas|United States|821-428-4824|Franciscoloya@gmail.com
+40|2|1342 Wirt St|Houston|77023|Texas|United States|832-238-2342|Davidtran@gmail.com
+41|2|123 Firelane dr|Houston|77045|Texas|United States|293-123-3123|cesarquinonez@gmail.com
+42|2|345 Spring Cypress rd|Cypress|77429|Texas|United States|301-313-3414|rickfontenot@gmail.com
+43|2|3913 Mason Rd|Katy|77319|Texas|United States|313-424-4242|georgegilbert@gmail.com
+44|2|8983 Lettucvine dr|Houston|77391|Texas|United States|371-381-4823|johnathanted@gmail.com
+45|2|2321 Mason Rd|Katy|73212|Texas|United States|382-234-3234|vincentanthony@gmail.com
+46|2|342 Sugarvale dr|Katy|34221|Texas|United States|424-535-6764|haroldpicton@gmail.com
+47|2|105 Johnson St|Houston|77042|Texas|United States|324-453-5454|hectorsalinas@gmail.com
+48|2|3742 lakeview dr|Housotn|88428|Texas|United States|833-234-3823|katiamartin@gmail.com
+49|2|6493 Streetview dr|Houston|83233|Texas|United States|382-381-4272|billyjack@gmail.com
+50|2|1st street|Austin|77332|Texas|United States|742-484-2483|edmonvasquez@gmail.com
+51|2|2nd Street|Austin|37424|Texas|United States|742-472-4750|vincelamar@gmail.com
+52|2|3rd Street|Austin|84714|Texas|United States|848-427-4827|zachalvarez@gmail.com
+53|2|37812 Adams Ave|Dallas|88252|Texas|United States|833-314-5642|brandonjones@gmail.com
+54|2|1231 Jefferson Dr|Pasadina|37718|Texas|United States|382-241-4141|alexromar@gmail.com
+55|2|1847 Rockerfeller St|Fort worth|77187|Texas|United States|832-238-3378|glennchmitz@gmail.com
+56|2|4727 Aber Ln|New Orleans|72878|Louisiana |United States|372-374-5378|tomdiggs@gmail.com
+57|2|74232 Amaya Avenue|New Orleans|71878|Louisiana |United States|821-438-4387|dioniciosorto@gmail.com
+58|2|3728 Brett Way|College station|72387|Texas|United States|327-274-2741|mjsheridan@gmail.com
+59|2|73277 Briarcliffe Court|college station|73874|Texas|United States|832-492-4788|billhamrick@gmail.com
+60|2|83748 Britton Drive|college station|83781|Texas|United States|489-248-2498|kjdugas@gmail.com
+61|2|738 Bunker Lane|college station|37287|Texas|United States|373-382-2837|cragibradley@gmail.com
+62|2|7375 Bunker Hill dr|Houston|77024|Texas|United States|389-389-4874|ramonloera@gmail.com
+63|2|7484 Chimney rock rd|Houston|77392|Texas|United States|849-237-8487|bryanwarner@gmail.com
+64|2|2384 Vinewood hills|New orleans|38732|Louisiana |United States|843-472-4817|andyshah@gmail.com
+65|2|374 vespuchi dr|Fort worth|38273|Texas|United States|382-384-4274|edmundalvaro@gmail.com
+66|2|7287 hollow lane|Houston|77023|Texas|United States|954-437-5724|davidmedina@gmail.com
+67|2|8298 Lettuce vine blv|Houston|72838|Texas|United States|923-853-5839|jeffhughes@gmail.com
+68|2|89 15th st|Austin|89828|Texas|United States|913-382-3898|marcogaribay@gmail.com
+69|2|388 Burgos dr|Dallas|83922|Texas|United States|932-482-4834|adrianadams@gmail.com
+70|2|389 Burke court|Dallas|89288|Texas|United States|839-384-8573|jonathanjones@gmail.com
+71|2|4850 Burns Dr|Dallas|38942|Texas|United States|843-576-5839|robertstanley@gmail.com
+72|2|752 Chester court|Dalls|84982|Texas|United States|847-287-5372|renegil@gmail.com
+73|2|930 Edgeworth dr|Fortworth|38293|Texas|United States|839-498-4832|josecastanon@gmail.com
+74|2|8493 Edwards st|Dallas|83924|Texas|United States|949-485-3843|johnbutler@gmail.com
+75|2|3829 Alabama st|Houston|77005|Texas|United States|832-485-3273|clarigilco@gmail.com
+76|2|8938 Garrott st|Houston|77006|Texas|United States|829-589-3842|jacobcason@gmail.com
+77|1|8398 Feedback ave|Dallas|83932|Texas|United States|839-860-3839|eliudolivares@gmail.com
+78|1|8489 Emma Place dr|Dallas|93029|Texas|United States|843-849-4839|malikhilby@gmail.com
+79|1|9294 Fairfield st|Houston|77013|Texas|United States|723-859-1983|johnnyderamus@gmail.com
+80|1|8849 Fieldcrest dr|Dallas|98208|Texas|United States|892-484-3841|irmalopez@gmail.com
+81|1|939 Fink St|Dallas|82984|Texas|United States|739-483-4759|johnlane@gmail.com
+82|1|4953 Flatwood dr|Houston|77209|Texas|United States|829-485-3813|loganscott@gmail.com
+83|1|298 Fiatlane dr|Houston|77299|Texas|United States|785-843-3943|sophiastrother@gmail.com
+84|1|3894 Mountainvale dr|Dallas|82988|Texas|United States|920-382-8492|kennethsmith@gmail.com
+85|1|8392 Montrose ave|Houston|77008|Texas|United States|832-472-3728|russelwoods@gmail.com
+86|1|2713 Highville ave|Austin|93293|Texas|United States|382-839-3819|tylermidgley@gmail.com
+87|1|93909 Lookalive ave|Austin|80834|Texas|United States|382-372-3818|pedrorojas@gmail.com
+88|1|123 Gale ln|Houston|83911|Texas|United States|739-843-2839|anthonyoverton@gmail.com
+89|1|1833 Harvey Dr|Austin|83021|Texas|United States|892-847-4831|simonmaster@gmail.com
+90|1|9219 Sleepless ave|Houston|83198|Texas|United States|993-329-4928|jeffreydevin
+91|1|8397 Sheepless Dr|Dallas|83813|Texas|United States|839-234-1738|julioargueta@gmail.com
+92|1|6393 Lightfull Dr|Austin|83911|Texas|United States|839-289-1648|sandhuranier@gmail.com
+93|1|7492 Tablelight ave|Houston|92010|Texas|United States|839-283-2839|richardbrimm@gmail.com
+94|1|31983 Gonzales dr|Houston|92911|Texas|United States|831-293-3729|rigobertocruz@gmail.com
+95|1|8273 Goodman Ln|Dallas|93912|Texas|United States|832-471-1732|bomcneal@gmail.com
+96|1|928 Goldplace dr|Houston|73197|Texas|United States|839-294-2371|javiergarza@gmail.com
+97|2|82864 Vespuchi dr|Austin|83813|Texas|United States|268-371-4719|eduardomartinez@gmail.com
+98|2|37193 Pelito dr|Fort worth|83912|Texas|United States|722-372-3197|joseesperanza@gmail.com
+99|2|9392 Fleeka ave|College station|35482|Texas|United States|833-283-2838|bobhogan@gmail.com
+100|2|Lastlane dr|Houston|89284|Texas|United States|939-274-2748|rodgerbenitez@gmail.com
