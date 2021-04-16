@@ -341,29 +341,18 @@ def update_vehicles():
         vehicles.append(vehicle)
     if request.method == 'POST':
         # convert customer id to int for sql statement
-        vehicle_id = request.form.get('vehicle')
-        x = vehicle_id.split(", ")
+        v_id = request.form.get('vehicle')
+        x = v_id.split(", ")
         y = int(x[0][1:])
         # get table, column, and new value data
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE CUSTOMER_ID = ?".format(field)
+        sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
         vals = (value, y)
         cursor.execute(sql, vals)
         conn.commit()
-        if field == 'Customer SET STATE_NAME':
-            query = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = ?"
-            val = value
-            cursor.execute(query, val)
-            data = cursor.fetchall()
-            sql = "UPDATE CUSTOMER_STATE SET STATE_ID = ? WHERE CUSTOMER_ID = ?"
-            vals = (data[0][0], y)
-            cursor.execute(sql, vals)
-            conn.commit()
-        message = 'Customer edited Sucessfully'
-        return render_template('updatecustomer.html', customers=customers, message = message)
-        #return redirect(url_for('edit_customer', customer_id=customer_id))
-    return render_template('updatecustomer.html', customers=customers)
+        return render_template('updatevehicle.html', vehicles=vehicles)
+    return render_template('updatevehicle.html', vehicles=vehicles)
 
 # remove vehicle from db by setting status to inactive  
 @app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET']) #FINISHED

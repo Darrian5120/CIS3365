@@ -28,10 +28,10 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form method="POST" action="">
+        <form method="POST" action="" id="frm">
             <p>
                 <select name="vehicle">
-                    {% for vehicle in vehicle[0:] %}
+                    {% for vehicle in vehicles[0:] %}
                     <option value="{{ vehicle }}" >{{ vehicle }}</option>"
                     {% endfor %}
                 </select>
@@ -39,16 +39,17 @@
             <p>
                 <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
                 <label for="tblname">Enter field to modify:</label>
-                <select name="tblname" id="tblname">
+                <select name="tblname" id="tblname" onChange="myFunction(value)">
+                        <option></option>
                     <optgroup label="VEHICLE"></optgroup>
                         <option value="VEHICLE SET V_VIN">VIN</option>
-                        <option value="Customer SET V_LICENSE_PLATE">License Plate</option>
-                        <option value="Customer SET V_YEAR">Year</option>
-                        <option value="Customer SET MAKE_ID">Make</option>
-                        <option value="Customer SET MODEL_ID">Model</option>
-                        <option value="Customer SET V_COLOR">Color</option>
-                        <option value="Customer SET CONDITION_ID">Condition</option>
-                        <option value="Customer SET ACTIVE_ID">Status</option>
+                        <option value="VEHICLE SET V_LICENSE_PLATE">License Plate</option>
+                        <option value="VEHICLE SET V_YEAR">Year</option>
+                        <option value="VEHICLE SET MAKE_ID">Make</option>
+                        <option value="VEHICLE SET MODEL_ID">Model</option>
+                        <option value="VEHICLE SET V_COLOR">Color</option>
+                        <option value="VEHICLE SET CONDITION_ID">Condition</option>
+                        <option value="VEHICLE SET ACTIVE_ID">Status</option>
                     <optgroup label="CUSTOMER"></optgroup>
                         <option value="CUSTOMER_VEHICLE SET CUSTOMER_ID">Customer</option>
                     <optgroup label="INSURANCE"></optgroup>
@@ -57,14 +58,40 @@
                         <option value="POLICY SET EXPIRATION_DATE">Expiration</option>
                   </select>
                 </p>
-            <p>
-                <label for="value">New Value:</label>
-                <input type="text" name="value">
-            </p>
-            <p><input type="submit" value="Submit"></p>
+            
+            
         </form>
         {% if message %}
             <p>{{ message }}</p>
         {% endif %}
     </body>
+    <script>
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        //https://www.geeksforgeeks.org/how-to-create-a-form-dynamically-with-the-javascript/#:~:text=Approach%201%3A%20Use%20document.,body%3E%20element%20of%20the%20document.
+        function myFunction(value) {
+            if (value=="VEHICLE SET V_LICENSE_PLATE" || value=="VEHICLE SET V_COLOR" || value=="VEHICLE SET V_VIN"){
+                var x = document.createElement("INPUT");
+                x.type = "text";
+                x.name="value";
+                frm.appendChild(x);
+                frm.appendChild(s); 
+            }
+            if (value=="POLICY SET EXPIRATION_DATE"){
+                var x = document.createElement("INPUT");
+                x.type = "date";
+                x.name="value";
+                frm.appendChild(x);
+                frm.appendChild(s); 
+            }
+            if (value=="VEHICLE SET MAKE_ID"){
+                var x = document.createElement("select");
+                x.name = "tblname";
+                x.id = "tblname";
+                frm.appendChild(x);
+                frm.appendChild(s); 
+            }     
+        }
+    </script>
 </html>
