@@ -33,4 +33,4 @@ INSURANCE_ID|INSURANCE_NAME|I_ADDRESS_LINE1|I_ADDRESS_LINE2|I_CITY|I_STATE|I_ZIP
 32|IAT|702 Oberlin Road||Raleigh|NC|27605|United States|866-576-7971|new.loss@iatinsurance.com
 33|Crum Forster|11490 Westheimer Rd|Suite 300|Houston|TX|77077|United States|800-392-1970|crumandforsternol@cfins.com
 34|Canal|P.O Box 7||Greenville|SC|29602|United States|800-452-6911|claims@canal-ins.com
-35|Northland|P.O. Box 64816||St. Paul|MN|55102||800-328-5972|nccc@northlandins.com
+35|Northland|P.O. Box 64816||St. Paul|MN|55102|United States|800-328-5972|nccc@northlandins.com
