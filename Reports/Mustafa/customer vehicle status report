@@ -1,3 +1,4 @@
+SELECT
 Customer.C_FNAME AS 'First Name',
 Customer.C_LNAME AS 'Last Name',
 VEHICLE.V_VIN AS 'VEHICLE VIN"' , 
