@@ -75,7 +75,7 @@ CREATE TABLE dbo.SUPPLIER (
 --Service Order Status Create--
 CREATE TABLE dbo.SERVICE_ORDER_STATUS (
     ACTIVE_ID int NOT NULL,
-    ACTIVE_NAME varchar(25),
+    ACTIVE_NAME varchar(25) not null,
 	CONSTRAINT SO_ACTIVE_ID_PK1 PRIMARY KEY (ACTIVE_ID)
 );
 
