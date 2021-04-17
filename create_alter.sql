@@ -65,7 +65,7 @@ CREATE TABLE dbo.SUPPLIER (
 	S_ADDRESS_LINE2 varchar(30),
 	S_CITY varchar(30) not null,
 	S_STATE varchar(15) not null,
-	S_ZIP varchar(7) not null,
+	S_ZIP int not null,
 	S_COUNTRY varchar(30) not null,
 	S_PHONE varchar(15) not null,
 	S_EMAIL varchar(35) not null,
