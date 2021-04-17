@@ -214,38 +214,7 @@ def inactive_report():
     conn.commit()
     return render_template('report_inactivecustomer.html', data = data)
 
-# Report Long term loyal customer
-# Not sure if path is correct
-@app.route ('/customer/longtermloyalcustomer-report' , methods = ['GET'])
-def longtermloyalcustomer_report():
-    cursor.execute("""
-        SELECT 
-        Customer.CUSTOMER_ID AS "ID",
-        Customer.C_FNAME AS "First Name",
-        Customer.C_LNAME AS "Last Name",
-        CUSTOMER_STATUS.ACTIVE AS "Customer Type",
-        CUSTOMER_VEHICLE.V_VIN AS "VIN #",
-        VEHICLE.V_MAKE AS "Make",
-        VEHICLE.V_MODEL AS "Model",
-        SERVICE_ORDER.ORDER_DATE AS "First Time Customer Date"
 
-        FROM Customer 
-        JOIN CUSTOMER_STATUS
-        ON Customer.CUSTOMER_ID = CUSTOMER_STATUS.CUSTOMER_ID
-        JOIN CUSTOMER_VEHICLE
-        ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
-        JOIN VEHICLE
-        ON CUSTOMER_VEHICLE.V_VIN = VEHICLE.V_VIN
-        JOIN CUSTOMER_ORDER
-        ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
-        JOIN SERVICE_ORDER
-        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
-
-        WHERE (CUSTOMER_STATUS.C_ACTIVE= 1 OR CUSTOMER_STATUS.C_ACTIVE= 3) AND SERVICE_ORDER.ORDER_DATE < DATEADD(YEAR, -1, GETDATE());
-    """)
-    data = cursor.fetchall()
-    conn.commit()
-    return render_template('report_longtermloyalcustomer.html', data = data)
 
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
@@ -793,38 +762,7 @@ def employee_part_report():
     conn.commit()
     return render_template('report_employeepart.html', data = data)
 
-# Report New Employee
-# not sure if path is right
-@app.route ('/employees/newemployee-report' , methods = ['GET'])
-def newemployee_report():
-    cursor.execute("""
-    SELECT 
-    EMPLOYEE_SERVICE_LINE_ASSIGNMENT.EMPLOYEE_ID AS "Employee ID",
-    EMPLOYEE.EMPLOYEE_FNAME AS "First Name",
-    EMPLOYEE.EMPLOYEE_LNAME AS "Last Name",
-    EMPLOYEE.EMPLOYEE_HIRE_DATE AS "Date Hired",
-    EMPLOYEE.EMPLOYEE_PAY_RATE AS "Pay Rate",
-    EMPLOYEE.EMPLOYEE_JOB_FUNC AS "Job Type",
-    Employee_Status.ACTIVE AS "Status",
-    SERVICE_LINE.SERVICE_ID AS "Service ID",
-    SERVICE.SERVICE_TYPE AS "Service Worked On"
 
-    FROM EMPLOYEE
-    JOIN Employee_Status
-    ON EMPLOYEE.EMPLOYEE_ID = Employee_Status.EMPLOYEE_ID
-    JOIN EMPLOYEE_SERVICE_LINE_ASSIGNMENT
-    ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_SERVICE_LINE_ASSIGNMENT.EMPLOYEE_ID
-    JOIN SERVICE_LINE
-    ON EMPLOYEE_SERVICE_LINE_ASSIGNMENT.SERVICE_LINE_ID = SERVICE_LINE.SERVICE_LINE_ID    
-    JOIN SERVICE
-    ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
-
-    WHERE EMPLOYEE.EMPLOYEE_HIRE_DATE > DATEADD(YEAR, -2, GETDATE());
-    """)
-    
-    data = cursor.fetchall()
-    conn.commit()
-    return render_template('report_newemployee.html', data = data)
 
 ### EMPLOYEE STATUS ####
 @app.route ('/employees/employeestatus-report' , methods = ['GET'])
@@ -1122,64 +1060,7 @@ def revenue_report():
     conn.commit()
     return render_template('report_revenue.html', data = data)
 
-# Report Incomplete Order
-# Dont know the path
-@app.route ('/services/incompleteorders-report' , methods = ['GET'])
-def incompleteorders_report():
-    cursor.execute ("""
-    SELECT 
-    SERVICE_LINE.SERVICE_ID AS "Order ID",
-    SERVICE.SERVICE_TYPE AS "Type of Service",
-    Customer.C_LNAME AS "Last Name", 
-    SERVICE_ORDER.TOTAL_COST AS "Total Cost",
-    SERVICE.DATE_START AS "Start Date",
-    SERVICE.DATE_END AS "Estimated Finish Date"
-    
-    From Customer
-    JOIN CUSTOMER_ORDER
-    ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
-    JOIN SERVICE_ORDER
-    ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
-    JOIN SERVICE_LINE
-    ON SERVICE_ORDER.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID
-    JOIN SERVICE
-    ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
 
-    WHERE SERVICE.DATE_END > GETDATE()
-    ORDER BY SERVICE.DATE_START;""")
-    
-    data = cursor.fetchall()
-    conn.commit()
-    return render_template ('report_incompleteorders.hmtl' , data = data)
-
-# Report Yearly Service Order
-# not sure if path is correct
-@app.route ('/services/yearlyserviceorder-report' , methods = ['GET'])
-def yearlyserviceorder_report():
-    cursor.execute ("""
-        SELECT
-        CUSTOMER_ORDER.SERVICE_ORDER_ID AS "Order ID",
-        SERVICE.SERVICE_TYPE AS "Serviced Ordered",
-        Customer.C_FNAME AS "First Name",
-        Customer.C_LNAME AS "Last Name",
-        SERVICE_ORDER.ORDER_DATE AS "Date Ordered",
-        SERVICE_LINE.LINE_COST AS "Cost of Service"
-
-        FROM Customer
-        JOIN CUSTOMER_ORDER
-        ON Customer.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
-        JOIN SERVICE_ORDER
-        ON CUSTOMER_ORDER.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
-        JOIN SERVICE_LINE
-        ON SERVICE_ORDER.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID
-        JOIN SERVICE
-        ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
-
-        WHERE YEAR(SERVICE_ORDER.ORDER_DATE) = YEAR(GETDATE()) AND SERVICE_ORDER.ORDER_DATE < GETDATE();
-    """)
-    data = cursor.fetchall()
-    conn.commit()
-    return render_template ('report_yearlyserviceorder.hmtl' , data = data)
 #################################### Suppliers(parts) ###########################################
 @app.route('/suppliers', methods = ['GET']) 
 def suppliers():
