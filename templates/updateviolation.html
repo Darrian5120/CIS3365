@@ -10,10 +10,11 @@
             .topnav {border:0px; background-color:#333; overflow:hidden; margin:auto; width: 100%; text-align: center;} /*syle the topnav*/
             .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
             .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
-            #td {width: 20%; text-align: center; margin: 0; padding: 0;}
+            
+            #td {width: 16%; text-align: center; margin: 0; padding: 0;}
         </style>
-    </head>
-    <body>
+	</head>
+	<body align="center">
         <div class="header">
             <h1>Herrera Fabricating Inc.</h1>
         </div>
@@ -22,79 +23,85 @@
                 <td id="td"><a href ="/customers">Customers</a></td>
                 <td id="td"><a href ="/vehicles">Vehicles</a></td>
                 <td id="td"><a href ="/services">Services</a></td>
+                <td id="td"><a href ="/suppliers">Suppliers</a></td>
                 <td id="td"><a href ="/employees">Employees</a></td>
-                <td id="td"><a href ="/reports">Reports</a></td>
+                <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-        <form action="" method="post" id="frm">
+        <form method="POST" action="" id="frm">
             <p>
-                <select name="employee">
-                    {% for employee in employees[0:] %}
-                    <option value="{{ employee }}" >{{ employee }}</option>"
+                <select name="violation">
+                    {% for violation in violations[0:] %}
+                    <option value="{{ violation }}" >{{ violation }}</option>"
                     {% endfor %}
                 </select>
             </p>
             <p>
+                <!--https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask-->
                 <label for="tblname">Enter field to modify:</label>
                 <select name="tblname" id="tblname" onChange="myFunction(value)">
-                        <option></option>
-                    <optgroup label="Employee"></optgroup>
-                        <option value="EMPLOYEE SET EMPLOYEE_FNAME">First Name</option>
-                        <option value="EMPLOYEE SET EMPLOYEE_LNAME">Last Name</option>
-                        <option value="EMPLOYEE SET E_ADDRESS_LINE1">Address Line 1</option>
-                        <option value="EMPLOYEE SET E_ADDRESS_LINE2">Address Line 2</option>
-                        <option value="EMPLOYEE SET E_CITY">City</option>
-                        <option value="EMPLOYEE SET E_STATE">State</option>
-                        <option value="EMPLOYEE SET E_ZIP">Zip Code</option>
-                        <option value="EMPLOYEE SET E_COUNTRY">Country</option>
-                        <option value="EMPLOYEE SET E_PHONE">Phone</option>
-                        <option value="EMPLOYEE SET E_EMAIL">Email</option>
-                        <option value="EMPLOYEE SET ROLE_ID">Role</option>
-                        <option value="EMPLOYEE SET ACTIVE_ID">Status</option>
+                    <optgroup label="Violation"></optgroup>
+                        <option value="VIOLATION SET LAW CODE">Law Code</option>
+                        <option value="STATE_VIOLATION SET STATE_ID">State</option>
+                        <option value="VIOLATION SET VIOLATION_NAME">Violation</option>
+                        <option value="VIOLATION SET V_ID">Vehicle</option>
+                        <option value="VIOLATION SET VIOLATION_DATE">Date</option>
                 </select>
             </p>
         </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
     </body>
     <script>
-        var statuses = JSON.parse('{{ statuses | tojson | safe }}');
-        var roles = JSON.parse('{{ roles | tojson | safe }}');
+        var states = JSON.parse('{{ states | tojson | safe }}');
+        var vehicles = JSON.parse('{{ vehicles | tojson | safe }}');
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
         //https://www.geeksforgeeks.org/how-to-create-a-form-dynamically-with-the-javascript/#:~:text=Approach%201%3A%20Use%20document.,body%3E%20element%20of%20the%20document.
         function myFunction(value) {
-            if (value=="EMPLOYEE SET ACTIVE_ID"){
+            if (value=="VIOLATION SET V_ID"){
                 var select = document.createElement("select");
-                select.name = "status";
-                select.id = "status"; 
-                for (i=0; i<=statuses.length-1; i++) {
+                select.name = "vehicle";
+                select.id = "vehicle"; 
+                for (i=0; i<=vehicles.length-1; i++) {
                     option = document.createElement('option');
-                    option.value = statuses[i];
-                    option.text = statuses[i];
+                    option.value = vehicles[i];
+                    option.text = vehicles[i];
                     select.appendChild(option);
                 }
                 frm.appendChild(select);
                 frm.appendChild(s);
             }
-            else if (value=="EMPLOYEE SET ROLE_ID"){
+            else if (value=="STATE_VIOLATION SET STATE_ID"){
                 var select = document.createElement("select");
-                select.name = "role";
-                select.id = "role"; 
-                for (i=0; i<=roles.length-1; i++) {
+                select.name = "state";
+                select.id = "state"; 
+                for (i=0; i<=states.length-1; i++) {
                     option = document.createElement('option');
-                    option.value = roles[i];
-                    option.text = roles[i];
+                    option.value = states[i];
+                    option.text = states[i];
                     select.appendChild(option);
                 }
                 frm.appendChild(select);
+                frm.appendChild(s); 
+            }
+            else if (value=="VIOLATION SET VIOLATION_DATE"){
+                var x = document.createElement("INPUT");
+                x.type = "date";
+                x.name="value";
+                x.id="remove";
+                frm.appendChild(x);
                 frm.appendChild(s);
-            } else {
+            }   
+            else {
                 var x = document.createElement("INPUT");
                 x.type = "text";
                 x.name="value";
                 frm.appendChild(x);
                 frm.appendChild(s); 
-            }     
+            }  
         }
     </script>
 </html>

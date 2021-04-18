@@ -86,7 +86,7 @@
                 frm.appendChild(x);
                 frm.appendChild(s); 
             }
-            if (value=="POLICY SET EXPIRATION_DATE"){
+            else if (value=="POLICY SET EXPIRATION_DATE"){
                 var x = document.createElement("INPUT");
                 x.type = "date";
                 x.name="value";
@@ -94,7 +94,7 @@
                 frm.appendChild(x);
                 frm.appendChild(s);
             }
-            if (value=="VEHICLE SET MAKE_ID"){
+            else if (value=="VEHICLE SET MAKE_ID"){
                 var select = document.createElement("select");
                 select.name = "make";
                 select.id = "make"; 
@@ -107,7 +107,7 @@
                 frm.appendChild(select);
                 frm.appendChild(s);
             }
-            if (value=="VEHICLE SET MODEL_ID"){
+            else if (value=="VEHICLE SET MODEL_ID"){
                 var select = document.createElement("select");
                 select.name = "model";
                 select.id = "model"; 
@@ -120,7 +120,7 @@
                 frm.appendChild(select);
                 frm.appendChild(s);
             }
-            if (value=="VEHICLE SET CONDITION_ID"){
+            else if (value=="VEHICLE SET CONDITION_ID"){
                 var select = document.createElement("select");
                 select.name = "condition";
                 select.id = "condition"; 
@@ -133,7 +133,7 @@
                 frm.appendChild(select);
                 frm.appendChild(s);
             }
-            if (value=="CUSTOMER_VEHICLE SET CUSTOMER_ID"){
+            else if (value=="CUSTOMER_VEHICLE SET CUSTOMER_ID"){
                 var select = document.createElement("select");
                 select.name = "customer";
                 select.id = "customer"; 
@@ -146,7 +146,7 @@
                 frm.appendChild(select);
                 frm.appendChild(s);
             }
-            if (value=="VEHICLE SET ACTIVE_ID"){
+            else if (value=="VEHICLE SET ACTIVE_ID"){
                 var select = document.createElement("select");
                 select.name = "status";
                 select.id = "status"; 
@@ -159,7 +159,7 @@
                 frm.appendChild(select);
                 frm.appendChild(s);
             } 
-            if (value=="POLICY SET INSURANCE_ID"){
+            else if (value=="POLICY SET INSURANCE_ID"){
                 var select = document.createElement("select");
                 select.name = "company";
                 select.id = "company"; 
@@ -172,7 +172,7 @@
                 frm.appendChild(select);
                 frm.appendChild(s);
             } 
-            if (value=="POLICY SET POLICY_ID"){
+            else if (value=="POLICY SET POLICY_ID"){
                 var select = document.createElement("select");
                 select.name = "policy";
                 select.id = "policy"; 

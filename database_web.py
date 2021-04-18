@@ -12,7 +12,7 @@ import sys
 # Every category should have a CRUD operation, please pick one to code with python AND html
 # Recycle other's code and make sure your code works before pushing to github and include useful comments
 ############################################################################################
-# Customer, Supplier, Vehicle
+# Customer, Supplier, Vehicle, Employee
 # EVERYONE MUST ALSO ENTER THEIR 4 REPORTS
 
 app = flask.Flask(__name__)
@@ -445,12 +445,12 @@ def update_vehicles():
             cursor.execute(sql, vals)
             conn.commit()
             return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
-        
-        sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
+        else:
+            sql = "UPDATE {} = ? WHERE V_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
     return render_template('updatevehicle.html', vehicles=vehicles,makes=makes,models=models,customers=customers, conditions=conditions, companies = companies, policies = policies,statuses=statuses)
 
 # remove vehicle from db by setting status to inactive  
@@ -1237,55 +1237,147 @@ def view_parts():
 def violation():
     return render_template('violations.html')
 
-# Update Supplier
-
 # create violation
 @app.route('/violations/new-violation', methods = ['POST', 'GET'])
 def new_violation():
-    message = ''
+    cursor.execute("""
+        SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE.MAKE_NAME, MODEL.MODEL_NAME 
+        FROM VEHICLE
+        JOIN MAKE
+        ON MAKE.MAKE_ID=VEHICLE.MAKE_ID
+        JOIN MODEL
+        ON MODEL.MODEL_ID=MODEL.MAKE_ID
+    """)
+    rows = cursor.fetchall()
+    vehicles = []
+    for vehicle in rows:
+        vehicles.append(vehicle)
+    cursor.execute("SELECT STATE_NAME FROM STATE")
+    rows = cursor.fetchall()
+    states = []
+    for state in rows:
+        states.append(state[0])
     if request.method =='POST':
-        vioname = request.form.get("vioname")
-        lcode = request.form.get("lcode")
-        vid = request.form.get("vid")
-        viodate = request.form.get("viodate")
-        if vioname and lcode is not None:
-            # new violation default
-            query = "INSERT INTO VIOLATION (VIOLATION_NAME, LAW_CODE, V_ID, VIOLATION_DATE) OUTPUT INSERTED.VIOLATION_ID VALUES (?, ?, ?, ?)"
-            vals = (vioname, lcode, vid, viodate)
-            data = cursor.execute(query, vals)
-            violation_id = cursor.fetchone()[0]
+        vname = request.form.get("vname")
+        lawcode = request.form.get("lawcode")
+        vehicle = request.form.get("vehicle")
+        date = request.form.get("date")
+        state = request.form.get("state")
+        v_id = request.form.get('vehicle')
+        x = v_id.split(", ")
+        y = int(x[0][1:])
+        if vname and lawcode is not None:
+            # new violation
+            query = "INSERT INTO VIOLATION (VIOLATION_NAME, LAW_CODE, V_ID, VIOLATION_DATE) OUTPUT INSERTED.VIOLATION_ID VALUES (?,?,?,?)"
+            vals = (vname, lawcode, y, date)
+            cursor.execute(query, vals)
+            vid = cursor.fetchone()[0]
             conn.commit()
-            message = "New violation entered sucessfully"
-            return render_template('violation.html', data = data, message = message)
-    return render_template('newviolation.html')
+            # violation state
+            qry = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = '{}'".format(state)
+            cursor.execute(qry)
+            state_id = cursor.fetchone()[0]
+            query = "INSERT INTO STATE_VIOLATION (VIOLATION_ID, STATE_ID) VALUES (?,?)"
+            values = (vid, state_id)
+            cursor.execute(query, values)
+            conn.commit()
+            return render_template('violations.html')
+    return render_template('newviolation.html', vehicles=vehicles,states=states)
 
 # modify violation
-@app.route('/violations/update', methods = ['POST', 'GET'])
+@app.route('/violations/update-violation', methods = ['POST', 'GET'])
 def update_violation():
-    
-    sql = "SELECT VIOLATION_ID, VIOLATION_NAME, LAW_CODE FROM VIOLATION"
-    cursor.execute(sql)
+    cursor.execute("""
+        SELECT VIOLATION.VIOLATION_ID, VIOLATION.LAW_CODE, STATE.STATE_NAME, VIOLATION_NAME,
+        VEHICLE.V_VIN, MAKE.MAKE_NAME, MODEL.MODEL_NAME
+        FROM VIOLATION
+        JOIN STATE_VIOLATION
+        ON VIOLATION.VIOLATION_ID = STATE_VIOLATION.VIOLATION_ID
+        JOIN STATE
+        ON STATE.STATE_ID = STATE_VIOLATION.STATE_ID
+        JOIN VEHICLE
+        ON VIOLATION.V_ID = VEHICLE.V_ID
+        JOIN MAKE
+        ON MAKE.MAKE_ID = VEHICLE.MAKE_ID
+        JOIN MODEL
+        ON MODEL.MODEL_ID = VEHICLE.MAKE_ID
+    """)
     rows = cursor.fetchall()
     violations = []
     for violation in rows:
         violations.append(violation)
+    cursor.execute("SELECT STATE_ID, STATE_NAME FROM STATE")
+    rows = cursor.fetchall()
+    states = []
+    for state in rows:
+        states.append(state[1])
+    cursor.execute("""
+        SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
+        FROM VEHICLE
+        JOIN MAKE
+        ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+        JOIN MODEL
+        ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+    """)
+    rows = cursor.fetchall()
+    vehicles = []
+    for vehicle in rows:
+        vehicles.append(vehicle[0:4])
     if request.method == 'POST':
-        
         violation_id = request.form.get('violation')
         print(violation_id)
         x = violation_id.split(", ")
-        y = int([0][1:])
-        
+        print(x)
+        y = int(x[0][1:])
+        print(y)
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Violation edited sucessfully'
-        return render_template('updateviolation.html', violations = violations, message = message)
-        
-    return render_template('updateviolation.html', violations = violation)
+        if field == "VIOLATION SET V_ID":
+            value = request.form.get('vehicle')
+            print(value)
+            x = value.split(", ")
+            value = int(x[0][1:])
+            sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('violations.html')
+        if field == "STATE_VIOLATION SET STATE_ID":
+            value = request.form.get('state')
+            cursor.execute("SELECT STATE_ID FROM STATE WHERE STATE_NAME = '{}'".format(value))
+            state = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+            vals = (state, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('violations.html')
+        else:
+            sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('violations.html')
+    return render_template('updateviolation.html', violations=violations,states=states,vehicles=vehicles)
+
+@app.route('/violations/view-violations', methods = ['GET'])
+def view_violation():
+    cursor.execute("""
+        SELECT VIOLATION.VIOLATION_ID, VIOLATION.LAW_CODE, STATE.STATE_NAME, VEHICLE.V_VIN, 
+        MAKE.MAKE_NAME, MODEL.MODEL_NAME, VIOLATION.VIOLATION_DATE, VIOLATION_NAME
+        FROM VIOLATION
+        JOIN STATE_VIOLATION
+        ON VIOLATION.VIOLATION_ID = STATE_VIOLATION.VIOLATION_ID
+        JOIN STATE
+        ON STATE.STATE_ID = STATE_VIOLATION.STATE_ID
+        JOIN VEHICLE
+        ON VIOLATION.V_ID = VEHICLE.V_ID
+        JOIN MAKE
+        ON MAKE.MAKE_ID = VEHICLE.MAKE_ID
+        JOIN MODEL
+        ON MODEL.MODEL_ID = VEHICLE.MAKE_ID
+    """)
+    data = cursor.fetchall()
+    return render_template('viewviolations.html', data = data)
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.

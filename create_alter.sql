@@ -241,10 +241,10 @@ CREATE TABLE dbo.ROLE (
 ------------------------------Giancarlos------------------------------------
 CREATE TABLE dbo.VIOLATION (
     VIOLATION_ID int IDENTITY(1,1) not null,
-    VIOLATION_NAME VARCHAR(80) not null,
+    VIOLATION_NAME VARCHAR(255) not null,
 	LAW_CODE VARCHAR(15),
 	V_ID int not null,
-	VIOLATION_DATE DATETIME,
+	VIOLATION_DATE DATE,
     CONSTRAINT VIOLATION_ID_PK PRIMARY KEY (VIOLATION_ID)
 );
 CREATE TABLE dbo.CUSTOMER_STATE (
