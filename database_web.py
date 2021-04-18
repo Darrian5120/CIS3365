@@ -1241,7 +1241,7 @@ def violation():
 @app.route('/violations/new-violation', methods = ['POST', 'GET'])
 def new_violation():
     cursor.execute("""
-        SELECT V_ID, V_VIN, MAKE.MAKE_NAME, MODEL.MODEL_NAME 
+        SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE.MAKE_NAME, MODEL.MODEL_NAME 
         FROM VEHICLE
         JOIN MAKE
         ON MAKE.MAKE_ID=VEHICLE.MAKE_ID
@@ -1287,30 +1287,77 @@ def new_violation():
 # modify violation
 @app.route('/violations/update-violation', methods = ['POST', 'GET'])
 def update_violation():
-    
-    sql = "SELECT VIOLATION_ID, VIOLATION_NAME, LAW_CODE FROM VIOLATION"
-    cursor.execute(sql)
+    cursor.execute("""
+        SELECT VIOLATION.VIOLATION_ID, VIOLATION.LAW_CODE, STATE.STATE_NAME, VIOLATION_NAME,
+        VEHICLE.V_VIN, MAKE.MAKE_NAME, MODEL.MODEL_NAME
+        FROM VIOLATION
+        JOIN STATE_VIOLATION
+        ON VIOLATION.VIOLATION_ID = STATE_VIOLATION.VIOLATION_ID
+        JOIN STATE
+        ON STATE.STATE_ID = STATE_VIOLATION.STATE_ID
+        JOIN VEHICLE
+        ON VIOLATION.V_ID = VEHICLE.V_ID
+        JOIN MAKE
+        ON MAKE.MAKE_ID = VEHICLE.MAKE_ID
+        JOIN MODEL
+        ON MODEL.MODEL_ID = VEHICLE.MAKE_ID
+    """)
     rows = cursor.fetchall()
     violations = []
     for violation in rows:
         violations.append(violation)
+    cursor.execute("SELECT STATE_ID, STATE_NAME FROM STATE")
+    rows = cursor.fetchall()
+    states = []
+    for state in rows:
+        states.append(state[1])
+    cursor.execute("""
+        SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
+        FROM VEHICLE
+        JOIN MAKE
+        ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+        JOIN MODEL
+        ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+    """)
+    rows = cursor.fetchall()
+    vehicles = []
+    for vehicle in rows:
+        vehicles.append(vehicle[0:4])
     if request.method == 'POST':
-        
         violation_id = request.form.get('violation')
         print(violation_id)
         x = violation_id.split(", ")
-        y = int([0][1:])
-        
+        print(x)
+        y = int(x[0][1:])
+        print(y)
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Violation edited sucessfully'
-        return render_template('updateviolation.html', violations = violations, message = message)
-        
-    return render_template('updateviolation.html', violations = violation)
+        if field == "VIOLATION SET V_ID":
+            value = request.form.get('vehicle')
+            print(value)
+            x = value.split(", ")
+            value = int(x[0][1:])
+            sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('violations.html')
+        if field == "STATE_VIOLATION SET STATE_ID":
+            value = request.form.get('state')
+            cursor.execute("SELECT STATE_ID FROM STATE WHERE STATE_NAME = '{}'".format(value))
+            state = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+            vals = (state, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('violations.html')
+        else:
+            sql = "UPDATE {} = ? WHERE VIOLATION_ID = ?".format(field)
+            vals = (value, y)
+            cursor.execute(sql, vals)
+            conn.commit()
+            return render_template('violations.html')
+    return render_template('updateviolation.html', violations=violations,states=states,vehicles=vehicles)
 
 @app.route('/violations/view-violations', methods = ['GET'])
 def view_violation():
