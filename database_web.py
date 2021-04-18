@@ -1277,8 +1277,10 @@ def new_violation():
             qry = "SELECT STATE_ID FROM STATE WHERE STATE_NAME = '{}'".format(state)
             cursor.execute(qry)
             state_id = cursor.fetchone()[0]
-            query = "INSERT INTO STATE_VIOLATION (VIOLATION_ID, STATE_ID)"
+            query = "INSERT INTO STATE_VIOLATION (VIOLATION_ID, STATE_ID) VALUES (?,?)"
             values = (vid, state_id)
+            cursor.execute(query, values)
+            conn.commit()
             return render_template('violations.html')
     return render_template('newviolation.html', vehicles=vehicles,states=states)
 
@@ -1310,9 +1312,25 @@ def update_violation():
         
     return render_template('updateviolation.html', violations = violation)
 
-@app.route('/violations/delete-violation', methods = ['POST', 'GET'])
-def delete_violation():
-    None
+@app.route('/violations/view-violations', methods = ['GET'])
+def view_violation():
+    cursor.execute("""
+        SELECT VIOLATION.VIOLATION_ID, VIOLATION.LAW_CODE, STATE.STATE_NAME, VEHICLE.V_VIN, 
+        MAKE.MAKE_NAME, MODEL.MODEL_NAME, VIOLATION.VIOLATION_DATE, VIOLATION_NAME
+        FROM VIOLATION
+        JOIN STATE_VIOLATION
+        ON VIOLATION.VIOLATION_ID = STATE_VIOLATION.VIOLATION_ID
+        JOIN STATE
+        ON STATE.STATE_ID = STATE_VIOLATION.STATE_ID
+        JOIN VEHICLE
+        ON VIOLATION.V_ID = VEHICLE.V_ID
+        JOIN MAKE
+        ON MAKE.MAKE_ID = VEHICLE.MAKE_ID
+        JOIN MODEL
+        ON MODEL.MODEL_ID = VEHICLE.MAKE_ID
+    """)
+    data = cursor.fetchall()
+    return render_template('viewviolations.html', data = data)
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
