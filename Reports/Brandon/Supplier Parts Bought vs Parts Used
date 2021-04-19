@@ -3,7 +3,7 @@ SELECT
 [dbo].[SUPPLIER].[SUPPLIER_NAME] as 'Supplier Name',
 [dbo].[SUPPLIER].[S_PHONE] as 'Contact Number',
 [dbo].[SUPPLIER_STATUS].[ACTIVE_NAME] AS 'Supplier Status',
-COUNT([dbo].[PART].[PART_ID]) as 'Number of Parts Bought',
+COUNT([dbo].[SUPPLIER_PART].[PART_ID]) as 'Number of Parts Bought',
 COUNT([dbo].[SERVICE_LINE_PART].[PART_ID]) as 'Number of Parts Used',
 FORMAT(SUM([dbo].[SUPPLIER_PART].[PART_COST]),'C') as 'Total Parts Cost'
 FROM [dbo].[SUPPLIER]
