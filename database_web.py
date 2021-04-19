@@ -1760,7 +1760,7 @@ def partsratelist_report():
     cursor.execute("""
         Select PART.PART_NAME,
 		SUPPLIER_PART.PART_COST As 'Part Price', 
-		SUPPLIER.SUPPLIER_NAME,
+		SUPPLIER.SUPPLIER_NAME 'Supplier Name',
 		SUPPLIER.S_ADDRESS_LINE1 As 'Address',
 		SUPPLIER.S_PHONE As 'Contact no.',
 		SUPPLIER.S_EMAIL As 'Email Address',
