@@ -1,101 +1,101 @@
 CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID|C_ADDRESS_LINE1|C_ADDRESS_LINE2|C_CITY|STATE_NAME|C_ZIP|COUNTRY_NAME|C_PHONE|C_EMAIL
-1|Delroy|John|Best American|4|1|123 smith street||Houston|Texas|77024|United States|832-431-2231|bestamerican@gmail.com
-2|Melissa|Amy|Cowgirl Trucking|4|1|1196 COUNTY RD||Liberty|Texas|77575|United States|832-748-5406|cowgirl@cowgirl.customer.com
-3|Melesio|John|Texstar Excavating|4|1|321 smith dr ||Cypress|Texas|77429|United States|832-821-3921|melisio@gmail.com
-4|Garcia|Ernesto|Ernesto Garcia Trucking|4|1|9851 washington ave||Houston|Texas|77006|United States|832-855-4234|ernestotrucking@yahoo.com
-5|Nieto|Jaimes|Niceford|4|1|4105 alabams st||Houston|Texas|77006|United States|713-912-4123|nicefordjaimes@gmail.com
-6|County Land|Mid|Mid County Land|4|1|450 main st||Houston|Texas|77006|United States|281-394-3213|midcountyland@gmail.com
-7|Jachon|E|Jachon Int'l LTD|4|1|9889 cowboy ave||Pasadena|Texas|77302|United States|512-321-4234|ejachon@gmail.com
-8|Chrome|ATC|Chrome ATC|4|1|3821 johnson st||Cypress|Texas|77429|United States|832-231-3131|atcchrome@gmail.com
-9|Molina|John||4|0|5314 Adams st||Houston|Texas|77024|United States|713-903-9398|johnmolina@gmail.com
-10|Stair|Joseph||4|0|732 lettuce vine st||Cypress|Texas|77429|United States|281-312-1331|Josephstair@gmail.com
-11|Victor|Alejandro|Circle V Trucking|4|1|1500 interstate ave||Pasadena |Texas|77420|United States|832-932-1231|alejandrovictor@gmail.com
-12|Buege|James|Rush Truck-Austin|4|1|500 local state dr||Houston|Texas|77024|United States|512-321-3134|jamesbuege@gmail.com
-13|Odell|Trent|Headway Oilfield Service|4|1|7423 steelwood dr||cypress|Texas|77429|United States|713-132-1313|trentodell@gmail.com
-14|Stroup|Paul|Paul Stroup Custom Dozing|4|1|800 jason ave||Austin|Texas|73942|United States|832-534-2345|paulstroup@gmail.com
-15|Ramirez Saldana|Mariano||4|0|813 Harrison Dr||Fort worth|Texas|73193|United States|293-312-3234|marianoramirezsaldana@gmail.com
-16|Thomas|Kirk||4|0|2138 Washington ave||Houston|Texas|77429|United States|283-331-3124|kirkthomas@gmail.com
-17|Park|William|Performance Truck of Houston|4|1|435 congress dr||San Antonio|Texas|73023|United States|842-424-4213|williampark@gmail.com
-18|Chambers|Alexander|Clifton Chevrolet|4|1|654 wick st||Fort worth|Texas|77493|United States|840-423-6543|alexanderchambers@gmail.com
-19|Plank|Dennis|Jag Trucking|4|1|953 barker cypress rd||Cypress|Texas|77439|United States|832-944-3135|dennisplank@gmail.com
-20|Rigoberto|Ramos||4|0|843 kingsbrook rd||houston|Texas|77039|United States|618-313-4684|ptoh@customer.com
-21|Murica|Oscar||4|0|675 kingsway ave||katy|Texas|77329|United States|918-323-2345|oscarmurica@gmail.com
-22|Barrett|Nathan|Rush Truck-San Antonio|4|1|759 licoln ave||Katy|Texas|77493|United States|843-347-4822|nathanbarrett@gmail.com
-23|Lopez|Bernardino|AB Trucking|4|1|432 main st||Houston|Texas|77024|United States|753-546-2475|bernardinolopez@gmail.com
+1|Delroy|John|Best American|4|1|123 Smith Street||Houston|Texas|77024|United States|832-431-2231|bestamerican@gmail.com
+2|Melissa|Amy|Cowgirl Trucking|4|1|1196 County Rd||Liberty|Texas|77575|United States|832-748-5406|cowgirl@cowgirl.customer.com
+3|Melesio|John|Texstar Excavating|4|1|321 Smith dr ||Cypress|Texas|77429|United States|832-821-3921|melisio@gmail.com
+4|Garcia|Ernesto|Ernesto Garcia Trucking|4|1|9851 Washington Ave||Houston|Texas|77006|United States|832-855-4234|ernestotrucking@yahoo.com
+5|Nieto|Jaimes|Niceford|4|1|4105 Alabama St||Houston|Texas|77006|United States|713-912-4123|nicefordjaimes@gmail.com
+6|County Land|Mid|Mid County Land|4|1|450 Main St||Houston|Texas|77006|United States|281-394-3213|midcountyland@gmail.com
+7|Jachon|E|Jachon Int'l LTD|4|1|9889 Cowboy Ave||Pasadena|Texas|77302|United States|512-321-4234|ejachon@gmail.com
+8|Chrome|ATC|Chrome ATC|4|1|3821 Johnson St||Cypress|Texas|77429|United States|832-231-3131|atcchrome@gmail.com
+9|Molina|John||4|0|5314 Adams St||Houston|Texas|77024|United States|713-903-9398|johnmolina@gmail.com
+10|Stair|Joseph||4|0|732 lettuce Vine St||Cypress|Texas|77429|United States|281-312-1331|Josephstair@gmail.com
+11|Victor|Alejandro|Circle V Trucking|4|1|1500 Interstate Ave||Pasadena|Texas|77420|United States|832-932-1231|alejandrovictor@gmail.com
+12|Buege|James|Rush Truck-Austin|4|1|500 Local State Dr||Houston|Texas|77024|United States|512-321-3134|jamesbuege@gmail.com
+13|Odell|Trent|Headway Oilfield Service|4|1|7423 Steelwood Dr||Cypress|Texas|77429|United States|713-132-1313|trentodell@gmail.com
+14|Stroup|Paul|Paul Stroup Custom Dozing|4|1|800 Jason Ave||Austin|Texas|73942|United States|832-534-2345|paulstroup@gmail.com
+15|Ramirez Saldana|Mariano||4|0|813 Harrison Dr||Fort Worth|Texas|73193|United States|293-312-3234|marianoramirezsaldana@gmail.com
+16|Thomas|Kirk||4|0|2138 Washington Ave||Houston|Texas|77429|United States|283-331-3124|kirkthomas@gmail.com
+17|Park|William|Performance Truck of Houston|4|1|435 Congress Dr||San Antonio|Texas|73023|United States|842-424-4213|williampark@gmail.com
+18|Chambers|Alexander|Clifton Chevrolet|4|1|654 Wick St||Fort Worth|Texas|77493|United States|840-423-6543|alexanderchambers@gmail.com
+19|Plank|Dennis|Jag Trucking|4|1|953 Barker Cypress Rd||Cypress|Texas|77439|United States|832-944-3135|dennisplank@gmail.com
+20|Rigoberto|Ramos||4|0|843 Kingsbrook Rd||Houston|Texas|77039|United States|618-313-4684|ptoh@customer.com
+21|Murica|Oscar||4|0|675 Kingsway Ave||Katy|Texas|77329|United States|918-323-2345|oscarmurica@gmail.com
+22|Barrett|Nathan|Rush Truck-San Antonio|4|1|759 Licoln Ave||Katy|Texas|77493|United States|843-347-4822|nathanbarrett@gmail.com
+23|Lopez|Bernardino|AB Trucking|4|1|432 Main St||Houston|Texas|77024|United States|753-546-2475|bernardinolopez@gmail.com
 24|Larret|August|Larrett Inc|4|1|5th st||Austin|Texas|77323|United States|475-489-2874|augustlarret@gmail.com
-25|Guttierez|Miguel|Rush Truck-Houston|4|1|3rd st||Austin|Texas|74337|United States|512-837-4783|miguelgutierrez@gmail.com
+25|Guttierez|Miguel|Rush Truck-Houston|4|1|3rd St||Austin|Texas|74337|United States|512-837-4783|miguelgutierrez@gmail.com
 26|Gray|Jake|Red Trucking|4|1|4th st||Austin|Texas|77423|United States|942-324-1342|jakegray@gmail.com
-27|Cicero|Jay||4|0|5th st||Austin|Texas|77442|United States|832-384-2424|jaycicero@gmail.com
+27|Cicero|Jay||4|0|5th St||Austin|Texas|77442|United States|832-384-2424|jaycicero@gmail.com
 28|Arebalo|Carlos||4|0|12 6th st||Austin|Texas|77432|United States|842-424-2344|carlosarebalo@gmail.com
-29|Gonzales|Ricky|Elite Landscaping|4|1|183 7th st||Austin|Texas|77234|United States|844-283-2424|rickygonzales@gmail.com
-30|Escobar|Leo||4|0|313 washington ave||Houston|Texas|72323|United States|834-245-2343|leoescobar@gmail.com
+29|Gonzales|Ricky|Elite Landscaping|4|1|183 7th St||Austin|Texas|77234|United States|844-283-2424|rickygonzales@gmail.com
+30|Escobar|Leo||4|0|313 Washington Ave||Houston|Texas|72323|United States|834-245-2343|leoescobar@gmail.com
 31|Agrueta|Fredy||4|0|245 Jefferson Dr||Houston|Texas|38313|United States|842-423-2342|fredyagrueta@gmail.com
-32|Carter|Tyrae|R & A Transport Inc|4|1|1003 wirt rd||Houston|Texas|74294|United States|382-432-4241|tyraecarter@gmail.com
+32|Carter|Tyrae|R & A Transport Inc|4|1|1003 Wirt Rd||Houston|Texas|74294|United States|382-432-4241|tyraecarter@gmail.com
 33|Grantham|Weston|Holt Tuck Centers CAT|4|1|10331 Silber Rd||Houston|Texas|74828|United States|821-392-4921|westongrantham@gmail.com
-34|Getachew|Ben||4|0|19342 ChimneyRock rd||Houston|Texas|77024|United States|842-313-3144|bengetachew@gmail.com
-35|Cantu|Carlos|Raga Equipment|4|1|4728 Alleyway dr||Houston|Texas|77031|United States|831-234-2424|carloscantu@gmail.com
+34|Getachew|Ben||4|0|19342 ChimneyRock Rd||Houston|Texas|77024|United States|842-313-3144|bengetachew@gmail.com
+35|Cantu|Carlos|Raga Equipment|4|1|4728 Alleyway Dr||Houston|Texas|77031|United States|831-234-2424|carloscantu@gmail.com
 36|Raggio|Gaston||4|0|8422 Lettacevale Dr||Houston|Texas|77301|United States|832-384-2384|gastonraggio@gmail.com
 37|Warren|Christopher|Grande Sales & Services|4|1|36834 Vespuchi Ave||Dallas|Texas|82813|United States|289-731-3718|christopherwarren@gmail.com
-38|Hronek|Jason|H&H Top Soil and Select Fill|4|1|8429 Woodward dr||Dallas|Texas|74223|United States|742-329-3174|jasonhronek@gmail.com
+38|Hronek|Jason|H&H Top Soil and Select Fill|4|1|8429 Woodward Dr||Dallas|Texas|74223|United States|742-329-3174|jasonhronek@gmail.com
 39|Loya|Francisco||4|0|84297 Johnson Dr||Dallas|Texas|84202|United States|821-428-4824|Franciscoloya@gmail.com
 40|Tran|David|Parody Trucking|4|1|1342 Wirt St||Houston|Texas|77023|United States|832-238-2342|Davidtran@gmail.com
 41|Quinonez|Cesar|SM Trucking|1|1|123 Firelane dr||Houston|Texas|77045|United States|293-123-3123|cesarquinonez@gmail.com
-42|Fontenot|Rick||1|0|345 Spring Cypress rd||Cypress|Texas|77429|United States|301-313-3414|rickfontenot@gmail.com
+42|Fontenot|Rick||1|0|345 Spring Cypress Rd||Cypress|Texas|77429|United States|301-313-3414|rickfontenot@gmail.com
 43|Gilbert|George|George Gilbert Enterprises|1|1|3913 Mason Rd||Katy|Texas|77319|United States|313-424-4242|georgegilbert@gmail.com
-44|Ted|Johnathan|CKG Services|1|1|8983 Lettucvine dr||Houston|Texas|77391|United States|371-381-4823|johnathanted@gmail.com
+44|Ted|Johnathan|CKG Services|1|1|8983 Lettucvine Dr||Houston|Texas|77391|United States|371-381-4823|johnathanted@gmail.com
 45|Anthony|Vincent|Cowboy Top Soil|1|1|2321 Mason Rd||Katy|Texas|73212|United States|382-234-3234|vincentanthony@gmail.com
-46|Picton|Harold|Coast Materials Inc|1|1|342 Sugarvale dr||Katy|Texas|34221|United States|424-535-6764|haroldpicton@gmail.com
+46|Picton|Harold|Coast Materials Inc|1|1|342 Sugarvale Dr||Katy|Texas|34221|United States|424-535-6764|haroldpicton@gmail.com
 47|Salinas|Hector|H Salinas Trucking|1|1|105 Johnson St||Houston|Texas|77042|United States|324-453-5454|hectorsalinas@gmail.com
-48|Martin|Katia||1|0|3742 lakeview dr||Housotn|Texas|88428|United States|833-234-3823|katiamartin@gmail.com
-49|Jack|Billy|Billy Jack Construction Co|1|1|6493 Streetview dr||Houston|Texas|83233|United States|382-381-4272|billyjack@gmail.com
-50|Vasquez|Edmond||1|0|1st street||Austin|Texas|77332|United States|742-484-2483|edmonvasquez@gmail.com
+48|Martin|Katia||1|0|3742 Lakeview Dr||Houston|Texas|88428|United States|833-234-3823|katiamartin@gmail.com
+49|Jack|Billy|Billy Jack Construction Co|1|1|6493 Streetview Dr||Houston|Texas|83233|United States|382-381-4272|billyjack@gmail.com
+50|Vasquez|Edmond||1|0|1st Street||Austin|Texas|77332|United States|742-484-2483|edmonvasquez@gmail.com
 51|Lamar|Vince|Vince Delivery|1|1|2nd Street||Austin|Texas|37424|United States|742-472-4750|vincelamar@gmail.com
 52|Alvarez|Zach|Visa Pool Plastering|1|1|3rd Street||Austin|Texas|84714|United States|848-427-4827|zachalvarez@gmail.com
 53|Jones|Brandon|BJ Vacumme|1|1|37812 Adams Ave||Dallas|Texas|88252|United States|833-314-5642|brandonjones@gmail.com
 54|Romar|Alex|Romar Unlimited Incorporation|1|1|1231 Jefferson Dr||Pasadina|Texas|37718|United States|382-241-4141|alexromar@gmail.com
-55|Schmitz|Glenn|J&B Pavelk Inc.|1|1|1847 Rockerfeller St||Fort worth|Texas|77187|United States|832-238-3378|glennchmitz@gmail.com
+55|Schmitz|Glenn|J&B Pavelk Inc.|1|1|1847 Rockerfeller St||Fort Worth|Texas|77187|United States|832-238-3378|glennchmitz@gmail.com
 56|Diggs|Tom|Hauling Valley LLC|1|1|4727 Aber Ln||Houston|Texas|72878|United States|372-374-5378|tomdiggs@gmail.com
 57|Sorto|Dionicio||1|0|74232 Amaya Avenue||Houston|Texas|71878|United States|821-438-4387|dioniciosorto@gmail.com
-58|Sheridan|MJ||1|0|3728 Brett Way||College station|Texas|72387|United States|327-274-2741|mjsheridan@gmail.com
-59|Hamrick|Bill|FAA Truck|2|1|73277 Briarcliffe Court||college station|Texas|73874|United States|832-492-4788|billhamrick@gmail.com
-60|Dugas|KJ||2|0|83748 Britton Drive||college station|Texas|83781|United States|489-248-2498|kjdugas@gmail.com
-61|Bradley|Craig|DAM Truck Services|2|1|738 Bunker Lane||college station|Texas|37287|United States|373-382-2837|cragibradley@gmail.com
-62|Loera|Ramon||2|0|7375 Bunker Hill dr||Houston|Texas|77024|United States|389-389-4874|ramonloera@gmail.com
-63|Warner|Bryan|Premium Contractors|2|1|7484 Chimney rock rd||Houston|Texas|77392|United States|849-237-8487|bryanwarner@gmail.com
-64|Shah|Andy|Shah Transport LLC|2|1|2384 Vinewood hills||Austin|Texas|38732|United States|843-472-4817|andyshah@gmail.com
-65|Alvaro|Edmund||2|0|374 vespuchi dr||Fort worth|Texas|38273|United States|382-384-4274|edmundalvaro@gmail.com
-66|Medina|David||2|0|7287 hollow lane||Houston|Texas|77023|United States|954-437-5724|davidmedina@gmail.com
-67|Hughes|Jeff|Hughes Trucking|2|1|8298 Lettuce vine blv||Houston|Texas|72838|United States|923-853-5839|jeffhughes@gmail.com
-68|Garibay|Marco||2|0|89 15th st||Austin|Texas|89828|United States|913-382-3898|marcogaribay@gmail.com
-69|Adams|Adrian|Adams Trucking|2|1|388 Burgos dr||Dallas|Texas|83922|United States|932-482-4834|adrianadams@gmail.com
-70|Jones|Johnathan|JJ Excavation|2|1|389 Burke court||Dallas|Texas|89288|United States|839-384-8573|jonathanjones@gmail.com
+58|Sheridan|MJ||1|0|3728 Brett Way||College Station|Texas|72387|United States|327-274-2741|mjsheridan@gmail.com
+59|Hamrick|Bill|FAA Truck|2|1|73277 Briarcliffe Court||College Station|Texas|73874|United States|832-492-4788|billhamrick@gmail.com
+60|Dugas|KJ||2|0|83748 Britton Drive||College Station|Texas|83781|United States|489-248-2498|kjdugas@gmail.com
+61|Bradley|Craig|DAM Truck Services|2|1|738 Bunker Lane||College Station|Texas|37287|United States|373-382-2837|cragibradley@gmail.com
+62|Loera|Ramon||2|0|7375 Bunker Hill Dr||Houston|Texas|77024|United States|389-389-4874|ramonloera@gmail.com
+63|Warner|Bryan|Premium Contractors|2|1|7484 Chimney Rock Rd||Houston|Texas|77392|United States|849-237-8487|bryanwarner@gmail.com
+64|Shah|Andy|Shah Transport LLC|2|1|2384 Vinewood Hills||Austin|Texas|38732|United States|843-472-4817|andyshah@gmail.com
+65|Alvaro|Edmund||2|0|374 Vespuchi Dr||Fort Worth|Texas|38273|United States|382-384-4274|edmundalvaro@gmail.com
+66|Medina|David||2|0|7287 Hollow Lane||Houston|Texas|77023|United States|954-437-5724|davidmedina@gmail.com
+67|Hughes|Jeff|Hughes Trucking|2|1|8298 Lettuce Vine Blv||Houston|Texas|72838|United States|923-853-5839|jeffhughes@gmail.com
+68|Garibay|Marco||2|0|89 15th St||Austin|Texas|89828|United States|913-382-3898|marcogaribay@gmail.com
+69|Adams|Adrian|Adams Trucking|2|1|388 Burgos Dr||Dallas|Texas|83922|United States|932-482-4834|adrianadams@gmail.com
+70|Jones|Johnathan|JJ Excavation|2|1|389 Burke Court||Dallas|Texas|89288|United States|839-384-8573|jonathanjones@gmail.com
 71|Stanley|Robert||2|0|4850 Burns Dr||Dallas|Texas|38942|United States|843-576-5839|robertstanley@gmail.com
-72|Gil|Rene||2|0|752 Chester court||Dalls|Texas|84982|United States|847-287-5372|renegil@gmail.com
-73|Castanon|Jose|Clark Freight Lines Inc|2|1|930 Edgeworth dr||Fortworth|Texas|38293|United States|839-498-4832|josecastanon@gmail.com
-74|Butler|John|JB Ranch|2|1|8493 Edwards st||Dallas|Texas|83924|United States|949-485-3843|johnbutler@gmail.com
-75|Gilco|Clark|Gilco Contracting|2|1|3829 Alabama st||Houston|Texas|77005|United States|832-485-3273|clarigilco@gmail.com
-76|Cason|Jacob|Circle M Transport|2|1|8938 Garrott st||Houston|Texas|77006|United States|829-589-3842|jacobcason@gmail.com
-77|Olivares|Eliud|Elite HTX Trucking LLC|2|1|8398 Feedback ave||Dallas|Texas|83932|United States|839-860-3839|eliudolivares@gmail.com
-78|Hilby|Malik|Hilby Limited Trucking|2|1|8489 Emma Place dr||Dallas|Texas|93029|United States|843-849-4839|malikhilby@gmail.com
-79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC|2|1|9294 Fairfield st||Houston|Texas|77013|United States|723-859-1983|johnnyderamus@gmail.com
-80|Lopez|Irma||2|0|8849 Fieldcrest dr||Dallas|Texas|98208|United States|892-484-3841|irmalopez@gmail.com
+72|Gil|Rene||2|0|752 Chester Court||Dalls|Texas|84982|United States|847-287-5372|renegil@gmail.com
+73|Castanon|Jose|Clark Freight Lines Inc|2|1|930 Edgeworth Dr||Fort Worth|Texas|38293|United States|839-498-4832|josecastanon@gmail.com
+74|Butler|John|JB Ranch|2|1|8493 Edwards St||Dallas|Texas|83924|United States|949-485-3843|johnbutler@gmail.com
+75|Gilco|Clark|Gilco Contracting|2|1|3829 Alabama St||Houston|Texas|77005|United States|832-485-3273|clarigilco@gmail.com
+76|Cason|Jacob|Circle M Transport|2|1|8938 Garrott St||Houston|Texas|77006|United States|829-589-3842|jacobcason@gmail.com
+77|Olivares|Eliud|Elite HTX Trucking LLC|2|1|8398 Feedback Ave||Dallas|Texas|83932|United States|839-860-3839|eliudolivares@gmail.com
+78|Hilby|Malik|Hilby Limited Trucking|2|1|8489 Emma Place Dr||Dallas|Texas|93029|United States|843-849-4839|malikhilby@gmail.com
+79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC|2|1|9294 Fairfield St||Houston|Texas|77013|United States|723-859-1983|johnnyderamus@gmail.com
+80|Lopez|Irma||2|0|8849 Fieldcrest Dr||Dallas|Texas|98208|United States|892-484-3841|irmalopez@gmail.com
 81|Lane|John|Houston Tree Transplanting|2|1|939 Fink St||Dallas|Texas|82984|United States|739-483-4759|johnlane@gmail.com
-82|Scott|Logan|D&D Truck Sales Inc|2|1|4953 Flatwood dr||Houston|Texas|77209|United States|829-485-3813|loganscott@gmail.com
-83|Strother|Sophia|Selectrucks Of Houston|2|1|298 Fiatlane dr||Houston|Texas|77299|United States|785-843-3943|sophiastrother@gmail.com
-84|Smith|Kenneth|Rush Truck-Waco|2|1|3894 Mountainvale dr||Dallas|Texas|82988|United States|920-382-8492|kennethsmith@gmail.com
-85|Woods|Russel|South Texas Logging & Transport|2|1|8392 Montrose ave||Houston|Texas|77008|United States|832-472-3728|russelwoods@gmail.com
-86|Midgley|Tyler|SJC Trucking|2|1|2713 Highville ave||Austin|Texas|93293|United States|382-839-3819|tylermidgley@gmail.com
-87|Rojas|Pedro||2|0|93909 Lookalive ave||Austin|Texas|80834|United States|382-372-3818|pedrorojas@gmail.com
+82|Scott|Logan|D&D Truck Sales Inc|2|1|4953 Flatwood Dr||Houston|Texas|77209|United States|829-485-3813|loganscott@gmail.com
+83|Strother|Sophia|Selectrucks Of Houston|2|1|298 Fiatlane Dr||Houston|Texas|77299|United States|785-843-3943|sophiastrother@gmail.com
+84|Smith|Kenneth|Rush Truck-Waco|2|1|3894 Mountainvale Dr||Dallas|Texas|82988|United States|920-382-8492|kennethsmith@gmail.com
+85|Woods|Russel|South Texas Logging & Transport|2|1|8392 Montrose Ave||Houston|Texas|77008|United States|832-472-3728|russelwoods@gmail.com
+86|Midgley|Tyler|SJC Trucking|2|1|2713 Highville Ave||Austin|Texas|93293|United States|382-839-3819|tylermidgley@gmail.com
+87|Rojas|Pedro||2|0|93909 Lookalive Ave||Austin|Texas|80834|United States|382-372-3818|pedrorojas@gmail.com
 88|Overton|Anthony|OKB Transport|2|1|123 Gale ln||Houston|Texas|83911|United States|739-843-2839|anthonyoverton@gmail.com
 89|Masters|Simon|Texas Truck Sales|2|1|1833 Harvey Dr||Austin|Texas|83021|United States|892-847-4831|simonmaster@gmail.com
-90|Devin|Jeffrey|Vanguard Truck Center|2|1|9219 Sleepless ave||Houston|Texas|83198|United States|993-329-4928|jeffreydevin
+90|Devin|Jeffrey|Vanguard Truck Center|2|1|9219 Sleepless Ave||Houston|Texas|83198|United States|993-329-4928|jeffreydevin
 91|Argueta|Julio||2|0|8397 Sheepless Dr||Dallas|Texas|83813|United States|839-234-1738|julioargueta@gmail.com
 92|Ranier|Sandhu||2|0|6393 Lightfull Dr||Austin|Texas|83911|United States|839-289-1648|sandhuranier@gmail.com
-93|Brimm|Richard||2|0|7492 Tablelight ave||Houston|Texas|92010|United States|839-283-2839|richardbrimm@gmail.com
-94|Cruz|Rigoberto||2|0|31983 Gonzales dr||Houston|Texas|92911|United States|831-293-3729|rigobertocruz@gmail.com
+93|Brimm|Richard||2|0|7492 Tablelight Ave||Houston|Texas|92010|United States|839-283-2839|richardbrimm@gmail.com
+94|Cruz|Rigoberto||2|0|31983 Gonzales Dr||Houston|Texas|92911|United States|831-293-3729|rigobertocruz@gmail.com
 95|McNeal|Bo||2|0|8273 Goodman Ln||Dallas|Texas|93912|United States|832-471-1732|bomcneal@gmail.com
-96|Garza|Javier||2|0|928 Goldplace dr||Houston|Texas|73197|United States|839-294-2371|javiergarza@gmail.com
-97|Martinez|Eduardo||2|0|82864 Vespuchi dr||Austin|Texas|83813|United States|268-371-4719|eduardomartinez@gmail.com
-98|Esperanza|Jose||2|0|37193 Pelito dr||Fort worth|Texas|83912|United States|722-372-3197|joseesperanza@gmail.com
-99|Hogan|Bob|General Parts & Supply|2|1|9392 Fleeka ave||College station|Texas|35482|United States|833-283-2838|bobhogan@gmail.com
-100|Benitez|Rodger|Benitez Trucking Enterprises|2|1|Lastlane dr||Houston|Texas|89284|United States|939-274-2748|rodgerbenitez@gmail.com
+96|Garza|Javier||2|0|928 Goldplace Dr||Houston|Texas|73197|United States|839-294-2371|javiergarza@gmail.com
+97|Martinez|Eduardo||2|0|82864 Vespuchi Dr||Austin|Texas|83813|United States|268-371-4719|eduardomartinez@gmail.com
+98|Esperanza|Jose||2|0|37193 Pelito dr||Fort Worth|Texas|83912|United States|722-372-3197|joseesperanza@gmail.com
+99|Hogan|Bob|General Parts & Supply|2|1|9392 Fleeka Ave||College Station|Texas|35482|United States|833-283-2838|bobhogan@gmail.com
+100|Benitez|Rodger|Benitez Trucking Enterprises|2|1|Lastlane Dr||Houston|Texas|89284|United States|939-274-2748|rodgerbenitez@gmail.com
