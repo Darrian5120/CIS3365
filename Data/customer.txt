@@ -54,15 +54,15 @@ CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID|C_ADDRESS_LINE1|C_A
 53|Jones|Brandon|BJ Vacumme|1|1|37812 Adams Ave||Dallas|Texas|88252|United States|833-314-5642|brandonjones@gmail.com
 54|Romar|Alex|Romar Unlimited Incorporation|1|1|1231 Jefferson Dr||Pasadina|Texas|37718|United States|382-241-4141|alexromar@gmail.com
 55|Schmitz|Glenn|J&B Pavelk Inc.|1|1|1847 Rockerfeller St||Fort worth|Texas|77187|United States|832-238-3378|glennchmitz@gmail.com
-56|Diggs|Tom|Hauling Valley LLC|1|1|4727 Aber Ln||New Orleans|Louisiana |72878|United States|372-374-5378|tomdiggs@gmail.com
-57|Sorto|Dionicio||1|0|74232 Amaya Avenue||New Orleans|Louisiana |71878|United States|821-438-4387|dioniciosorto@gmail.com
+56|Diggs|Tom|Hauling Valley LLC|1|1|4727 Aber Ln||Houston|Texas|72878|United States|372-374-5378|tomdiggs@gmail.com
+57|Sorto|Dionicio||1|0|74232 Amaya Avenue||Houston|Texas|71878|United States|821-438-4387|dioniciosorto@gmail.com
 58|Sheridan|MJ||1|0|3728 Brett Way||College station|Texas|72387|United States|327-274-2741|mjsheridan@gmail.com
 59|Hamrick|Bill|FAA Truck|2|1|73277 Briarcliffe Court||college station|Texas|73874|United States|832-492-4788|billhamrick@gmail.com
 60|Dugas|KJ||2|0|83748 Britton Drive||college station|Texas|83781|United States|489-248-2498|kjdugas@gmail.com
 61|Bradley|Craig|DAM Truck Services|2|1|738 Bunker Lane||college station|Texas|37287|United States|373-382-2837|cragibradley@gmail.com
 62|Loera|Ramon||2|0|7375 Bunker Hill dr||Houston|Texas|77024|United States|389-389-4874|ramonloera@gmail.com
 63|Warner|Bryan|Premium Contractors|2|1|7484 Chimney rock rd||Houston|Texas|77392|United States|849-237-8487|bryanwarner@gmail.com
-64|Shah|Andy|Shah Transport LLC|2|1|2384 Vinewood hills||New orleans|Louisiana |38732|United States|843-472-4817|andyshah@gmail.com
+64|Shah|Andy|Shah Transport LLC|2|1|2384 Vinewood hills||Austin|Texas|38732|United States|843-472-4817|andyshah@gmail.com
 65|Alvaro|Edmund||2|0|374 vespuchi dr||Fort worth|Texas|38273|United States|382-384-4274|edmundalvaro@gmail.com
 66|Medina|David||2|0|7287 hollow lane||Houston|Texas|77023|United States|954-437-5724|davidmedina@gmail.com
 67|Hughes|Jeff|Hughes Trucking|2|1|8298 Lettuce vine blv||Houston|Texas|72838|United States|923-853-5839|jeffhughes@gmail.com
