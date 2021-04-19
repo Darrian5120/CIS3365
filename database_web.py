@@ -1758,7 +1758,7 @@ def view_parts():
 @app.route ('/suppliers/partsratelist-report' , methods = ['GET'])
 def partsratelist_report():
     cursor.execute("""
-        Select PART.PART_NAME,
+        Select PART.PART_NAME As 'Part Name',
 		SUPPLIER_PART.PART_COST As 'Part Price', 
 		SUPPLIER.SUPPLIER_NAME As 'Supplier Name',
 		SUPPLIER.S_ADDRESS_LINE1 As 'Address',
