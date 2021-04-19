@@ -25,25 +25,29 @@
                 <td id="td"><a href ="/vehicles">Vehicles</a></td>
                 <td id="td"><a href ="/services">Services</a></td>
                 <td id="td"><a href ="/employees">Employees</a></td>
-                <td id="td"><a href ="/reports">Reports</a></td>
+                <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
         <table>
             <thead>
                 <tr>
-                    <th>Vehicle Vin</th>
-                    <th>Service Type</th>
-                    <th>Servcie Start Date</th>
-                    <th>Service End Date</th>
+                    <th>First Name</th>
+                    <th>Last name</th>
+                    <th>Service Order ID</th>
+                    <th>Service</th>
+                    <th>Order Date</th>
+                    
                 </tr>
             </thead>    
             <tbody>
                 {% for row in data %}    
                     <tr>
-                        <td>{{row[0]}}</td>
-                        <td>{{row[1]}}</td>
-                        <td>{{row[2]}}</td>
-                        <td>{{row[3]}}</td>
+                        <td align = "left">{{row[0]}}</td>
+                        <td align = "left">{{row[1]}}</td>
+                        <td align = "right">{{row[2]}}</td>
+                        <td align = "left">{{row[3]}}</td>
+                        <td align = "left">{{row[4]}}</td>
+                        
                     </tr>
                 {% endfor %}
             </tbody>

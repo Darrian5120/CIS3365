@@ -32,10 +32,12 @@
             <thead>
                 <tr>
                     <th>Customer ID</th>
-                    <th>Vehicle Vin</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Year</th>
+                    <th>Vehicle ID</th>
+                    <th>Vehicle Make</th>
+                    <th>Vehicle Model</th>
+                    <th>Vehicle Year</th>
+		    <th>Vehicle Condition Upon Arrival</th>
+
                 </tr>
             </thead>    
             <tbody>
@@ -46,6 +48,7 @@
                         <td>{{row[2]}}</td>
                         <td>{{row[3]}}</td>
                         <td>{{row[4]}}</td>
+                        <td>{{row[5]}}</td>
 
                     </tr>
                 {% endfor %}
