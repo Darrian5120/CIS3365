@@ -5,7 +5,7 @@ SUPPLIER_ID|SUPPLIER_NAME|ACTIVE_ID|S_ADDRESS_LINE1|S_ADDRESS_LINE2|S_CITY|S_STA
 4|Ridewell Suspensions|1|3715 E Farm Rd 94||Springfield|Missouri|65803|United States|417-833-4565|jrapp@ridewellcorp.com
 5|US Tarp|1|1425 Kalamazoo St||South Haven|Michigan|49090|United States|800-249-0297|technicalsupport@ustarp.com
 6|Link Manufacturing, Ltd|1|223 15th St NE||Sioux Center|Iowa|51250|United States|800-222-6283|hr@linkmfg.com
-7|Buyers Products Company|1|9049 Tyler Blvd||Mentor|Ohio|44060|United States|440-299-​5428|gettechnicalsupport@gmail.com
+7|Buyers Products Company|1|9049 Tyler Blvd||Mentor|Ohio|44060|United States|440-299-3245|gettechnicalsupport@gmail.com
 8|W&C - Watson & Chalin|1|725 E University Dr|| McKinney|Texas|75069|United States|800-445-0736|supportwcm@yahoo.com
 9|Airman Products|1|6150 Whitmore Lake Rd||Brighton|Michigan|48116|United States|248-960-1354|sales@airmanproducts.com
 10|Hendrickson|1|19201 Colorado Sand Dr||Pflugerville|Texas|78660|United States|931-801-3288|victor.valdez@pfisd.net

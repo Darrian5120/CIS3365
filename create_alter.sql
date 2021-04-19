@@ -11,10 +11,10 @@ CREATE TABLE dbo.Customer (
 	C_ADDRESS_LINE2 varchar(30),
 	C_CITY varchar(30) not null,
 	STATE_NAME varchar(15) not null,
-	C_ZIP INT not null,
+	C_ZIP varchar(6) not null,
 	COUNTRY_NAME varchar(30) not null,
 	C_PHONE varchar(15)  not null,
-	C_EMAIL varchar(30),
+	C_EMAIL varchar(35),
 	CONSTRAINT CUSTOMER_ID_PK PRIMARY KEY (CUSTOMER_ID)
 );
 CREATE TABLE dbo.PAYMENT (
@@ -50,7 +50,7 @@ CREATE TABLE dbo.EMPLOYEE (
 	E_ADDRESS_LINE2 varchar(30),
 	E_CITY varchar(30) not null,
 	E_STATE varchar(15) not null,
-	E_ZIP INT not null,
+	E_ZIP varchar(6) not null,
 	E_COUNTRY varchar(30) not null,
 	E_PHONE varchar(15) not null,
 	E_EMAIL varchar(35) not null,
@@ -65,7 +65,7 @@ CREATE TABLE dbo.SUPPLIER (
 	S_ADDRESS_LINE2 varchar(30),
 	S_CITY varchar(30) not null,
 	S_STATE varchar(15) not null,
-	S_ZIP int not null,
+	S_ZIP varchar(6) not null,
 	S_COUNTRY varchar(30) not null,
 	S_PHONE varchar(15) not null,
 	S_EMAIL varchar(35) not null,
@@ -360,11 +360,6 @@ add CONSTRAINT REVENUE_ID_FK FOREIGN KEY (REVENUE_ID) REFERENCES ACCOUNT_REVENUE
 CONSTRAINT PR_ID_FK6 FOREIGN KEY (PMT_ID, INVOICE_ID, SERVICE_ORDER_ID) REFERENCES INVOICE_PAYMENT;
 
 -------------------------jahidul----------------------------------------------------------------
-ALTER TABLE SUPPLIER_CONTACT_INFO
-add CONSTRAINT SUPPLIER_ID_FK9 FOREIGN KEY (SUPPLIER_ID) REFERENCES SUPPLIER;
-ALTER TABLE EMPLOYEE_CONTACT_INFO
-add CONSTRAINT EMPLOYEE_ID_FK9 FOREIGN KEY (EMPLOYEE_ID) REFERENCES EMPLOYEE;
-
 --Alter Customer Vehicle--
 ALTER TABLE CUSTOMER_VEHICLE
 add CONSTRAINT V_ID_FK2 FOREIGN KEY (V_ID) REFERENCES VEHICLE(V_ID),
