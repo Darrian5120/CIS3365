@@ -12,8 +12,9 @@
             .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
             #td {width: 20%; text-align: center; margin: 0; padding: 0;}
         </style>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     </head>
-    <body>
+    <body align="center">
         <div class="header">
             <h1>Herrera Fabricating Inc.</h1>
         </div>
@@ -26,29 +27,72 @@
                 <td id="td"><a href ="/reports">Reports</a></td>
             </tr>
         </table>
-        <form action="" method="post">
+        <form action="" method="post" id="frm">
             <p>
-                <label for="sertype">Service Type</label>
-                <input type="text" name="sertype">
-            </p>
-            <p>
-                <label for="cost">Service Cost</label>
-                <input type="text" name="cost">
-            </p>
-	    <p>
-                <label for="active">Status </label>
-                <select name="active" id="active">
-                    <option value="">Status</option>
-                    <option value="1">Available Service</option>
-		    <option value="2">Unavailable Service</option>
-		    <option value="3">Special Request</option>
+                <label for="customer">Customer</label>
+                <select name="customer" id="customer">
+                    {% for customer in customers[0:] %}
+                    <option value="{{ customer[2] }}" >{{ customer }}</option>
+                    {% endfor %}
                 </select>
             </p>
-            
+            <p>
+                <label for="vehicle">Vehicle</label>
+                <select id="vehicle" name="vehicle" ></select>
+            </p>
+            <p>
+                <label for="service">Service</label>
+                <select name="service" id="service">
+                    {% for service in services[0:] %}
+                    <option value="{{ service }}" >{{ service }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label for="employee">Employees</label>
+                <select name="employee" id="employee">
+                    {% for employee in employees[0:] %}
+                    <option value="{{ employee }}" >{{ employee }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label for="part">Parts</label>
+                <select name="part" id="part">
+                    {% for part in parts[0:] %}
+                    <option value="{{ part }}" >{{ part }}</option>
+                    {% endfor %}
+                </select>
+            </p>
             <p><input type="submit" value="Submit"></p>
         </form>
+        <p id="test"></p>
+        <p id="test1"></p>
+        <p id="test2"></p>
+        <p id="test3"></p>
     </body>
-    <script>
+    <script type="text/javascript">
+        jQuery(function($) {
+            function escapeRegExp(str) {
+                return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            }
+            function replaceAll(str, find, replace) {
+                return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+            }
+            var str = "{{ data|safe }}"; 
+            var new_str = replaceAll(str, "'", "\"");
+            var vehicles = JSON.parse(new_str); 
+            document.getElementById("test3").innerHTML = vehicles;
 
+            var $vehicles = $('#vehicle');
+            $('#customer').change(function () {
+                var customer = $(this).val(), lcns = vehicles[customer] || [];
+                
+                var html = $.map(lcns, function(lcn){
+                    return '<option value="' + lcn + '">' + lcn + '</option>'
+                }).join('');
+                $vehicles.html(html)
+            });
+        });
     </script>
 </html>

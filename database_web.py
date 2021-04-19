@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, make_response, render_template, url_f
 import pyodbc
 from collections import defaultdict
 import json
-import datetime
+from datetime import date
 import sys
 
 ############################################## READ ME #####################################
@@ -412,6 +412,7 @@ def new_vehicle():
     data = {}
     for (make, model) in cursor:
         data.setdefault(make, []).append(model)
+    print(data)
     #####################
     sql = "SELECT MAKE_ID, MAKE_NAME FROM MAKE"
     cursor.execute(sql)
@@ -452,7 +453,7 @@ def new_vehicle():
         model = request.form.get("model")
         cursor.execute("SELECT MODEL_ID FROM MODEL WHERE MODEL_NAME = '{}'".format(model))
         model = cursor.fetchone()[0]
-        year = (request.form.get("year"))
+        year = request.form.get("year")
         license_plate = request.form.get("plate")
         color = request.form.get("color")
         active = int(request.form.get("active"))
@@ -1221,25 +1222,71 @@ def view_services():
 # Not finish dont know how to add service line
 @app.route('/services/new-service', methods = ['POST', 'GET'])
 def new_service():
-    message = ''
+    # basic information
+    # select customers vehicle for service
+    #cursor.execute("SELECT CUSTOMER_ID, V_ID FROM CUSTOMER_VEHICLE")
+    cursor.execute("""
+        SELECT Customer.C_LNAME, CUSTOMER_VEHICLE.V_ID
+        FROM CUSTOMER
+        JOIN CUSTOMER_VEHICLE ON Customer.CUSTOMER_ID=CUSTOMER_VEHICLE.CUSTOMER_ID
+        JOIN VEHICLE ON CUSTOMER_VEHICLE.V_ID = VEHICLE.V_ID
+        JOIN MAKE ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+        JOIN MODEL ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+    """)
+    rows = cursor.fetchall()
+    data = {}
+    for (customer, vehicle) in rows:
+        data.setdefault(customer, []).append(vehicle)
+    # select customer for service
+    cursor.execute("SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer")
+    rows = cursor.fetchall()
+    customers = []
+    for customer in rows:
+        customers.append(customer)
+    # select service
+    cursor.execute("SELECT SERVICE_ID, SERVICE_TYPE FROM SERVICE")
+    rows = cursor.fetchall()
+    services = []
+    for service in rows:
+        services.append(service)
+    #select employee
+    cursor.execute("""
+        SELECT EMPLOYEE_ID, ROLE.ROLE_NAME, EMPLOYEE_STATUS.ACTIVE_NAME
+        FROM EMPLOYEE
+        JOIN ROLE ON ROLE.ROLE_ID=EMPLOYEE.ROLE_ID
+        JOIN EMPLOYEE_STATUS ON EMPLOYEE_STATUS.ACTIVE_ID=EMPLOYEE.ACTIVE_ID
+    """)
+    rows = cursor.fetchall()
+    employees = []
+    for employee in rows:
+        employees.append(employee)
+    # select parts for service
+    cursor.execute("SELECT PART_ID, PART_NAME FROM PART")
+    rows = cursor.fetchall()
+    parts = []
+    for part in rows:
+        parts.append(part)
     if request.method == 'POST':
-        sertype = request.form.get("sertype")
-        cost = request.form.get("cost")
-        active = request.form.get("active")
-        if sertype and cost is not None:
-            # default service
-            query = "INSERT INTO Service (SERVICE_TYPE, COST, ACTIVE_ID) OUTPUT INSERTED.SERVICE_ID VALUES (?, ?, ?)"
-            vals = (sertype, cost, active)
-            data = cursor.execute(query, vals)
-            service_id = cursor.fetchone()[0]
-            conn.commit()
+        # insert into service order
+        cust = request.form.get('customer')
+        cursor.execute("SELECT CUSTOMER_ID FROM CUSTOMER WHERE C_LNAME = '{}'".format(cust))
+        c_id=cursor.fetchone()[0]
+        qry = "INSERT INTO SERVICE_ORDER (CUSTOMER_ID, ORDER_DATE, ACTIVE_ID) OUTPUT INSERTED.SERVICE_ORDER_ID VALUES (?,?,?)"
+        values = (c_id, date.today(), 1)
+        cursor.execute(qry,values)
+        service_order_id = cursor.fetchone()[0]
+        conn.commit()
+        #insert into vehicle service
+        service = request.form.get('service')
+        x = service.split(", ")
+        service_id = int(x[0][1:])
+        vehicle = request.form.get('vehicle')
+        qry = "INSERT INTO VEHICLE_SERVICE(SERVICE_ID, V_ID) VALUES (?,?)"
+        vals = (service_id, vehicle)
+        
+        return render_template('services.html')
+    return render_template('newservice.html', customers=customers,data=data,services=services,employees=employees,parts=parts)
             
-            
-# add service line 
-           
-# add service order 
-            
-# add invoice 
             
 # modify service
 @app.route('/service/upate', methods = ['POST', 'GET'])
@@ -1344,7 +1391,7 @@ def update_invoice():
 @app.route('/services/delete-service', methods = ['POST', 'GET'])
 def delete_sevice():
     
-    sql = "SELECT SERVICE_ID, SERVICE_TYPE FROM Service"
+    sql = "SELECT SERVICE_ORDER, SERVICE_TYPE FROM Service"
     cursor.execute(sql)
     row = cursor.fetchall()
     service = []
@@ -1365,11 +1412,7 @@ def delete_sevice():
         return render_template('deleteservice.html', services = services, message = message)
         
     return render_template('deleteservice.html', services = services)
-
-# Service line delete to inactive
-@app.route('/services/delete-serviceline', methods = ['POST', 'GET'])
-def delete_serviceline():
-    
+    # Service line delete to inactive
     sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST FROM service_line"
     cursor.execute(sql)
     row = cursor.fetchall()
@@ -1391,11 +1434,8 @@ def delete_serviceline():
         return render_template('updateserviceline.html', servicelines = servicelines, message = message)
         
     return render_template('updateserviceline.html', servicelines = servicelines)
-
-# Service Order delete to inactive
-@app.route('/services/delete-serviceorder', methods = ['POST', 'GET'])
-def delete_serviceorder():
     
+    # Service Order delete to inactive
     sql = "SELECT SERVICE_ORDER_ID, ORDER_DATE FROM service_order"
     cursor.execute(sql)
     row = cursor.fetchall()
@@ -1415,13 +1455,10 @@ def delete_serviceorder():
         conn.commit()
         message = 'Service order removed sucessfully'
         return render_template('updateserviceorder.html', serviceorders = serviceorders, message = message)
-        
-    return render_template('updateserviceorder.html', serviceorders = serviceorders)
 
-# Invoice delete to inactive
-@app.route('/services/delete-invoice', methods = ['POST', 'GET'])
-def delete_invoice():
-    
+    # Invoice delete to inactive  
+    return render_template('updateserviceorder.html', serviceorders = serviceorders)
+  
     sql = "SELECT INVOICE_ID, TOTAL_COST, INVOICE_DATE FROM Invoice"
     cursor.execute(sql)
     row = cursor.fetchall()
@@ -1444,6 +1481,7 @@ def delete_invoice():
         
     return render_template('updateinvoice.html', invoices = invoices)
 
+   
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
     cursor.execute("""

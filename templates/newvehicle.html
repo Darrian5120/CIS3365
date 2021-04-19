@@ -40,6 +40,10 @@
                 <input type="text" name="vin">
             </p>
             <p>
+                <label for="year">Year</label>
+                <input type="text" name="year">
+            </p>
+            <p>
                 <label for="make">make</label>
                 <!--<select id="make" name="make" placeholder="Phantasyland">
                     <option></option>
@@ -54,7 +58,7 @@
                     <option value="{{ make }}">{{ make }}</option>
                     {% endfor %}
                 </select>
-            <p>
+            </p>
             <p>
                 <label for="model">Model</label>
                 <select id="model" name="model" ></select>
@@ -110,11 +114,12 @@
                 </select>
             </p>
             <p>
-                <label for="year">Expiration Date</label>
-                <input type="date" name="year">
+                <label for="date">Expiration Date</label>
+                <input type="date" name="date">
             </p>
             <p><input type="submit" value="Submit"></p>
         </form>
+        <p id="test"></p>
         {% if message %}
             <p>{{ message }}</p>
         {% endif %}
@@ -128,10 +133,9 @@
             function replaceAll(str, find, replace) {
                 return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
             }
-            var str = "{{ data|safe }}";
+            var str = "{{ data|safe }}"; 
             var new_str = replaceAll(str, "'", "\"");
             var vehicles = JSON.parse(new_str); 
-
             var $vehicles = $('#model');
             $('#make').change(function () {
                 var make = $(this).val(), lcns = vehicles[make] || [];
