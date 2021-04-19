@@ -1,4 +1,4 @@
-VIOLATIon_ID|VIOLATIon_NAME|LAW_CODE|V_ID|DATE
+VIOLATION_ID|VIOLATION_NAME|LAW_CODE|V_ID|DATE
 1|Minimum Lighting Equipment Required|547.326|11|2/28/2020
 2|Multiple-Beam Lighting Equipment Required|547.333|11|5/6/2020
 3|Parking Brakes Required|547.404|62|12/26/2020
