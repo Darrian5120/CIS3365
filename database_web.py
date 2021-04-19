@@ -771,7 +771,7 @@ def view_service_report():
     return render_template('viewCustomers.html', data = data)
 
 # report active & inactive insurance (jahidul)
-@app.route ('/customers/activeinactivepolicy-report' , methods = ['GET'])
+@app.route ('/vehicles/activeinactivepolicy-report' , methods = ['GET'])
 def activeinactivepolicy_report():
     cursor.execute("""
         SELECT CV.Customer_id AS "Customer id", V.V_VIN AS 'Vehicle VIN',
@@ -797,7 +797,7 @@ def activeinactivepolicy_report():
     return render_template('report_activeinactivepolicy.html', data = data)
 
 # report customer vehicles state (kyle)
-@app.route ('/customers/vehiclestate-report' , methods = ['GET'])
+@app.route ('/vehicles/vehiclestate-report' , methods = ['GET'])
 def vehiclestate_report():
     cursor.execute("""
         SELECT
@@ -832,7 +832,7 @@ def vehiclestate_report():
     return render_template('report_vehiclestate.html', data = data)
 	
 # report vehicle insurance (jerry)
-@app.route ('/customers/vehicleinsurance-report' , methods = ['GET'])
+@app.route ('/vehicles/vehicleinsurance-report' , methods = ['GET'])
 def vehicleinsurance_report():
     cursor.execute("""
         SELECT
@@ -867,7 +867,7 @@ def vehicleinsurance_report():
     return render_template('report_vehicleinsurance.html', data = data)
 
 # report customer vehicle condition at shop (mustafa)
-@app.route ('/customers/vehiclecondition-report' , methods = ['GET'])
+@app.route ('/vehicles/vehiclecondition-report' , methods = ['GET'])
 def vehiclecondition_report():
     cursor.execute("""
         SELECT 
@@ -892,7 +892,7 @@ def vehiclecondition_report():
     return render_template('report_vehiclecondition.html', data = data)
 
 # report customer vehicle status (mustafa)
-@app.route ('/customers/vehiclestatus-report' , methods = ['GET'])
+@app.route ('/vehicles/vehiclestatus-report' , methods = ['GET'])
 def vehiclestatus_report():
     cursor.execute("""
         SELECT 
@@ -1124,7 +1124,7 @@ def employeestatus_report():
     return render_template('report_employeestatus.html', data = data)
 
 # employee by service (jerry)
-@app.route ('/customers/employeeservice-report' , methods = ['GET'])
+@app.route ('/employees/employeeservice-report' , methods = ['GET'])
 def employeeservice_report():
     cursor.execute("""
         SELECT
@@ -1154,7 +1154,7 @@ def employeeservice_report():
     return render_template('report_employeeservice.html', data = data)
 	
 # report employee service order assignment (kyle)
-@app.route ('/customers/empservorderassign-report' , methods = ['GET'])
+@app.route ('/employees/empservorderassign-report' , methods = ['GET'])
 def empservorderassign_report():
     cursor.execute("""
         SELECT
@@ -1186,7 +1186,7 @@ def empservorderassign_report():
     return render_template('report_empservorderassign.html', data = data)
 	
 # report employee role (maddy)
-@app.route ('/customers/employeerole-report' , methods = ['GET'])
+@app.route ('/employees/employeerole-report' , methods = ['GET'])
 def employeerole_report():
     cursor.execute("""
         SELECT DISTINCT
@@ -1514,7 +1514,7 @@ def revenue_report():
     return render_template('report_revenue.html', data = data)
 
 # report monthly total service order (jahidul)
-@app.route ('/customers/monthlytotalserviceorder-report' , methods = ['GET'])
+@app.route ('/services/monthlytotalserviceorder-report' , methods = ['GET'])
 def monthlytotalserviceorder_report():
     cursor.execute("""
         SELECT
@@ -1541,7 +1541,7 @@ def monthlytotalserviceorder_report():
     return render_template('report_monthlytotalserviceorder.html', data = data)
 	
 # report service active premium customer (kyle)
-@app.route ('/customers/serviceactivepremcust-report' , methods = ['GET'])
+@app.route ('/services/serviceactivepremcust-report' , methods = ['GET'])
 def serviceactivepremcust_report():
     cursor.execute("""
         SELECT
@@ -1568,7 +1568,7 @@ def serviceactivepremcust_report():
     return render_template('report_serviceactivepremcust.html', data = data)
 	
 # report repairs (maddy)
-@app.route ('/customers/repairs-report' , methods = ['GET'])
+@app.route ('/services/repairs-report' , methods = ['GET'])
 def repairs_report():
     cursor.execute("""
         DECLARE 
@@ -1595,7 +1595,7 @@ def repairs_report():
     return render_template('report_repairs.html', data = data)
 
 # report service cost (maddy)
-@app.route ('/customers/servicecost-report' , methods = ['GET'])
+@app.route ('/services/servicecost-report' , methods = ['GET'])
 def servicecost_report():
     cursor.execute("""
         DECLARE
@@ -1793,12 +1793,12 @@ def view_parts():
     return render_template('viewparts.html', data = data)
 
 # report parts rate list with supplier info (jahidul)
-@app.route ('/customers/partsratelist-report' , methods = ['GET'])
+@app.route ('/suppliers/partsratelist-report' , methods = ['GET'])
 def partsratelist_report():
     cursor.execute("""
-        Select PART.PART_NAME,
+        Select PART.PART_NAME As 'Part Name',
 		SUPPLIER_PART.PART_COST As 'Part Price', 
-		SUPPLIER.SUPPLIER_NAME,
+		SUPPLIER.SUPPLIER_NAME As 'Supplier Name',
 		SUPPLIER.S_ADDRESS_LINE1 As 'Address',
 		SUPPLIER.S_PHONE As 'Contact no.',
 		SUPPLIER.S_EMAIL As 'Email Address',
@@ -1983,7 +1983,7 @@ if __name__ == '__main__':
     conn.close()
 
 # report past violations (jerry)
-@app.route ('/customers/pastviolations-report' , methods = ['GET'])
+@app.route ('/violations/pastviolations-report' , methods = ['GET'])
 def pastviolations_report():
     cursor.execute("""
         SELECT

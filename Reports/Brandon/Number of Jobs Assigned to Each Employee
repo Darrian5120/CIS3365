@@ -1,11 +1,16 @@
 Select
 [dbo].[EMPLOYEE].[EMPLOYEE_FNAME] as 'First Name',
 [dbo].[EMPLOYEE].[EMPLOYEE_LNAME] as 'Last Name',
-[dbo].[EMPLOYEE].[EMPLOYEE_HOURS] as 'Weekly Hours',
-[dbo].[EMPLOYEE].[EMPLOYEE_ID] as 'Employee ID', 
-COUNT([dbo].[EMPLOYEE].[EMPLOYEE_ID]) AS 'Number of Assigned Jobs'
+[dbo].[EMPLOYEE].[EMPLOYEE_ID] as 'Employee ID',
+[dbo].[ROLE].[ROLE_NAME] as 'Employee Position',
+COUNT([dbo].[EMPLOYEE].[EMPLOYEE_ID]) AS 'Number of Assigned Jobs',
+[dbo].[Employee_Status].[ACTIVE_NAME] AS 'Employment Status'
 FROM [dbo].[EMPLOYEE]
 JOIN [dbo].[EMPLOYEE_SERVICE_LINE_ASSIGNMENT]
 ON [dbo].[EMPLOYEE].[EMPLOYEE_ID] = [dbo].[EMPLOYEE_SERVICE_LINE_ASSIGNMENT].[EMPLOYEE_ID]
-GROUP BY [dbo].[EMPLOYEE].[EMPLOYEE_ID], [dbo].[EMPLOYEE].[EMPLOYEE_LNAME], [dbo].[EMPLOYEE].[EMPLOYEE_FNAME], [dbo].[EMPLOYEE].[EMPLOYEE_HOURS] 
+JOIN [dbo].[ROLE]
+ON [dbo].[EMPLOYEE].[ROLE_ID] = [dbo].[ROLE].[ROLE_ID]
+JOIN [dbo].[Employee_Status]
+ON [dbo].[EMPLOYEE].[ACTIVE_ID] = [dbo].[Employee_Status].[ACTIVE_ID]
+GROUP BY [dbo].[EMPLOYEE].[EMPLOYEE_ID], [dbo].[EMPLOYEE].[EMPLOYEE_LNAME], [dbo].[EMPLOYEE].[EMPLOYEE_FNAME], [dbo].[ROLE].[ROLE_NAME], [dbo].[Employee_Status].[ACTIVE_NAME]
 ORDER BY 'Number of Assigned Jobs' DESC

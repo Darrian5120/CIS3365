@@ -1,0 +1,18 @@
+SELECT 
+[dbo].[SUPPLIER].[SUPPLIER_ID] as 'Supplier ID',
+[dbo].[SUPPLIER].[SUPPLIER_NAME] as 'Supplier Name',
+[dbo].[SUPPLIER].[S_PHONE] as 'Contact Number',
+[dbo].[SUPPLIER_STATUS].[ACTIVE_NAME] AS 'Supplier Status',
+COUNT([dbo].[SUPPLIER_PART].[PART_ID]) as 'Number of Parts Bought',
+COUNT([dbo].[SERVICE_LINE_PART].[PART_ID]) as 'Number of Parts Used',
+FORMAT(SUM([dbo].[SUPPLIER_PART].[PART_COST]),'C') as 'Total Parts Cost'
+FROM [dbo].[SUPPLIER]
+JOIN [dbo].[SUPPLIER_STATUS]
+ON [dbo].[SUPPLIER].[ACTIVE_ID] = [dbo].[SUPPLIER_STATUS].[ACTIVE_ID]
+JOIN [dbo].[SUPPLIER_PART]
+ON [dbo].[SUPPLIER].[SUPPLIER_ID] = [dbo].[SUPPLIER_PART].[SUPPLIER_ID]
+JOIN [dbo].[PART]
+ON [dbo].[SUPPLIER_PART].[PART_ID] = [dbo].[PART].[PART_ID]
+JOIN [dbo].[SERVICE_LINE_PART]
+ON [dbo].[PART].[PART_ID] = [dbo].[SERVICE_LINE_PART].[PART_ID]
+GROUP BY [dbo].[SUPPLIER].[SUPPLIER_ID], [dbo].[SUPPLIER].[SUPPLIER_NAME], [dbo].[SUPPLIER].[S_PHONE], [dbo].[SUPPLIER_STATUS].[ACTIVE_NAME]
