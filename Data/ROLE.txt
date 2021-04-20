@@ -1,6 +1,6 @@
 ROLE_ID|ROLE_NAME|PAY_RATE
 1|Office Manager|32.00
-2|Office Assitant|20.00
+2|Office Assistant|20.00
 3|Painter|19.00
 4|Welder|24.00
 5|Frameworker|22.00
