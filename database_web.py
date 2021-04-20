@@ -1,10 +1,11 @@
 import flask
-from flask import Flask, jsonify, request, make_response, render_template, url_for, redirect
+from flask import Flask, jsonify, flash, request, make_response, render_template, url_for, redirect, request, session, abort
 import pyodbc
 from collections import defaultdict
 import json
 from datetime import date
 import sys
+import os
 
 ############################################## READ ME #####################################
 # RUN THIS PROGRAM AND THEN OPEN BROWSER AND PASTE http://127.0.0.1:5000/ TO YOUR BROWSER
@@ -18,10 +19,20 @@ import sys
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
 ############################# HOME PAGE ####################################################
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.form['password'] == 'admin' and request.form['username'] == 'bgarcia':
+        session['logged_in'] = True
+        return render_template('home.html')
+    else:
+        flash('wrong password!')
+    
 # create first route map to url functions. home mapped to '/'
 # Home page for the web app where user can choose CRUD operations.
 @app.route('/', methods = ['GET']) 
 def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
     return render_template('home.html')
 
 ############################# CUSTOMER #####################################################
@@ -29,6 +40,8 @@ def home():
 # reference customer.html for menu options.
 @app.route('/customers', methods = ['GET']) 
 def customers():
+        if not session.get('logged_in'):
+            return render_template('login.html')
         return render_template('customers.html')
     
 # Reference new customer html page. Allows user to enter the details of new customer
@@ -37,6 +50,8 @@ def customers():
 # FIXME - Combine customer and customer contact info
 @app.route('/customers/new-customer', methods = ['POST','GET']) # Finished
 def new_customer():
+    if not session.get('logged_in'):
+        return render_template('login.html')
     message = ''
     if request.method == 'POST':
         lname = request.form.get("lname")
@@ -76,6 +91,8 @@ def new_customer():
 # FIXME- find out how to only update one field
 @app.route('/customers/update', methods = ['POST','GET']) # FINISHED
 def update_customer():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     # send list of customer id's to gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
     cursor.execute(sql)
@@ -152,6 +169,8 @@ def update_customer():
 # remove customer from db by setting status to inactive
 @app.route('/customers/delete-customer',methods = ['POST','GET']) # FINISHED
 def delete_customer():
+    if not session.get('logged_in'):
+        return render_template('login.html')
     # send list of customer id's to gui dropdown
     sql = "SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer"
     cursor.execute(sql)
@@ -178,6 +197,8 @@ def delete_customer():
 # view all customers
 @app.route('/customers/view-customers', methods = ['GET'])#FINISHED 
 def view_customers():
+    if not session.get('logged_in'):
+        return render_template('login.html')
     cursor.execute("""
         SELECT *
 
@@ -195,6 +216,8 @@ def view_customers():
 
 @app.route ('/customers/inactive-report' , methods = ['GET'])
 def inactive_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT Customer.C_FNAME AS 'First Name', Customer.C_LNAME AS 'Last Name', CUSTOMER_TYPE.BUSINESS AS 'Type', 
         CUSTOMER_STATUS.ACTIVE_NAME,
@@ -218,6 +241,8 @@ def inactive_report():
 # report active customer (jahidul)
 @app.route ('/customers/activecustomer-report' , methods = ['GET'])
 def activecustomer_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')
     cursor.execute("""
         SELECT CUSTOMER.C_FNAME AS 'First Name',
 		CUSTOMER.C_LNAME AS 'Last Name',
@@ -247,6 +272,8 @@ def activecustomer_report():
 # Customer owed (jerry)
 @app.route ('/customers/customerowed-report' , methods = ['GET'])
 def customerowed_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')
     cursor.execute("""
         SELECT
 		CUSTOMER.C_FNAME AS 'First Name',
@@ -278,6 +305,8 @@ def customerowed_report():
 # report uninsured customer policy (kyle)
 @app.route ('/customers/uninsuredcuspolicy-report' , methods = ['GET'])
 def uninsuredcuspolicy_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		Customer.CUSTOMER_ID AS 'Customer Id',
@@ -309,6 +338,8 @@ def uninsuredcuspolicy_report():
 # report business customer report (maddy)
 @app.route ('/customers/businesscustomer-report' , methods = ['GET'])
 def businesscustomer_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         DECLARE
 		@business BIT
@@ -340,6 +371,8 @@ def businesscustomer_report():
 # report customer location (mustafa)
 @app.route ('/customers/customerlocation-report' , methods = ['GET'])
 def customerlocation_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT 
 		Customer.CUSTOMER_ID AS 'Customer ID', 
@@ -366,6 +399,8 @@ def customerlocation_report():
 # report customer payment type & amount for specific service (mustafa)
 @app.route ('/customers/customerpayservice-report' , methods = ['GET'])
 def customerpayservice_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT 
 		Customer.CUSTOMER_ID AS 'Customer ID',
@@ -394,10 +429,14 @@ def customerpayservice_report():
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
 def vehicles():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     return render_template('vehicles.html')
 
 @app.route ('/vehicles/new-vehicle', methods = ['POST', 'GET'])#FINISHED
 def new_vehicle():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     # dropdowns
     ###
     cursor.execute("""
@@ -493,7 +532,9 @@ def new_vehicle():
 # modify existing vehicle by entering vin
 @app.route ('/vehicles/update-vehicle' , methods = ['POST' , 'GET'])
 def update_vehicles():
-   # send list of customer id's to gui dropdown
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    # send list of customer id's to gui dropdown
     cursor.execute("""
         SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
         FROM VEHICLE
@@ -632,6 +673,8 @@ def update_vehicles():
 # remove vehicle from db by setting status to inactive  
 @app.route ('/vehicles/delete-vehicle' , methods =['POST' , 'GET']) #FINISHED
 def delete_vehicle():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE_NAME, MODEL_NAME
         FROM VEHICLE
@@ -659,6 +702,8 @@ def delete_vehicle():
 #view all vehicles
 @app.route ('/vehicles/view-vehicles' , methods = ['GET'])#FINISHED
 def view_vehicles():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute ("""
         SELECT VEHICLE.V_ID, VEHICLE.V_VIN, VEHICLE.V_LICENSE_PLATE, VEHICLE.V_YEAR, MAKE.MAKE_NAME, 
         MODEL.MODEL_NAME, VEHICLE.V_COLOR, VEHICLE_CONDITION.CONDITION, VEHICLE_STATUS.ACTIVE_NAME, 
@@ -684,6 +729,8 @@ def view_vehicles():
 ## vehicle part report 
 @app.route('/vehicles/vehiclepart-report', methods = ['GET']) 
 def vehicle_part_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT VEHICLE.V_VIN AS 'VIN', VEHICLE.V_YEAR AS 'Year', MAKE.MAKE_NAME AS 'Make', 
         MODEL.MODEL_NAME AS 'Model', SERVICE.SERVICE_TYPE AS 'Service', SUPPLIER.SUPPLIER_NAME AS 'Supplier', PART.PART_NAME AS 'Part'
@@ -717,6 +764,8 @@ def vehicle_part_report():
 ## customer vheicle status report 
 @app.route('/vehicles/CustomerVehicleStatusReport', methods = ['GET']) 
 def customer_vehicle_status_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT 
         Customer.CUSTOMER_ID AS "ID",
@@ -743,6 +792,8 @@ def customer_vehicle_status_report():
 #### VEHICLE SERVICE REPORT #####
 @app.route('/vehicles/vehicleservice-report', methods = ['GET']) 
 def view_service_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
         VEHICLE.V_VIN AS "Vehicle Vin",
@@ -773,6 +824,8 @@ def view_service_report():
 # report active & inactive insurance (jahidul)
 @app.route ('/vehicles/activeinactivepolicy-report' , methods = ['GET'])
 def activeinactivepolicy_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT CV.Customer_id AS "Customer id", V.V_VIN AS 'Vehicle VIN',
 		IP.Policy_name as 'Policy name',
@@ -799,6 +852,8 @@ def activeinactivepolicy_report():
 # report customer vehicles state (kyle)
 @app.route ('/vehicles/vehiclestate-report' , methods = ['GET'])
 def vehiclestate_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		Customer.CUSTOMER_ID AS "Customer ID",
@@ -834,6 +889,8 @@ def vehiclestate_report():
 # report vehicle insurance (jerry)
 @app.route ('/vehicles/vehicleinsurance-report' , methods = ['GET'])
 def vehicleinsurance_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		VEHICLE.V_VIN AS 'VIN',
@@ -869,6 +926,8 @@ def vehicleinsurance_report():
 # report customer vehicle condition at shop (mustafa)
 @app.route ('/vehicles/vehiclecondition-report' , methods = ['GET'])
 def vehiclecondition_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT 
 		Customer.CUSTOMER_ID AS 'Customer ID', 
@@ -894,6 +953,8 @@ def vehiclecondition_report():
 # report customer vehicle status (mustafa)
 @app.route ('/vehicles/vehiclestatus-report' , methods = ['GET'])
 def vehiclestatus_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT 
 		Customer.CUSTOMER_ID AS 'Customer ID',
@@ -924,11 +985,15 @@ def vehiclestatus_report():
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
 def employees():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     return render_template('employees.html')
 
 # Employee insert/create FINISHED @anthony
 @app.route ('/employees/new-employee', methods = ['POST', 'GET'])
 def new_employee():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT ACTIVE_NAME FROM EMPLOYEE_STATUS"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -971,6 +1036,8 @@ def new_employee():
 # modify existing employee by entering id
 @app.route ('/employees/update-employee' , methods = ['POST' , 'GET'])
 def update_employee():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME FROM Employee")
     rows = cursor.fetchall()
     employees = []
@@ -1027,6 +1094,8 @@ def update_employee():
 # remove employee from db by setting status to inactive
 @app.route ('/employees/delete-employee' , methods =['POST' , 'GET'])
 def delete_employee():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME FROM Employee"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -1050,6 +1119,8 @@ def delete_employee():
 #view all employees
 @app.route ('/employees/view-employees' , methods = ['GET'])
 def view_employees():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute ("""
         SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME, ROLE.ROLE_NAME,
         EMPLOYEE_STATUS.ACTIVE_NAME, E_ADDRESS_LINE1, E_ADDRESS_LINE2, E_CITY,
@@ -1066,6 +1137,8 @@ def view_employees():
 # employee part report
 @app.route ('/employees/employeepart-report' , methods = ['GET'])
 def employee_part_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER.SUPPLIER_NAME AS 'Supplier', PART.PART_NAME AS 'Part', EMPLOYEE.EMPLOYEE_ID AS 'Employee ID', 
         EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name', EMPLOYEE.EMPLOYEE_FNAME AS 'First Name', COUNT(PART.PART_ID) AS 'Part Amount'
@@ -1099,6 +1172,8 @@ def employee_part_report():
 ### EMPLOYEE STATUS ####
 @app.route ('/employees/employeestatus-report' , methods = ['GET'])
 def employeestatus_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT 
         EMPLOYEE.EMPLOYEE_ID AS "Employee ID",
@@ -1126,6 +1201,8 @@ def employeestatus_report():
 # employee by service (jerry)
 @app.route ('/employees/employeeservice-report' , methods = ['GET'])
 def employeeservice_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		EMPLOYEE.EMP_FNAME AS 'First Name',
@@ -1156,6 +1233,8 @@ def employeeservice_report():
 # report employee service order assignment (kyle)
 @app.route ('/employees/empservorderassign-report' , methods = ['GET'])
 def empservorderassign_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		EMPLOYEE.EMPLOYEE_ID AS 'Employee ID',
@@ -1188,6 +1267,8 @@ def empservorderassign_report():
 # report employee role (maddy)
 @app.route ('/employees/employeerole-report' , methods = ['GET'])
 def employeerole_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT DISTINCT
 		Employee.EMPLOYEE_ID AS 'Employee ID',
@@ -1210,10 +1291,14 @@ def employeerole_report():
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
 def services():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     return render_template('services.html')
 
 @app.route('/services/view-services', methods = ['GET'])
 def view_services():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.SERVICE")
     data = cursor.fetchall()
     return render_template ('viewservices.html' , data = data)
@@ -1222,6 +1307,8 @@ def view_services():
 # Not finish dont know how to add service line
 @app.route('/services/new-service', methods = ['POST', 'GET'])
 def new_service():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     # basic information
     # select customers vehicle for service
     #cursor.execute("SELECT CUSTOMER_ID, V_ID FROM CUSTOMER_VEHICLE")
@@ -1266,6 +1353,18 @@ def new_service():
     parts = []
     for part in rows:
         parts.append(part)
+    # select payment method
+    cursor.execute("SELECT PMT_ID, PMT_TYPE FROM PAYMENT")
+    rows = cursor.fetchall()
+    payments = []
+    for payment in rows:
+        payments.append(payment)
+    # select revenue type
+    cursor.execute("SELECT REVENUE_ID, REVENUE_NAME FROM ACCOUNT_REVENUE")
+    rows = cursor.fetchall()
+    revenues = []
+    for revenue in rows:
+        revenues.append(revenue)
     if request.method == 'POST':
         # insert into service order
         cust = request.form.get('customer')
@@ -1283,14 +1382,43 @@ def new_service():
         vehicle = request.form.get('vehicle')
         qry = "INSERT INTO VEHICLE_SERVICE(SERVICE_ID, V_ID) VALUES (?,?)"
         vals = (service_id, vehicle)
-        
+        cursor.execute(qry,vals)
+        conn.commit()
+        # insert service line
+        cursor.execute("SELECT COST FROM SERVICE WHERE SERVICE_ID = {}".format(service_id))
+        cost = cursor.fetchone()[0]
+        qry = "INSERT INTO SERVICE_LINE(SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST, ACTIVE_ID) VALUES (?,?,?,?,?)"
+        vals = (service_order_id, service_id, 1, cost, 1)
+        cursor.execute(qry,vals)
+        conn.commit()
+        # insert invoice
+        qry = "INSERT INTO INVOICE(SERVICE_ORDER_ID, TOTAL_COST, INVOICE_DATE, AMT_OWED, ACTIVE_ID) OUTPUT INSERTED.INVOICE_ID VALUES (?,?,?,?,?)"
+        vals = (service_order_id, cost, date.today(), 0, 1)
+        cursor.execute(qry,vals)
+        invoice_id = cursor.fetchone()[0]
+        conn.commit()
+        # insert invoice payment
+        payment = request.form.get('payment')
+        x = payment.split(", ")
+        payment = int(x[0][1:])
+        qry = "INSERT INTO INVOICE_PAYMENT(PMT_ID, INVOICE_ID, SERVICE_ORDER_ID, PMT_AMOUNT, ACTIVE_ID) VALUES (?,?,?,?,?)"
+        vals = (payment, invoice_id, service_order_id, cost, 1)
+        cursor.execute(qry,vals)
+        conn.commit()
+        # insert payment revenue
+        qry = "INSERT INTO PAYMENT_REVENUE(REVENUE_ID. PMT_ID, INVOICE_ID, SERVICE_ORDER_ID, REVENUE_VALUE) VALUES (?,?,?,?,?)"
+        vals = (1, payment, invoice_id, service_order_id, cost)
+        cursor.execute(qry,vals)
+        conn.commit()
         return render_template('services.html')
-    return render_template('newservice.html', customers=customers,data=data,services=services,employees=employees,parts=parts)
+    return render_template('newservice.html', customers=customers,data=data,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
             
             
 # modify service
 @app.route('/service/upate', methods = ['POST', 'GET'])
 def update_service():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT SERVICE_ID, SERVICE_TYPE, COST, ACTIVE_ID FROM Service"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -1315,6 +1443,8 @@ def update_service():
 # modify service line
 @app.route('/service/upate-serviceline', methods = ['POST', 'GET'])
 def update_serviceline():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST, ACTIVE_ID FROM service_line"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -1340,6 +1470,8 @@ def update_serviceline():
 # modify service order
 @app.route('/service/upate-serviceorder', methods = ['POST', 'GET'])
 def update_serviceorder():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT SERVICE_ORDER_ID, CUSTOMER_ID, ORDER_DATE, ACTIVE_ID FROM service_order"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -1364,6 +1496,8 @@ def update_serviceorder():
 # modify invoice 
 @app.route('/service/upate-invoice', methods = ['POST', 'GET'])
 def update_invoice():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT INVOICE_ID, SERVICE_ORDER_ID, TOTAL_COST, INVOICE_DATE, AMT_OWNED, ACTIVE_ID FROM Invoice"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -1390,7 +1524,8 @@ def update_invoice():
 # remove service from db by settiing status to inactive
 @app.route('/services/delete-service', methods = ['POST', 'GET'])
 def delete_sevice():
-    
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     sql = "SELECT SERVICE_ORDER, SERVICE_TYPE FROM Service"
     cursor.execute(sql)
     row = cursor.fetchall()
@@ -1484,6 +1619,8 @@ def delete_sevice():
    
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_LNAME AS 'Last Name', Customer.C_FNAME AS 'First Name',
         ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', SERVICE.SERVICE_TYPE AS 'Service NameE',  SERVICE.COST AS 'Cost',
@@ -1516,6 +1653,8 @@ def revenue_report():
 # report monthly total service order (jahidul)
 @app.route ('/services/monthlytotalserviceorder-report' , methods = ['GET'])
 def monthlytotalserviceorder_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		count(SERVICE_ORDER.SERVICE_ORDER_ID) AS 'Total Orders',
@@ -1543,6 +1682,8 @@ def monthlytotalserviceorder_report():
 # report service active premium customer (kyle)
 @app.route ('/services/serviceactivepremcust-report' , methods = ['GET'])
 def serviceactivepremcust_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		Customer.CUSTOMER_ID AS 'Customer ID',
@@ -1570,6 +1711,8 @@ def serviceactivepremcust_report():
 # report repairs (maddy)
 @app.route ('/services/repairs-report' , methods = ['GET'])
 def repairs_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         DECLARE 
 		@serviceRepairs varchar(7),
@@ -1597,6 +1740,8 @@ def repairs_report():
 # report service cost (maddy)
 @app.route ('/services/servicecost-report' , methods = ['GET'])
 def servicecost_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         DECLARE
 		@minimumCost float(8)
@@ -1624,10 +1769,14 @@ def servicecost_report():
 #################################### Suppliers(parts) ###########################################
 @app.route('/suppliers', methods = ['GET']) 
 def suppliers():
-        return render_template('suppliers.html')
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    return render_template('suppliers.html')
 
 @app.route('/suppliers/new-supplierpart', methods = ['POST','GET'])#FINISHED
 def new_supplierpart():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     # get info from html
     sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
     cursor.execute(sql)
@@ -1660,6 +1809,8 @@ def new_supplierpart():
 
 @app.route('/suppliers/new-supplier', methods = ['POST','GET'])#FINISHED
 def new_supplier():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     message = ''
     sql = "SELECT ACTIVE_ID, ACTIVE_NAME FROM SUPPLIER_STATUS"
     cursor.execute(sql)
@@ -1692,6 +1843,8 @@ def new_supplier():
 
 @app.route('/suppliers/update-supplierpart', methods = ['POST','GET'])
 def update_supplier():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     # send list of customer id's to gui dropdown
     cursor.execute("SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER")
     rows = cursor.fetchall()
@@ -1734,7 +1887,9 @@ def update_supplier():
 
 @app.route('/suppliers/delete-supplier',methods = ['POST','GET'])#FINISHED
 def delete_supplier():
-     # send list of customer id's to gui dropdown
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    # send list of customer id's to gui dropdown
     sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER"
     cursor.execute(sql)
     rows = cursor.fetchall()
@@ -1758,6 +1913,8 @@ def delete_supplier():
 # view all Suppliers
 @app.route('/suppliers/view-suppliers', methods = ['GET']) #FINISHED
 def view_suppliers():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER_ID, SUPPLIER_NAME, S_ADDRESS_LINE1, 
         S_ADDRESS_LINE2, S_CITY, S_STATE, S_ZIP,
@@ -1775,6 +1932,8 @@ def view_suppliers():
 # view all Suppliers_part
 @app.route('/suppliers/view-parts', methods = ['GET'])#FINISHED 
 def view_parts():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", 
         SUPPLIER_PART.PART_COST, SUPPLIER_STATUS.ACTIVE_NAME AS "Active"
@@ -1795,6 +1954,8 @@ def view_parts():
 # report parts rate list with supplier info (jahidul)
 @app.route ('/suppliers/partsratelist-report' , methods = ['GET'])
 def partsratelist_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         Select PART.PART_NAME As 'Part Name',
 		SUPPLIER_PART.PART_COST As 'Part Price', 
@@ -1821,11 +1982,15 @@ def partsratelist_report():
 ################################### VIOLATIONS ##################################################
 @app.route('/violations', methods = ['GET']) 
 def violation():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     return render_template('violations.html')
 
 # create violation
 @app.route('/violations/new-violation', methods = ['POST', 'GET'])
 def new_violation():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT V_ID, V_VIN, V_LICENSE_PLATE, MAKE.MAKE_NAME, MODEL.MODEL_NAME 
         FROM VEHICLE
@@ -1873,6 +2038,8 @@ def new_violation():
 # modify violation
 @app.route('/violations/update-violation', methods = ['POST', 'GET'])
 def update_violation():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT VIOLATION.VIOLATION_ID, VIOLATION.LAW_CODE, STATE.STATE_NAME, VIOLATION_NAME,
         VEHICLE.V_VIN, MAKE.MAKE_NAME, MODEL.MODEL_NAME
@@ -1947,6 +2114,8 @@ def update_violation():
 
 @app.route('/violations/view-violations', methods = ['GET'])
 def view_violation():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT VIOLATION.VIOLATION_ID, VIOLATION.LAW_CODE, STATE.STATE_NAME, VEHICLE.V_VIN, 
         MAKE.MAKE_NAME, MODEL.MODEL_NAME, VIOLATION.VIOLATION_DATE, VIOLATION_NAME
@@ -1965,26 +2134,11 @@ def view_violation():
     data = cursor.fetchall()
     return render_template('viewviolations.html', data = data)
 
-if __name__ == '__main__':
-    # Connection to school provided server, don't use till final.
-    #conn = pyodbc.connect('Driver={SQL Server};'
-    #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
-    #                    'Database=CoogTechSolutions;'
-    #                    'UID=;'
-    #                    'PWD=;'
-    #                    'Trusted_Connection=no;')
-    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                        'Server=DESKTOP-9PNG3JO;'
-                        'Database=CoogTechSolutions;'
-                        'Trusted_Connection=yes;')
-    cursor = conn.cursor()
-    
-    app.run()
-    conn.close()
-
 # report past violations (jerry)
 @app.route ('/violations/pastviolations-report' , methods = ['GET'])
 def pastviolations_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT
 		CUSTOMER.C_FNAME AS 'Customer First Name',
@@ -2007,3 +2161,23 @@ def pastviolations_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_pastviolations.html', data = data)
+
+
+if __name__ == '__main__':
+    # Connection to school provided server, don't use till final.
+    #conn = pyodbc.connect('Driver={SQL Server};'
+    #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
+    #                    'Database=CoogTechSolutions;'
+    #                    'UID=;'
+    #                    'PWD=;'
+    #                    'Trusted_Connection=no;')
+    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
+                        'Server=DESKTOP-9PNG3JO;'
+                        'Database=CoogTechSolutions;'
+                        'Trusted_Connection=yes;')
+    cursor = conn.cursor()
+    
+    app.secret_key = os.urandom(12)
+    app.run()
+    conn.close()
+

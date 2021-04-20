@@ -64,6 +64,22 @@
                     {% endfor %}
                 </select>
             </p>
+            <p>
+                <label for="part">Payment</label>
+                <select name="payment" id="payment">
+                    {% for payment in payments[0:] %}
+                    <option value="{{ payment }}" >{{ payment }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <!-- <p>
+                <label for="revenue">Revenue</label>
+                <select name="revenue" id="revenue">
+                    {% for revenue in revenues[0:] %}
+                    <option value="{{ revenue }}" >{{ revenue }}</option>
+                    {% endfor %}
+                </select>
+            </p> -->
             <p><input type="submit" value="Submit"></p>
         </form>
         <p id="test"></p>
