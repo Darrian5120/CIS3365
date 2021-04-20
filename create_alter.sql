@@ -14,7 +14,7 @@ CREATE TABLE dbo.Customer (
 	C_ZIP varchar(6) not null,
 	COUNTRY_NAME varchar(30) not null,
 	C_PHONE varchar(15)  not null,
-	C_EMAIL varchar(35),
+	C_EMAIL varchar(35) not null,
 	CONSTRAINT CUSTOMER_ID_PK PRIMARY KEY (CUSTOMER_ID)
 );
 CREATE TABLE dbo.PAYMENT (
@@ -83,7 +83,7 @@ CREATE TABLE dbo.SERVICE_ORDER_STATUS (
 CREATE TABLE dbo.INVOICE (
 	INVOICE_ID int IDENTITY(1,1) not null,
 	SERVICE_ORDER_ID INT NOT NULL,
-	TOTAL_COST MONEY,
+	TOTAL_COST MONEY not null,
 	INVOICE_DATE date not null,
 	AMT_OWED MONEY,
 	ACTIVE_ID INT NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE dbo.INVOICE (
 --Service Line Status--
 CREATE TABLE dbo.SERVICE_LINE_STATUS (
 	ACTIVE_ID int not null,
-	ACTIVE_NAME varchar(20),
+	ACTIVE_NAME varchar(20) not null,
 	CONSTRAINT SL_ACTIVE_ID_PK1 PRIMARY KEY (ACTIVE_ID)
 );
 --VEHICLE STATUS--
@@ -184,7 +184,7 @@ CREATE TABLE dbo.VEHICLE(
 	MODEL_ID INT NOT NULL,
 	V_YEAR INT NOT NULL,
 	V_LICENSE_PLATE VARCHAR(15) NOT NULL,
-	V_COLOR VARCHAR(15),
+	V_COLOR VARCHAR(15) NOT NULL,
 	ACTIVE_ID INT NOT NULL,
 	CONDITION_ID INT NOT NULL,
 	CONSTRAINT V_ID_PK PRIMARY KEY (V_ID)
@@ -274,7 +274,7 @@ CREATE TABLE dbo.STATE(
 	STATE_ID int IDENTITY(1,1) not null,
 	COUNTRY_ID int not null,
 	STATE_ABBREVIATION varchar(2) not null,
-	STATE_NAME varchar(30),
+	STATE_NAME varchar(30) not null,
 	CONSTRAINT STATE_ID_PK PRIMARY KEY (STATE_ID)
 );
 CREATE TABLE dbo.Employee_Status(
@@ -304,14 +304,14 @@ CREATE TABLE dbo.SERVICE_STATUS (
 CREATE TABLE dbo.INSURANCE_COMPANY (
 	INSURANCE_ID int IDENTITY(1,1) not null,
 	INSURANCE_NAME varchar(50) not null,
-	I_ADDRESS_LINE1 varchar(50),
+	I_ADDRESS_LINE1 varchar(50) not null,
 	I_ADDRESS_LINE2 varchar(50),
-	I_CITY varchar(50),
-	I_STATE varchar(50),
-	I_ZIP varchar(6),
-	I_COUNTRY varchar(50),
-	I_PHONE varchar(15),
-	I_EMAIL varchar(40),
+	I_CITY varchar(50) not null,
+	I_STATE varchar(50) not null,
+	I_ZIP varchar(6) not null,
+	I_COUNTRY varchar(50) not null,
+	I_PHONE varchar(15) not null,
+	I_EMAIL varchar(40) not null,
 	CONSTRAINT INSURANCE_ID_PK PRIMARY KEY (INSURANCE_ID)
 );
 --INSURANCE POLICY Table--
