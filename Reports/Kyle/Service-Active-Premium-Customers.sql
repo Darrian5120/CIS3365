@@ -2,7 +2,7 @@ SELECT
 Customer.CUSTOMER_ID AS 'Customer ID',
 Customer.C_FNAME AS 'First Name',
 Customer.C_LNAME AS 'Last Name',
-Customer.C_BUSINESS_NAME AS 'Business Name',
+ISNULL(CUSTOMER.C_BUSINESS_NAME,'') AS 'Business Name',
 SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID',
 SERVICE_ORDER.DATE  AS 'Date',
 INVOICE.AMT_OWED AS 'Amount Owed'
