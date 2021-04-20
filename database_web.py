@@ -1080,6 +1080,63 @@ def vechiceservice_report():
     conn.commit()
     return render_template('report_vechiceservice.html', data = data)
 
+# unexpired truck insurance (anthony)
+@app.route ('/vehicles/unexpiredinsurance-report' , methods = ['GET'])
+def unexpiredinsurance_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT Customer.CUSTOMER_ID AS 'Customer ID',
+		Customer.C_LNAME AS 'Last Name',
+		Customer.C_FNAME AS 'First Name',
+		INSURANCE_COMPANY.INSURANCE_NAME AS 'Insurance Name',
+		INSURANCE_POLICY.POLICY_NAME AS 'Policy Name',
+		POLICY.EXPIRATION_DATE AS 'Policy Expiration Date',
+		VEHICLE.V_VIN AS 'VIN #'
+
+		FROM Customer
+		JOIN POLICY
+		ON Customer.CUSTOMER_ID = POLICY.CUSTOMER_ID
+		JOIN INSURANCE_POLICY
+		ON POLICY.POLICY_ID = INSURANCE_POLICY.POLICY_ID
+		JOIN INSURANCE_COMPANY
+		ON POLICY.INSURANCE_ID = INSURANCE_COMPANY.INSURANCE_ID
+		JOIN VEHICLE
+		ON POLICY.V_ID = VEHICLE.V_ID
+
+		WHERE POLICY.EXPIRATION_DATE > GETDATE();
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_unexpiredinsurance.html', data = data)
+
+# report violations last year (anthony)
+@app.route ('/vehicles/lastyearviolation-report' , methods = ['GET'])
+def lastyearviolation_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT VIOLATION.VIOLATION_NAME AS 'Violation Description',
+		VIOLATION.LAW_CODE AS 'Law Code Violated',
+		VIOLATION.VIOLATION_DATE AS 'Date of Occurance',
+		Customer.C_LNAME AS 'Owner Last Name',
+		Customer.C_FNAME AS 'Owner First Name',
+		VEHICLE.V_VIN AS 'VIN'
+
+		FROM VIOLATION
+		JOIN VEHICLE
+		ON VIOLATION.V_ID = VEHICLE.V_ID
+		JOIN CUSTOMER_VEHICLE
+		ON VEHICLE.V_ID = CUSTOMER_VEHICLE.V_ID
+		JOIN Customer
+		ON CUSTOMER_VEHICLE.CUSTOMER_ID = Customer.CUSTOMER_ID
+
+		WHERE YEAR(VIOLATION.VIOLATION_DATE) = Year(DATEADD(year,-1,GETDATE()));
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_lastyearviolation.html', data = data)
+
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
 def employees():
@@ -2012,6 +2069,72 @@ def partwithservice_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_partwithservice.html', data = data)
+
+# report current year invoice (anthony)
+@app.route ('/services/currentyearinvoice-report' , methods = ['GET'])
+def currentyearinvoice_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT 
+		INVOICE.INVOICE_ID AS 'Invoice ID',
+		INVOICE.TOTAL_COST AS 'Total Cost',
+		INVOICE.AMT_OWED AS 'Amount Owned',
+		INVOICE.INVOICE_DATE AS 'Date',
+		PAYMENT.PMT_TYPE AS 'Payment Type',
+		Customer.C_FNAME AS 'Customer First Name',
+		Customer.C_LNAME AS 'Customer Last Name',
+		Customer.C_PHONE AS 'Customer Phone Number'
+		VEHICLE.V_VIN AS 'VIN Worked On'
+
+		FROM INVOICE
+		JOIN INVOICE_PAYMENT
+		ON INVOICE.INVOICE_ID = INVOICE_PAYMENT.INVOICE_ID
+		JOIN PAYMENT
+		ON INVOICE_PAYMENT.PMT_ID = PAYMENT.PMT_ID
+		JOIN SERVICE_ORDER
+		ON INVOICE.SERVICE_ORDER_ID = SERVICE_ORDER.SERVICE_ORDER_ID
+		JOIN Customer
+		ON SERVICE_ORDER.CUSTOMER_ID = Customer.CUSTOMER_ID
+		JOIN CUSTOMER_VEHICLE
+		ON Customer.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
+		JOIN VEHICLE
+		ON CUSTOMER_VEHICLE.V_ID = VEHICLE.V_ID
+
+		WHERE YEAR(INVOICE.INVOICE_DATE) = YEAR(GETDATE()) AND INVOICE.INVOICE_DATE < GETDATE()
+		ORDER BY INVOICE.INVOICE_DATE;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_currentyearinvoice.html', data = data)
+	
+# report current year order (anthony)
+@app.route ('/services/currentyearorder-report' , methods = ['GET'])
+def currentyearorder_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT SERVICE_ORDER.SERVICE_ORDER_ID AS 'Order ID',
+		SERVICE_ORDER.ORDER_DATE AS 'Date Ordered',
+		SERVICE_ORDER_STATUS.ACTIVE_NAME AS 'Order Status' ,
+		INVOICE.TOTAL_COST AS 'Cost',
+		Customer.C_LNAME AS 'Customer Last Name',
+		Customer.C_FNAME AS 'Customer First Name'
+
+		FROM SERVICE_ORDER
+		JOIN INVOICE
+		ON SERVICE_ORDER.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID
+		JOIN SERVICE_ORDER_STATUS
+		ON SERVICE_ORDER.ACTIVE_ID = SERVICE_ORDER_STATUS.ACTIVE_ID
+		JOIN Customer
+		ON SERVICE_ORDER.CUSTOMER_ID = Customer.CUSTOMER_ID
+
+		WHERE YEAR(SERVICE_ORDER.ORDER_DATE) = YEAR(GETDATE()) AND SERVICE_ORDER.ORDER_DATE < GETDATE()
+		ORDER BY SERVICE_ORDER.ORDER_DATE;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_currentyearorder.html', data = data)
 
 #################################### Suppliers(parts) ###########################################
 @app.route('/suppliers', methods = ['GET']) 
