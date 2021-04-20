@@ -278,7 +278,7 @@ def customerowed_report():
         SELECT
 		CUSTOMER.C_FNAME AS 'First Name',
 		CUSTOMER.C_LNAME AS 'Last Name',
-		CUSTOMER.C_BUSINESS_NAME AS 'Business Name',
+		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		SERVICE.SERVICE_TYPE AS 'Service Type',
 		INVOICE.AMT_OWED AS 'Amount Owed',
 		INVOICE.INVOICE_DATE AS 'Invoice Date',
@@ -312,7 +312,7 @@ def uninsuredcuspolicy_report():
 		Customer.CUSTOMER_ID AS 'Customer Id',
 		Customer.C_FNAME AS 'First Name',
 		Customer.C_LNAME AS 'Last Name',
-		Customer.C_BUSINESS_NAME AS 'Business Name',
+		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		INSURANCE_COMPANY.INSURANCE_NAME AS 'Insurance Name',
 		INSURANCE_POLICY.POLICY_NAME AS 'Policy Name',
 		VEHICLE.V_VIN AS 'VIN'
@@ -349,7 +349,7 @@ def businesscustomer_report():
 		Customer.CUSTOMER_ID AS 'Customer ID', 
 		Customer.C_LNAME AS 'Customer Last Name', 
 		Customer.C_FNAME AS 'Customer First Name', 
-		Customer.C_BUSINESS_NAME AS 'Customer Business Name', 
+		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Customer Business Name', 
 		Customer_Type.BUSINESS AS 'Business Customer',
 		Service_Order.SERVICE_ORDER_ID AS 'Service Order ID',
 		Customer_Status.ACTIVE_NAME as 'Active/Inactive Status'
@@ -404,7 +404,7 @@ def customerpayservice_report():
     cursor.execute("""
         SELECT 
 		Customer.CUSTOMER_ID AS 'Customer ID',
-		Customer.C_BUSINESS_NAME AS 'Business Name',
+		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		Customer.C_FNAME AS 'Customer First Name',
 		Customer.C_LNAME AS 'Customer Last Name',
 		INVOICE_PAYMENT.PMT_AMOUNT AS 'Payment Amount',
@@ -1849,7 +1849,7 @@ def serviceactivepremcust_report():
 		Customer.CUSTOMER_ID AS 'Customer ID',
 		Customer.C_FNAME AS 'First Name',
 		Customer.C_LNAME AS 'Last Name',
-		Customer.C_BUSINESS_NAME AS 'Business Name',
+		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID',
 		SERVICE_ORDER.DATE  AS 'Date',
 		INVOICE.AMT_OWED AS 'Amount Owed'
@@ -1963,7 +1963,7 @@ def recentservin_report():
         MODEL.MODEL_NAME AS 'Model',
         SERVICE.SERVICE_TYPE AS 'Service Done',
         SERVICE_ORDER.ORDER_DATE AS 'Date',
-        CUSTOMER.C_BUSINESS_NAME AS 'Client'
+        ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Client'
 
 		FROM VEHICLE
 
