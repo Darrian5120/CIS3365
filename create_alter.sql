@@ -308,7 +308,7 @@ CREATE TABLE dbo.INSURANCE_COMPANY (
 	I_ADDRESS_LINE2 varchar(50),
 	I_CITY varchar(50),
 	I_STATE varchar(50),
-	I_ZIP int,
+	I_ZIP varchar(6),
 	I_COUNTRY varchar(50),
 	I_PHONE varchar(15),
 	I_EMAIL varchar(40),
