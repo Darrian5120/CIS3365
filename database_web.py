@@ -426,6 +426,69 @@ def customerpayservice_report():
     conn.commit()
     return render_template('report_customerpayservice.html', data = data)
 
+# report total spending by customer (brandon)
+@app.route ('/customers/totalspendcus-report' , methods = ['GET'])
+def totalspendcus_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        Select
+		[dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
+		[dbo].[Customer].[C_FNAME] as 'First Name',
+		[dbo].[Customer].[C_LNAME] as 'Last Name',
+		[dbo].[Customer].[C_BUSINESS_NAME] as 'Business Name',
+		[dbo].[Customer].[C_PHONE] as 'Customer Contact',
+		FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
+		MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
+		
+		FROM [dbo].[Customer]
+		JOIN [dbo].[SERVICE_ORDER]
+		ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[SERVICE_ORDER].[CUSTOMER_ID]
+		JOIN [dbo].[INVOICE]
+		ON [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[INVOICE].[SERVICE_ORDER_ID]
+		JOIN [dbo].[INVOICE_PAYMENT]
+		ON [dbo].[INVOICE].[SERVICE_ORDER_ID] = [dbo].[INVOICE_PAYMENT].[SERVICE_ORDER_ID]
+		
+		GROUP BY [dbo].[Customer].[CUSTOMER_ID],[dbo].[Customer].[C_BUSINESS_NAME],[dbo].[Customer].[C_FNAME], [dbo].[Customer].[C_LNAME], [dbo].[Customer].[C_PHONE]
+		ORDER BY 'Account Spending' DESC;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_totalspendcus.html', data = data)
+	
+# report operating state (zach)
+@app.route ('/customers/operatingstate-report' , methods = ['GET'])
+def operatingstate_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT
+
+		Customer.CUSTOMER_ID AS 'Customer ID',
+		Customer.C_FNAME AS 'First Name',
+		Customer.C_LNAME AS 'Last Name',
+		Customer.C_City AS 'City',
+		STATE.STATE_NAME AS 'State Origin',
+		VEHICLE.V_LICENSE_PLATE AS 'License Plate'
+
+		FROM Customer
+		JOIN CUSTOMER_STATE
+		ON Customer.CUSTOMER_ID = CUSTOMER_STATE.CUSTOMER_ID
+		JOIN STATE
+		ON CUSTOMER_STATE.STATE_ID = STATE.STATE_ID
+		JOIN Country
+		ON STATE.COUNTRY_ID = COUNTRY.COUNTRY_ID
+		JOIN CUSTOMER_VEHICLE
+		ON CUSTOMER.CUSTOMER_ID = CUSTOMER_VEHICLE.CUSTOMER_ID
+		JOIN VEHICLE
+		ON CUSTOMER_VEHICLE.V_ID = VEHICLE.V_ID
+
+		ORDER BY STATE.STATE_NAME, Customer.C_City;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_operatingstate.html', data = data)
+
 ################################### VEHICLES ##################################################
 @app.route('/vehicles', methods = ['GET']) 
 def vehicles():
@@ -982,6 +1045,39 @@ def vehiclestatus_report():
     conn.commit()
     return render_template('report_vehiclestatus.html', data = data)
 
+# report vehicle service (zach)
+@app.route ('/vehicles/vechiceservice-report' , methods = ['GET'])
+def vechiceservice_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT
+
+		VEHICLE.V_ID AS 'Vehicle ID',
+		CUSTOMER.C_FNAME AS 'First Name',
+		CUSTOMER.C_LNAME AS 'Last Name',
+		SERVICE.SERVICE_ID AS 'Service ID',
+		SERVICE.SERVICE_TYPE AS 'Service Type',
+		SERVICE_STATUS.ACTIVE_NAME AS 'Service Status'
+
+		FROM VEHICLE
+		JOIN VEHICLE_SERVICE
+		ON VEHICLE.V_ID = VEHICLE_SERVICE.V_ID
+		JOIN SERVICE
+		ON VEHICLE_SERVICE.SERVICE_ID = SERVICE.SERVICE_ID
+		JOIN SERVICE_STATUS
+		ON SERVICE.ACTIVE_ID = SERVICE_STATUS.ACTIVE_ID
+		JOIN CUSTOMER_VEHICLE
+		ON VEHICLE.V_ID = CUSTOMER_VEHICLE.V_ID
+		JOIN CUSTOMER
+		ON CUSTOMER_VEHICLE.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
+
+		ORDER BY VEHICLE.V_ID, SERVICE_STATUS.ACTIVE_NAME;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_vechiceservice.html', data = data)
+
 ################################### EMPLOYEES ##################################################
 @app.route('/employees', methods = ['GET']) 
 def employees():
@@ -1287,6 +1383,124 @@ def employeerole_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_employeerole.html', data = data)
+
+# report number of jobs assigned to each employee (brandon)
+@app.route ('/employees/numjobassigneachemp-report' , methods = ['GET'])
+def numjobassigneachemp_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        Select
+		[dbo].[EMPLOYEE].[EMPLOYEE_FNAME] as 'First Name',
+		[dbo].[EMPLOYEE].[EMPLOYEE_LNAME] as 'Last Name',
+		[dbo].[EMPLOYEE].[EMPLOYEE_ID] as 'Employee ID',
+		[dbo].[ROLE].[ROLE_NAME] as 'Employee Position',
+		COUNT([dbo].[EMPLOYEE].[EMPLOYEE_ID]) AS 'Number of Assigned Jobs',
+		[dbo].[Employee_Status].[ACTIVE_NAME] AS 'Employment Status'
+		
+		FROM [dbo].[EMPLOYEE]
+		JOIN [dbo].[EMPLOYEE_SERVICE_LINE_ASSIGNMENT]
+		ON [dbo].[EMPLOYEE].[EMPLOYEE_ID] = [dbo].[EMPLOYEE_SERVICE_LINE_ASSIGNMENT].[EMPLOYEE_ID]
+		JOIN [dbo].[ROLE]
+		ON [dbo].[EMPLOYEE].[ROLE_ID] = [dbo].[ROLE].[ROLE_ID]
+		JOIN [dbo].[Employee_Status]
+		ON [dbo].[EMPLOYEE].[ACTIVE_ID] = [dbo].[Employee_Status].[ACTIVE_ID]
+		
+		GROUP BY [dbo].[EMPLOYEE].[EMPLOYEE_ID], [dbo].[EMPLOYEE].[EMPLOYEE_LNAME], [dbo].[EMPLOYEE].[EMPLOYEE_FNAME], [dbo].[ROLE].[ROLE_NAME], [dbo].[Employee_Status].[ACTIVE_NAME]
+		ORDER BY 'Number of Assigned Jobs' DESC;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_numjobassigneachemp.html', data = data)
+	
+# report active employee pay rate (gian)
+@app.route ('/employees/activeemppayrate-report' , methods = ['GET'])
+def activeemppayrate_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
+        EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+        ROLE.ROLE_NAME AS 'Job Role',
+        ROLE.PAY_RATE AS 'Hourly Pay',
+        Employee_Status.ACTIVE_NAME AS 'Status'
+
+		FROM EMPLOYEE
+
+		JOIN ROLE ON EMPLOYEE.ROLE_ID=ROLE.ROLE_ID
+		INNER JOIN Employee_Status ON EMPLOYEE.ACTIVE_ID=Employee_Status.ACTIVE_ID
+
+		WHERE Employee_Status.ACTIVE_ID = 1 OR Employee_Status.ACTIVE_ID = 2
+
+		ORDER BY [Job Role],[Hourly Pay];
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_activeemppayrate.html', data = data)
+	
+#report unavailable painter (gian)
+@app.route ('/employees/unavilablepainter-report' , methods = ['GET'])
+def unavilablepainter_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
+        EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+        ROLE.ROLE_NAME AS 'Job Role',
+        Employee_Status.ACTIVE_NAME AS 'Status'
+
+		FROM EMPLOYEE
+		JOIN ROLE ON EMPLOYEE.ROLE_ID=ROLE.ROLE_ID
+		INNER JOIN Employee_Status ON EMPLOYEE.ACTIVE_ID=Employee_Status.ACTIVE_ID
+
+
+
+		WHERE EMPLOYEE.ROLE_ID = 3
+		AND  Employee_Status.ACTIVE_ID = 1
+
+		ORDER BY EMPLOYEE_LNAME;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_unavilablepainter.html', data = data)
+
+# report employee roles status (zach)
+@app.route ('/employees/emprolesstatus-report' , methods = ['GET'])
+def emprolesstatus_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT
+
+		EMPLOYEE.EMPLOYEE_ID AS 'Employee ID',
+		EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+		EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
+		ROLE.ROLE_NAME AS 'Role Name',
+		SERVICE.SERVICE_TYPE AS 'Service Type',
+		VEHICLE.V_ID AS 'Vehicle ID',
+		VEHICLE.V_LICENSE_PLATE 'License Plate'
+
+		FROM EMPLOYEE
+		JOIN EMPLOYEE_STATUS
+		ON EMPLOYEE.ACTIVE_ID = EMPLOYEE_STATUS.ACTIVE_ID
+		JOIN ROLE
+		ON EMPLOYEE.ROLE_ID = ROLE.ROLE_ID
+		JOIN EMPLOYEE_SERVICE_LINE_ASSIGNMENT
+		ON EMPLOYEE.EMPLOYEE_ID = EMPLOYEE_SERVICE_LINE_ASSIGNMENT.EMPLOYEE_ID
+		JOIN SERVICE_LINE
+		ON EMPLOYEE_SERVICE_LINE_ASSIGNMENT.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID
+		JOIN SERVICE
+		ON SERVICE_LINE.SERVICE_ID = SERVICE.SERVICE_ID
+		JOIN VEHICLE_SERVICE
+		ON SERVICE.SERVICE_ID = VEHICLE_SERVICE.SERVICE_ID
+		JOIN VEHICLE
+		ON VEHICLE_SERVICE.V_ID = VEHICLE.V_ID
+
+		ORDER BY EMPLOYEE.EMPLOYEE_ID, SERVICE.SERVICE_TYPE;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_emprolesstatus.html', data = data)
 
 ################################### SERVICES ##################################################
 @app.route('/services', methods = ['GET']) 
@@ -1709,6 +1923,91 @@ def servicecost_report():
     conn.commit()
     return render_template('report_servicecost.html', data = data)
 
+# report average cost by service (brandon)
+@app.route ('/services/avgcostbyservice-report' , methods = ['GET'])
+def avgcostbyservice_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        Select
+		[dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
+		AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
+		COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
+		
+		from [dbo].[SERVICE]
+		join [dbo].[SERVICE_LINE]
+		on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
+		join [dbo].[SERVICE_ORDER]
+		on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
+		join [dbo].[SERVICE_LINE_PART]
+		on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
+		
+		GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
+		ORDER BY 'Service Type';
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_avgcostbyservice.html', data = data)
+	
+# report recent service on vin report (gian)
+@app.route ('/services/recentservin-report' , methods = ['GET'])
+def recentservin_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT VEHICLE.V_VIN AS 'VIN Number',
+        MAKE.MAKE_NAME AS 'Make',
+        MODEL.MODEL_NAME AS 'Model',
+        SERVICE.SERVICE_TYPE AS 'Service Done',
+        SERVICE_ORDER.ORDER_DATE AS 'Date',
+        CUSTOMER.C_BUSINESS_NAME AS 'Client'
+
+		FROM VEHICLE
+
+		JOIN MAKE ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
+		JOIN MODEL ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
+		JOIN VEHICLE_SERVICE ON VEHICLE.V_ID=VEHICLE_SERVICE.V_ID
+		JOIN SERVICE ON VEHICLE_SERVICE.SERVICE_ID=SERVICE.SERVICE_ID
+		JOIN SERVICE_LINE ON SERVICE.SERVICE_ID=SERVICE_LINE.SERVICE_ID
+		JOIN SERVICE_ORDER ON SERVICE_LINE.SERVICE_ORDER_ID=SERVICE_ORDER.SERVICE_ORDER_ID
+		JOIN CUSTOMER ON SERVICE_ORDER.CUSTOMER_ID=CUSTOMER.CUSTOMER_ID
+
+		WHERE VEHICLE.V_ID=VEHICLE_SERVICE.V_ID AND CUSTOMER.C_BUSINESS_NAME IS NOT NULL
+		ORDER BY [Date];
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_recentservin.html', data = data)
+
+# report parts associated with specific service (zach)
+@app.route ('/services/partwithservice-report' , methods = ['GET'])
+def partwithservice_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT
+		PART.PART_NAME AS 'Part Used',
+		SERVICE.SERVICE_TYPE AS 'Service Type',
+		SUPPLIER_PART.PART_COST AS 'Part Cost'
+
+		FROM PART
+		Join SERVICE_LINE_PART
+		ON PART.PART_ID = SERVICE_LINE_PART.PART_ID
+		JOIN SERVICE_LINE
+		ON SERVICE_LINE_PART.SERVICE_ORDER_ID = SERVICE_LINE.SERVICE_ORDER_ID 
+		and 
+		SERVICE_LINE_PART.SERVICE_ID =SERVICE_LINE.SERVICE_ID
+		JOIN SERVICE
+		ON SERVICE_LINE_PART.SERVICE_ID = SERVICE.SERVICE_ID
+		JOIN SUPPLIER_PART
+		ON PART.PART_ID = SUPPLIER_PART.PART_ID
+
+		ORDER BY SERVICE.SERVICE_TYPE;
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_partwithservice.html', data = data)
+
 #################################### Suppliers(parts) ###########################################
 @app.route('/suppliers', methods = ['GET']) 
 def suppliers():
@@ -1957,6 +2256,67 @@ def partsratelist_report():
     data = cursor.fetchall()
     conn.commit()
     return render_template('report_partsratelist.html', data = data)
+
+# report supplier parts bought vs parts used (brandon) 
+@app.route ('/suppliers/partsboughtvsused-report' , methods = ['GET'])
+def partsboughtvsused_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT 
+		[dbo].[SUPPLIER].[SUPPLIER_ID] as 'Supplier ID',
+		[dbo].[SUPPLIER].[SUPPLIER_NAME] as 'Supplier Name',
+		[dbo].[SUPPLIER].[S_PHONE] as 'Contact Number',
+		[dbo].[SUPPLIER_STATUS].[ACTIVE_NAME] AS 'Supplier Status',
+		COUNT([dbo].[SUPPLIER_PART].[PART_ID]) as 'Number of Parts Bought',
+		COUNT([dbo].[SERVICE_LINE_PART].[PART_ID]) as 'Number of Parts Used',
+		FORMAT(SUM([dbo].[SUPPLIER_PART].[PART_COST]),'C') as 'Total Parts Cost'
+		
+		FROM [dbo].[SUPPLIER]
+		JOIN [dbo].[SUPPLIER_STATUS]
+		ON [dbo].[SUPPLIER].[ACTIVE_ID] = [dbo].[SUPPLIER_STATUS].[ACTIVE_ID]
+		JOIN [dbo].[SUPPLIER_PART]
+		ON [dbo].[SUPPLIER].[SUPPLIER_ID] = [dbo].[SUPPLIER_PART].[SUPPLIER_ID]
+		JOIN [dbo].[PART]
+		ON [dbo].[SUPPLIER_PART].[PART_ID] = [dbo].[PART].[PART_ID]
+		JOIN [dbo].[SERVICE_LINE_PART]
+		ON [dbo].[PART].[PART_ID] = [dbo].[SERVICE_LINE_PART].[PART_ID]
+		
+		GROUP BY [dbo].[SUPPLIER].[SUPPLIER_ID], [dbo].[SUPPLIER].[SUPPLIER_NAME], [dbo].[SUPPLIER].[S_PHONE], [dbo].[SUPPLIER_STATUS].[ACTIVE_NAME];
+
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_partsboughtvsused.html', data = data)
+
+# report active suppliers and parts (gian)
+@app.route ('/suppliers/activesupandpart-report' , methods = ['GET'])
+def activesupandpart_report():
+    if not session.get('logged_in'):
+        return render_template('login.html')    
+    cursor.execute("""
+        SELECT SUPPLIER.SUPPLIER_ID AS 'Supplier ID',
+        SUPPLIER.SUPPLIER_NAME AS 'Supplier Name',
+        SUPPLIER_STATUS.ACTIVE_NAME AS 'Supplier Status',
+        SUPPLIER_PART.PART_ID AS 'Part ID',
+        PART.PART_NAME AS 'Part Name'
+
+
+		FROM SUPPLIER
+
+
+		JOIN SUPPLIER_STATUS ON SUPPLIER.ACTIVE_ID=SUPPLIER_STATUS.ACTIVE_ID
+		JOIN SUPPLIER_PART ON SUPPLIER.SUPPLIER_ID=SUPPLIER.SUPPLIER_ID
+		JOIN PART ON SUPPLIER_PART.PART_ID=PART.PART_ID
+
+
+		WHERE SUPPLIER.ACTIVE_ID = 1
+
+		ORDER BY [Part ID], [Supplier Name];
+    """)
+    data = cursor.fetchall()
+    conn.commit()
+    return render_template('report_activesupandpart.html', data = data)
 
 ################################### VIOLATIONS ##################################################
 @app.route('/violations', methods = ['GET']) 
