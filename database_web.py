@@ -247,6 +247,7 @@ def activecustomer_report():
         SELECT CUSTOMER.C_FNAME AS 'First Name',
 		CUSTOMER.C_LNAME AS 'Last Name',
 		CUSTOMER.C_ADDRESS_LINE1 AS 'Customer Address',
+		ISNULL(CUSTOMER.C_ADDRESS_LINE2,'') AS 'Address Line 2',
 		CUSTOMER.C_CITY AS 'City',
 		CUSTOMER.STATE_NAME AS 'State',
 		CUSTOMER.C_ZIP AS 'ZIP Code',
@@ -378,7 +379,8 @@ def customerlocation_report():
 		Customer.CUSTOMER_ID AS 'Customer ID', 
 		Customer.C_FNAME AS 'First Name',
 		Customer.C_LNAME AS 'Last Name',
-		Customer.C_ADDRESS_LINE1 AS 'Street Name',
+		Customer.C_ADDRESS_LINE1 AS 'Address Line 1',
+		ISNULL(Customer.C_ADDRESS_LINE2,'') AS 'Address Line 2',
 		Customer.C_CITY AS 'City',
 		STATE.STATE_NAME AS 'State',
 		Customer.C_ZIP AS 'Zip Code',
@@ -436,7 +438,7 @@ def totalspendcus_report():
 		[dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
 		[dbo].[Customer].[C_FNAME] as 'First Name',
 		[dbo].[Customer].[C_LNAME] as 'Last Name',
-		[dbo].[Customer].[C_BUSINESS_NAME] as 'Business Name',
+		ISNULL(Customer.C_BUSINESS_NAME,'') as 'Business Name',
 		[dbo].[Customer].[C_PHONE] as 'Customer Contact',
 		FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
 		MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
@@ -1219,7 +1221,7 @@ def view_employees():
         return render_template('login.html')    
     cursor.execute ("""
         SELECT EMPLOYEE_ID, EMPLOYEE_FNAME, EMPLOYEE_LNAME, ROLE.ROLE_NAME,
-        EMPLOYEE_STATUS.ACTIVE_NAME, E_ADDRESS_LINE1, E_ADDRESS_LINE2, E_CITY,
+        EMPLOYEE_STATUS.ACTIVE_NAME, E_ADDRESS_LINE1, ISNULL(E_ADDRESS_LINE2,''), E_CITY,
         E_STATE, E_ZIP, E_COUNTRY, E_PHONE, E_EMAIL
         FROM Employee
         JOIN EMPLOYEE_STATUS
@@ -1783,7 +1785,7 @@ def revenue_report():
         return render_template('login.html')    
     cursor.execute("""
         SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_LNAME AS 'Last Name', Customer.C_FNAME AS 'First Name',
-        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', SERVICE.SERVICE_TYPE AS 'Service NameE',  SERVICE.COST AS 'Cost',
+        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', SERVICE.SERVICE_TYPE AS 'Service Name',  SERVICE.COST AS 'Cost',
         PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value'
 
         FROM CUSTOMER
@@ -2198,7 +2200,7 @@ def view_suppliers():
         return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER_ID, SUPPLIER_NAME, S_ADDRESS_LINE1, 
-        S_ADDRESS_LINE2, S_CITY, S_STATE, S_ZIP,
+        ISNULL(S_ADDRESS_LINE2,''), S_CITY, S_STATE, S_ZIP,
         S_COUNTRY, S_PHONE, S_EMAIL,  SUPPLIER_STATUS.ACTIVE_NAME
 
         FROM SUPPLIER
@@ -2242,7 +2244,8 @@ def partsratelist_report():
 		SUPPLIER_PART.PART_COST As 'Part Price', 
 		SUPPLIER.SUPPLIER_NAME As 'Supplier Name',
 		SUPPLIER.S_ADDRESS_LINE1 As 'Address',
-		SUPPLIER.S_PHONE As 'Contact no.',
+		ISNULL(SUPPLIER.S_ADDRESS_LINE2,'') As 'Address Line 2',
+		SUPPLIER.S_PHONE As 'Contact No.',
 		SUPPLIER.S_EMAIL As 'Email Address',
 		SUPPLIER_STATUS.ACTIVE_NAME As 'Supplier Status'
 		
