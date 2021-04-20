@@ -1,8 +1,8 @@
 Select
 [dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
-[dbo].[Customer].[C_FNAME] as 'First Name',
-[dbo].[Customer].[C_LNAME] as 'Last Name',
-[dbo].[Customer].[C_BUSINESS_NAME] as 'Business Name',
+ISNULL([dbo].[Customer].[C_FNAME], ' ') as 'First Name',
+ISNULL([dbo].[Customer].[C_LNAME], ' ') as 'Last Name',
+ISNULL([dbo].[Customer].[C_BUSINESS_NAME], ' ') as 'Business Name',
 [dbo].[Customer].[C_PHONE] as 'Customer Contact',
 FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
 MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
