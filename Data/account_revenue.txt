@@ -1,2 +1,4 @@
 REVENUE_ID|REVENUE_NAME
 1|Service
+2|Repair
+3|Install
