@@ -440,8 +440,9 @@ def totalspendcus_report():
         ISNULL([dbo].[Customer].[C_LNAME], ' ') as 'Last Name',
         ISNULL([dbo].[Customer].[C_BUSINESS_NAME], ' ') as 'Business Name',
         [dbo].[Customer].[C_PHONE] as 'Customer Contact',
-        FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
         MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
+        FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
+        
         FROM [dbo].[Customer]
         JOIN [dbo].[SERVICE_ORDER]
         ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[SERVICE_ORDER].[CUSTOMER_ID]
