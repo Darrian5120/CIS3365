@@ -2,7 +2,7 @@ SELECT
 Customer.CUSTOMER_ID AS 'Customer Id',
 Customer.C_FNAME AS 'First Name',
 Customer.C_LNAME AS 'Last Name',
-Customer.C_BUSINESS_NAME AS 'Business Name',
+ISNULL(CUSTOMER.C_BUSINESS_NAME,'') AS 'Business Name',
 INSURANCE_COMPANY.INSURANCE_NAME AS 'Insurance Name',
 INSURANCE_POLICY.POLICY_NAME AS 'Policy Name',
 VEHICLE.V_VIN AS 'VIN'
