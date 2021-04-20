@@ -1,7 +1,7 @@
 Select
+COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Number of Services Completed',
 [dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
-AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
-COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
+FORMAT(AVG([dbo].[SERVICE_LINE].[LINE_COST]), 'C') as 'Average Total Cost'
 from [dbo].[SERVICE]
 join [dbo].[SERVICE_LINE]
 on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
