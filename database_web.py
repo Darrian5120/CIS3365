@@ -1312,7 +1312,7 @@ def new_service():
     # basic information
     # select customers vehicle for service
     cursor.execute("""
-        SELECT Customer.C_LNAME, CUSTOMER_VEHICLE.V_ID
+        SELECT Customer.C_LNAME, VEHICLE.V_VIN
         FROM CUSTOMER
         JOIN CUSTOMER_VEHICLE ON Customer.CUSTOMER_ID=CUSTOMER_VEHICLE.CUSTOMER_ID
         JOIN VEHICLE ON CUSTOMER_VEHICLE.V_ID = VEHICLE.V_ID
@@ -1323,7 +1323,7 @@ def new_service():
     for (customer, vehicle) in cursor:
         data.setdefault(customer, []).append(vehicle)
     cursor.execute("""
-        SELECT PART_NAME, SUPPLIER_NAME 
+        SELECT PART.PART_NAME, SUPPLIER.SUPPLIER_NAME 
         FROM SUPPLIER 
         JOIN SUPPLIER_PART ON SUPPLIER.SUPPLIER_ID=SUPPLIER_PART.SUPPLIER_ID
         JOIN PART ON SUPPLIER_PART.PART_ID=PART.PART_ID
@@ -1331,6 +1331,12 @@ def new_service():
     data1 = {}
     for (part, supplier) in cursor:
         data1.setdefault(part, []).append(supplier)
+    # select parts for service
+    cursor.execute("SELECT PART_NAME FROM PART")
+    rows = cursor.fetchall()
+    parts = []
+    for part in rows:
+        parts.append(part[0])
     # select customer for service
     cursor.execute("SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer")
     rows = cursor.fetchall()
@@ -1343,7 +1349,7 @@ def new_service():
     rows = cursor.fetchall()
     services = []
     for service in rows:
-        services.append(service)
+        services.append(service[1])
     #select employee
     cursor.execute("""
         SELECT EMPLOYEE_ID, ROLE.ROLE_NAME, EMPLOYEE_STATUS.ACTIVE_NAME
@@ -1351,28 +1357,22 @@ def new_service():
         JOIN ROLE ON ROLE.ROLE_ID=EMPLOYEE.ROLE_ID
         JOIN EMPLOYEE_STATUS ON EMPLOYEE_STATUS.ACTIVE_ID=EMPLOYEE.ACTIVE_ID
     """)
-    rows = cursor.fetchall()
     employees = []
-    for employee in rows:
+    for employee in cursor:
         employees.append(employee)
-    # select parts for service
-    cursor.execute("SELECT PART_ID, PART_NAME FROM PART")
-    rows = cursor.fetchall()
-    parts = []
-    for part in rows:
-        parts.append(part)
     # select payment method
-    cursor.execute("SELECT PMT_ID, PMT_TYPE FROM PAYMENT")
+    cursor.execute("SELECT PMT_TYPE FROM PAYMENT")
     rows = cursor.fetchall()
     payments = []
     for payment in rows:
-        payments.append(payment)
+        payments.append(payment[0])
     # select revenue type
     cursor.execute("SELECT REVENUE_ID, REVENUE_NAME FROM ACCOUNT_REVENUE")
     rows = cursor.fetchall()
     revenues = []
     for revenue in rows:
         revenues.append(revenue)
+    ##################################3
     if request.method == 'POST':
         # insert into service order
         cust = request.form.get('customer')
@@ -1385,15 +1385,18 @@ def new_service():
         conn.commit()
         #insert into vehicle service
         service = request.form.get('service')
-        x = service.split(", ")
-        service_id = int(x[0][1:])
+        cursor.execute("SELECT SERVICE_ID FROM SERVICE WHERE SERVICE_TYPE = '{}'".format(service))
+        service_id = cursor.fetchone()[0]
         vehicle = request.form.get('vehicle')
+        cursor.execute("SELECT V_ID FROM VEHICLE WHERE V_VIN='{}'".format(vehicle))
+        vehicle = cursor.fetchone()[0]
+        print(vehicle)
         qry = "INSERT INTO VEHICLE_SERVICE(SERVICE_ID, V_ID) VALUES (?,?)"
         vals = (service_id, vehicle)
         cursor.execute(qry,vals)
         conn.commit()
         # insert service line
-        cursor.execute("SELECT COST FROM SERVICE WHERE SERVICE_ID = {}".format(service_id))
+        cursor.execute("SELECT COST FROM SERVICE WHERE SERVICE_ID = '{}'".format(service_id))
         cost = cursor.fetchone()[0]
         qry = "INSERT INTO SERVICE_LINE(SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST, ACTIVE_ID) VALUES (?,?,?,?,?)"
         vals = (service_order_id, service_id, 1, cost, 1)
@@ -1407,8 +1410,8 @@ def new_service():
         conn.commit()
         # insert invoice payment
         payment = request.form.get('payment')
-        x = payment.split(", ")
-        payment = int(x[0][1:])
+        cursor.execute("SELECT PMT_ID FROM PAYMENT WHERE PMT_TYPE ='{}'".format(payment))
+        payment = cursor.fetchone()[0]
         qry = "INSERT INTO INVOICE_PAYMENT(PMT_ID, INVOICE_ID, SERVICE_ORDER_ID, PMT_AMOUNT, ACTIVE_ID) VALUES (?,?,?,?,?)"
         vals = (payment, invoice_id, service_order_id, cost, 1)
         cursor.execute(qry,vals)

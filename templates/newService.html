@@ -60,7 +60,7 @@
                 </select>
             </p>
             <p>
-                <label for="part">Supplier</label>
+                <label for="part">Part</label>
                 <select name="part" id="part">
                     {% for part in parts[0:] %}
                     <option value="{{ part }}" >{{ part }}</option>"
@@ -126,7 +126,7 @@
                 var html = $.map(lcns, function(lcn){
                     return '<option value="' + lcn + '">' + lcn + '</option>'
                 }).join('');
-                $vehicles.html(html)
+                $vehicles1.html(html)
             });
         });
     </script>
