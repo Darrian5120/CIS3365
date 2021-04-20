@@ -1320,9 +1320,8 @@ def new_service():
         JOIN MAKE ON VEHICLE.MAKE_ID=MAKE.MAKE_ID
         JOIN MODEL ON VEHICLE.MODEL_ID=MODEL.MODEL_ID
     """)
-    rows = cursor.fetchall()
     data = {}
-    for (customer, vehicle) in rows:
+    for (customer, vehicle) in cursor:
         data.setdefault(customer, []).append(vehicle)
     # select customer for service
     cursor.execute("SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer")
@@ -1411,9 +1410,22 @@ def new_service():
         cursor.execute(qry,vals)
         conn.commit()
         return render_template('services.html')
+        # insert service_line_part
+        part = request.form.get('part')
+        print(part)
+        qry = "INSERT INTO SERVICE_LINE_PART (SERVICE_ORDER_ID, SERVICE_ID, PART_ID) VALUES (?,?,?)"
+        vals = (service_order_id, service_id, part)
+        cursor.execute(qry,vals)
+        conn.commit()
+        # insert employee service line assignment
+        employee = request.form.get('employee')
+        print(employee)
+        qry = "INSERT INTO EMPLOYEE_SERVICE_LINE_ASSIGNMENT (SERVICE_ORDER_ID, SERVICE_ID, EMPLOYEE_ID) VALUES (?,?,?)"
+        vals = (service_order_id, service_id, employee)
+        cursor.execute(qry,vals)
+        conn.commit()
     return render_template('newservice.html', customers=customers,data=data,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
-            
-            
+                      
 # modify service
 @app.route('/service/upate', methods = ['POST', 'GET'])
 def update_service():
@@ -1439,87 +1451,6 @@ def update_service():
         message = 'Service edited sucessfully' 
         return render_template('updateservice.html', services = services, message = message)   
     return render_template('updateservice.html', services = services)
-
-# modify service line
-@app.route('/service/upate-serviceline', methods = ['POST', 'GET'])
-def update_serviceline():
-    if not session.get('logged_in'):
-        return render_template('login.html')    
-    sql = "SELECT SERVICE_ORDER_ID, SERVICE_ID, QUANTITY, LINE_COST, ACTIVE_ID FROM service_line"
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    servicelines = []
-    for serviceline in rows:
-        servicelines.append(serviceline)
-    if request.method == 'POST':
-        serviceline_id = request.form.get('serviceline')
-        print(serviceline_id)
-        x = serviceline_id.split(", ")
-        y = int(x[0][1:])
-        field = request.form.get('tblname')
-        value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE SERVICE_ORDER_ID = ?, SERVICE_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Service line edited sucessfully' 
-        return render_template('updateserviceline.html', servicelines = servicelines, message = message)   
-    return render_template('updateserviceline.html', servicelines = servicelines)
-
-
-# modify service order
-@app.route('/service/upate-serviceorder', methods = ['POST', 'GET'])
-def update_serviceorder():
-    if not session.get('logged_in'):
-        return render_template('login.html')    
-    sql = "SELECT SERVICE_ORDER_ID, CUSTOMER_ID, ORDER_DATE, ACTIVE_ID FROM service_order"
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    serviceorders = []
-    for serviceorder in rows:
-        serviceorders.append(serviceorder)
-    if request.method == 'POST':
-        serviceorder_id = request.form.get('serviceorder')
-        print(serviceorder_id)
-        x = serviceorder_id.split(", ")
-        y = int(x[0][1:])
-        field = request.form.get('tblname')
-        value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE SERVICE_ORDER_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Service order edited sucessfully' 
-        return render_template('updateserviceorder.html', serviceorders = serviceorders, message = message)   
-    return render_template('updateserviceorder.html', serviceorders = serviceorders)
-
-# modify invoice 
-@app.route('/service/upate-invoice', methods = ['POST', 'GET'])
-def update_invoice():
-    if not session.get('logged_in'):
-        return render_template('login.html')    
-    sql = "SELECT INVOICE_ID, SERVICE_ORDER_ID, TOTAL_COST, INVOICE_DATE, AMT_OWNED, ACTIVE_ID FROM Invoice"
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    invoices = []
-    for invoice in rows:
-        invoices.append(invoice)
-    if request.method == 'POST':
-        invoice_id = request.form.get('invoice')
-        print(invoice_id)
-        x = invoice_id.split(", ")
-        y = int(x[0][1:])
-        field = request.form.get('tblname')
-        value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE INVOICE_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Invoice edited sucessfully' 
-        return render_template('updateinvoice.html', invoices = invoices, message = message)   
-    return render_template('updateinvoice.html', invoices = invoices)
-        
-        
 
 # remove service from db by settiing status to inactive
 @app.route('/services/delete-service', methods = ['POST', 'GET'])
@@ -1788,6 +1719,7 @@ def new_supplierpart():
         supplier = request.form.get("supplier")
         part = request.form.get("part")
         cost = request.form.get("cost")
+        amt = request.form.get("amount")
         # get id data
         cursor.execute("SELECT SUPPLIER_ID FROM SUPPLIER WHERE SUPPLIER_NAME = '{}'".format(supplier))
         supplier = cursor.fetchone()[0]
@@ -1795,15 +1727,14 @@ def new_supplierpart():
             # insert part
             query = "INSERT INTO PART (PART_NAME) OUTPUT INSERTED.PART_ID VALUES (?)"
             vals = (part)
-            data = cursor.execute(query, vals)
+            cursor.execute(query, vals)
             part_id = cursor.fetchone()[0]
             conn.commit()
             # insert supplier_part
-            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST) VALUES (?,?,?)"
+            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST, AMOUNT) VALUES (?,?,?.?)"
             vals = (part_id, supplier, cost)
             cursor.execute(query, vals)
             conn.commit()
-            message = "Item added successfuly"
             return render_template('suppliers.html')
     return render_template('newsupplierpart.html', suppliers=suppliers)
 
@@ -1884,6 +1815,32 @@ def update_supplier():
             return render_template('suppliers.html')
     return render_template('updatesupplier.html', suppliers=suppliers,statuses=statuses)
 
+@app.route('/suppliers/update-inventory', methods = ['POST','GET'])
+def update_inventory():
+    #if not session.get('logged_in'):
+    #    return render_template('login.html')    
+    cursor.execute("""
+        SELECT SUPPLIER_NAME, PART_NAME 
+        FROM SUPPLIER 
+        JOIN SUPPLIER_PART ON SUPPLIER.SUPPLIER_ID=SUPPLIER_PART.SUPPLIER_ID
+        JOIN PART ON SUPPLIER_PART.PART_ID=PART.PART_ID
+    """)
+    data = {}
+    for (supplier, part) in cursor:
+        data.setdefault(supplier, []).append(part)
+    print(data)
+    cursor.execute("SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER")
+    rows = cursor.fetchall()
+    suppliers = []
+    for supplier in rows:
+        suppliers.append(supplier[1])
+    if request.method == 'POST':
+        supplier = request.form.get("supplier")
+        part = request.form.get("part")
+        print(supplier)
+        print(part)
+        return render_template('suppliers.html')
+    return render_template("updateinventory.html",data=data,suppliers=suppliers)
 
 @app.route('/suppliers/delete-supplier',methods = ['POST','GET'])#FINISHED
 def delete_supplier():

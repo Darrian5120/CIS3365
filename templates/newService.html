@@ -10,11 +10,12 @@
             .topnav {border:0px; background-color:#333; overflow:hidden; margin:auto; width: 100%; text-align: center;} /*syle the topnav*/
             .topnav a {float:none; display:block; color:#f2f2f2; text-align:center; padding:14px 1px; text-decoration:none;}
             .topnav a:hover {background-color:#f2f2f2; color:black; width: 100%;}
-            #td {width: 20%; text-align: center; margin: 0; padding: 0;}
+            
+            #td {width: 16%; text-align: center; margin: 0; padding: 0;}
         </style>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    </head>
-    <body align="center">
+	</head>
+	<body align="center">
         <div class="header">
             <h1>Herrera Fabricating Inc.</h1>
         </div>
@@ -23,8 +24,9 @@
                 <td id="td"><a href ="/customers">Customers</a></td>
                 <td id="td"><a href ="/vehicles">Vehicles</a></td>
                 <td id="td"><a href ="/services">Services</a></td>
+                <td id="td"><a href ="/suppliers">Suppliers</a></td>
                 <td id="td"><a href ="/employees">Employees</a></td>
-                <td id="td"><a href ="/reports">Reports</a></td>
+                <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
         <form action="" method="post" id="frm">
@@ -82,10 +84,6 @@
             </p> -->
             <p><input type="submit" value="Submit"></p>
         </form>
-        <p id="test"></p>
-        <p id="test1"></p>
-        <p id="test2"></p>
-        <p id="test3"></p>
     </body>
     <script type="text/javascript">
         jQuery(function($) {
@@ -98,7 +96,6 @@
             var str = "{{ data|safe }}"; 
             var new_str = replaceAll(str, "'", "\"");
             var vehicles = JSON.parse(new_str); 
-            document.getElementById("test3").innerHTML = vehicles;
 
             var $vehicles = $('#vehicle');
             $('#customer').change(function () {
