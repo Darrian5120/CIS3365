@@ -435,24 +435,22 @@ def totalspendcus_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-		[dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
-		[dbo].[Customer].[C_FNAME] as 'First Name',
-		[dbo].[Customer].[C_LNAME] as 'Last Name',
-		ISNULL(Customer.C_BUSINESS_NAME,'') as 'Business Name',
-		[dbo].[Customer].[C_PHONE] as 'Customer Contact',
-		FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
-		MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
-		
-		FROM [dbo].[Customer]
-		JOIN [dbo].[SERVICE_ORDER]
-		ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[SERVICE_ORDER].[CUSTOMER_ID]
-		JOIN [dbo].[INVOICE]
-		ON [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[INVOICE].[SERVICE_ORDER_ID]
-		JOIN [dbo].[INVOICE_PAYMENT]
-		ON [dbo].[INVOICE].[SERVICE_ORDER_ID] = [dbo].[INVOICE_PAYMENT].[SERVICE_ORDER_ID]
-		
-		GROUP BY [dbo].[Customer].[CUSTOMER_ID],[dbo].[Customer].[C_BUSINESS_NAME],[dbo].[Customer].[C_FNAME], [dbo].[Customer].[C_LNAME], [dbo].[Customer].[C_PHONE]
-		ORDER BY 'Account Spending' DESC;
+        [dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
+        ISNULL([dbo].[Customer].[C_FNAME], ' ') as 'First Name',
+        ISNULL([dbo].[Customer].[C_LNAME], ' ') as 'Last Name',
+        ISNULL([dbo].[Customer].[C_BUSINESS_NAME], ' ') as 'Business Name',
+        [dbo].[Customer].[C_PHONE] as 'Customer Contact',
+        FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
+        MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
+        FROM [dbo].[Customer]
+        JOIN [dbo].[SERVICE_ORDER]
+        ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[SERVICE_ORDER].[CUSTOMER_ID]
+        JOIN [dbo].[INVOICE]
+        ON [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[INVOICE].[SERVICE_ORDER_ID]
+        JOIN [dbo].[INVOICE_PAYMENT]
+        ON [dbo].[INVOICE].[SERVICE_ORDER_ID] = [dbo].[INVOICE_PAYMENT].[SERVICE_ORDER_ID]
+        GROUP BY [dbo].[Customer].[CUSTOMER_ID],[dbo].[Customer].[C_BUSINESS_NAME],[dbo].[Customer].[C_FNAME], [dbo].[Customer].[C_LNAME], [dbo].[Customer].[C_PHONE]
+        ORDER BY 'Account Spending' DESC;
     """)
     data = cursor.fetchall()
     conn.commit()
@@ -1992,20 +1990,18 @@ def avgcostbyservice_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-		[dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
-		AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
-		COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
-		
-		from [dbo].[SERVICE]
-		join [dbo].[SERVICE_LINE]
-		on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
-		join [dbo].[SERVICE_ORDER]
-		on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
-		join [dbo].[SERVICE_LINE_PART]
-		on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
-		
-		GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
-		ORDER BY 'Service Type';
+        COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Number of Services Completed',
+        [dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
+        FORMAT(AVG([dbo].[SERVICE_LINE].[LINE_COST]), 'C') as 'Average Total Cost'
+        from [dbo].[SERVICE]
+        join [dbo].[SERVICE_LINE]
+        on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
+        join [dbo].[SERVICE_ORDER]
+        on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
+        join [dbo].[SERVICE_LINE_PART]
+        on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
+        GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
+        ORDER BY 'Service Type';
     """)
     data = cursor.fetchall()
     conn.commit()
