@@ -48,14 +48,14 @@ CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID|C_ADDRESS_LINE1|C_A
 47|Salinas|Hector|H Salinas Trucking|1|1|105 Johnson St||Houston|Texas|77042|United States|324-453-5454|hectorsalinas@gmail.com
 48|Martin|Katia||1|0|3742 Lakeview Dr||Houston|Texas|88428|United States|833-234-3823|katiamartin@gmail.com
 49|Jack|Billy|Billy Jack Construction Co|1|1|6493 Streetview Dr||Houston|Texas|83233|United States|382-381-4272|billyjack@gmail.com
-50|Vasquez|Edmond||1|0|1st Street||Austin|Texas|77332|United States|742-484-2483|edmonvasquez@gmail.com
-51|Lamar|Vince|Vince Delivery|1|1|2nd Street||Austin|Texas|37424|United States|742-472-4750|vincelamar@gmail.com
-52|Alvarez|Zach|Visa Pool Plastering|1|1|3rd Street||Austin|Texas|84714|United States|848-427-4827|zachalvarez@gmail.com
-53|Jones|Brandon|BJ Vacumme|1|1|37812 Adams Ave||Dallas|Texas|88252|United States|833-314-5642|brandonjones@gmail.com
-54|Romar|Alex|Romar Unlimited Incorporation|1|1|1231 Jefferson Dr||Pasadina|Texas|37718|United States|382-241-4141|alexromar@gmail.com
-55|Schmitz|Glenn|J&B Pavelk Inc.|1|1|1847 Rockerfeller St||Fort Worth|Texas|77187|United States|832-238-3378|glennchmitz@gmail.com
-56|Diggs|Tom|Hauling Valley LLC|1|1|4727 Aber Ln||Houston|Texas|72878|United States|372-374-5378|tomdiggs@gmail.com
-57|Sorto|Dionicio||1|0|74232 Amaya Avenue||Houston|Texas|71878|United States|821-438-4387|dioniciosorto@gmail.com
+50|Vasquez|Edmond||3|0|1st Street||Austin|Texas|77332|United States|742-484-2483|edmonvasquez@gmail.com
+51|Lamar|Vince|Vince Delivery|3|1|2nd Street||Austin|Texas|37424|United States|742-472-4750|vincelamar@gmail.com
+52|Alvarez|Zach|Visa Pool Plastering|3|1|3rd Street||Austin|Texas|84714|United States|848-427-4827|zachalvarez@gmail.com
+53|Jones|Brandon|BJ Vacumme|3|1|37812 Adams Ave||Dallas|Texas|88252|United States|833-314-5642|brandonjones@gmail.com
+54|Romar|Alex|Romar Unlimited Incorporation|3|1|1231 Jefferson Dr||Pasadina|Texas|37718|United States|382-241-4141|alexromar@gmail.com
+55|Schmitz|Glenn|J&B Pavelk Inc.|3|1|1847 Rockerfeller St||Fort Worth|Texas|77187|United States|832-238-3378|glennchmitz@gmail.com
+56|Diggs|Tom|Hauling Valley LLC|3|1|4727 Aber Ln||Houston|Texas|72878|United States|372-374-5378|tomdiggs@gmail.com
+57|Sorto|Dionicio||3|0|74232 Amaya Avenue||Houston|Texas|71878|United States|821-438-4387|dioniciosorto@gmail.com
 58|Sheridan|MJ||1|0|3728 Brett Way||College Station|Texas|72387|United States|327-274-2741|mjsheridan@gmail.com
 59|Hamrick|Bill|FAA Truck|2|1|73277 Briarcliffe Court||College Station|Texas|73874|United States|832-492-4788|billhamrick@gmail.com
 60|Dugas|KJ||2|0|83748 Britton Drive||College Station|Texas|83781|United States|489-248-2498|kjdugas@gmail.com
