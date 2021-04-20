@@ -1360,8 +1360,8 @@ def employeeservice_report():
         return render_template('login.html')    
     cursor.execute("""
         SELECT
-		EMPLOYEE.EMP_FNAME AS 'First Name',
-		EMPLOYEE.EMP_LNAME AS 'Last Name',
+		EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+		EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service Order ID',
 		SERVICE.SERVICE_TYPE AS 'Service',
 		SERVICE_ORDER.ORDER_DATE AS 'Order Date'
