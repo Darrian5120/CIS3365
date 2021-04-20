@@ -31,6 +31,7 @@
         </table>
         <form action="" method="post" id="frm">
             <p>
+                <!--https://www.w3schools.com/tags/tag_datalist.asp-->
                 <label for="customer">Customer</label>
                 <select name="customer" id="customer">
                     {% for customer in customers[0:] %}
@@ -59,13 +60,17 @@
                 </select>
             </p>
             <p>
-                <label for="part">Parts</label>
+                <label for="part">Supplier</label>
                 <select name="part" id="part">
                     {% for part in parts[0:] %}
-                    <option value="{{ part }}" >{{ part }}</option>
+                    <option value="{{ part }}" >{{ part }}</option>"
                     {% endfor %}
                 </select>
             </p>
+            <p>
+                <label for="supplier">Supplier</label>
+                <select id="supplier" name="supplier" ></select>
+            <p>
             <p>
                 <label for="part">Payment</label>
                 <select name="payment" id="payment">
@@ -93,6 +98,8 @@
             function replaceAll(str, find, replace) {
                 return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
             }
+
+            // customer and vehicle
             var str = "{{ data|safe }}"; 
             var new_str = replaceAll(str, "'", "\"");
             var vehicles = JSON.parse(new_str); 
@@ -100,6 +107,21 @@
             var $vehicles = $('#vehicle');
             $('#customer').change(function () {
                 var customer = $(this).val(), lcns = vehicles[customer] || [];
+                
+                var html = $.map(lcns, function(lcn){
+                    return '<option value="' + lcn + '">' + lcn + '</option>'
+                }).join('');
+                $vehicles.html(html)
+            });
+
+            // supplier and part
+            var str1 = "{{ data1|safe }}"; 
+            var new_str1 = replaceAll(str1, "'", "\"");
+            var vehicles1 = JSON.parse(new_str1); 
+
+            var $vehicles1 = $('#supplier');
+            $('#part').change(function () {
+                var part = $(this).val(), lcns = vehicles1[part] || [];
                 
                 var html = $.map(lcns, function(lcn){
                     return '<option value="' + lcn + '">' + lcn + '</option>'

@@ -1307,11 +1307,10 @@ def view_services():
 # Not finish dont know how to add service line
 @app.route('/services/new-service', methods = ['POST', 'GET'])
 def new_service():
-    if not session.get('logged_in'):
-        return render_template('login.html')    
+    #if not session.get('logged_in'):
+    #    return render_template('login.html')    
     # basic information
     # select customers vehicle for service
-    #cursor.execute("SELECT CUSTOMER_ID, V_ID FROM CUSTOMER_VEHICLE")
     cursor.execute("""
         SELECT Customer.C_LNAME, CUSTOMER_VEHICLE.V_ID
         FROM CUSTOMER
@@ -1323,11 +1322,21 @@ def new_service():
     data = {}
     for (customer, vehicle) in cursor:
         data.setdefault(customer, []).append(vehicle)
+    cursor.execute("""
+        SELECT PART_NAME, SUPPLIER_NAME 
+        FROM SUPPLIER 
+        JOIN SUPPLIER_PART ON SUPPLIER.SUPPLIER_ID=SUPPLIER_PART.SUPPLIER_ID
+        JOIN PART ON SUPPLIER_PART.PART_ID=PART.PART_ID
+    """)
+    data1 = {}
+    for (part, supplier) in cursor:
+        data1.setdefault(part, []).append(supplier)
     # select customer for service
     cursor.execute("SELECT CUSTOMER_ID, C_FNAME, C_LNAME FROM Customer")
     rows = cursor.fetchall()
     customers = []
     for customer in rows:
+        #customers.append(str(customer[0])+" "+str(customer[1])+" "+str(customer[2])
         customers.append(customer)
     # select service
     cursor.execute("SELECT SERVICE_ID, SERVICE_TYPE FROM SERVICE")
@@ -1405,26 +1414,29 @@ def new_service():
         cursor.execute(qry,vals)
         conn.commit()
         # insert payment revenue
-        qry = "INSERT INTO PAYMENT_REVENUE(REVENUE_ID. PMT_ID, INVOICE_ID, SERVICE_ORDER_ID, REVENUE_VALUE) VALUES (?,?,?,?,?)"
+        qry = "INSERT INTO PAYMENT_REVENUE(REVENUE_ID, PMT_ID, INVOICE_ID, SERVICE_ORDER_ID, REVENUE_VALUE) VALUES (?,?,?,?,?)"
         vals = (1, payment, invoice_id, service_order_id, cost)
         cursor.execute(qry,vals)
         conn.commit()
         return render_template('services.html')
         # insert service_line_part
         part = request.form.get('part')
-        print(part)
         qry = "INSERT INTO SERVICE_LINE_PART (SERVICE_ORDER_ID, SERVICE_ID, PART_ID) VALUES (?,?,?)"
         vals = (service_order_id, service_id, part)
         cursor.execute(qry,vals)
         conn.commit()
         # insert employee service line assignment
         employee = request.form.get('employee')
-        print(employee)
         qry = "INSERT INTO EMPLOYEE_SERVICE_LINE_ASSIGNMENT (SERVICE_ORDER_ID, SERVICE_ID, EMPLOYEE_ID) VALUES (?,?,?)"
         vals = (service_order_id, service_id, employee)
         cursor.execute(qry,vals)
         conn.commit()
-    return render_template('newservice.html', customers=customers,data=data,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
+        #update supplier_part inventory
+        qry="UPDATE SUPPLIER_PART SET QUANTITY = {} WHERE PART_ID={} AND SUPPLIER_ID={}"
+        vals = (service_order_id, service_id, employee)
+        cursor.execute(qry,vals)
+        conn.commit()
+    return render_template('newservice.html', customers=customers,data=data,data1=data1,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
                       
 # modify service
 @app.route('/service/upate', methods = ['POST', 'GET'])
@@ -1817,8 +1829,8 @@ def update_supplier():
 
 @app.route('/suppliers/update-inventory', methods = ['POST','GET'])
 def update_inventory():
-    #if not session.get('logged_in'):
-    #    return render_template('login.html')    
+    if not session.get('logged_in'):
+        return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER_NAME, PART_NAME 
         FROM SUPPLIER 
@@ -1828,7 +1840,6 @@ def update_inventory():
     data = {}
     for (supplier, part) in cursor:
         data.setdefault(supplier, []).append(part)
-    print(data)
     cursor.execute("SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER")
     rows = cursor.fetchall()
     suppliers = []
@@ -1837,8 +1848,19 @@ def update_inventory():
     if request.method == 'POST':
         supplier = request.form.get("supplier")
         part = request.form.get("part")
-        print(supplier)
-        print(part)
+        amount = request.form.get("amount")
+        cursor.execute("""
+            SELECT SUPPLIER_PART.SUPPLIER_ID, SUPPLIER_PART.PART_ID 
+            FROM SUPPLIER 
+            JOIN SUPPLIER_PART ON SUPPLIER.SUPPLIER_ID=SUPPLIER_PART.SUPPLIER_ID
+            JOIN PART ON SUPPLIER_PART.PART_ID=PART.PART_ID
+            WHERE SUPPLIER.SUPPLIER_NAME = '{}' AND PART.PART_NAME = '{}'
+        """.format(supplier,part))
+        x = cursor.fetchall()
+        sup = x[0][0]
+        part = x[0][1]
+        cursor.execute("UPDATE SUPPLIER_PART SET QUANTITY = {} WHERE PART_ID={} AND SUPPLIER_ID={}".format(amount,part,sup))
+        conn.commit()
         return render_template('suppliers.html')
     return render_template("updateinventory.html",data=data,suppliers=suppliers)
 
