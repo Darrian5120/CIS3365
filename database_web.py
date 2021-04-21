@@ -18,6 +18,7 @@ import os
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
+app.secret_key = os.urandom(12)
 ############################# HOME PAGE ####################################################
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,6 +27,12 @@ def login():
         return render_template('home.html')
     else:
         flash('wrong password!')
+        return render_template('login.html')
+
+@app.route('/logout', methods=['GET', 'POST'])
+def login():
+    session['logged_in'] = False
+    return render_template('home.html')
     
 # create first route map to url functions. home mapped to '/'
 # Home page for the web app where user can choose CRUD operations.
@@ -200,16 +207,15 @@ def view_customers():
     if not session.get('logged_in'):
         return render_template('login.html')
     cursor.execute("""
-        SELECT *
+        SELECT CUSTOMER_ID,C_FNAME,C_LNAME,ISNULL(C_BUSINESS_NAME,''),CUSTOMER_STATUS.ACTIVE_NAME,
+        CUSTOMER_TYPE.BUSINESS,C_ADDRESS_LINE1,ISNULL(C_ADDRESS_LINE2,''),C_CITY,STATE_NAME,C_ZIP,COUNTRY_NAME,
+        C_PHONE,C_EMAIL
 
         FROM Customer
         JOIN CUSTOMER_TYPE
         ON Customer.BUSINESS_ID = CUSTOMER_TYPE.BUSINESS_ID
         JOIN CUSTOMER_STATUS
         ON Customer.ACTIVE_ID = CUSTOMER_STATUS.ACTIVE_ID
-
-        
-        ORDER BY CUSTOMER.ACTIVE_ID, Customer.CUSTOMER_ID
     """)
     data = cursor.fetchall()
     return render_template('viewCustomers.html', data = data)
@@ -281,11 +287,12 @@ def customerowed_report():
 		CUSTOMER.C_LNAME AS 'Last Name',
 		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		SERVICE.SERVICE_TYPE AS 'Service Type',
-		INVOICE.AMT_OWED AS 'Amount Owed',
 		INVOICE.INVOICE_DATE AS 'Invoice Date',
 		MAKE.MAKE_NAME AS 'Make',
 		MODEL.MODEL_NAME AS 'Model',
-		VEHICLE.V_LICENSE_PLATE AS 'License Plate'
+		VEHICLE.V_LICENSE_PLATE AS 'License Plate',
+        FORMAT(INVOICE.AMT_OWED, 'C') AS 'Amount Owed'
+		
 
 		FROM CUSTOMER
 		JOIN SERVICE_ORDER ON CUSTOMER.CUSTOMER_ID = SERVICE_ORDER.CUSTOMER_ID
@@ -409,9 +416,9 @@ def customerpayservice_report():
 		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		Customer.C_FNAME AS 'Customer First Name',
 		Customer.C_LNAME AS 'Customer Last Name',
-		INVOICE_PAYMENT.PMT_AMOUNT AS 'Payment Amount',
 		PAYMENT.PMT_TYPE AS 'Payment Type',
-		SERVICE.SERVICE_TYPE AS 'Service Type'
+		SERVICE.SERVICE_TYPE AS 'Service Type',
+        FORMAT(INVOICE_PAYMENT.PMT_AMOUNT, 'C') AS 'Payment Amount'
 
 
 		FROM Customer
@@ -1358,8 +1365,8 @@ def employeeservice_report():
         return render_template('login.html')    
     cursor.execute("""
         SELECT
-		EMPLOYEE.EMP_FNAME AS 'First Name',
-		EMPLOYEE.EMP_LNAME AS 'Last Name',
+		EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+		EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service Order ID',
 		SERVICE.SERVICE_TYPE AS 'Service',
 		SERVICE_ORDER.ORDER_DATE AS 'Order Date'
@@ -1479,8 +1486,8 @@ def activeemppayrate_report():
         SELECT EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
         EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
         ROLE.ROLE_NAME AS 'Job Role',
-        ROLE.PAY_RATE AS 'Hourly Pay',
-        Employee_Status.ACTIVE_NAME AS 'Status'
+        Employee_Status.ACTIVE_NAME AS 'Status',
+        FORMAT(ROLE.PAY_RATE AS, 'C') 'Hourly Pay'
 
 		FROM EMPLOYEE
 
@@ -1833,15 +1840,18 @@ def delete_sevice():
         
     return render_template('updateinvoice.html', invoices = invoices)
 
-   
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
     if not session.get('logged_in'):
         return render_template('login.html')    
     cursor.execute("""
-        SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_LNAME AS 'Last Name', Customer.C_FNAME AS 'First Name',
-        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', SERVICE.SERVICE_TYPE AS 'Service Name',  SERVICE.COST AS 'Cost',
-        PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value'
+        SELECT Customer.CUSTOMER_ID AS 'Customer ID', 
+        Customer.C_LNAME AS 'Last Name', 
+        Customer.C_FNAME AS 'First Name',
+        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', 
+        SERVICE.SERVICE_TYPE AS 'Service Name',  
+        PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value',
+        FORMAT(SERVICE.COST, 'C') AS 'Cost'
 
         FROM CUSTOMER
         JOIN SERVICE_ORDER
@@ -1876,10 +1886,10 @@ def monthlytotalserviceorder_report():
         SELECT
 		count(SERVICE_ORDER.SERVICE_ORDER_ID) AS 'Total Orders',
 		FORMAT(SERVICE_ORDER.ORDER_DATE,'MM/yyyy') As 'Month and Year',
-		Sum(INVOICE.TOTAL_COST) AS 'Cost',
 		INVOICE_STATUS.ACTIVE_NAME AS 'Invoice Status',
-		SERVICE_ORDER_STATUS.ACTIVE_NAME As 'Progress Status'
-		
+		SERVICE_ORDER_STATUS.ACTIVE_NAME As 'Progress Status',
+		FORMAT(Sum(INVOICE.TOTAL_COST), 'C') AS 'Cost'
+
 		From SERVICE_ORDER
 		Join INVOICE
 		On SERVICE_ORDER.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID
@@ -1902,26 +1912,14 @@ def serviceactivepremcust_report():
     if not session.get('logged_in'):
         return render_template('login.html')    
     cursor.execute("""
-        SELECT
-		Customer.CUSTOMER_ID AS 'Customer ID',
-		Customer.C_FNAME AS 'First Name',
-		Customer.C_LNAME AS 'Last Name',
-		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
-		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID',
-		SERVICE_ORDER.DATE  AS 'Date',
-		INVOICE.AMT_OWED AS 'Amount Owed'
-
-		FROM Customer
-		JOIN SERVICE_ORDER
-		ON Customer.CUSTOMER_ID = SERVICE_ORDER.CUSTOMER_ID
-		JOIN INVOICE
-		ON SERVICE_ORDER.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID
-
-		WHERE CUSTOMER.ACTIVE_ID = 3
-
-		ORDER BY Customer.CUSTOMER_ID;
+        SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_FNAME AS 'First Name',
+        Customer.C_LNAME AS 'Last Name', ISNULL(CUSTOMER.C_BUSINESS_NAME,'') AS 'Business Name',
+        SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID', SERVICE_ORDER.ORDER_DATE  AS 'Date'  
+        FROM Customer JOIN SERVICE_ORDER ON Customer.CUSTOMER_ID = SERVICE_ORDER.CUSTOMER_ID  
+        WHERE CUSTOMER.ACTIVE_ID = 3  ORDER BY Customer.CUSTOMER_ID
     """)
     data = cursor.fetchall()
+    print(data)
     conn.commit()
     return render_template('report_serviceactivepremcust.html', data = data)
 	
@@ -1966,8 +1964,8 @@ def servicecost_report():
 		SELECT @minimumCost = 1
 		SELECT DISTINCT
 		Invoice.SERVICE_ORDER_ID AS 'Service Order ID',
-		Invoice.TOTAL_COST AS 'Total Cost',
-		Invoice.INVOICE_DATE AS 'Invoice Date'
+		Invoice.INVOICE_DATE AS 'Invoice Date',
+        FORMAT(Invoice.TOTAL_COST, 'C') AS 'Total Cost'
 
 		FROM INVOICE_PAYMENT
 		JOIN INVOICE ON INVOICE_PAYMENT.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID AND INVOICE_PAYMENT.INVOICE_ID = INVOICE.INVOICE_ID
@@ -1990,20 +1988,20 @@ def avgcostbyservice_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-		[dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
-		AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
-		COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
-		
-		from [dbo].[SERVICE]
-		join [dbo].[SERVICE_LINE]
-		on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
-		join [dbo].[SERVICE_ORDER]
-		on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
-		join [dbo].[SERVICE_LINE_PART]
-		on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
-		
-		GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
-		ORDER BY 'Service Type';
+        COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Number of Services Completed',
+        [dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
+        FORMAT(AVG([dbo].[SERVICE_LINE].[LINE_COST]), 'C') as 'Average Total Cost'
+        from [dbo].[SERVICE]
+        join [dbo].[SERVICE_LINE]
+        on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
+        join [dbo].[SERVICE_ORDER]
+        on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
+        join [dbo].[SERVICE_LINE_PART]
+        on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
+        GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
+        ORDER BY 'Service Type';
+ 
+
     """)
     data = cursor.fetchall()
     conn.commit()
@@ -2082,7 +2080,7 @@ def currentyearinvoice_report():
 		PAYMENT.PMT_TYPE AS 'Payment Type',
 		Customer.C_FNAME AS 'Customer First Name',
 		Customer.C_LNAME AS 'Customer Last Name',
-		Customer.C_PHONE AS 'Customer Phone Number'
+		Customer.C_PHONE AS 'Customer Phone Number',
 		VEHICLE.V_VIN AS 'VIN Worked On'
 
 		FROM INVOICE
@@ -2634,8 +2632,6 @@ if __name__ == '__main__':
     #conn = pyodbc.connect('Driver={SQL Server};'
     #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
     #                    'Database=CoogTechSolutions;'
-    #                    'UID=;'
-    #                    'PWD=;'
     #                    'Trusted_Connection=no;')
     conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
                         'Server=DESKTOP-9PNG3JO;'

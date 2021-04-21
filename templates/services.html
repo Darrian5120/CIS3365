@@ -18,11 +18,12 @@
             .genres a:hover {background-color:rgb(165, 58, 58); color:black}
             
             #td {width: 16%; text-align: center; margin: 0; padding: 0;}
+	    #ahref {text-decoration: none; color: inherit;}
         </style>
 	</head>
 	<body>
         <div class="header">
-            <h1>Herrera Fabricating Inc.</h1>
+            <h1><a href ="/" id="ahref">Herrera Fabricating Inc.</h1>
         </div>
         <table class="topnav" cellspacing="0" cellpadding="0">
             <tr>
@@ -35,11 +36,22 @@
             </tr>
         </table>
         <div class="genres">
-            <a href ="/services/new-service">Add New Service</a>
-            <a href ="/services/update-service">Modify Service</a>
-            <a href ="/services/delete-service">Set Service Inactive</a>
-            <a href ="/services/view-services">View Services</a>
+        	<a href ="/services/new-service"><b>Add New Service</b></a>
+		<a href ="/services/update-service"><b>Modify Service</b></a>
+		<a href ="/services/delete-service"><b>Set Service Inactive</b></a>
+        	<a href ="/services/view-services"><b>View Services</b></a>
+            <a></a>
             <a href ="/services/revenue-report">Revenue Report</a>
+            <a href ="/services/monthlytotalserviceorder-report">Monthly Total Service Report</a>
+            <a href ="/services/servicecost-report">Service Cost Report</a>
+            <a href ="/services/avgcostbyservice-report">Average Cost Report</a>
+            <a href ="/services/recentservin-report">Recent Service Report</a>
+            <a href ="/services/partwithservice-report">Service Part Report</a>
+            <a href ="/services/currentyearinvoice-report">Yearly Invoice Report</a>
+            <a href ="/services/currentyearorder-report">Yearly Order Report</a>
+            <a href ="/services/repairs-report">Repairs Report</a>
+            <a href ="/services/serviceactivepremcust-report">Service Active Customer Report</a>
+
         </div>
     </body>
     <script>
