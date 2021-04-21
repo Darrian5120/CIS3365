@@ -410,9 +410,9 @@ def customerpayservice_report():
 		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		Customer.C_FNAME AS 'Customer First Name',
 		Customer.C_LNAME AS 'Customer Last Name',
-		INVOICE_PAYMENT.PMT_AMOUNT AS 'Payment Amount',
 		PAYMENT.PMT_TYPE AS 'Payment Type',
-		SERVICE.SERVICE_TYPE AS 'Service Type'
+		SERVICE.SERVICE_TYPE AS 'Service Type',
+        FORMAT(INVOICE_PAYMENT.PMT_AMOUNT, 'C') AS 'Payment Amount'
 
 
 		FROM Customer
@@ -1359,8 +1359,8 @@ def employeeservice_report():
         return render_template('login.html')    
     cursor.execute("""
         SELECT
-		EMPLOYEE.EMP_FNAME AS 'First Name',
-		EMPLOYEE.EMP_LNAME AS 'Last Name',
+		EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+		EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service Order ID',
 		SERVICE.SERVICE_TYPE AS 'Service',
 		SERVICE_ORDER.ORDER_DATE AS 'Order Date'
