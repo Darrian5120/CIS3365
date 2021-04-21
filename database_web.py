@@ -1833,7 +1833,6 @@ def delete_sevice():
         
     return render_template('updateinvoice.html', invoices = invoices)
 
-   
 @app.route ('/services/revenue-report' , methods = ['GET'])
 def revenue_report():
     if not session.get('logged_in'):
