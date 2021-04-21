@@ -1982,20 +1982,20 @@ def avgcostbyservice_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-		[dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
-		AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
-		COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
-		
-		from [dbo].[SERVICE]
-		join [dbo].[SERVICE_LINE]
-		on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
-		join [dbo].[SERVICE_ORDER]
-		on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
-		join [dbo].[SERVICE_LINE_PART]
-		on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
-		
-		GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
-		ORDER BY 'Service Type';
+        COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Number of Services Completed',
+        [dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
+        FORMAT(AVG([dbo].[SERVICE_LINE].[LINE_COST]), 'C') as 'Average Total Cost'
+        from [dbo].[SERVICE]
+        join [dbo].[SERVICE_LINE]
+        on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
+        join [dbo].[SERVICE_ORDER]
+        on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
+        join [dbo].[SERVICE_LINE_PART]
+        on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
+        GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
+        ORDER BY 'Service Type';
+ 
+
     """)
     data = cursor.fetchall()
     conn.commit()
