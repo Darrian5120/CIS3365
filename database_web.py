@@ -1901,26 +1901,14 @@ def serviceactivepremcust_report():
     if not session.get('logged_in'):
         return render_template('login.html')    
     cursor.execute("""
-        SELECT
-		Customer.CUSTOMER_ID AS 'Customer ID',
-		Customer.C_FNAME AS 'First Name',
-		Customer.C_LNAME AS 'Last Name',
-		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
-		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID',
-		SERVICE_ORDER.ORDER_DATE  AS 'Date',
-		INVOICE.AMT_OWED AS 'Amount Owed'
-
-		FROM Customer
-		JOIN SERVICE_ORDER
-		ON Customer.CUSTOMER_ID = SERVICE_ORDER.CUSTOMER_ID
-		JOIN INVOICE
-		ON SERVICE_ORDER.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID
-
-		WHERE CUSTOMER.ACTIVE_ID = 3
-
-		ORDER BY Customer.CUSTOMER_ID;
+        SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_FNAME AS 'First Name',
+        Customer.C_LNAME AS 'Last Name', ISNULL(CUSTOMER.C_BUSINESS_NAME,'') AS 'Business Name',
+        SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID', SERVICE_ORDER.ORDER_DATE  AS 'Date'  
+        FROM Customer JOIN SERVICE_ORDER ON Customer.CUSTOMER_ID = SERVICE_ORDER.CUSTOMER_ID  
+        WHERE CUSTOMER.ACTIVE_ID = 3  ORDER BY Customer.CUSTOMER_ID
     """)
     data = cursor.fetchall()
+    print(data)
     conn.commit()
     return render_template('report_serviceactivepremcust.html', data = data)
 	
