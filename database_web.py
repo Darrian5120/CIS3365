@@ -1907,7 +1907,7 @@ def serviceactivepremcust_report():
 		Customer.C_LNAME AS 'Last Name',
 		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service ID',
-		SERVICE_ORDER.DATE  AS 'Date',
+		SERVICE_ORDER.ORDER_DATE  AS 'Date',
 		INVOICE.AMT_OWED AS 'Amount Owed'
 
 		FROM Customer
