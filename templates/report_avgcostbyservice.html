@@ -46,9 +46,9 @@
             <tbody>
                 {% for row in data %}    
                     <tr>
-                        <td aign = "left">{{row[0]}}</td>
-                        <td aign = "right">{{row[1]}}</td>
-                        <td aign = "left">{{row[2]}}</td>
+                        <td align = "left">{{row[0]}}</td>
+                        <td align = "right" >${{row[1]}}</td>
+                        <td align = "right">{{row[2]}}</td>
                        
                     </tr>
                 {% endfor %}
@@ -56,6 +56,8 @@
         </table> 
     </body>
     <script>
-
+        function strip(number) {
+            return (parseFloat(number).toPrecision(12));
+        }
     </script>
 </html>

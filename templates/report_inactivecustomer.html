@@ -40,7 +40,6 @@
                     <th>First Name</th>
                     <th>Last name</th>
                     <th>Type</th>
-                    <th>Phone Number</th>
                     <th>Active</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -49,12 +48,12 @@
             <tbody>
                 {% for row in data %}    
                     <tr>
-                        <td>{{row[0]}}</td>
-                        <td>{{row[1]}}</td>
-                        <td>{{row[2]}}</td>
-                        <td>{{row[3]}}</td>
-                        <td>{{row[4]}}</td>
-                        <td>{{row[5]}}</td>
+                        <td align="left">{{row[0]}}</td>
+                        <td align="left">{{row[1]}}</td>
+                        <td align="left">{{row[2]}}</td>
+                        <td align="left">{{row[3]}}</td>
+                        <td align="right">{{row[4]}}</td>
+                        <td align="left">{{row[5]}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
