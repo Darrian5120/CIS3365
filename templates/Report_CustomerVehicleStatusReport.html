@@ -40,25 +40,25 @@
                     <th>Customer ID</th>
                     <th>First name</th>
                     <th>Last Name</th>
-		    <th>Vehicle ID</th>
+		            <th>Vehicle ID</th>
                     <th>Make</th>
                     <th>Model</th>
                     <th>Year</th>
-		    <th>Status</th>
+		            <th>Status</th>
 
                 </tr>
             </thead>    
             <tbody>
                 {% for row in data %}    
                     <tr>
-                        <td>{{row[0]}}</td>
-                        <td>{{row[1]}}</td>
-                        <td>{{row[2]}}</td>
-                        <td>{{row[3]}}</td>
-                        <td>{{row[4]}}</td>
-                        <td>{{row[5]}}</td>
-                        <td>{{row[6]}}</td>
-                        <td>{{row[7]}}</td>
+                        <td align = "right">{{row[0]}}</td>
+                        <td align = "left">{{row[1]}}</td>
+                        <td align = "left">{{row[2]}}</td>
+                        <td align = "right">{{row[3]}}</td>
+                        <td align = "left">{{row[4]}}</td>
+                        <td align = "left">{{row[5]}}</td>
+                        <td align = "right">{{row[6]}}</td>
+                        <td align = "left">{{row[7]}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
