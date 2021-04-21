@@ -18,6 +18,7 @@ import os
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
+app.secret_key = os.urandom(12)
 ############################# HOME PAGE ####################################################
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,6 +27,12 @@ def login():
         return render_template('home.html')
     else:
         flash('wrong password!')
+        return render_template('login.html')
+
+@app.route('/logout', methods=['GET', 'POST'])
+def login():
+    session['logged_in'] = False
+    return render_template('home.html')
     
 # create first route map to url functions. home mapped to '/'
 # Home page for the web app where user can choose CRUD operations.
@@ -200,16 +207,15 @@ def view_customers():
     if not session.get('logged_in'):
         return render_template('login.html')
     cursor.execute("""
-        SELECT *
+        SELECT CUSTOMER_ID,C_FNAME,C_LNAME,ISNULL(C_BUSINESS_NAME,''),CUSTOMER_STATUS.ACTIVE_NAME,
+        CUSTOMER_TYPE.BUSINESS,C_ADDRESS_LINE1,ISNULL(C_ADDRESS_LINE2,''),C_CITY,STATE_NAME,C_ZIP,COUNTRY_NAME,
+        C_PHONE,C_EMAIL
 
         FROM Customer
         JOIN CUSTOMER_TYPE
         ON Customer.BUSINESS_ID = CUSTOMER_TYPE.BUSINESS_ID
         JOIN CUSTOMER_STATUS
         ON Customer.ACTIVE_ID = CUSTOMER_STATUS.ACTIVE_ID
-
-        
-        ORDER BY CUSTOMER.ACTIVE_ID, Customer.CUSTOMER_ID
     """)
     data = cursor.fetchall()
     return render_template('viewCustomers.html', data = data)
@@ -2626,8 +2632,6 @@ if __name__ == '__main__':
     #conn = pyodbc.connect('Driver={SQL Server};'
     #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
     #                    'Database=CoogTechSolutions;'
-    #                    'UID=;'
-    #                    'PWD=;'
     #                    'Trusted_Connection=no;')
     conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
                         'Server=DESKTOP-9PNG3JO;'
