@@ -1839,9 +1839,13 @@ def revenue_report():
     if not session.get('logged_in'):
         return render_template('login.html')    
     cursor.execute("""
-        SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_LNAME AS 'Last Name', Customer.C_FNAME AS 'First Name',
-        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', SERVICE.SERVICE_TYPE AS 'Service Name',  SERVICE.COST AS 'Cost',
-        PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value'
+        SELECT Customer.CUSTOMER_ID AS 'Customer ID', 
+        Customer.C_LNAME AS 'Last Name', 
+        Customer.C_FNAME AS 'First Name',
+        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', 
+        SERVICE.SERVICE_TYPE AS 'Service Name',  
+        PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value',
+        FORMAT(SERVICE.COST, 'C') AS 'Cost'
 
         FROM CUSTOMER
         JOIN SERVICE_ORDER
