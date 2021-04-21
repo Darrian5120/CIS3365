@@ -3,7 +3,7 @@ USE CoogTechSolutions
 SELECT SERVICE_ORDER.SERVICE_ORDER_ID AS 'Order ID',
 SERVICE_ORDER.ORDER_DATE AS 'Date Ordered',
 SERVICE_ORDER_STATUS.ACTIVE_NAME AS 'Order Status' ,
-INVOICE.TOTAL_COST AS 'Cost',
+FORMAT (INVOICE.TOTAL_COST, 'C') AS 'Cost',
 Customer.C_LNAME AS 'Customer Last Name',
 Customer.C_FNAME AS 'Customer First Name'
 
