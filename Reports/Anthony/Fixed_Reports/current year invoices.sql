@@ -8,7 +8,7 @@ INVOICE.INVOICE_DATE AS 'Date',
 PAYMENT.PMT_TYPE AS 'Payment Type',
 Customer.C_FNAME AS 'Customer First Name',
 Customer.C_LNAME AS 'Customer Last Name',
-Customer.C_PHONE AS 'Customer Phone Number'
+Customer.C_PHONE AS 'Customer Phone Number',
 VEHICLE.V_VIN AS 'VIN Worked On'
 
 FROM INVOICE
