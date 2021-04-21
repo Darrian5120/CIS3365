@@ -1839,9 +1839,13 @@ def revenue_report():
     if not session.get('logged_in'):
         return render_template('login.html')    
     cursor.execute("""
-        SELECT Customer.CUSTOMER_ID AS 'Customer ID', Customer.C_LNAME AS 'Last Name', Customer.C_FNAME AS 'First Name',
-        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', SERVICE.SERVICE_TYPE AS 'Service Name',  SERVICE.COST AS 'Cost',
-        PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value'
+        SELECT Customer.CUSTOMER_ID AS 'Customer ID', 
+        Customer.C_LNAME AS 'Last Name', 
+        Customer.C_FNAME AS 'First Name',
+        ACCOUNT_REVENUE.REVENUE_NAME AS 'Revenue Name', 
+        SERVICE.SERVICE_TYPE AS 'Service Name',  
+        PAYMENT_REVENUE.REVENUE_VALUE AS 'Revenue Value',
+        FORMAT(SERVICE.COST, 'C') AS 'Cost'
 
         FROM CUSTOMER
         JOIN SERVICE_ORDER
@@ -1876,10 +1880,10 @@ def monthlytotalserviceorder_report():
         SELECT
 		count(SERVICE_ORDER.SERVICE_ORDER_ID) AS 'Total Orders',
 		FORMAT(SERVICE_ORDER.ORDER_DATE,'MM/yyyy') As 'Month and Year',
-		Sum(INVOICE.TOTAL_COST) AS 'Cost',
 		INVOICE_STATUS.ACTIVE_NAME AS 'Invoice Status',
-		SERVICE_ORDER_STATUS.ACTIVE_NAME As 'Progress Status'
-		
+		SERVICE_ORDER_STATUS.ACTIVE_NAME As 'Progress Status',
+		FORMAT(Sum(INVOICE.TOTAL_COST), 'C') AS 'Cost'
+
 		From SERVICE_ORDER
 		Join INVOICE
 		On SERVICE_ORDER.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID
@@ -1954,8 +1958,8 @@ def servicecost_report():
 		SELECT @minimumCost = 1
 		SELECT DISTINCT
 		Invoice.SERVICE_ORDER_ID AS 'Service Order ID',
-		Invoice.TOTAL_COST AS 'Total Cost',
-		Invoice.INVOICE_DATE AS 'Invoice Date'
+		Invoice.INVOICE_DATE AS 'Invoice Date',
+        FORMAT(Invoice.TOTAL_COST, 'C') AS 'Total Cost'
 
 		FROM INVOICE_PAYMENT
 		JOIN INVOICE ON INVOICE_PAYMENT.SERVICE_ORDER_ID = INVOICE.SERVICE_ORDER_ID AND INVOICE_PAYMENT.INVOICE_ID = INVOICE.INVOICE_ID
@@ -1978,20 +1982,20 @@ def avgcostbyservice_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-		[dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
-		AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
-		COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
-		
-		from [dbo].[SERVICE]
-		join [dbo].[SERVICE_LINE]
-		on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
-		join [dbo].[SERVICE_ORDER]
-		on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
-		join [dbo].[SERVICE_LINE_PART]
-		on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
-		
-		GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
-		ORDER BY 'Service Type';
+        COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Number of Services Completed',
+        [dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
+        FORMAT(AVG([dbo].[SERVICE_LINE].[LINE_COST]), 'C') as 'Average Total Cost'
+        from [dbo].[SERVICE]
+        join [dbo].[SERVICE_LINE]
+        on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
+        join [dbo].[SERVICE_ORDER]
+        on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
+        join [dbo].[SERVICE_LINE_PART]
+        on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
+        GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
+        ORDER BY 'Service Type';
+ 
+
     """)
     data = cursor.fetchall()
     conn.commit()
