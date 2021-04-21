@@ -435,23 +435,24 @@ def totalspendcus_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-        [dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
-        ISNULL([dbo].[Customer].[C_FNAME], ' ') as 'First Name',
-        ISNULL([dbo].[Customer].[C_LNAME], ' ') as 'Last Name',
-        ISNULL([dbo].[Customer].[C_BUSINESS_NAME], ' ') as 'Business Name',
-        [dbo].[Customer].[C_PHONE] as 'Customer Contact',
-        MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
-        FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
-        
-        FROM [dbo].[Customer]
-        JOIN [dbo].[SERVICE_ORDER]
-        ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[SERVICE_ORDER].[CUSTOMER_ID]
-        JOIN [dbo].[INVOICE]
-        ON [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[INVOICE].[SERVICE_ORDER_ID]
-        JOIN [dbo].[INVOICE_PAYMENT]
-        ON [dbo].[INVOICE].[SERVICE_ORDER_ID] = [dbo].[INVOICE_PAYMENT].[SERVICE_ORDER_ID]
-        GROUP BY [dbo].[Customer].[CUSTOMER_ID],[dbo].[Customer].[C_BUSINESS_NAME],[dbo].[Customer].[C_FNAME], [dbo].[Customer].[C_LNAME], [dbo].[Customer].[C_PHONE]
-        ORDER BY 'Account Spending' DESC;
+		[dbo].[Customer].[CUSTOMER_ID] AS 'Customer ID',
+		[dbo].[Customer].[C_FNAME] as 'First Name',
+		[dbo].[Customer].[C_LNAME] as 'Last Name',
+		ISNULL(Customer.C_BUSINESS_NAME,'') as 'Business Name',
+		[dbo].[Customer].[C_PHONE] as 'Customer Contact',
+		FORMAT(SUM([dbo].[INVOICE].[TOTAL_COST]), 'C') as 'Account Spending',
+		MAX([dbo].[INVOICE].[INVOICE_DATE]) as 'Most Recent Invoice'
+		
+		FROM [dbo].[Customer]
+		JOIN [dbo].[SERVICE_ORDER]
+		ON [dbo].[Customer].[CUSTOMER_ID] = [dbo].[SERVICE_ORDER].[CUSTOMER_ID]
+		JOIN [dbo].[INVOICE]
+		ON [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[INVOICE].[SERVICE_ORDER_ID]
+		JOIN [dbo].[INVOICE_PAYMENT]
+		ON [dbo].[INVOICE].[SERVICE_ORDER_ID] = [dbo].[INVOICE_PAYMENT].[SERVICE_ORDER_ID]
+		
+		GROUP BY [dbo].[Customer].[CUSTOMER_ID],[dbo].[Customer].[C_BUSINESS_NAME],[dbo].[Customer].[C_FNAME], [dbo].[Customer].[C_LNAME], [dbo].[Customer].[C_PHONE]
+		ORDER BY 'Account Spending' DESC;
     """)
     data = cursor.fetchall()
     conn.commit()
@@ -1321,8 +1322,6 @@ def employee_part_report():
     conn.commit()
     return render_template('report_employeepart.html', data = data)
 
-
-
 ### EMPLOYEE STATUS ####
 @app.route ('/employees/employeestatus-report' , methods = ['GET'])
 def employeestatus_report():
@@ -1359,8 +1358,8 @@ def employeeservice_report():
         return render_template('login.html')    
     cursor.execute("""
         SELECT
-		EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
-		EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
+		EMPLOYEE.EMP_FNAME AS 'First Name',
+		EMPLOYEE.EMP_LNAME AS 'Last Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service Order ID',
 		SERVICE.SERVICE_TYPE AS 'Service',
 		SERVICE_ORDER.ORDER_DATE AS 'Order Date'
@@ -1714,7 +1713,7 @@ def new_service():
     return render_template('newservice.html', customers=customers,data=data,data1=data1,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
                       
 # modify service
-@app.route('/service/upate', methods = ['POST', 'GET'])
+@app.route('/services/upate-service', methods = ['POST', 'GET'])
 def update_service():
     if not session.get('logged_in'):
         return render_template('login.html')    
@@ -1991,18 +1990,20 @@ def avgcostbyservice_report():
         return render_template('login.html')    
     cursor.execute("""
         Select
-        COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Number of Services Completed',
-        [dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
-        FORMAT(AVG([dbo].[SERVICE_LINE].[LINE_COST]), 'C') as 'Average Total Cost'
-        from [dbo].[SERVICE]
-        join [dbo].[SERVICE_LINE]
-        on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
-        join [dbo].[SERVICE_ORDER]
-        on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
-        join [dbo].[SERVICE_LINE_PART]
-        on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
-        GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
-        ORDER BY 'Service Type';
+		[dbo].[SERVICE].[SERVICE_TYPE] as 'Service Type',
+		AVG([dbo].[SERVICE_LINE].[LINE_COST]) as 'Average Total Cost',
+		COUNT([dbo].[SERVICE].[SERVICE_TYPE]) as 'Sample Size'
+		
+		from [dbo].[SERVICE]
+		join [dbo].[SERVICE_LINE]
+		on [dbo].[SERVICE_LINE].[SERVICE_ID] = [dbo].[SERVICE].[SERVICE_ID]
+		join [dbo].[SERVICE_ORDER]
+		on [dbo].[SERVICE_ORDER].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID]
+		join [dbo].[SERVICE_LINE_PART]
+		on [dbo].[SERVICE_LINE].[SERVICE_ORDER_ID] = [dbo].[SERVICE_LINE_PART].[SERVICE_ORDER_ID]
+		
+		GROUP BY [dbo].[SERVICE].[SERVICE_TYPE]
+		ORDER BY 'Service Type';
     """)
     data = cursor.fetchall()
     conn.commit()
