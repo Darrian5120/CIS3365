@@ -42,19 +42,19 @@
                     <th>Vehicle Make</th>
                     <th>Vehicle Model</th>
                     <th>Vehicle Year</th>
-		    <th>Vehicle Condition Upon Arrival</th>
+		            <th>Vehicle Condition Upon Arrival</th>
 
                 </tr>
             </thead>    
             <tbody>
                 {% for row in data %}    
                     <tr>
-                        <td>{{row[0]}}</td>
-                        <td>{{row[1]}}</td>
-                        <td>{{row[2]}}</td>
-                        <td>{{row[3]}}</td>
-                        <td>{{row[4]}}</td>
-                        <td>{{row[5]}}</td>
+                        <td align = "right">{{row[0]}}</td>
+                        <td align = "right">{{row[1]}}</td>
+                        <td align = "left">{{row[2]}}</td>
+                        <td align = "left">{{row[3]}}</td>
+                        <td align = "right">{{row[4]}}</td>
+                        <td align = "left">{{row[5]}}</td>
 
                     </tr>
                 {% endfor %}
