@@ -281,11 +281,12 @@ def customerowed_report():
 		CUSTOMER.C_LNAME AS 'Last Name',
 		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		SERVICE.SERVICE_TYPE AS 'Service Type',
-		INVOICE.AMT_OWED AS 'Amount Owed',
 		INVOICE.INVOICE_DATE AS 'Invoice Date',
 		MAKE.MAKE_NAME AS 'Make',
 		MODEL.MODEL_NAME AS 'Model',
-		VEHICLE.V_LICENSE_PLATE AS 'License Plate'
+		VEHICLE.V_LICENSE_PLATE AS 'License Plate',
+        FORMAT(INVOICE.AMT_OWED, 'C') AS 'Amount Owed'
+		
 
 		FROM CUSTOMER
 		JOIN SERVICE_ORDER ON CUSTOMER.CUSTOMER_ID = SERVICE_ORDER.CUSTOMER_ID
@@ -409,9 +410,9 @@ def customerpayservice_report():
 		ISNULL(Customer.C_BUSINESS_NAME,'') AS 'Business Name',
 		Customer.C_FNAME AS 'Customer First Name',
 		Customer.C_LNAME AS 'Customer Last Name',
-		INVOICE_PAYMENT.PMT_AMOUNT AS 'Payment Amount',
 		PAYMENT.PMT_TYPE AS 'Payment Type',
-		SERVICE.SERVICE_TYPE AS 'Service Type'
+		SERVICE.SERVICE_TYPE AS 'Service Type',
+        FORMAT(INVOICE_PAYMENT.PMT_AMOUNT, 'C') AS 'Payment Amount'
 
 
 		FROM Customer
@@ -1358,8 +1359,8 @@ def employeeservice_report():
         return render_template('login.html')    
     cursor.execute("""
         SELECT
-		EMPLOYEE.EMP_FNAME AS 'First Name',
-		EMPLOYEE.EMP_LNAME AS 'Last Name',
+		EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
+		EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
 		SERVICE_ORDER.SERVICE_ORDER_ID AS 'Service Order ID',
 		SERVICE.SERVICE_TYPE AS 'Service',
 		SERVICE_ORDER.ORDER_DATE AS 'Order Date'
@@ -1479,8 +1480,8 @@ def activeemppayrate_report():
         SELECT EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
         EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
         ROLE.ROLE_NAME AS 'Job Role',
-        ROLE.PAY_RATE AS 'Hourly Pay',
-        Employee_Status.ACTIVE_NAME AS 'Status'
+        Employee_Status.ACTIVE_NAME AS 'Status',
+        FORMAT(ROLE.PAY_RATE AS, 'C') 'Hourly Pay'
 
 		FROM EMPLOYEE
 
