@@ -52,7 +52,7 @@ CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID|C_ADDRESS_LINE1|C_A
 51|Lamar|Vince|Vince Delivery|3|1|2nd Street||Austin|Texas|37424|United States|742-472-4750|vincelamar@gmail.com
 52|Alvarez|Zach|Visa Pool Plastering|3|1|3rd Street||Austin|Texas|84714|United States|848-427-4827|zachalvarez@gmail.com
 53|Jones|Brandon|BJ Vacumme|3|1|37812 Adams Ave||Dallas|Texas|88252|United States|833-314-5642|brandonjones@gmail.com
-54|Romar|Alex|Romar Unlimited Incorporation|3|1|1231 Jefferson Dr||Pasadina|Texas|37718|United States|382-241-4141|alexromar@gmail.com
+54|Romar|Alex|Romar Unlimited Incorporation|3|1|1231 Jefferson Dr||Pasadena|Texas|37718|United States|382-241-4141|alexromar@gmail.com
 55|Schmitz|Glenn|J&B Pavelk Inc.|3|1|1847 Rockerfeller St||Fort Worth|Texas|77187|United States|832-238-3378|glennchmitz@gmail.com
 56|Diggs|Tom|Hauling Valley LLC|3|1|4727 Aber Ln||Houston|Texas|72878|United States|372-374-5378|tomdiggs@gmail.com
 57|Sorto|Dionicio||3|0|74232 Amaya Avenue||Houston|Texas|71878|United States|821-438-4387|dioniciosorto@gmail.com
@@ -77,11 +77,11 @@ CUSTOMER_ID|C_LNAME|C_FNAME|C_BUS_NAME|ACTIVE_ID|BUSINESS_ID|C_ADDRESS_LINE1|C_A
 76|Cason|Jacob|Circle M Transport|2|1|8938 Garrott St||Houston|Texas|77006|United States|829-589-3842|jacobcason@gmail.com
 77|Olivares|Eliud|Elite HTX Trucking LLC|2|1|8398 Feedback Ave||Dallas|Texas|83932|United States|839-860-3839|eliudolivares@gmail.com
 78|Hilby|Malik|Hilby Limited Trucking|2|1|8489 Emma Place Dr||Dallas|Texas|93029|United States|843-849-4839|malikhilby@gmail.com
-79|Deramus|Johnny|Jonny Deramus Dump Truck Servic LLC|2|1|9294 Fairfield St||Houston|Texas|77013|United States|723-859-1983|johnnyderamus@gmail.com
+79|Deramus|Johnny|Jonny Deramus Dump Truck Service LLC|2|1|9294 Fairfield St||Houston|Texas|77013|United States|723-859-1983|johnnyderamus@gmail.com
 80|Lopez|Irma||2|0|8849 Fieldcrest Dr||Dallas|Texas|98208|United States|892-484-3841|irmalopez@gmail.com
 81|Lane|John|Houston Tree Transplanting|2|1|939 Fink St||Dallas|Texas|82984|United States|739-483-4759|johnlane@gmail.com
 82|Scott|Logan|D&D Truck Sales Inc|2|1|4953 Flatwood Dr||Houston|Texas|77209|United States|829-485-3813|loganscott@gmail.com
-83|Strother|Sophia|Selectrucks Of Houston|2|1|298 Fiatlane Dr||Houston|Texas|77299|United States|785-843-3943|sophiastrother@gmail.com
+83|Strother|Sophia|SelecTrucks Of Houston|2|1|298 Fiatlane Dr||Houston|Texas|77299|United States|785-843-3943|sophiastrother@gmail.com
 84|Smith|Kenneth|Rush Truck-Waco|2|1|3894 Mountainvale Dr||Dallas|Texas|82988|United States|920-382-8492|kennethsmith@gmail.com
 85|Woods|Russel|South Texas Logging & Transport|2|1|8392 Montrose Ave||Houston|Texas|77008|United States|832-472-3728|russelwoods@gmail.com
 86|Midgley|Tyler|SJC Trucking|2|1|2713 Highville Ave||Austin|Texas|93293|United States|382-839-3819|tylermidgley@gmail.com
