@@ -1,9 +1,9 @@
 SERVICE_ID|SERVICE_TYPE|COST|ACTIVE_ID
-1|Install hydraulic system|400.00|1
+1|Install Hydraulic System|400.00|1
 2|Suspension|1800.00|1
-3|Bolt kit|731.13|1
+3|Bolt Kit|731.13|1
 4|Install Battery|125.00|1
-5|Build And Install FLAT Bed|8000.00|1
+5|Build And Install Flat Bed|8000.00|1
 6|Towing|450.00|1
 7|Welding|325.00|1
 8|Delivery|4000.00|1
@@ -23,81 +23,81 @@ SERVICE_ID|SERVICE_TYPE|COST|ACTIVE_ID
 22|Install Axle|2500.00|1
 23|Install Beacon lighting|3000.00|1
 24|Credit|384.01|1
-25|Remove steer top|1500.00|1
-26|Paint truck|2000.00|1
-27|Polish truck|380.00|1
+25|Remove Steer Top|1500.00|1
+26|Paint Truck|2000.00|1
+27|Polish Truck|380.00|1
 28|Fender|350.00|1
-29|SAndBLAST|1500.00|1
-30|Install Power takeoff transmission|850.00|1
-31|Remove dump Box|5500.00|1
-32|Build And Install PINTLE Hitch|1800.00|1
-33|Install Trailer package|1350.00|1
+29|Sandblast|1500.00|1
+30|Install Power Takeoff Transmission|850.00|1
+31|Remove Dump Box|5500.00|1
+32|Build And Install Pintle Hitch|1800.00|1
+33|Install Trailer Package|1350.00|1
 34|Build And Install Bed|650.00|1
-35|Build And Install ELECTRIC Tarp|650.00|1
-36|Install Heavy duty steel arms|840.00|1
-37|Install BEVERAGE BODY|750.00|1
-38|AUTOMATIC PUMP Install|4500.00|1
-39|Install WRECKER|125.00|1
-40|Build Cab SUPPORTS|35.00|1
-41|Build Cab BRACKETS|110.53|1
-42|Build And Install HEADACHE RACK|1400.00|1
-43|Install Aluminum Tarp ROLLER|110.00|1
-44|Replace TAILGATE CYLINDER|75.00|1
-45|Install Bed LINER|1000.00|1
+35|Build And Install Electric Tarp|650.00|1
+36|Install Heavy Duty Steel Arms|840.00|1
+37|Install Beverage Body|750.00|1
+38|Automatic Pump Install|4500.00|1
+39|Install Wrecker|125.00|1
+40|Build Cab Supports|35.00|1
+41|Build Cab Brackets|110.53|1
+42|Build And Install Headache Rack|1400.00|1
+43|Install Aluminum Tarp Roller|110.00|1
+44|Replace Tailgate Cylinder|75.00|1
+45|Install Bed Liner|1000.00|1
 46|Replace Tarp|150|1
-47|Install REFLECTORS|470.00|1
-48|Install STROBE LIGHTing|150.00|1
-49|Replace DUMP Bed|800.00|1
-50|Install FUEL LINES|250.00|1
-51|Install ANTENNA SYSTEM|150.00|1
-52|Build And Install STAKE Bed|460.00|1
-53|Install SWing GATE DOOR|2200.00|1
+47|Install Reflectors|470.00|1
+48|Install Strobe Lighting|150.00|1
+49|Replace Dump Bed|800.00|1
+50|Install Fuel Lines|250.00|1
+51|Install Antenna System|150.00|1
+52|Build And Install Stake Bed|460.00|1
+53|Install Swing Gate Door|2200.00|1
 54|Install Cab CONTROLS|1000.00|1
 55|Install CabLE SHIFT PUMP|45.00|1
 56|Build And Install BATTERY Box|100.00|1
-57|Install DUAL MUFFLER|1350.00|1
-58|HOOD Repair|800.00|1
-59|CabIN Roof Repair|650.00|1
-60|Install HORN|400.00|1
-61|Install SEATing|8000.00|1
-62|Install Cab PROTECTOR|370.00|1
+57|Install Dual Muffler|1350.00|1
+58|Hood Repair|800.00|1
+59|Cabin Roof Repair|650.00|1
+60|Install Horn|400.00|1
+61|Install Seating|8000.00|1
+62|Install Cab Protector|370.00|1
 63|Repair Bed Floor|300.00|1
 64|Install Bushing Kit|1100.00|1
 65|Build And Install Tool Box With Lockable T-Latches|11500.00|1
-66|Install WINDOW|1800.00|1
-67|Install CHAIN SPREADER|245.00|1
-68|Install TIRE|43.38|1
-69|Install SWITCH Kit|139.18|1
-70|Install ELBOW Kit|178.00|1
-71|Replace AIR BAG|8000.00|1
-72|Install WORK LIGHT|1850.00|1
-73|Install MESH TRUCK Tarp|1360.00|1
-74|Repair TRAILER|800.00|1
-75|Replace VALVE|6290.00|1
-76|Install GOOSE NECK Hitch|4500.00|1
-77|Install STEEL REAR MOUNT WET Kit|12600.00|1
-78|Install LIGHT SWITCH|1850.00|1
-79|Install SLIDing 5TH WHEEL|750.00|1
-80|EXTEND FLAT Bed|500.00|1
-81|SAndBLAST|1500.00|1
-82|Install TOOL Box|300.00|1
-83|TIRE MOUNT|900.00|1
-84|Install HEADED RACK|950.00|1
-85|Install JAIL RACK|1200.00|1
-86|Shorten frame|180.00|1
+66|Install Window|1800.00|1
+67|Install Chain Spreader|245.00|1
+68|Install Tire|43.38|1
+69|Install Switch Kit|139.18|1
+70|Install Elbow Kit|178.00|1
+71|Replace Air Bag|8000.00|1
+72|Install Work Light|1850.00|1
+73|Install Mesh Truck Tarp|1360.00|1
+74|Repair Trailer|800.00|1
+75|Replace Valve|6290.00|1
+76|Install Goose Neck Hitch|4500.00|1
+77|Install Steel Rear Mount Wet Kit|12600.00|1
+78|Install Light Switch|1850.00|1
+79|Install Sliding 5th Wheel|750.00|1
+80|Extend Flat Bed|500.00|1
+81|Sandblast|1500.00|1
+82|Install Tool Box|300.00|1
+83|Tire Mount|900.00|1
+84|Install Headed Rack|950.00|1
+85|Install Jail Rack|1200.00|1
+86|Shorten Frame|180.00|1
 87|Install Demolition Box|500.00|1
-88|MODIFY CHASSIS|315.00|1
-89|REPOSISTION MUFFLER|475.00|1
-90|Install AUTOMATIC MUDFLAP|150.00|1
-91|Install COAL SHOOT|150.37|1
-92|Repair GOOSENECK TRAILER|2500.00|1
-93|Install ELECTRIC BRAKE CONTROL|95.00|1
-94|Straighten and align chassis|5600.00|1
+88|Modify Chassis|315.00|1
+89|Reposition Muffler|475.00|1
+90|Install Automatic Mudflap|150.00|1
+91|Install Coal Shoot|150.37|1
+92|Repair Goosenack Trailer|2500.00|1
+93|Install Electric Brake Control|95.00|1
+94|Straighten and Align Chassis|5600.00|1
 95|Weld Supports|800.00|1
-96|Repair CHASSIS|4850.00|1
-97|Install Dual action hinges|750.00|1
+96|Repair Chassis|4850.00|1
+97|Install Dual Action Hinges|750.00|1
 98|Repair Dump Box|300.00|1
-99|Straighten and align frame|4500.00|1
-100|Install Cab DOORS|850.00|1
-101|Replace Engine cylinder|1100.00|1
-102|Sleeper repair|100.00|1
+99|Straighten and Align Frame|4500.00|1
+100|Install Cab Doors|850.00|1
+101|Replace Engine Cylinder|1100.00|1
+102|Sleeper Repair|100.00|1
