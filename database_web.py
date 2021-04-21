@@ -1480,8 +1480,8 @@ def activeemppayrate_report():
         SELECT EMPLOYEE.EMPLOYEE_LNAME AS 'Last Name',
         EMPLOYEE.EMPLOYEE_FNAME AS 'First Name',
         ROLE.ROLE_NAME AS 'Job Role',
-        ROLE.PAY_RATE AS 'Hourly Pay',
-        Employee_Status.ACTIVE_NAME AS 'Status'
+        Employee_Status.ACTIVE_NAME AS 'Status',
+        FORMAT(ROLE.PAY_RATE AS, 'C') 'Hourly Pay'
 
 		FROM EMPLOYEE
 
