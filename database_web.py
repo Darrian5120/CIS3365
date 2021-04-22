@@ -2339,7 +2339,7 @@ def view_parts():
         return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", 
-        SUPPLIER_PART.PART_COST, SUPPLIER_STATUS.ACTIVE_NAME AS "Active"
+        SUPPLIER_STATUS.ACTIVE_NAME AS "Active", FORMAT(SUPPLIER_PART.PART_COST, 'C') AS "Part Cost"
 
         FROM SUPPLIER
         JOIN SUPPLIER_STATUS
