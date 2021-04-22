@@ -2167,7 +2167,7 @@ def new_supplierpart():
             part_id = cursor.fetchone()[0]
             conn.commit()
             # insert supplier_part
-            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST, AMOUNT) VALUES (?,?,?.?)"
+            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST, AMOUNT) VALUES (?,?,?,?)"
             vals = (part_id, supplier, cost)
             cursor.execute(query, vals)
             conn.commit()

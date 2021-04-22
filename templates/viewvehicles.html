@@ -18,11 +18,12 @@
             table {text-align: center; margin-left: auto; margin-right: auto; border-collapse: collapse;}
             table, td, th {border: 1px solid black;}
             #td {border: 0px; width: 16%; text-align: center; margin: 0; padding: 0;}
+            #ahref {text-decoration: none; color: inherit;}
         </style>
-    </head>
-    <body>
+	</head>
+	<body>
         <div class="header">
-            <h1>Herrera Fabricating Inc.</h1>
+            <h1><a href ="/" id="ahref">Herrera Fabricating Inc.</h1>
         </div>
         <table class="topnav" cellspacing="0" cellpadding="0">
             <tr>
@@ -34,6 +35,7 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
+        <br><br>
         <table>
             <thead>
                 <tr>
@@ -54,18 +56,18 @@
             <tbody>
                 {% for row in data %}    
                     <tr>
-                        <td>{{row[0]}}</td>
-                        <td>{{row[1]}}</td>
-                        <td>{{row[2]}}</td>
-                        <td>{{row[3]}}</td>
-                        <td>{{row[4]}}</td>
-                        <td>{{row[5]}}</td>
-                        <td>{{row[6]}}</td>
-                        <td>{{row[7]}}</td>
-                        <td>{{row[8]}}</td>
-                        <td>{{row[9]}}</td>
-                        <td>{{row[10]}}</td>
-                        <td>{{row[11]}}</td>
+                        <td align="right">{{row[0]}}</td>
+                        <td align="left">{{row[1]}}</td>
+                        <td align="left">{{row[2]}}</td>
+                        <td align="right">{{row[3]}}</td>
+                        <td align="left">{{row[4]}}</td>
+                        <td align="left">{{row[5]}}</td>
+                        <td align="left">{{row[6]}}</td>
+                        <td align="left">{{row[7]}}</td>
+                        <td align="left">{{row[8]}}</td>
+                        <td align="left">{{row[9]}}</td>
+                        <td align="left">{{row[10]}}</td>
+                        <td align="right">{{row[11]}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
