@@ -2075,14 +2075,14 @@ def currentyearinvoice_report():
     cursor.execute("""
         SELECT 
 		INVOICE.INVOICE_ID AS 'Invoice ID',
-		INVOICE.TOTAL_COST AS 'Total Cost',
 		INVOICE.AMT_OWED AS 'Amount Owned',
 		INVOICE.INVOICE_DATE AS 'Date',
 		PAYMENT.PMT_TYPE AS 'Payment Type',
 		Customer.C_FNAME AS 'Customer First Name',
 		Customer.C_LNAME AS 'Customer Last Name',
 		Customer.C_PHONE AS 'Customer Phone Number',
-		VEHICLE.V_VIN AS 'VIN Worked On'
+		VEHICLE.V_VIN AS 'VIN Worked On',
+        FORMAT(INVOICE.TOTAL_COST, 'C') AS 'Total Cost'
 
 		FROM INVOICE
 		JOIN INVOICE_PAYMENT
@@ -2114,9 +2114,9 @@ def currentyearorder_report():
         SELECT SERVICE_ORDER.SERVICE_ORDER_ID AS 'Order ID',
 		SERVICE_ORDER.ORDER_DATE AS 'Date Ordered',
 		SERVICE_ORDER_STATUS.ACTIVE_NAME AS 'Order Status' ,
-		INVOICE.TOTAL_COST AS 'Cost',
 		Customer.C_LNAME AS 'Customer Last Name',
-		Customer.C_FNAME AS 'Customer First Name'
+		Customer.C_FNAME AS 'Customer First Name',
+        FORMAT(INVOICE.TOTAL_COST, 'C') AS 'Cost'
 
 		FROM SERVICE_ORDER
 		JOIN INVOICE
@@ -2361,14 +2361,14 @@ def partsratelist_report():
         return render_template('login.html')    
     cursor.execute("""
         Select PART.PART_NAME As 'Part Name',
-		SUPPLIER_PART.PART_COST As 'Part Price', 
 		SUPPLIER.SUPPLIER_NAME As 'Supplier Name',
 		SUPPLIER.S_ADDRESS_LINE1 As 'Address',
 		ISNULL(SUPPLIER.S_ADDRESS_LINE2,'') As 'Address Line 2',
 		SUPPLIER.S_PHONE As 'Contact No.',
 		SUPPLIER.S_EMAIL As 'Email Address',
-		SUPPLIER_STATUS.ACTIVE_NAME As 'Supplier Status'
-		
+		SUPPLIER_STATUS.ACTIVE_NAME As 'Supplier Status'.
+		FORMAT(SUPPLIER_PART.PART_COST,'C') As 'Part Price'
+
 		from SUPPLIER
 		Join SUPPLIER_STATUS
 		On SUPPLIER.ACTIVE_ID=SUPPLIER_STATUS.ACTIVE_ID
