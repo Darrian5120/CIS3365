@@ -2187,7 +2187,7 @@ def new_supplierpart():
             conn.commit()
             # insert supplier_part
             query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST, QUANTITY) VALUES (?,?,?,?)"
-            vals = (part_id, supplier, cost)
+            vals = (part_id, supplier, cost, amt)
             cursor.execute(query, vals)
             conn.commit()
             return render_template('suppliers.html')
@@ -2649,16 +2649,14 @@ def pastviolations_report():
 
 if __name__ == '__main__':
     # Connection to school provided server, don't use till final.
-    #conn = pyodbc.connect('Driver={SQL Server};'
-    #                    'Server=CoT-CIS3365-05.cougarnet.uh.edu;'
-    #                    'Database=CoogTechSolutions;'
-    #                    'Trusted_Connection=no;')
     conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
-                        'Server=DESKTOP-9PNG3JO;'
+                        'Server=CoT-CIS3365-05;'
                         'Database=CoogTechSolutions;'
                         'Trusted_Connection=yes;')
+    #conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
+    #                    'Server=DESKTOP-9PNG3JO;'
+    #                    'Database=CoogTechSolutions;'
+    #                    'Trusted_Connection=yes;')
     cursor = conn.cursor()
-    
-    app.run()
+    app.run(host='0.0.0.0',port=8070)
     conn.close()
-
