@@ -1579,7 +1579,7 @@ def view_services():
     if not session.get('logged_in'):
         return render_template('login.html')    
     cursor.execute ("""
-        SELECT SERVICE_ID, SERVICE_TYPE, COST, SERVICE_STATUS.ACTIVE_NAME
+        SELECT SERVICE_ID, SERVICE_TYPE,  SERVICE_STATUS.ACTIVE_NAME, FORMAT(COST,'C')
         FROM SERVICE JOIN SERVICE_STATUS ON SERVICE.ACTIVE_ID=SERVICE_STATUS.ACTIVE_ID
     """)
     data = cursor.fetchall()
