@@ -2047,7 +2047,7 @@ def partwithservice_report():
         SELECT
 		PART.PART_NAME AS 'Part Used',
 		SERVICE.SERVICE_TYPE AS 'Service Type',
-		SUPPLIER_PART.PART_COST AS 'Part Cost'
+		FORMAT(SUPPLIER_PART.PART_COST, 'C') AS 'Part Cost'
 
 		FROM PART
 		Join SERVICE_LINE_PART
