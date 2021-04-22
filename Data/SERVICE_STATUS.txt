@@ -1,4 +1,4 @@
 ACTIVE_ID|ACTIVE_NAME
-1|AVAILABLE SERVICE
-2|UNAVAILABLE SERVICE
-3|SPECIAL REQUEST
+1|Available Service
+2|Unavailable Service
+3|Special Request

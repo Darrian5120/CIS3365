@@ -1578,7 +1578,10 @@ def services():
 def view_services():
     if not session.get('logged_in'):
         return render_template('login.html')    
-    cursor.execute ("SELECT * FROM CoogTechSolutions.dbo.SERVICE")
+    cursor.execute ("""
+        SELECT SERVICE_ID, SERVICE_TYPE, COST, SERVICE_STATUS.ACTIVE_NAME
+        FROM SERVICE JOIN SERVICE_STATUS ON SERVICE.ACTIVE_ID=SERVICE_STATUS.ACTIVE_ID
+    """)
     data = cursor.fetchall()
     return render_template ('viewservices.html' , data = data)
 
