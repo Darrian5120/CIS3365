@@ -1672,7 +1672,6 @@ def new_service():
         vehicle = request.form.get('vehicle')
         cursor.execute("SELECT V_ID FROM VEHICLE WHERE V_VIN='{}'".format(vehicle))
         vehicle = cursor.fetchone()[0]
-        print(vehicle)
         qry = "INSERT INTO VEHICLE_SERVICE(SERVICE_ID, V_ID) VALUES (?,?)"
         vals = (service_id, vehicle)
         cursor.execute(qry,vals)
@@ -1703,22 +1702,28 @@ def new_service():
         vals = (1, payment, invoice_id, service_order_id, cost)
         cursor.execute(qry,vals)
         conn.commit()
-        return render_template('services.html')
         # insert service_line_part
         part = request.form.get('part')
+        cursor.execute("SELECT PART_ID FROM PART WHERE PART_NAME = '{}'".format(part))
+        part_id = cursor.fetchone()[0]
         qry = "INSERT INTO SERVICE_LINE_PART (SERVICE_ORDER_ID, SERVICE_ID, PART_ID) VALUES (?,?,?)"
-        vals = (service_order_id, service_id, part)
+        vals = (service_order_id, service_id, part_id)
         cursor.execute(qry,vals)
         conn.commit()
         # insert employee service line assignment
         employee = request.form.get('employee')
+        x = employee.split(", ")
+        employee_id = int(x[0][1:])
+        print(employee)
         qry = "INSERT INTO EMPLOYEE_SERVICE_LINE_ASSIGNMENT (SERVICE_ORDER_ID, SERVICE_ID, EMPLOYEE_ID) VALUES (?,?,?)"
-        vals = (service_order_id, service_id, employee)
+        vals = (service_order_id, service_id, employee_id)
         cursor.execute(qry,vals)
         conn.commit()
         #update supplier_part inventory
-        qry="UPDATE SUPPLIER_PART SET QUANTITY = {} WHERE PART_ID={} AND SUPPLIER_ID={}"
-        vals = (service_order_id, service_id, employee)
+        supplier = request.form.get('supplier')
+        print(supplier)
+        qry="UPDATE SUPPLIER_PART SET QUANTITY = QUANTITY-1 WHERE PART_ID={} AND SUPPLIER_ID={}"
+        vals = (service_order_id, part_id, employee_id)
         cursor.execute(qry,vals)
         conn.commit()
     return render_template('newservice.html', customers=customers,data=data,data1=data1,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
