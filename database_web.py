@@ -2167,8 +2167,8 @@ def new_supplierpart():
             part_id = cursor.fetchone()[0]
             conn.commit()
             # insert supplier_part
-            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST, AMOUNT) VALUES (?,?,?,?)"
-            vals = (part_id, supplier, cost)
+            query = "INSERT INTO SUPPLIER_PART (PART_ID, SUPPLIER_ID, PART_COST, QUANTITY) VALUES (?,?,?,?)"
+            vals = (part_id, supplier, cost, amt)
             cursor.execute(query, vals)
             conn.commit()
             return render_template('suppliers.html')
@@ -2339,7 +2339,7 @@ def view_parts():
         return render_template('login.html')    
     cursor.execute("""
         SELECT SUPPLIER.SUPPLIER_NAME AS "Supplier", PART.PART_NAME AS "Part", 
-        SUPPLIER_STATUS.ACTIVE_NAME AS "Active", FORMAT(SUPPLIER_PART.PART_COST, 'C') AS "Part Cost"
+        SUPPLIER_PART.QUANTITY AS "Quantity", FORMAT(SUPPLIER_PART.PART_COST, 'C') AS "Part Cost"
 
         FROM SUPPLIER
         JOIN SUPPLIER_STATUS

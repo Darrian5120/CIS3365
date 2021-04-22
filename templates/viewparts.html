@@ -34,27 +34,28 @@
                 <td id="td"><a href ="/violations">Violations</a></td>
             </tr>
         </table>
-                <table>
-                        <thead>
-                            <tr>
-                                <th>Supplier Name</th>
-                                <th>Part Name</th>
-                                <th>Part Cost</th>
-                                <th>Active</th>
-                            </tr>
-                        </thead>    
-                        <tbody>
-                            {% for row in data %}    
-                                <tr>
-                                    <td align="left">{{row[0]}}</td>
-                                    <td align="left">{{row[1]}}</td>
-                                    <td align="right">{{row[2]}}</td>
-                                    <td align="left">{{row[3]}}</td>
+        <br><br>
+        <table>
+                <thead>
+                    <tr>
+                        <th>Supplier Name</th>
+                        <th>Part Name</th>
+                        <th>Active</th>
+                        <th>Part Cost</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    {% for row in data %}    
+                        <tr>
+                            <td align="left">{{row[0]}}</td>
+                            <td align="left">{{row[1]}}</td>
+                            <td align="right">{{row[2]}}</td>
+                            <td align="left">{{row[3]}}</td>
 
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
     </body>
     <script>
 
