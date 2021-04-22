@@ -1706,7 +1706,6 @@ def new_service():
         part = request.form.get('part')
         cursor.execute("SELECT PART_ID FROM PART WHERE PART_NAME = '{}'".format(part))
         part_id = cursor.fetchone()[0]
-        print(part_id)
         qry = "INSERT INTO SERVICE_LINE_PART (SERVICE_ORDER_ID, SERVICE_ID, PART_ID) VALUES (?,?,?)"
         vals = (service_order_id, service_id, part_id)
         cursor.execute(qry,vals)
@@ -1715,7 +1714,6 @@ def new_service():
         employee = request.form.get('employee')
         x = employee.split(", ")
         employee_id = int(x[0][1:])
-        print(employee_id)
         qry = "INSERT INTO EMPLOYEE_SERVICE_LINE_ASSIGNMENT (SERVICE_ORDER_ID, SERVICE_ID, EMPLOYEE_ID) VALUES (?,?,?)"
         vals = (service_order_id, service_id, employee_id)
         cursor.execute(qry,vals)
@@ -1724,36 +1722,48 @@ def new_service():
         supplier = request.form.get('supplier')
         cursor.execute("SELECT SUPPLIER_ID FROM SUPPLIER WHERE SUPPLIER_NAME = '{}'".format(supplier))
         supplier_id = cursor.fetchone()[0]
-        print(supplier_id)
         cursor.execute("UPDATE SUPPLIER_PART SET QUANTITY = QUANTITY-1 WHERE PART_ID={} AND SUPPLIER_ID={}".format(part_id, supplier_id))
         conn.commit()
     return render_template('newservice.html', customers=customers,data=data,data1=data1,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
                       
 # modify service
-@app.route('/services/upate-service', methods = ['POST', 'GET'])
+@app.route('/services/update-service', methods = ['POST', 'GET'])
 def update_service():
     if not session.get('logged_in'):
-        return render_template('login.html')    
-    sql = "SELECT SERVICE_ID, SERVICE_TYPE, COST, ACTIVE_ID FROM Service"
-    cursor.execute(sql)
+        return render_template('login.html')   
+    cursor.execute("SELECT SERVICE_TYPE FROM Service")
     rows = cursor.fetchall()
     services = []
     for service in rows:
-        services.append(service)
+        services.append(service[0])
+    cursor.execute("SELECT ACTIVE_NAME FROM SERVICE_STATUS")
+    rows = cursor.fetchall()
+    statuses = []
+    for status in rows:
+        statuses.append(status[0])
     if request.method == 'POST':
-        service_id = request.form.get('service')
+        service = request.form.get('service')
+        print(service)
+        cursor.execute("SELECT SERVICE_ID FROM SERVICE WHERE SERVICE_TYPE='{}'".format(service))
+        service_id = cursor.fetchone()[0]
         print(service_id)
-        x = service_id.split(", ")
-        y = int(x[0][1:])
         field = request.form.get('tblname')
         value = request.form.get('value')
-        sql = "UPDATE {} = ? WHERE SERVICE_ID = ?".format(field)
-        vals = (value, y)
-        cursor.execute(sql, vals)
-        conn.commit()
-        message = 'Service edited sucessfully' 
-        return render_template('updateservice.html', services = services, message = message)   
-    return render_template('updateservice.html', services = services)
+        if field == "SERVICE SET ACTIVE_ID":
+            value = request.form.get('status')
+            cursor.execute("SELECT ACTIVE_ID FROM SERVICE_STATUS WHERE ACTIVE_NAME = '{}'".format(value))
+            status = cursor.fetchone()[0]
+            sql = "UPDATE {} = ? WHERE SERVICE_ID = ?".format(field)
+            vals = (status, service_id)
+            cursor.execute(sql, vals)
+            conn.commit()
+        else:
+            sql = "UPDATE {} = ? WHERE SERVICE_ID = ?".format(field)
+            vals = (value, service_id)
+            cursor.execute(sql, vals)
+            conn.commit()
+        return render_template('services.html')   
+    return render_template('updateservice.html', services=services,statuses=statuses)
 
 # remove service from db by settiing status to inactive
 @app.route('/services/delete-service', methods = ['POST', 'GET'])
