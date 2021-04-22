@@ -18,6 +18,7 @@ import os
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True # browser can see error messages
+app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = os.urandom(12)
 ############################# HOME PAGE ####################################################
 @app.route('/login', methods=['GET', 'POST'])
@@ -30,9 +31,9 @@ def login():
         return render_template('login.html')
 
 @app.route('/logout', methods=['GET', 'POST'])
-def login():
+def logout():
     session['logged_in'] = False
-    return render_template('home.html')
+    return render_template('login.html')
     
 # create first route map to url functions. home mapped to '/'
 # Home page for the web app where user can choose CRUD operations.
@@ -2639,7 +2640,6 @@ if __name__ == '__main__':
                         'Trusted_Connection=yes;')
     cursor = conn.cursor()
     
-    app.secret_key = os.urandom(12)
     app.run()
     conn.close()
 
