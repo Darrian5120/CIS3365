@@ -1725,9 +1725,7 @@ def new_service():
         cursor.execute("SELECT SUPPLIER_ID FROM SUPPLIER WHERE SUPPLIER_NAME = '{}'".format(supplier))
         supplier_id = cursor.fetchone()[0]
         print(supplier_id)
-        qry = "UPDATE SUPPLIER_PART SET QUANTITY = QUANTITY-1 WHERE PART_ID={} AND SUPPLIER_ID={}"
-        vals = (part_id, supplier_id)
-        cursor.execute(qry,vals)
+        cursor.execute("UPDATE SUPPLIER_PART SET QUANTITY = QUANTITY-1 WHERE PART_ID={} AND SUPPLIER_ID={}".format(part_id, supplier_id))
         conn.commit()
     return render_template('newservice.html', customers=customers,data=data,data1=data1,services=services,employees=employees,parts=parts,payments=payments,revenues=revenues)
                       
